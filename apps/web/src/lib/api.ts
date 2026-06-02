@@ -67,3 +67,60 @@ export async function testSourceChapter(id: string, comicId: string): Promise<Re
     body: JSON.stringify({ comicId }),
   });
 }
+
+// ========== 新增：书源管理 API ==========
+import type { SourceConfigFull, DomainEntry, HealthReport, CheckLogEntry, SearchLogEntry } from '@/types';
+
+export async function getSourceConfig(id: string): Promise<SourceConfigFull> {
+  return fetchJSON(`${API_BASE}/sources/${id}/config`);
+}
+
+export async function setSourceTier(id: string, tier: string): Promise<{ ok: boolean }> {
+  return fetchJSON(`${API_BASE}/sources/${id}/tier`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tier }),
+  });
+}
+
+export async function addSourceDomain(id: string, url: string): Promise<DomainEntry> {
+  return fetchJSON(`${API_BASE}/sources/${id}/domains`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url }),
+  });
+}
+
+export async function removeSourceDomain(id: string, domainId: number): Promise<{ ok: boolean }> {
+  return fetchJSON(`${API_BASE}/sources/${id}/domains/${domainId}`, { method: 'DELETE' });
+}
+
+// ========== 健康检测 API ==========
+export async function getAllHealth(): Promise<HealthReport[]> {
+  return fetchJSON(`${API_BASE}/health`);
+}
+
+export async function getSourceHealth(sourceId: string): Promise<HealthReport> {
+  return fetchJSON(`${API_BASE}/health/${sourceId}`);
+}
+
+export async function triggerHealthCheck(sourceId: string): Promise<HealthReport> {
+  return fetchJSON(`${API_BASE}/health/${sourceId}/check`, { method: 'POST' });
+}
+
+// ========== 日志 API ==========
+export async function getCheckLogs(source?: string, limit = 50): Promise<CheckLogEntry[]> {
+  const params = new URLSearchParams();
+  if (source) params.set('source', source);
+  params.set('limit', String(limit));
+  return fetchJSON(`${API_BASE}/logs/checks?${params}`);
+}
+
+export async function getSearchLogs(limit = 50): Promise<SearchLogEntry[]> {
+  return fetchJSON(`${API_BASE}/logs/searches?limit=${limit}`);
+}
+
+// ========== 图片代理 URL ==========
+export function getProxyImageUrl(rawUrl: string, sourceId: string): string {
+  return `${API_BASE}/proxy/image?url=${encodeURIComponent(rawUrl)}&source=${sourceId}`;
+}

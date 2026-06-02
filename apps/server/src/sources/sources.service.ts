@@ -1,82 +1,85 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SourceAdapter } from './adapter.interface';
-import { ManwaAdapter } from './adapters/manwa';
-import { YemanAdapter } from './adapters/yeman';
-import { CopyAdapter } from './adapters/copy';
-import { BaoziAdapter } from './adapters/baozi';
-import { DongmanZhijiaAdapter } from './adapters/dongmanzhijia';
-
-export interface SourceWithStatus {
-  adapter: SourceAdapter;
-  enabled: boolean;
-}
+import { SourceConfigService } from './config/source-config.service';
+import { AdapterFactoryService } from './adapter-factory.service';
 
 @Injectable()
 export class SourcesService {
   private readonly logger = new Logger(SourcesService.name);
-  private sources: Map<string, SourceWithStatus> = new Map();
 
-  constructor() {
-    this.registerAll();
-  }
+  constructor(
+    private readonly configService: SourceConfigService,
+    private readonly adapterFactory: AdapterFactoryService,
+  ) {}
 
-  /** 注册所有内置书源 */
-  private registerAll() {
-    const adapters: SourceAdapter[] = [
-      new ManwaAdapter(),
-      new YemanAdapter(),
-      new CopyAdapter(),
-      new BaoziAdapter(),
-      new DongmanZhijiaAdapter(),
-    ];
-
-    for (const adapter of adapters) {
-      this.sources.set(adapter.id, { adapter, enabled: true });
-      this.logger.log(`✅ 已注册书源: ${adapter.name} (${adapter.id})`);
-    }
-  }
-
-  /** 获取所有书源（包括启用状态） */
+  /** 获取所有书源（含数据库配置） */
   getAllSources() {
-    return Array.from(this.sources.entries()).map(([id, entry]) => ({
-      id,
-      name: entry.adapter.name,
-      domain: entry.adapter.domain,
-      enabled: entry.enabled,
+    return this.configService.getAllConfigs().map((c) => ({
+      id: c.sourceId,
+      name: c.name,
+      tier: c.tier,
+      enabled: c.enabled,
+      domain: c.domains[0]?.url || '',
+      domainCount: c.domains.length,
+      requestConfig: c.requestConfig,
     }));
   }
 
-  /** 获取所有已启用的适配器 */
-  getEnabledAdapters(): SourceAdapter[] {
-    return Array.from(this.sources.values())
-      .filter((s) => s.enabled)
-      .map((s) => s.adapter);
+  /** 获取所有已启用的适配器实例 */
+  async getEnabledAdapters(): Promise<SourceAdapter[]> {
+    return this.adapterFactory.createAllEnabled();
   }
 
-  /** 根据 ID 获取适配器 */
-  getAdapter(id: string): SourceAdapter | undefined {
-    const entry = this.sources.get(id);
-    return entry?.enabled ? entry.adapter : undefined;
+  /** 获取单个适配器实例 */
+  async getAdapter(id: string): Promise<SourceAdapter | undefined> {
+    try {
+      return await this.adapterFactory.create(id);
+    } catch (e: any) {
+      this.logger.warn(`无法创建适配器 ${id}: ${e.message}`);
+      return undefined;
+    }
   }
 
   /** 切换书源启用状态 */
   toggleSource(id: string, enabled: boolean) {
-    const entry = this.sources.get(id);
-    if (entry) {
-      entry.enabled = enabled;
-      this.logger.log(`${enabled ? '✅' : '❌'} 书源 ${entry.adapter.name}: ${enabled ? '启用' : '停用'}`);
-      return true;
-    }
-    return false;
+    const ok = this.configService.toggleSource(id, enabled);
+    this.logger.log(`${enabled ? '✅' : '❌'} 书源 ${id}: ${enabled ? '启用' : '停用'}`);
+    if (!enabled) this.adapterFactory.clearCache(id);
+    return ok;
+  }
+
+  /** 设置书源 tier */
+  setTier(id: string, tier: string) {
+    return this.configService.setTier(id, tier);
+  }
+
+  /** 获取域名池 */
+  getDomainPool(id: string) {
+    return this.configService.getDomainPool(id);
+  }
+
+  /** 添加域名 */
+  addDomain(id: string, url: string, priority: number) {
+    return this.configService.addDomain(id, url, priority);
+  }
+
+  /** 删除域名 */
+  removeDomain(id: string, domainId: number) {
+    return this.configService.removeDomain(id, domainId);
+  }
+
+  /** 获取完整配置 */
+  getSourceConfig(id: string) {
+    return this.configService.getConfig(id);
   }
 
   /** 测试书源搜索 */
   async testSearch(id: string) {
-    const adapter = this.getAdapter(id);
+    const adapter = await this.getAdapter(id);
     if (!adapter) throw new Error('书源不存在或已停用');
     const start = Date.now();
     try {
-      const results = await adapter.search('测试');
+      const results = await adapter.search('海贼王');
       return { success: true, responseTime: Date.now() - start, resultCount: results.length };
     } catch (e: any) {
       return { success: false, responseTime: Date.now() - start, error: e.message };
@@ -85,7 +88,7 @@ export class SourcesService {
 
   /** 测试书源详情 */
   async testDetail(id: string, comicId: string) {
-    const adapter = this.getAdapter(id);
+    const adapter = await this.getAdapter(id);
     if (!adapter) throw new Error('书源不存在或已停用');
     const start = Date.now();
     try {
@@ -98,7 +101,7 @@ export class SourcesService {
 
   /** 测试章节解析 */
   async testChapter(id: string, comicId: string) {
-    const adapter = this.getAdapter(id);
+    const adapter = await this.getAdapter(id);
     if (!adapter) throw new Error('书源不存在或已停用');
     const start = Date.now();
     try {

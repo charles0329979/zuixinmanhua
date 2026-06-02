@@ -28,10 +28,22 @@ export interface ChapterDetail {
   nextChapter?: { chapterId: string; title: string };
 }
 
+/** 注入适配器的上下文 — 域名、超时、User-Agent 均从此读取 */
+export interface AdapterContext {
+  baseUrl: string;
+  timeout: number;
+  userAgent: string;
+  retries: number;
+  domainResolver: {
+    switchToNextDomain(sourceId: string): Promise<string>;
+  };
+}
+
 export interface SourceAdapter {
   id: string;
   name: string;
   domain: string;
+  testTargets: { comicId?: string; chapterId?: string };
 
   search(query: string): Promise<ComicInfo[]>;
   getComicDetail(comicId: string): Promise<ComicInfo>;

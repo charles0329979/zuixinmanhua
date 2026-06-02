@@ -26,7 +26,7 @@ export class DomainResolverService {
       throw new Error(`书源 "${sourceId}" 没有可用域名`);
     }
 
-    // Try each domain in priority order
+    // Try each domain in priority order with HEAD check
     for (const domain of domains) {
       const start = Date.now();
       try {
@@ -39,17 +39,21 @@ export class DomainResolverService {
         const responseTime = Date.now() - start;
         this.configService.recordDomainResult(domain.id, true, responseTime);
         this.setCache(sourceId, domain.url);
-        this.logger.debug(`✅ ${sourceId} -> ${domain.url} (${responseTime}ms)`);
         return domain.url;
       } catch (e: any) {
         const responseTime = Date.now() - start;
-        this.configService.recordDomainResult(domain.id, false, responseTime, e.message);
-        this.logger.warn(`❌ ${sourceId}: ${domain.url} 不可用 (${e.message?.slice(0, 80)})`);
+        // Don't count HEAD failures as definitive — many sites block HEAD
+        this.logger.debug(`HEAD 检测失败 ${domain.url}: ${e.message?.slice(0, 60)}`);
         continue;
       }
     }
 
-    throw new Error(`书源 "${sourceId}" 所有域名均不可用`);
+    // All HEAD checks failed — fallback to first domain anyway
+    // The actual adapter will use GET requests which may succeed
+    const fallback = domains[0].url;
+    this.logger.warn(`⚠️ ${sourceId}: 所有域名 HEAD 检测失败，回退到 ${fallback}`);
+    this.setCache(sourceId, fallback);
+    return fallback;
   }
 
   /** 切换当前 active 域名（用于手动/自动切换） */

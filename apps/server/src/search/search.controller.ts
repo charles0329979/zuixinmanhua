@@ -8,9 +8,8 @@ export class SearchController {
   /** GET /api/search?q=xxx — 全源搜索 */
   @Get()
   async search(@Query('q') q: string) {
-    if (!q) return { sources: [] };
-    const results = await this.searchService.searchAll(q);
-    return { query: q, sources: results };
+    if (!q) return { query: '', sources: [], summary: { totalResults: 0, sourcesSearched: 0, sourcesFailed: 0 } };
+    return this.searchService.searchAll(q);
   }
 
   /** GET /api/search/:source?q=xxx — 单源搜索 */

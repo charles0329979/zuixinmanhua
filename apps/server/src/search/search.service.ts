@@ -67,9 +67,9 @@ export class SearchService {
             source: config.sourceId,
             sourceName: config.name,
             tier: config.tier,
-            healthStatus: 'disabled',
+            healthStatus: 'unavailable',
             results: [],
-            error: '书源不可用',
+            error: '域名解析失败，书源暂不可用',
           };
         }
         const results = await adapter.search(query.trim());

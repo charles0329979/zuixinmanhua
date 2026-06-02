@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { SearchBar } from '@/components/SearchBar';
 import { ComicCard } from '@/components/ComicCard';
 import { useFavorites } from '@/hooks/useFavorites';
@@ -37,7 +38,7 @@ export default function HomePage() {
         <section>
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-bold">❤️ 收藏书架</h2>
-            <a href="/favorites" className="text-sm text-primary-500 hover:underline">查看全部</a>
+            <Link href="/favorites" className="text-sm text-primary-500 hover:underline">查看全部</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {favorites.slice(0, 3).map((fav) => (
@@ -65,11 +66,11 @@ export default function HomePage() {
         <section>
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-bold">📖 最近阅读</h2>
-            <a href="/history" className="text-sm text-primary-500 hover:underline">查看全部</a>
+            <Link href="/history" className="text-sm text-primary-500 hover:underline">查看全部</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {recentlyRead.map((rp) => (
-              <a
+              <Link
                 key={rp.id}
                 href={`/read/${rp.source}/${rp.comicId}/${rp.chapterId}`}
                 className="card p-3 flex gap-3 hover:shadow-md transition-shadow"
@@ -88,7 +89,7 @@ export default function HomePage() {
                     <p className="text-xs text-primary-500 mt-1">继续阅读 第{rp.pageIndex + 1}页</p>
                   )}
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -100,7 +101,7 @@ export default function HomePage() {
           <h2 className="text-lg font-bold mb-3">🕐 最近浏览</h2>
           <div className="space-y-2">
             {history.slice(0, 5).map((h) => (
-              <a
+              <Link
                 key={h.id}
                 href={h.comicUrl}
                 className="card p-3 flex items-center gap-3 hover:shadow-md transition-shadow"
@@ -111,7 +112,7 @@ export default function HomePage() {
                   <p className="text-xs text-gray-500">{h.chapterTitle}</p>
                 </div>
                 <span className="text-xs text-gray-400">{new Date(h.lastReadAt).toLocaleDateString('zh-CN')}</span>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

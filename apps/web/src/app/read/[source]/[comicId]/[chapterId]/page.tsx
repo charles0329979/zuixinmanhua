@@ -19,8 +19,8 @@ export default function ReaderPage() {
   const [error, setError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   const [isFav, setIsFav] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef(0);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     const load = async () => {
@@ -40,6 +40,12 @@ export default function ReaderPage() {
     };
     load();
   }, [params.source, params.comicId, params.chapterId, checkFavorite]);
+
+  // 暗色模式: 将 dark class 添加到 <html> 元素
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    return () => document.documentElement.classList.remove('dark');
+  }, [darkMode]);
 
   // 记录阅读进度和浏览历史
   useEffect(() => {
@@ -65,28 +71,38 @@ export default function ReaderPage() {
     });
   }, [detail, params, save, add]);
 
-  // 滚动时追踪页码
+  // 监听 window 滚动事件追踪页码（带 500ms 节流）
   const handleScroll = useCallback(() => {
-    const container = scrollRef.current;
-    if (!container || !detail?.images.length) return;
-    const scrollTop = container.scrollTop;
-    const imgs = container.querySelectorAll('.reader-image-wrapper');
-    let currentPage = 0;
-    imgs.forEach((img, i) => {
-      const rect = img.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2) currentPage = i;
-    });
-    pageRef.current = currentPage;
-    save({
-      comicId: params.comicId,
-      comicTitle: detail.comicTitle || '',
-      source: params.source,
-      chapterId: detail.chapterId,
-      chapterTitle: detail.chapterTitle,
-      chapterUrl: `/read/${params.source}/${params.comicId}/${detail.chapterId}`,
-      pageIndex: currentPage,
-    });
+    if (saveTimerRef.current) return; // 节流：上一次还没执行完
+    saveTimerRef.current = setTimeout(() => {
+      saveTimerRef.current = undefined;
+      if (!detail?.images.length) return;
+      const imgs = document.querySelectorAll('.reader-image-wrapper');
+      let currentPage = 0;
+      imgs.forEach((img, i) => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2) currentPage = i;
+      });
+      pageRef.current = currentPage;
+      save({
+        comicId: params.comicId,
+        comicTitle: detail.comicTitle || '',
+        source: params.source,
+        chapterId: detail.chapterId,
+        chapterTitle: detail.chapterTitle,
+        chapterUrl: `/read/${params.source}/${params.comicId}/${detail.chapterId}`,
+        pageIndex: currentPage,
+      });
+    }, 500);
   }, [detail, params, save]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    };
+  }, [handleScroll]);
 
   const handleFavorite = async () => {
     const result = await toggle({
@@ -104,7 +120,7 @@ export default function ReaderPage() {
   if (!detail) return null;
 
   return (
-    <div className={darkMode ? 'dark' : ''}>
+    <>
       {/* 顶部导航 */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100 dark:bg-gray-950/90 dark:border-gray-800">
         <div className="flex items-center justify-between px-4 h-12">
@@ -122,11 +138,7 @@ export default function ReaderPage() {
       </div>
 
       {/* 图片阅读区 */}
-      <div
-        ref={scrollRef}
-        className="mt-12 mb-16 bg-gray-100 dark:bg-black min-h-screen"
-        onScroll={handleScroll}
-      >
+      <div className="mt-12 mb-16 bg-gray-100 dark:bg-black min-h-screen">
         <div className="max-w-reader mx-auto">
           {detail.images.length === 0 ? (
             <div className="text-center py-24 text-gray-500">暂无图片</div>
@@ -176,6 +188,6 @@ export default function ReaderPage() {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }

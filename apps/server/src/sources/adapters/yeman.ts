@@ -23,7 +23,33 @@ export class YemanAdapter extends BaseAdapter {
   name = '野蛮漫画';
   testTargets = { comicId: '9116', chapterId: '1049491' };
 
+  // 反爬节流：yemancomic.com 快速连续请求会触发反爬跳转到 baidu.com
+  private lastRequestTime = 0;
+  private readonly MIN_INTERVAL_MS = 2000;
+
   constructor(ctx: AdapterContext) { super(ctx); }
+
+  /** 确保请求间隔 >= MIN_INTERVAL_MS，防止触发反爬 */
+  private async throttle(): Promise<void> {
+    const now = Date.now();
+    const elapsed = now - this.lastRequestTime;
+    if (elapsed < this.MIN_INTERVAL_MS) {
+      await new Promise((resolve) => setTimeout(resolve, this.MIN_INTERVAL_MS - elapsed));
+    }
+    this.lastRequestTime = Date.now();
+  }
+
+  /** 覆写 fetch 方法，自动节流 */
+  protected override async fetch(pathOrUrl: string, opts?: any): Promise<any> {
+    await this.throttle();
+    return super.fetch(pathOrUrl, opts);
+  }
+
+  /** 覆写 post 方法，自动节流 */
+  protected override async post(pathOrUrl: string, data?: any, opts?: any): Promise<any> {
+    await this.throttle();
+    return super.post(pathOrUrl, data, opts);
+  }
 
   // ========== 搜索 ==========
   async search(query: string): Promise<ComicInfo[]> {

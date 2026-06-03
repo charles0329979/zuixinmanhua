@@ -133,6 +133,19 @@ export class BaoziAdapter extends BaseAdapter {
     }
 
     const $ = cheerio.load(data);
+
+    // 从页面标题提取漫画名: "第344话 复活仪式开始 - 斗罗大陆 - 包子漫画"
+    const pageTitle = $('title').first().text().trim();
+    let comicTitle = '';
+    let chapterTitle = chapters[idx]?.title || '';
+    if (pageTitle) {
+      const parts = pageTitle.split(/\s*[-–|]\s*/);
+      if (parts.length >= 2) {
+        chapterTitle = chapterTitle || parts[0].trim();
+        comicTitle = parts[1]?.trim() || '';
+      }
+    }
+
     const images: string[] = [];
 
     // 包子漫画使用 AMP 格式：<amp-img class="comic-contain__item" src="..." data-src="...">
@@ -155,8 +168,8 @@ export class BaoziAdapter extends BaseAdapter {
 
     return {
       chapterId,
-      comicTitle: '',
-      chapterTitle: chapters[idx]?.title || '',
+      comicTitle,
+      chapterTitle,
       images,
       prevChapter: idx > 0 ? { chapterId: chapters[idx - 1].chapterId, title: chapters[idx - 1].title } : undefined,
       nextChapter: idx < chapters.length - 1 ? { chapterId: chapters[idx + 1].chapterId, title: chapters[idx + 1].title } : undefined,

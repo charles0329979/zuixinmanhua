@@ -28,6 +28,8 @@ export interface ChapterDetail {
   comicTitle: string;
   chapterTitle: string;
   images: string[];
+  cover?: string;
+  author?: string;
   prevChapter?: { chapterId: string; title: string };
   nextChapter?: { chapterId: string; title: string };
 }

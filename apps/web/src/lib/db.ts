@@ -80,7 +80,7 @@ export async function getAllReadingProgress(): Promise<ReadingProgress[]> {
   return db.getAllFromIndex('readingProgress', 'by-lastRead');
 }
 
-export async function saveReadingProgress(progress: Omit<ReadingProgress, 'id' | 'lastReadAt'>): Promise<void> {
+export async function saveReadingProgress(progress: Omit<ReadingProgress, 'id' | 'lastReadAt'> & { cover?: string }): Promise<void> {
   const db = await getDB();
   const id = `${progress.source}:${progress.comicId}`;
   const existing = await db.get('readingProgress', id);

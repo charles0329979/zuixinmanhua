@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getChapterImages } from '@/lib/api';
+import { getChapterImages, getComicDetail } from '@/lib/api';
 import { useReadingProgress } from '@/hooks/useReadingProgress';
 import { useHistory } from '@/hooks/useHistory';
 import { useFavorites } from '@/hooks/useFavorites';
-import type { ChapterDetail } from '@/types';
+import type { ChapterDetail, ComicInfo } from '@/types';
 
 export default function ReaderPage() {
   const params = useParams<{ source: string; comicId: string; chapterId: string }>();
@@ -15,6 +15,7 @@ export default function ReaderPage() {
   const { toggle, checkFavorite } = useFavorites();
 
   const [detail, setDetail] = useState<ChapterDetail | null>(null);
+  const [comic, setComic] = useState<ComicInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
@@ -26,11 +27,13 @@ export default function ReaderPage() {
     const load = async () => {
       setLoading(true);
       try {
-        const [d, fav] = await Promise.all([
+        const [d, c, fav] = await Promise.all([
           getChapterImages(params.source, params.comicId, params.chapterId),
+          getComicDetail(params.source, params.comicId),
           checkFavorite(params.source, params.comicId),
         ]);
         setDetail(d);
+        setComic(c);
         setIsFav(fav);
       } catch (e: any) {
         setError(e.message || '加载失败');
@@ -49,11 +52,12 @@ export default function ReaderPage() {
 
   // 记录阅读进度和浏览历史
   useEffect(() => {
-    if (!detail) return;
-    const comicTitle = detail.comicTitle || '';
+    if (!detail || !comic) return;
+    const comicTitle = detail.comicTitle || comic.title || '';
     save({
       comicId: params.comicId,
       comicTitle,
+      cover: comic.cover || '',
       source: params.source,
       chapterId: detail.chapterId,
       chapterTitle: detail.chapterTitle,
@@ -63,13 +67,14 @@ export default function ReaderPage() {
     add({
       comicId: params.comicId,
       title: comicTitle,
+      cover: comic.cover || '',
       source: params.source,
       comicUrl: `/comic/${params.source}/${params.comicId}`,
       chapterTitle: detail.chapterTitle,
       chapterUrl: `/read/${params.source}/${params.comicId}/${detail.chapterId}`,
       pageIndex: 0,
     });
-  }, [detail, params, save, add]);
+  }, [detail, comic, params, save, add]);
 
   // 监听 window 滚动事件追踪页码（带 500ms 节流）
   const handleScroll = useCallback(() => {
@@ -86,7 +91,8 @@ export default function ReaderPage() {
       pageRef.current = currentPage;
       save({
         comicId: params.comicId,
-        comicTitle: detail.comicTitle || '',
+        comicTitle: detail.comicTitle || comic?.title || '',
+        cover: comic?.cover || '',
         source: params.source,
         chapterId: detail.chapterId,
         chapterTitle: detail.chapterTitle,
@@ -94,7 +100,7 @@ export default function ReaderPage() {
         pageIndex: currentPage,
       });
     }, 500);
-  }, [detail, params, save]);
+  }, [detail, comic, params, save]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -107,8 +113,9 @@ export default function ReaderPage() {
   const handleFavorite = async () => {
     const result = await toggle({
       comicId: params.comicId,
-      title: detail?.comicTitle || '',
-      cover: '',
+      title: detail?.comicTitle || comic?.title || '',
+      author: comic?.author || '',
+      cover: comic?.cover || '',
       source: params.source,
       lastChapter: detail?.chapterTitle || '',
     });

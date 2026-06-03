@@ -103,10 +103,14 @@ export class BaoziAdapter extends BaseAdapter {
     $('.comics-chapters__item').each((i, el) => {
       const $el = $(el);
       const href = $el.attr('href') || '';
+      // 真实 URL: /user/page_direct?comic_id=...&section_slot=0&chapter_slot=N
+      // 用 chapter_slot 作为 chapterId
+      const slotMatch = href.match(/chapter_slot=(\d+)/);
+      const chapterId = slotMatch ? slotMatch[1] : this.extractId(href);
       chapters.push({
-        chapterId: this.extractId(href),
+        chapterId,
         title: $el.find('div').first().text().trim() || $el.text().trim(),
-        url: href,
+        url: href,  // 保留完整 URL 供 getChapterImages 使用
         index: i,
       });
     });
@@ -117,32 +121,37 @@ export class BaoziAdapter extends BaseAdapter {
   async getChapterImages(comicId: string, chapterId: string): Promise<ChapterDetail> {
     const chapters = await this.getChapters(comicId);
     const idx = chapters.findIndex((c) => c.chapterId === chapterId);
+    const chapterUrl = chapters[idx]?.url || `/chapter/${chapterId}`;
 
-    // Try multiple URL patterns for chapter reading
+    // 使用真实 URL：/user/page_direct?comic_id=...&chapter_slot=N
     let data: string;
     try {
-      const resp = await this.fetch(`/chapter/${chapterId}`);
+      const resp = await this.fetch(chapterUrl);
       data = resp.data;
     } catch {
-      try {
-        const resp = await this.fetch(`/comic/${comicId}/chapter/${chapterId}`);
-        data = resp.data;
-      } catch {
-        return { chapterId, comicTitle: '', chapterTitle: chapters[idx]?.title || '', images: [] };
-      }
+      return { chapterId, comicTitle: '', chapterTitle: chapters[idx]?.title || '', images: [] };
     }
 
     const $ = cheerio.load(data);
     const images: string[] = [];
 
-    // Try multiple image selectors for different reading page layouts
-    $('img.comic-image, .chapter-img img, .comic-content img, img.lazy, amp-img img, img[src]').each((_, el) => {
-      const $img = $(el);
-      const src = $img.attr('src') || $img.attr('data-src') || $img.attr('data-original') || $img.attr('srcset')?.split(' ')[0];
-      if (src && !src.includes('avatar') && !src.includes('icon') && !src.includes('logo')) {
-        images.push(src);
-      }
+    // 包子漫画使用 AMP 格式：<amp-img class="comic-contain__item" src="..." data-src="...">
+    $('amp-img.comic-contain__item').each((_, el) => {
+      const $el = $(el);
+      const src = $el.attr('src') || $el.attr('data-src') || '';
+      if (src) images.push(src);
     });
+
+    // Fallback: 兼容其他可能的图片格式
+    if (images.length === 0) {
+      $('img.comic-image, .chapter-img img, .comic-content img, img.lazy, amp-img').each((_, el) => {
+        const $img = $(el);
+        const src = $img.attr('src') || $img.attr('data-src') || $img.attr('data-original') || $img.attr('srcset')?.split(' ')[0];
+        if (src && !src.includes('avatar') && !src.includes('icon') && !src.includes('logo')) {
+          images.push(src);
+        }
+      });
+    }
 
     return {
       chapterId,

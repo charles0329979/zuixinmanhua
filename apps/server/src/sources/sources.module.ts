@@ -4,12 +4,14 @@ import { SourcesController } from './sources.controller';
 import { SourceConfigService } from './config/source-config.service';
 import { DomainResolverService } from './config/domain-resolver.service';
 import { AdapterFactoryService } from './adapter-factory.service';
+import { CircuitBreakerService } from './circuit-breaker.service';
 
 @Module({
   providers: [
     SourceConfigService,
     DomainResolverService,
     AdapterFactoryService,
+    CircuitBreakerService,
     SourcesService,
   ],
   controllers: [SourcesController],
@@ -18,6 +20,7 @@ import { AdapterFactoryService } from './adapter-factory.service';
     SourceConfigService,
     DomainResolverService,
     AdapterFactoryService,
+    CircuitBreakerService,
   ],
 })
 export class SourcesModule {}

@@ -81,4 +81,30 @@ export class SourcesController {
   testChapter(@Param('id') id: string, @Body() body: { comicId: string }) {
     return this.sourcesService.testChapter(id, body.comicId);
   }
+
+  // ========== 策略与熔断 ==========
+
+  /** PUT /api/sources/:id/mode — 设置运行模式 */
+  @Put(':id/mode')
+  setMode(@Param('id') id: string, @Body() body: { mode: string }) {
+    return { ok: this.sourcesService.setMode(id, body.mode) };
+  }
+
+  /** PUT /api/sources/:id/policy — 更新策略配置 */
+  @Put(':id/policy')
+  setPolicy(@Param('id') id: string, @Body() body: Record<string, unknown>) {
+    return { ok: this.sourcesService.setPolicy(id, body) };
+  }
+
+  /** POST /api/sources/:id/recover — 手动恢复熔断 */
+  @Post(':id/recover')
+  recover(@Param('id') id: string) {
+    return this.sourcesService.recoverSource(id);
+  }
+
+  /** GET /api/sources/:id/health — 获取健康状态 */
+  @Get(':id/health')
+  getHealth(@Param('id') id: string) {
+    return this.sourcesService.getSourceHealth(id);
+  }
 }

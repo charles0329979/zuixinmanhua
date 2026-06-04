@@ -110,6 +110,32 @@ export class SourceConfigService {
     return true;
   }
 
+  /** 获取原始配置行（含新增字段） */
+  getRawConfig(sourceId: string): SourceConfigRow | null {
+    return this.db.queryOne<SourceConfigRow>(
+      'SELECT * FROM source_configs WHERE source_id = ?',
+      [sourceId],
+    );
+  }
+
+  /** 设置运行模式 */
+  setMode(sourceId: string, mode: string): boolean {
+    this.db.run(
+      'UPDATE source_configs SET mode = ?, updated_at = datetime(\'now\',\'localtime\') WHERE source_id = ?',
+      [mode, sourceId],
+    );
+    return true;
+  }
+
+  /** 设置策略配置 */
+  setPolicy(sourceId: string, policy: Record<string, unknown>): boolean {
+    this.db.run(
+      'UPDATE source_configs SET policy_config = ?, updated_at = datetime(\'now\',\'localtime\') WHERE source_id = ?',
+      [JSON.stringify(policy), sourceId],
+    );
+    return true;
+  }
+
   /** 添加域名 */
   addDomain(sourceId: string, url: string, priority: number): DomainEntry {
     this.db.run(

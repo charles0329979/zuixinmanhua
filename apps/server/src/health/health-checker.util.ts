@@ -1,4 +1,5 @@
 import { SourceAdapter } from '../sources/adapter.interface';
+import { CircuitBreakerError } from '../sources/source-policy.types';
 
 export interface CheckResult {
   checkType: string;
@@ -56,11 +57,12 @@ export class HealthChecker {
         errorMessage: results.length === 0 ? '搜索返回空结果' : undefined,
       };
     } catch (e: any) {
+      const isBlocked = e instanceof CircuitBreakerError;
       return {
         checkType: 'search',
         isHealthy: false,
         responseTimeMs: Date.now() - start,
-        errorType: 'SEARCH_ERROR',
+        errorType: isBlocked ? 'BLOCKED' : 'SEARCH_ERROR',
         errorMessage: e.message?.slice(0, 300),
       };
     }

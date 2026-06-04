@@ -1,8 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SourcesService } from '../sources/sources.service';
 import { SourceConfigService } from '../sources/config/source-config.service';
+import { CircuitBreakerService } from '../sources/circuit-breaker.service';
 import { DatabaseService } from '../database/database.service';
 import { ComicInfo } from '../sources/adapter.interface';
+import { CircuitBreakerError } from '../sources/source-policy.types';
 
 export interface SourceSearchResult {
   source: string;
@@ -12,6 +14,8 @@ export interface SourceSearchResult {
   results: ComicInfo[];
   error?: string;
   responseTimeMs?: number;
+  skipped?: boolean;
+  skipReason?: string;
 }
 
 export interface SearchResponse {
@@ -21,6 +25,7 @@ export interface SearchResponse {
     totalResults: number;
     sourcesSearched: number;
     sourcesFailed: number;
+    sourcesSkipped: number;
   };
 }
 
@@ -31,33 +36,39 @@ export class SearchService {
   constructor(
     private readonly sourcesService: SourcesService,
     private readonly configService: SourceConfigService,
+    private readonly circuitBreaker: CircuitBreakerService,
     private readonly db: DatabaseService,
   ) {}
 
   async searchAll(query: string): Promise<SearchResponse> {
     if (!query || query.trim().length === 0) {
-      return { query: '', sources: [], summary: { totalResults: 0, sourcesSearched: 0, sourcesFailed: 0 } };
+      return { query: '', sources: [], summary: { totalResults: 0, sourcesSearched: 0, sourcesFailed: 0, sourcesSkipped: 0 } };
     }
 
     const configs = this.configService.getEnabledSources();
-    // 过滤掉 unhealthy 和 disabled 的源
-    const healthyConfigs = configs.filter((c) => {
-      const health = this.getSourceOverallHealth(c.sourceId);
-      return health !== 'unhealthy' && health !== 'disabled';
-    });
 
     // 按 tier 排序：core 先，supplement 后
-    const sorted = healthyConfigs.sort((a, b) => {
+    const sorted = configs.sort((a, b) => {
       const order = { core: 0, supplement: 1, disabled: 2 };
       return (order[a.tier] ?? 99) - (order[b.tier] ?? 99);
     });
 
-    this.logger.log(`🔍 搜索 "${query}" — ${sorted.length}/${configs.length} 个健康书源`);
+    const searchable = sorted.filter((c) => {
+      const row = this.configService.getRawConfig(c.sourceId);
+      const mode = (row as any)?.mode || 'server-parser';
+      if (mode === 'external-only') return false;
+      if (this.circuitBreaker.isBlocked(c.sourceId)) return false;
+      return true;
+    });
+
+    const skipCount = sorted.length - searchable.length;
+    this.logger.log(`🔍 搜索 "${query}" — ${searchable.length}/${sorted.length} 个可搜索书源${skipCount > 0 ? ` (${skipCount} 跳过)` : ''}`);
 
     let totalResults = 0;
     let sourcesFailed = 0;
 
-    const promises = sorted.map(async (config) => {
+    // Promise.allSettled — 单个源失败不影响其他源
+    const promises = searchable.map(async (config) => {
       const start = Date.now();
       try {
         const adapter = await this.sourcesService.getAdapter(config.sourceId);
@@ -76,7 +87,6 @@ export class SearchService {
         const responseTime = Date.now() - start;
         totalResults += results.length;
 
-        // 记录搜索日志
         try {
           this.db.run(
             'INSERT INTO source_search_logs (source_id, keyword, is_success, result_count, response_time_ms) VALUES (?, ?, 1, ?, ?)',
@@ -94,6 +104,12 @@ export class SearchService {
         };
       } catch (e: any) {
         sourcesFailed++;
+
+        // 熔断错误 — 记录到熔断器
+        if (e instanceof CircuitBreakerError) {
+          this.circuitBreaker.recordFailure(config.sourceId, e);
+        }
+
         const responseTime = Date.now() - start;
         try {
           this.db.run(
@@ -113,15 +129,21 @@ export class SearchService {
       }
     });
 
-    const sources = await Promise.all(promises);
+    const sources = await Promise.allSettled(promises).then((results) =>
+      results.map((r) => (r.status === 'fulfilled' ? r.value : {
+        source: 'unknown', sourceName: 'unknown', tier: 'supplement',
+        healthStatus: 'error', results: [], error: '搜索过程异常',
+      } as SourceSearchResult))
+    );
 
     return {
       query: query.trim(),
       sources,
       summary: {
         totalResults,
-        sourcesSearched: sorted.length,
+        sourcesSearched: searchable.length,
         sourcesFailed,
+        sourcesSkipped: skipCount,
       },
     };
   }

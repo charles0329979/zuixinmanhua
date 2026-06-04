@@ -7,6 +7,7 @@ import { YemanAdapter } from './adapters/yeman';
 import { CopyAdapter } from './adapters/copy';
 import { BaoziAdapter } from './adapters/baozi';
 import { DongmanZhijiaAdapter } from './adapters/dongmanzhijia';
+import { KanmanAdapter } from './adapters/kanman';
 
 /**
  * AdapterFactoryService — 从数据库配置 + 域名池动态创建适配器实例
@@ -85,6 +86,7 @@ export class AdapterFactoryService {
       case 'copy': return new CopyAdapter(ctx);
       case 'baozi': return new BaoziAdapter(ctx);
       case 'dongmanzhijia': return new DongmanZhijiaAdapter(ctx);
+      case 'kanman': return new KanmanAdapter(ctx);
       default: throw new Error(`未知适配器: ${sourceId}`);
     }
   }

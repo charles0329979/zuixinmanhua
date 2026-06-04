@@ -105,3 +105,40 @@ export interface SourceTestResult {
   responseTime: number;
   error?: string;
 }
+
+// ---------- 书源策略与模式 ----------
+export type SourceMode = 'server-parser' | 'client-parser' | 'external-only';
+
+export type SourceHealthStatus = 'healthy' | 'degraded' | 'blocked' | 'disabled' | 'unknown';
+
+export interface SourcePolicyInfo {
+  mode: SourceMode;
+  maxConcurrentRequests: number;
+  requestTimeoutMs: number;
+  cooldownAfterBlockedMs: number;
+  maxImagesPerBatch: number;
+}
+
+export interface SourceHealthInfo {
+  sourceId: string;
+  status: SourceHealthStatus;
+  consecutiveFailures: number;
+  blockedUntil?: string;
+  lastError?: string;
+  lastCheckedAt?: string;
+}
+
+export interface SourceFullInfo {
+  id: string;
+  name: string;
+  tier: string;
+  enabled: boolean;
+  domain: string;
+  domainCount: number;
+  mode: SourceMode;
+  healthStatus: SourceHealthStatus;
+  blockedUntil?: string;
+  lastError?: string;
+  requestConfig: Record<string, unknown>;
+  policyConfig: SourcePolicyInfo;
+}

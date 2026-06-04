@@ -2,15 +2,17 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SourcesService } from '../sources/sources.service';
 import { SourceConfigService } from '../sources/config/source-config.service';
 import { DomainResolverService } from '../sources/config/domain-resolver.service';
+import { CircuitBreakerService } from '../sources/circuit-breaker.service';
 import { DatabaseService } from '../database/database.service';
 import { HealthChecker, CheckResult } from './health-checker.util';
+import { CircuitBreakerError } from '../sources/source-policy.types';
 
 export interface HealthReport {
   sourceId: string;
   name: string;
   tier: string;
   domain: string;
-  overallStatus: 'healthy' | 'degraded' | 'unhealthy' | 'disabled' | 'unknown';
+  overallStatus: 'healthy' | 'degraded' | 'unhealthy' | 'blocked' | 'disabled' | 'unknown';
   checks: CheckResult[];
   lastCheckAt: string;
 }
@@ -23,6 +25,7 @@ export class HealthService {
     private readonly sourcesService: SourcesService,
     private readonly configService: SourceConfigService,
     private readonly domainResolver: DomainResolverService,
+    private readonly circuitBreaker: CircuitBreakerService,
     private readonly db: DatabaseService,
   ) {}
 
@@ -31,6 +34,29 @@ export class HealthService {
     const config = this.configService.getConfig(sourceId);
     if (!config) throw new Error(`书源 ${sourceId} 不存在`);
 
+    const row = this.configService.getRawConfig(sourceId);
+    const mode = (row as any)?.mode || 'server-parser';
+
+    // external-only 模式不检测
+    if (mode === 'external-only') {
+      return {
+        sourceId, name: config.name, tier: config.tier,
+        domain: config.domains[0]?.url || '',
+        overallStatus: 'disabled', checks: [], lastCheckAt: new Date().toISOString(),
+      };
+    }
+
+    // 熔断检查
+    if (this.circuitBreaker.isBlocked(sourceId)) {
+      const health = this.circuitBreaker.getHealth(sourceId);
+      return {
+        sourceId, name: config.name, tier: config.tier,
+        domain: config.domains[0]?.url || '',
+        overallStatus: 'blocked',
+        checks: [], lastCheckAt: health?.lastCheckedAt || new Date().toISOString(),
+      };
+    }
+
     this.logger.log(`🏥 检测书源: ${config.name} (${config.tier})`);
 
     let adapter;
@@ -38,12 +64,12 @@ export class HealthService {
       adapter = await this.sourcesService.getAdapter(sourceId);
     } catch (e: any) {
       this.logger.warn(`跳过 ${config.name}: 无法创建适配器 (${e.message})`);
-      // All checks fail - adapter creation failed
       const failedChecks = ['homepage', 'search', 'detail', 'chapter', 'image'].map((t) => ({
         checkType: t, isHealthy: false, responseTimeMs: 0,
         errorType: 'ADAPTER_ERROR', errorMessage: e.message?.slice(0, 300),
       }));
       this.writeHealthResults(sourceId, config.domains[0]?.url || '', failedChecks);
+      this.circuitBreaker.recordFailure(sourceId, e);
       return {
         sourceId, name: config.name, tier: config.tier,
         domain: config.domains[0]?.url || '',
@@ -64,8 +90,36 @@ export class HealthService {
     const checks = [home, search, detail, chapter, image];
     this.writeHealthResults(sourceId, adapter.domain, checks);
 
-    // Auto failover: if homepage+search both fail and there are backup domains
-    const bothFailed = !home.isHealthy && !search.isHealthy;
+    // 检测熔断错误
+    const hasBlocked = checks.some((c: any) => c.errorType === 'BLOCKED');
+    if (hasBlocked) {
+      const blockedCheck = checks.find((c: any) => c.errorType === 'BLOCKED');
+      this.circuitBreaker.recordFailure(sourceId, new CircuitBreakerError(
+        blockedCheck?.errorMessage || '健康检查检测到反爬',
+        sourceId,
+        'blocked_pattern',
+      ));
+      return {
+        sourceId, name: config.name, tier: config.tier,
+        domain: adapter.domain, overallStatus: 'blocked',
+        checks, lastCheckAt: new Date().toISOString(),
+      };
+    }
+
+    // 记录结果到熔断器
+    const allHealthy = checks.every((c: any) => c.isHealthy);
+    if (allHealthy) {
+      this.circuitBreaker.recordSuccess(sourceId);
+    } else {
+      const anyFailed = checks.some((c: any) => !c.isHealthy);
+      if (anyFailed) {
+        const failedCheck = checks.find((c: any) => !c.isHealthy);
+        this.circuitBreaker.recordFailure(sourceId, failedCheck?.errorMessage || '健康检查失败');
+      }
+    }
+
+    // Auto failover (only if not blocked)
+    const bothFailed = !home.isHealthy && !search.isHealthy && !hasBlocked;
     if (bothFailed) {
       try {
         const newDomain = await this.domainResolver.switchToNextDomain(sourceId);

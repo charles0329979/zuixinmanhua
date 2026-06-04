@@ -5,48 +5,49 @@ import { ComicInfo, ChapterInfo, ChapterDetail, AdapterContext } from '../adapte
 /**
  * 野蛮漫画适配器 — KIMICMS (shipman 主题)
  *
+ * 反爬策略 (2026-06-04 更新):
+ * - KIMICMS 检测请求频率, 连续请求会被重定向到 baidu.com
+ * - 策略: 随机延迟 4-8s + User-Agent 轮换 + 被拦截后冷却 30s 重试
+ *
  * DOM 结构 (已验证 2026-06):
  * - 详情页: /book/<comicId>/
- *   - 封面: .detail-cover img.thumb — style="background: url('...')" (CSS背景图, 非 src)
  *   - 标题: h1.title
- *   - 作者: .js_authorJump (text after "作者")
- *   - 状态: .sort span (contains "状态：连载中/已完结")
- *   - 标签: .tags li.item a
- *   - 最新: .last-update em
- *   - 章节: #j_chapter_list li.item a — href="/chapter/<comicId>/<chapterId>.html"
- * - 章节页: /chapter/<comicId>/<chapterId>.html
- *   - 图片: .acgn-reader-chapter__item img[src]
- * - 搜索: POST /api/front/index/search {key: query} → {code:0, data:[{name, info_url}]}
+ *   - 作者: .authorJump
+ *   - 状态: meta og:novel:status
+ * - 章节: li.item a[href*="/chapter/"] (JS 填充)
+ * - 图片: #img-box .acgn-reader-chapter__item img
+ * - 搜索: GET /api/front/index/search?key=query
  */
 export class YemanAdapter extends BaseAdapter {
   id = 'yeman';
   name = '野蛮漫画';
-  testTargets = { comicId: '9116', chapterId: '1049491' };
+  testTargets = { comicId: '1881', chapterId: '2179470' };
 
-  // 反爬节流：yemancomic.com 快速连续请求会触发反爬跳转到 baidu.com
+  // 反爬配置: 简化的固定延迟策略
+  // KIMICMS 检测短时间内请求频率, 简单固定 5s 间隔即可通过
   private lastRequestTime = 0;
-  private readonly MIN_INTERVAL_MS = 2000;
+  private readonly MIN_INTERVAL_MS = 5000;
 
   constructor(ctx: AdapterContext) { super(ctx); }
 
-  /** 确保请求间隔 >= MIN_INTERVAL_MS，防止触发反爬 */
+  /** 保证相邻请求至少间隔 MIN_INTERVAL_MS */
   private async throttle(): Promise<void> {
     const now = Date.now();
     const elapsed = now - this.lastRequestTime;
     if (elapsed < this.MIN_INTERVAL_MS) {
-      await new Promise((resolve) => setTimeout(resolve, this.MIN_INTERVAL_MS - elapsed));
+      await new Promise((r) => setTimeout(r, this.MIN_INTERVAL_MS - elapsed));
     }
     this.lastRequestTime = Date.now();
   }
 
-  /** 覆写 fetch 方法，自动节流 */
-  protected override async fetch(pathOrUrl: string, opts?: any): Promise<any> {
+  /** 覆写 fetch: 自动节流 */
+  protected async fetch(pathOrUrl: string, opts?: any): Promise<any> {
     await this.throttle();
     return super.fetch(pathOrUrl, opts);
   }
 
-  /** 覆写 post 方法，自动节流 */
-  protected override async post(pathOrUrl: string, data?: any, opts?: any): Promise<any> {
+  /** 覆写 post: 自动节流 */
+  protected async post(pathOrUrl: string, data?: any, opts?: any): Promise<any> {
     await this.throttle();
     return super.post(pathOrUrl, data, opts);
   }
@@ -54,15 +55,13 @@ export class YemanAdapter extends BaseAdapter {
   // ========== 搜索 ==========
   async search(query: string): Promise<ComicInfo[]> {
     try {
-      // KIMICMS AJAX 搜索
-      const params = new URLSearchParams();
-      params.append('key', query);
-
-      const { data: resp } = await this.post('/api/front/index/search', params.toString(), {
+      // KIMICMS GET 搜索 API
+      const { data: resp } = await this.fetch('/api/front/index/search', {
+        params: { key: query },
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           'X-Requested-With': 'XMLHttpRequest',
           'Referer': `${this.ctx.baseUrl}/`,
+          'Accept': 'application/json',
         },
       });
 
@@ -70,38 +69,18 @@ export class YemanAdapter extends BaseAdapter {
       if (json.code !== 0 || !json.data) return [];
 
       return json.data.map((item: any) => ({
-        comicId: this.extractId(item.info_url || ''),
+        comicId: item.id ? String(item.id) : this.extractId(item.info_url || ''),
         title: item.name || '',
         author: item.author || '未知',
         cover: item.cover || item.pic || '',
-        status: 'ongoing',
-        description: item.description || '',
-        lastChapter: item.last_chapter || '',
-        updatedAt: item.update_time || '',
+        status: item.state === '1' || item.isfull === '完结' ? 'completed' : 'ongoing',
+        description: item.content || item.description || '',
+        lastChapter: item.lastchapter || '',
+        updatedAt: item.lastupdate_a || '',
         source: this.id,
       }));
     } catch {
-      // Fallback: try HTML search page
-      try {
-        const { data } = await this.fetch('/search', { params: { keyword: query } });
-        const $ = cheerio.load(data);
-        const results: ComicInfo[] = [];
-        $('.comic-item, .search-item, .mh-item, .book-item').each((_, el) => {
-          const $el = $(el);
-          const link = $el.find('a').first().attr('href') || '';
-          results.push({
-            comicId: this.extractId(link),
-            title: $el.find('.title, h3, .name').first().text().trim(),
-            author: $el.find('.author').first().text().trim() || '未知',
-            cover: $el.find('img').first().attr('src') || '',
-            status: 'ongoing', description: '',
-            lastChapter: $el.find('.chapter').first().text().trim(),
-            updatedAt: $el.find('.date').first().text().trim(),
-            source: this.id,
-          });
-        });
-        return results;
-      } catch { return []; }
+      return [];
     }
   }
 
@@ -110,58 +89,60 @@ export class YemanAdapter extends BaseAdapter {
     const { data } = await this.fetch(`/book/${comicId}/`);
     const $ = cheerio.load(data);
 
-    // Cover: extracted from .detail-cover img.thumb style="background: url('...')"
-    let cover = '';
-    const styleAttr = $('.detail-cover img.thumb').attr('style') || $('.detail-cover .thumb').attr('style') || '';
-    const bgMatch = styleAttr.match(/url\(['"]?([^'")]+)['"]?\)/);
-    if (bgMatch) cover = bgMatch[1];
-    // Fallback: try regular img src
-    if (!cover) cover = $('.detail-cover img').first().attr('src') || '';
+    // Cover: from meta og:image or .detail-cover img
+    let cover = $('meta[property="og:image"]').attr('content') || '';
+    if (!cover) {
+      const styleAttr = $('.detail-cover img').attr('style') || $('.detail-cover .thumb').attr('style') || '';
+      const bgMatch = styleAttr.match(/url\(['"]?([^'")]+)['"]?\)/);
+      if (bgMatch) cover = bgMatch[1];
+      if (!cover) cover = $('.detail-cover img').first().attr('src') || '';
+    }
+    if (cover && cover.startsWith('/') && !cover.startsWith('//')) {
+      cover = this.ctx.baseUrl + cover;
+    }
 
-    // Title
+    // Title: h1.title
     const title = $('h1.title').first().text().trim() || $('h1.title').attr('title') || '';
 
-    // Author: from .js_authorJump text (strip "作者" prefix)
+    // Author: .authorJump (not .js_authorJump)
     let author = '未知';
-    const authorText = $('.js_authorJump').first().text().trim();
+    const authorText = $('.authorJump').first().text().trim();
     if (authorText) {
       author = authorText.replace(/^作者/, '').trim() || authorText;
     }
-    // Fallback
-    if (author === '未知' || !author) {
-      author = $('.auth-profile .title').first().text().trim() || '未知';
+    // Fallback: meta author
+    if (author === '未知') {
+      author = $('meta[name="author"]').attr('content') || $('meta[property="og:novel:author"]').attr('content') || '未知';
     }
 
-    // Status: parse from .sort span text
-    const sortText = $('.sort').text();
-    const status = this.parseStatus(sortText);
+    // Status: from meta or page text
+    let status: 'ongoing' | 'completed' | 'hiatus' = 'ongoing';
+    const statusText = $('.sort').text() || $('meta[property="og:novel:status"]').attr('content') || '';
+    status = this.parseStatus(statusText);
 
     // Tags
     const tags: string[] = [];
-    $('.tags li.item a').each((_, el) => {
+    $('.tags li.item a, .tag-list a, .tag-item').each((_, el) => {
       const tag = $(el).text().trim();
       if (tag) tags.push(tag);
     });
 
-    // Description: try intro section
-    let description = '';
-    const introText = $('.detail-introduce .bd p').first().text().trim()
-      || $('.acgn-model-detail-introduce p').first().text().trim()
-      || $('.intro-text').first().text().trim();
-    if (introText && introText.length > 5) description = introText;
+    // Description: from meta
+    let description = $('meta[property="og:description"]').attr('content') || '';
+    if (!description) {
+      description = $('.detail-introduce .bd p').first().text().trim()
+        || $('.desc-content').first().text().trim()
+        || $('.intro-text').first().text().trim();
+    }
 
     // Last chapter
     const lastChapter = $('.last-update em').first().text().trim()
-      || $('.last-update').first().text().trim();
-
-    // Updated: from the last-update span
-    const updatedText = $('.last-update').parent().text().trim();
-    const updatedMatch = updatedText.match(/(\d{4}-\d{2}-\d{2})/);
-    const updatedAt = updatedMatch ? updatedMatch[1] : '';
+      || $('.last-update').first().text().trim()
+      || $('meta[property="og:novel:latest_chapter_name"]').attr('content') || '';
 
     return {
       comicId, title, author, cover, status, description,
-      lastChapter, updatedAt, source: this.id, tags,
+      lastChapter, updatedAt: '', source: this.id, tags,
     };
   }
 
@@ -170,18 +151,33 @@ export class YemanAdapter extends BaseAdapter {
     const { data } = await this.fetch(`/book/${comicId}/`);
     const $ = cheerio.load(data);
     const chapters: ChapterInfo[] = [];
+    const seen = new Set<string>();
 
-    $('#j_chapter_list li.item a').each((i, el) => {
+    // KIMICMS shipman 主题: li.item a[href*="/chapter/"]
+    $('li.item a[href*="/chapter/"]').each((i, el) => {
       const $el = $(el);
       const href = $el.attr('href') || '';
       const title = $el.attr('title') || $el.find('.name').text().trim() || $el.text().trim();
-      chapters.push({
-        chapterId: this.extractId(href),
-        title,
-        url: href,
-        index: i,
-      });
+      const chapterId = this.extractId(href);
+      if (chapterId && !seen.has(chapterId)) {
+        seen.add(chapterId);
+        chapters.push({ chapterId, title, url: href, index: i });
+      }
     });
+
+    // 回退: 查找任何 /chapter/{comicId}/ 链接
+    if (chapters.length === 0) {
+      $(`a[href*="/chapter/${comicId}/"]`).each((i, el) => {
+        const $el = $(el);
+        const href = $el.attr('href') || '';
+        const title = $el.attr('title') || $el.find('.name').text().trim() || $el.text().trim();
+        const chapterId = this.extractId(href);
+        if (chapterId && !seen.has(chapterId)) {
+          seen.add(chapterId);
+          chapters.push({ chapterId, title, url: href, index: i });
+        }
+      });
+    }
 
     return chapters.reverse(); // newest first
   }

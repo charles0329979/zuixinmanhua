@@ -1,11 +1,14 @@
 'use client';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getChapterImages, getComicDetail } from '@/lib/api';
+import { getChapterImages, getComicDetail, getChapters } from '@/lib/api';
 import { useReadingProgress } from '@/hooks/useReadingProgress';
 import { useHistory } from '@/hooks/useHistory';
 import { useFavorites } from '@/hooks/useFavorites';
-import type { ChapterDetail, ComicInfo } from '@/types';
+import type { ChapterDetail, ComicInfo, ChapterInfo } from '@/types';
+
+const IMAGES_PER_BATCH = 6;
+const MAX_IMAGE_RETRIES = 1;
 
 export default function ReaderPage() {
   const params = useParams<{ source: string; comicId: string; chapterId: string }>();
@@ -20,31 +23,42 @@ export default function ReaderPage() {
   const [error, setError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   const [isFav, setIsFav] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(IMAGES_PER_BATCH);
   const pageRef = useRef(0);
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const imageRetries = useRef<Map<number, number>>(new Map());
+  const abortRef = useRef(false);
 
+  // 加载章节数据 — 不预加载图片
   useEffect(() => {
+    abortRef.current = false;
     const load = async () => {
       setLoading(true);
+      setVisibleCount(IMAGES_PER_BATCH);
+      imageRetries.current.clear();
       try {
         const [d, c, fav] = await Promise.all([
           getChapterImages(params.source, params.comicId, params.chapterId),
           getComicDetail(params.source, params.comicId),
           checkFavorite(params.source, params.comicId),
         ]);
+        if (abortRef.current) return;
         setDetail(d);
         setComic(c);
         setIsFav(fav);
       } catch (e: any) {
-        setError(e.message || '加载失败');
+        if (!abortRef.current) setError(e.message || '加载失败');
       } finally {
-        setLoading(false);
+        if (!abortRef.current) setLoading(false);
       }
     };
     load();
+    return () => { abortRef.current = true; };
   }, [params.source, params.comicId, params.chapterId, checkFavorite]);
 
-  // 暗色模式: 将 dark class 添加到 <html> 元素
+  // 暗色模式
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
     return () => document.documentElement.classList.remove('dark');
@@ -76,11 +90,43 @@ export default function ReaderPage() {
     });
   }, [detail, comic, params, save, add]);
 
-  // 监听 window 滚动事件追踪页码（带 500ms 节流）
+  // 下一章元数据预加载（仅章节信息，不预加载图片）
+  useEffect(() => {
+    if (!detail?.nextChapter) return;
+    // 静默预加载下一章的章节元数据用于快速导航
+    getChapters(params.source, params.comicId).catch(() => {});
+  }, [detail?.nextChapter, params.source, params.comicId]);
+
+  // IntersectionObserver: 滚动到底部加载更多
+  useEffect(() => {
+    if (!detail || visibleCount >= detail.images.length) return;
+
+    // 断开旧观察器
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + IMAGES_PER_BATCH, detail.images.length));
+        }
+      },
+      { rootMargin: '400px' }, // 提前 400px 触发
+    );
+
+    // 观察最后一张可见图片
+    const sentinel = document.getElementById(`reader-image-${visibleCount - 1}`);
+    if (sentinel) observerRef.current.observe(sentinel);
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, [visibleCount, detail]);
+
+  // 监听滚动追踪页码
   const handleScroll = useCallback(() => {
-    if (saveTimerRef.current) return; // 节流：上一次还没执行完
+    if (saveTimerRef.current) return;
     saveTimerRef.current = setTimeout(() => {
-      saveTimerRef.current = undefined;
+      saveTimerRef.current = null;
       if (!detail?.images.length) return;
       const imgs = document.querySelectorAll('.reader-image-wrapper');
       let currentPage = 0;
@@ -110,6 +156,20 @@ export default function ReaderPage() {
     };
   }, [handleScroll]);
 
+  // 图片加载失败处理 — 限制重试次数
+  const handleImageError = useCallback((index: number, url: string, e: React.SyntheticEvent<HTMLImageElement>) => {
+    const retries = imageRetries.current.get(index) || 0;
+    if (retries < MAX_IMAGE_RETRIES) {
+      imageRetries.current.set(index, retries + 1);
+      // 重试：重新设置 src（带随机参数避免缓存）
+      const img = e.target as HTMLImageElement;
+      img.src = url + (url.includes('?') ? '&' : '?') + '_retry=' + (retries + 1);
+    } else {
+      // 超过重试次数，隐藏
+      (e.target as HTMLImageElement).style.display = 'none';
+    }
+  }, []);
+
   const handleFavorite = async () => {
     const result = await toggle({
       comicId: params.comicId,
@@ -126,6 +186,9 @@ export default function ReaderPage() {
   if (error) return <div className="text-center py-16 text-red-500">❌ {error}</div>;
   if (!detail) return null;
 
+  const displayImages = detail.images.slice(0, visibleCount);
+  const hasMore = visibleCount < detail.images.length;
+
   return (
     <>
       {/* 顶部导航 */}
@@ -136,7 +199,10 @@ export default function ReaderPage() {
           </button>
           <div className="text-center min-w-0 flex-1 px-2">
             <p className="text-sm font-medium line-clamp-1">{detail.comicTitle || detail.chapterTitle}</p>
-            <p className="text-xs text-gray-500">{detail.chapterTitle}</p>
+            <p className="text-xs text-gray-500">
+              {detail.chapterTitle}
+              {hasMore && <span className="text-gray-400"> · {visibleCount}/{detail.images.length}</span>}
+            </p>
           </div>
           <button onClick={() => setDarkMode(!darkMode)} className="btn-ghost">
             {darkMode ? '☀️' : '🌙'}
@@ -150,19 +216,25 @@ export default function ReaderPage() {
           {detail.images.length === 0 ? (
             <div className="text-center py-24 text-gray-500">暂无图片</div>
           ) : (
-            detail.images.map((url, i) => (
-              <div key={i} className="reader-image-wrapper">
-                <img
-                  src={url}
-                  alt={`第${i + 1}页`}
-                  className="w-full"
-                  loading="lazy"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              </div>
-            ))
+            <>
+              {displayImages.map((url, i) => (
+                <div key={i} id={`reader-image-${i}`} className="reader-image-wrapper">
+                  <img
+                    src={url}
+                    alt={`第${i + 1}页`}
+                    className="w-full"
+                    loading="lazy"
+                    onError={(e) => handleImageError(i, url, e)}
+                  />
+                </div>
+              ))}
+              {/* 加载更多指示器 */}
+              {hasMore && (
+                <div className="text-center py-8 text-gray-400 text-sm">
+                  加载更多... ({visibleCount}/{detail.images.length})
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

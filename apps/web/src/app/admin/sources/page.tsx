@@ -1,11 +1,26 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getSources, toggleSource, testSourceSearch, setSourceTier, getSourceConfig, addSourceDomain, removeSourceDomain, triggerHealthCheck } from '@/lib/api';
+import { getSources, toggleSource, testSourceSearch, setSourceTier, getSourceConfig, addSourceDomain, removeSourceDomain, triggerHealthCheck, setSourceMode, recoverSource } from '@/lib/api';
 import type { SourceStatus, SourceConfigFull } from '@/types';
 
 const tierLabels: Record<string, string> = { core: '⭐ 核心', supplement: '🟡 补充', disabled: '⛔ 失效' };
 const tierColors: Record<string, string> = { core: 'bg-green-100 text-green-700', supplement: 'bg-yellow-100 text-yellow-700', disabled: 'bg-gray-200 text-gray-500' };
+const modeLabels: Record<string, string> = { 'server-parser': '🔧 服务端', 'client-parser': '🌐 客户端', 'external-only': '📋 仅展示' };
+const healthColors: Record<string, string> = {
+  healthy: 'bg-green-100 text-green-700',
+  degraded: 'bg-yellow-100 text-yellow-700',
+  blocked: 'bg-red-100 text-red-700',
+  disabled: 'bg-gray-200 text-gray-500',
+  unknown: 'bg-gray-100 text-gray-500',
+};
+const healthLabels: Record<string, string> = {
+  healthy: '🟢 正常',
+  degraded: '🟡 降级',
+  blocked: '🔴 熔断',
+  disabled: '⚫ 停用',
+  unknown: '❓ 未知',
+};
 
 export default function AdminSourcesPage() {
   const [sources, setSources] = useState<SourceStatus[]>([]);
@@ -33,6 +48,16 @@ export default function AdminSourcesPage() {
   const handleTier = async (id: string, tier: string) => {
     await setSourceTier(id, tier);
     setSources((prev) => prev.map((s) => (s.id === id ? { ...s, tier } : s)));
+  };
+
+  const handleMode = async (id: string, mode: string) => {
+    await setSourceMode(id, mode);
+    setSources((prev) => prev.map((s) => (s.id === id ? { ...s, mode } : s)));
+  };
+
+  const handleRecover = async (id: string) => {
+    await recoverSource(id);
+    refresh();
   };
 
   const handleTest = async (id: string) => {
@@ -87,16 +112,38 @@ export default function AdminSourcesPage() {
             {/* 主行 */}
             <div className="p-4 flex items-center justify-between">
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="font-semibold">{source.name}</h3>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${tierColors[source.tier || 'core']}`}>
                     {tierLabels[source.tier || 'core'] || source.tier}
                   </span>
+                  {/* 运行模式 */}
+                  <span className="text-xs text-gray-400">
+                    {modeLabels[(source as any).mode] || modeLabels['server-parser']}
+                  </span>
+                  {/* 健康状态 */}
+                  {(source as any).healthStatus && (
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${healthColors[(source as any).healthStatus] || healthColors.unknown}`}>
+                      {healthLabels[(source as any).healthStatus] || '❓ 未知'}
+                    </span>
+                  )}
                   {source.domainCount !== undefined && (
                     <span className="text-xs text-gray-400">🌐 {source.domainCount} 个域名</span>
                   )}
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{source.domain}</p>
+                {/* 熔断信息 */}
+                {(source as any).healthStatus === 'blocked' && (
+                  <div className="mt-1 text-xs">
+                    <span className="text-red-500">
+                      🚫 熔断中
+                      {(source as any).blockedUntil && ` · 恢复: ${new Date((source as any).blockedUntil).toLocaleString()}`}
+                    </span>
+                    {(source as any).lastError && (
+                      <span className="text-gray-400 ml-2">原因: {(source as any).lastError?.slice(0, 60)}</span>
+                    )}
+                  </div>
+                )}
                 {testResults[source.id]?.search && (
                   <p className="text-xs mt-1">
                     {testResults[source.id].search.success ? (
@@ -108,7 +155,19 @@ export default function AdminSourcesPage() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
+                {/* 运行模式 */}
+                <select
+                  value={(source as any).mode || 'server-parser'}
+                  onChange={(e) => handleMode(source.id, e.target.value)}
+                  className="text-xs border rounded px-2 py-1 bg-white dark:bg-gray-800"
+                  title="运行模式"
+                >
+                  <option value="server-parser">🔧 服务端</option>
+                  <option value="client-parser">🌐 客户端</option>
+                  <option value="external-only">📋 仅展示</option>
+                </select>
+
                 {/* Tier 切换 */}
                 <select
                   value={source.tier || 'core'}
@@ -119,6 +178,13 @@ export default function AdminSourcesPage() {
                   <option value="supplement">补充</option>
                   <option value="disabled">失效</option>
                 </select>
+
+                {/* 手动恢复 (blocked 状态显示) */}
+                {(source as any).healthStatus === 'blocked' && (
+                  <button onClick={() => handleRecover(source.id)} className="btn-ghost text-xs text-orange-500" title="手动恢复熔断">
+                    🔄 恢复
+                  </button>
+                )}
 
                 <button onClick={() => handleExpand(source.id)} className="btn-ghost text-xs">
                   {expandedId === source.id ? '收起' : '域名'}

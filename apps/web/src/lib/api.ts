@@ -1,7 +1,11 @@
 // ============================================================
 // API 客户端 — 与 NestJS 后端通信
 // ============================================================
-import type { SearchResponse, ComicInfo, ChapterInfo, ChapterDetail, SourceStatus } from '@/types';
+import type {
+  SearchResponse, ComicInfo, ChapterInfo, ChapterDetail,
+  SourceStatus, SourceConfigFull, DomainEntry,
+  HealthReport, CheckLogEntry, SearchLogEntry,
+} from '@/types';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
@@ -11,116 +15,153 @@ async function fetchJSON<T>(url: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
-// ---------- 搜索 ----------
-export async function searchAll(query: string): Promise<SearchResponse> {
-  return fetchJSON<SearchResponse>(`${API_BASE}/search?q=${encodeURIComponent(query)}`);
-}
+// ============================================================
+// 统一导出的 API 对象
+// ============================================================
+export const api = {
+  // ---------- 搜索 ----------
+  searchAll: (query: string) =>
+    fetchJSON<SearchResponse>(`${API_BASE}/search?q=${encodeURIComponent(query)}`),
 
-export async function searchSource(source: string, query: string): Promise<SearchResponse> {
-  return fetchJSON<SearchResponse>(`${API_BASE}/search/${source}?q=${encodeURIComponent(query)}`);
-}
+  searchSource: (source: string, query: string) =>
+    fetchJSON<SearchResponse>(`${API_BASE}/search/${source}?q=${encodeURIComponent(query)}`),
 
-// ---------- 漫画详情 ----------
-export async function getComicDetail(source: string, comicId: string): Promise<ComicInfo> {
-  return fetchJSON<ComicInfo>(`${API_BASE}/comic/${source}/${comicId}`);
-}
+  // ---------- 漫画详情 ----------
+  getComicDetail: (source: string, comicId: string) =>
+    fetchJSON<ComicInfo>(`${API_BASE}/comic/${source}/${comicId}`),
 
-// ---------- 章节列表 ----------
-export async function getChapters(source: string, comicId: string): Promise<ChapterInfo[]> {
-  return fetchJSON<ChapterInfo[]>(`${API_BASE}/comic/${source}/${comicId}/chapters`);
-}
+  // ---------- 章节 ----------
+  getChapters: (source: string, comicId: string) =>
+    fetchJSON<ChapterInfo[]>(`${API_BASE}/comic/${source}/${comicId}/chapters`),
 
-// ---------- 章节图片 ----------
-export async function getChapterImages(source: string, comicId: string, chapterId: string): Promise<ChapterDetail> {
-  return fetchJSON<ChapterDetail>(`${API_BASE}/chapter/${source}/${comicId}/${chapterId}`);
-}
+  getChapterImages: (source: string, comicId: string, chapterId: string) =>
+    fetchJSON<ChapterDetail>(`${API_BASE}/chapter/${source}/${comicId}/${chapterId}`),
 
-// ---------- 书源管理 ----------
-export async function getSources(): Promise<SourceStatus[]> {
-  return fetchJSON<SourceStatus[]>(`${API_BASE}/sources`);
-}
+  // ---------- 书源管理 ----------
+  getSources: () =>
+    fetchJSON<SourceStatus[]>(`${API_BASE}/sources`),
 
-export async function toggleSource(id: string, enabled: boolean): Promise<{ ok: boolean }> {
-  return fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/toggle`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ enabled }),
-  });
-}
+  getSourceConfig: (id: string) =>
+    fetchJSON<SourceConfigFull>(`${API_BASE}/sources/${id}/config`),
 
-export async function testSourceSearch(id: string): Promise<Record<string, unknown>> {
-  return fetchJSON(`${API_BASE}/sources/${id}/test-search`, { method: 'POST' });
-}
+  toggleSource: (id: string, enabled: boolean) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/toggle`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enabled }),
+    }),
 
-export async function testSourceDetail(id: string, comicId: string): Promise<Record<string, unknown>> {
-  return fetchJSON(`${API_BASE}/sources/${id}/test-detail`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ comicId }),
-  });
-}
+  setSourceTier: (id: string, tier: string) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/tier`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier }),
+    }),
 
-export async function testSourceChapter(id: string, comicId: string): Promise<Record<string, unknown>> {
-  return fetchJSON(`${API_BASE}/sources/${id}/test-chapter`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ comicId }),
-  });
-}
+  setSourceMode: (id: string, mode: string) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/mode`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode }),
+    }),
 
-// ========== 新增：书源管理 API ==========
-import type { SourceConfigFull, DomainEntry, HealthReport, CheckLogEntry, SearchLogEntry } from '@/types';
+  setSourcePolicy: (id: string, policy: Record<string, unknown>) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/policy`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(policy),
+    }),
 
-export async function getSourceConfig(id: string): Promise<SourceConfigFull> {
-  return fetchJSON(`${API_BASE}/sources/${id}/config`);
-}
+  recoverSource: (id: string) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/recover`, { method: 'POST' }),
 
-export async function setSourceTier(id: string, tier: string): Promise<{ ok: boolean }> {
-  return fetchJSON(`${API_BASE}/sources/${id}/tier`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ tier }),
-  });
-}
+  getCircuitBreakerStatus: (id: string) =>
+    fetchJSON<{
+      sourceId: string; status: string; consecutiveFailures: number;
+      blockedUntil?: string; lastError?: string; lastCheckedAt?: string;
+    }>(`${API_BASE}/sources/${id}/health`),
 
-export async function addSourceDomain(id: string, url: string): Promise<DomainEntry> {
-  return fetchJSON(`${API_BASE}/sources/${id}/domains`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ url }),
-  });
-}
+  // ---------- 域名管理 ----------
+  addSourceDomain: (id: string, url: string) =>
+    fetchJSON<DomainEntry>(`${API_BASE}/sources/${id}/domains`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    }),
 
-export async function removeSourceDomain(id: string, domainId: number): Promise<{ ok: boolean }> {
-  return fetchJSON(`${API_BASE}/sources/${id}/domains/${domainId}`, { method: 'DELETE' });
-}
+  removeSourceDomain: (id: string, domainId: number) =>
+    fetchJSON<{ ok: boolean }>(`${API_BASE}/sources/${id}/domains/${domainId}`, { method: 'DELETE' }),
 
-// ========== 健康检测 API ==========
-export async function getAllHealth(): Promise<HealthReport[]> {
-  return fetchJSON(`${API_BASE}/health`);
-}
+  // ---------- 测试 ----------
+  testSourceSearch: (id: string) =>
+    fetchJSON<Record<string, unknown>>(`${API_BASE}/sources/${id}/test-search`, { method: 'POST' }),
 
-export async function getSourceHealth(sourceId: string): Promise<HealthReport> {
-  return fetchJSON(`${API_BASE}/health/${sourceId}`);
-}
+  testSourceDetail: (id: string, comicId: string) =>
+    fetchJSON<Record<string, unknown>>(`${API_BASE}/sources/${id}/test-detail`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ comicId }),
+    }),
 
-export async function triggerHealthCheck(sourceId: string): Promise<HealthReport> {
-  return fetchJSON(`${API_BASE}/health/${sourceId}/check`, { method: 'POST' });
-}
+  testSourceChapter: (id: string, comicId: string) =>
+    fetchJSON<Record<string, unknown>>(`${API_BASE}/sources/${id}/test-chapter`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ comicId }),
+    }),
 
-// ========== 日志 API ==========
-export async function getCheckLogs(source?: string, limit = 50): Promise<CheckLogEntry[]> {
-  const params = new URLSearchParams();
-  if (source) params.set('source', source);
-  params.set('limit', String(limit));
-  return fetchJSON(`${API_BASE}/logs/checks?${params}`);
-}
+  // ---------- 健康检测 ----------
+  getAllHealth: () =>
+    fetchJSON<HealthReport[]>(`${API_BASE}/health`),
 
-export async function getSearchLogs(limit = 50): Promise<SearchLogEntry[]> {
-  return fetchJSON(`${API_BASE}/logs/searches?limit=${limit}`);
-}
+  getSourceHealth: (sourceId: string) =>
+    fetchJSON<HealthReport>(`${API_BASE}/health/${sourceId}`),
 
-// ========== 图片代理 URL ==========
-export function getProxyImageUrl(rawUrl: string, sourceId: string): string {
-  return `${API_BASE}/proxy/image?url=${encodeURIComponent(rawUrl)}&source=${sourceId}`;
-}
+  triggerHealthCheck: (sourceId: string) =>
+    fetchJSON<HealthReport>(`${API_BASE}/health/${sourceId}/check`, { method: 'POST' }),
+
+  // ---------- 日志 ----------
+  getCheckLogs: (source?: string, limit = 50) => {
+    const params = new URLSearchParams();
+    if (source) params.set('source', source);
+    params.set('limit', String(limit));
+    return fetchJSON<CheckLogEntry[]>(`${API_BASE}/logs/checks?${params}`);
+  },
+
+  getSearchLogs: (limit = 50) =>
+    fetchJSON<SearchLogEntry[]>(`${API_BASE}/logs/searches?limit=${limit}`),
+
+  // ---------- 图片代理 ----------
+  getProxyImageUrl: (rawUrl: string, sourceId: string) =>
+    `${API_BASE}/proxy/image?url=${encodeURIComponent(rawUrl)}&source=${sourceId}`,
+};
+
+// ============================================================
+// 向后兼容：保留独立导出（解构导入）
+// ============================================================
+export const {
+  searchAll,
+  searchSource,
+  getComicDetail,
+  getChapters,
+  getChapterImages,
+  getSources,
+  getSourceConfig,
+  toggleSource,
+  setSourceTier,
+  setSourceMode,
+  setSourcePolicy,
+  recoverSource,
+  getCircuitBreakerStatus,
+  addSourceDomain,
+  removeSourceDomain,
+  testSourceSearch,
+  testSourceDetail,
+  testSourceChapter,
+  getAllHealth,
+  getSourceHealth,
+  triggerHealthCheck,
+  getCheckLogs,
+  getSearchLogs,
+  getProxyImageUrl,
+} = api;

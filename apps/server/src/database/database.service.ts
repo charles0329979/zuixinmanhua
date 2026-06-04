@@ -99,10 +99,15 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   // ==================== Migrations ====================
 
   private runMigrations(): void {
-    const schema = this.getMigrationSQL();
+    // 001: Initial schema
+    this.executeMigration(this.getMigrationSQL());
+    // 002: Source policy & circuit breaker columns
+    this.executeMigration(this.getMigration002SQL());
+    this.logger.log('📋 数据库迁移完成');
+  }
 
-    // Split into individual statements, ignoring comment lines and empty strings
-    const statements = schema
+  private executeMigration(sql: string): void {
+    const statements = sql
       .split(';')
       .map((s) => s.trim())
       .filter((s) => s.length > 0 && !s.startsWith('--'));
@@ -111,12 +116,12 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       try {
         this.db.run(stmt + ';');
       } catch (e: any) {
-        if (!e.message?.includes('already exists')) {
+        // Ignore "duplicate column" errors for ALTER TABLE ADD COLUMN
+        if (!e.message?.includes('already exists') && !e.message?.includes('duplicate column')) {
           this.logger.warn(`迁移警告: ${e.message?.slice(0, 80)}`);
         }
       }
     }
-    this.logger.log('📋 数据库迁移完成');
   }
 
   private seedDefaults(): void {
@@ -206,6 +211,19 @@ CREATE INDEX IF NOT EXISTS idx_health_status_source ON source_health_status(sour
 `;
   }
 
+  /** 002: 书源策略模式 + 熔断字段 */
+  private getMigration002SQL(): string {
+    return `
+ALTER TABLE source_configs ADD COLUMN mode TEXT NOT NULL DEFAULT 'server-parser';
+ALTER TABLE source_configs ADD COLUMN policy_config TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE source_configs ADD COLUMN health_status TEXT NOT NULL DEFAULT 'unknown';
+ALTER TABLE source_configs ADD COLUMN consecutive_failures INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE source_configs ADD COLUMN blocked_until TEXT;
+ALTER TABLE source_configs ADD COLUMN last_error TEXT;
+ALTER TABLE source_configs ADD COLUMN last_checked_at TEXT;
+`;
+  }
+
   private getSeedSQL(): string {
     const reqCfg = JSON.stringify({
       timeout: 10000,
@@ -213,23 +231,40 @@ CREATE INDEX IF NOT EXISTS idx_health_status_source ON source_health_status(sour
       retries: 2,
     });
     const suppCfg = JSON.stringify({ ...JSON.parse(reqCfg), timeout: 15000, retries: 3 });
+    const defaultPolicy = JSON.stringify({
+      mode: 'server-parser',
+      maxConcurrentRequests: 1,
+      requestTimeoutMs: 5000,
+      cooldownAfterBlockedMs: 86400000,
+      maxImagesPerBatch: 6,
+    });
+    const extOnlyPolicy = JSON.stringify({
+      mode: 'external-only',
+      maxConcurrentRequests: 1,
+      requestTimeoutMs: 5000,
+      cooldownAfterBlockedMs: 86400000,
+      maxImagesPerBatch: 6,
+    });
 
     return `
-INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config) VALUES ('copy', '拷贝漫画', 'core', '${reqCfg}');
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('copy', '拷贝漫画', 'core', '${reqCfg}', 'external-only', '${extOnlyPolicy}');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('copy', 'https://www.mangacopy.com', 0, 1, '主域名');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('copy', 'https://copymanga.tv', 1, 1, '备用域名');
 
-INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config) VALUES ('baozi', '包子漫画', 'core', '${reqCfg}');
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('baozi', '包子漫画', 'core', '${reqCfg}', 'server-parser', '${defaultPolicy}');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('baozi', 'https://www.baozimh.com', 0, 1, '主域名');
 
-INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config) VALUES ('dongmanzhijia', '动漫之家', 'core', '${reqCfg}');
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('dongmanzhijia', '动漫之家', 'core', '${reqCfg}', 'external-only', '${extOnlyPolicy}');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('dongmanzhijia', 'https://www.dmzj.com', 0, 1, '主域名');
 
-INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config) VALUES ('manwa', '漫蛙', 'supplement', '${suppCfg}');
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('manwa', '漫蛙', 'supplement', '${suppCfg}', 'external-only', '${extOnlyPolicy}');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('manwa', 'https://manwa.com', 0, 1, '主域名');
 
-INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config) VALUES ('yeman', '野蛮漫画', 'supplement', '${suppCfg}');
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('yeman', '野蛮漫画', 'supplement', '${suppCfg}', 'external-only', '${extOnlyPolicy}');
 INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('yeman', 'https://www.yemancomic.com', 0, 1, '主域名');
+
+INSERT OR IGNORE INTO source_configs (source_id, name, tier, request_config, mode, policy_config) VALUES ('kanman', '看漫画', 'core', '${reqCfg}', 'server-parser', '${defaultPolicy}');
+INSERT OR IGNORE INTO source_domains (source_id, url, priority, is_active, note) VALUES ('kanman', 'https://www.kanman.com', 0, 1, '主域名');
 `;
   }
 }

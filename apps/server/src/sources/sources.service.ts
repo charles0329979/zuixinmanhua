@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SourceAdapter } from './adapter.interface';
 import { SourceConfigService } from './config/source-config.service';
 import { AdapterFactoryService } from './adapter-factory.service';
+import { CircuitBreakerService } from './circuit-breaker.service';
 
 @Injectable()
 export class SourcesService {
@@ -10,28 +11,54 @@ export class SourcesService {
   constructor(
     private readonly configService: SourceConfigService,
     private readonly adapterFactory: AdapterFactoryService,
+    private readonly circuitBreaker: CircuitBreakerService,
   ) {}
 
-  /** 获取所有书源（含数据库配置） */
+  /** 获取所有书源（含数据库配置 + 熔断状态） */
   getAllSources() {
-    return this.configService.getAllConfigs().map((c) => ({
-      id: c.sourceId,
-      name: c.name,
-      tier: c.tier,
-      enabled: c.enabled,
-      domain: c.domains[0]?.url || '',
-      domainCount: c.domains.length,
-      requestConfig: c.requestConfig,
-    }));
+    return this.configService.getAllConfigs().map((c) => {
+      const health = this.circuitBreaker.getHealth(c.sourceId);
+      return {
+        id: c.sourceId,
+        name: c.name,
+        tier: c.tier,
+        enabled: c.enabled,
+        domain: c.domains[0]?.url || '',
+        domainCount: c.domains.length,
+        mode: (c as any).mode || 'server-parser',
+        healthStatus: health?.status || 'unknown',
+        blockedUntil: health?.blockedUntil,
+        lastError: health?.lastError,
+        requestConfig: c.requestConfig,
+        policyConfig: (c as any).policyConfig || null,
+      };
+    });
   }
 
-  /** 获取所有已启用的适配器实例 */
+  /** 获取所有已启用的适配器实例（跳过 external-only 和 blocked） */
   async getEnabledAdapters(): Promise<SourceAdapter[]> {
     return this.adapterFactory.createAllEnabled();
   }
 
-  /** 获取单个适配器实例 */
+  /** 获取单个适配器实例（含熔断检查） */
   async getAdapter(id: string): Promise<SourceAdapter | undefined> {
+    // 检查是否为 external-only 模式
+    const config = this.configService.getConfig(id);
+    if (!config || !config.enabled) return undefined;
+
+    const row = this.configService.getRawConfig(id);
+    const mode = (row as any)?.mode || 'server-parser';
+    if (mode === 'external-only') {
+      this.logger.debug(`跳过 external-only 书源: ${id}`);
+      return undefined;
+    }
+
+    // 检查熔断状态
+    if (this.circuitBreaker.isBlocked(id)) {
+      this.logger.debug(`跳过已熔断书源: ${id}`);
+      return undefined;
+    }
+
     try {
       return await this.adapterFactory.create(id);
     } catch (e: any) {
@@ -110,5 +137,29 @@ export class SourcesService {
     } catch (e: any) {
       return { success: false, responseTime: Date.now() - start, error: e.message };
     }
+  }
+
+  // ========== 策略与熔断管理 ==========
+
+  /** 更新书源运行模式 */
+  setMode(id: string, mode: string) {
+    return this.configService.setMode(id, mode);
+  }
+
+  /** 更新书源策略配置 */
+  setPolicy(id: string, policy: Record<string, unknown>) {
+    return this.configService.setPolicy(id, policy);
+  }
+
+  /** 手动恢复熔断 */
+  recoverSource(id: string) {
+    this.circuitBreaker.manualRecover(id);
+    this.adapterFactory.clearCache(id);
+    return { ok: true };
+  }
+
+  /** 获取书源健康状态 */
+  getSourceHealth(id: string) {
+    return this.circuitBreaker.getHealth(id);
   }
 }

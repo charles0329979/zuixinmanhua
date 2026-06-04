@@ -1,0 +1,142 @@
+[
+  {
+    "id": "baozi",
+    "name": "包子漫画",
+    "host": "https://www.baozimh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 100,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?q={{keyword}}",
+      "method": "GET",
+      "listSelector": ".comics-card",
+      "titleSelector": ".comics-card__title h3",
+      "coverSelector": ".comics-card__poster img",
+      "detailUrlSelector": ".comics-card__poster",
+      "latestChapterSelector": ".chapter",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".comics-detail__title",
+      "coverSelector": ".de-info__bg",
+      "authorSelector": ".comics-detail__author",
+      "descriptionSelector": ".comics-detail__desc",
+      "statusSelector": ".comics-detail__status, .tag-list",
+      "latestChapterSelector": ".comics-chapters__item:first-child div"
+    },
+    "chapters": {
+      "listSelector": ".comics-chapters__item",
+      "titleSelector": "div",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "amp-img.comic-contain__item, img.comic-image, .chapter-img img, .comic-content img, amp-img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-04T15:22:07.064Z",
+    "updatedAt": "2026-06-04T15:22:07.064Z"
+  },
+  {
+    "id": "manhuadui",
+    "name": "漫画堆",
+    "host": "https://www.manhuadui.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 90,
+    "tags": [
+      "中文",
+      "国漫"
+    ],
+    "search": {
+      "url": "/search?keywords={{keyword}}",
+      "method": "GET",
+      "listSelector": ".book-result li",
+      "titleSelector": ".book-name",
+      "coverSelector": "img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": ".updateon",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".book-title",
+      "coverSelector": ".book-cover img",
+      "authorSelector": ".book-author",
+      "descriptionSelector": ".book-desc",
+      "statusSelector": ".book-status",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".chapter-list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "#images img, .comicpage img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-04T15:22:07.064Z",
+    "updatedAt": "2026-06-04T15:26:59.967Z"
+  },
+  {
+    "id": "colamanga",
+    "name": "可乐漫画",
+    "host": "https://www.colamanga.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 80,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?type=1&searchString={{keyword}}",
+      "method": "GET",
+      "listSelector": ".fed-deta-info",
+      "titleSelector": "h1 a",
+      "coverSelector": ".fed-list-pics",
+      "detailUrlSelector": "h1 a",
+      "latestChapterSelector": "",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": "h1.fed-part-eone",
+      "coverSelector": ".fed-list-pics",
+      "authorSelector": "",
+      "descriptionSelector": ".fed-part-esan",
+      "statusSelector": "",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".all_data_list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": ".fed-part-layout img",
+      "srcAttribute": "data-original"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-04T15:22:07.064Z",
+    "updatedAt": "2026-06-04T15:27:00.010Z"
+  }
+]

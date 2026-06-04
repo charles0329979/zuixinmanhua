@@ -23,9 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               📚 漫画聚合
             </Link>
             <nav className="flex items-center gap-2 text-sm">
-              <Link href="/favorites" className="btn-ghost">收藏</Link>
+              <Link href="/" className="btn-ghost">首页</Link>
+              <Link href="/search" className="btn-ghost">搜索</Link>
+              <Link href="/favorites" className="btn-ghost">书架</Link>
               <Link href="/history" className="btn-ghost">历史</Link>
-              <Link href="/admin/sources" className="btn-ghost">书源</Link>
+              <Link href="/sources" className="btn-ghost">📚 书源仓库</Link>
+              <Link href="/admin/sources" className="btn-ghost">⚙️ 管理</Link>
             </nav>
           </div>
         </header>

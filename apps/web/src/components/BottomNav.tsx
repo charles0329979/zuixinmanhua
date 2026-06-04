@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { href: '/', label: '首页', icon: '🏠' },
   { href: '/search', label: '搜索', icon: '🔍' },
-  { href: '/favorites', label: '收藏', icon: '❤️' },
+  { href: '/favorites', label: '书架', icon: '❤️' },
   { href: '/history', label: '历史', icon: '🕐' },
-  { href: '/admin/sources', label: '书源', icon: '⚙️' },
+  { href: '/sources', label: '书源', icon: '📚' },
 ];
 
 export function BottomNav() {

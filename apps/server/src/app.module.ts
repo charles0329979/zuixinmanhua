@@ -8,6 +8,7 @@ import { SourcesModule } from './sources/sources.module';
 import { HealthModule } from './health/health.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { LoggingModule } from './logging/logging.module';
+import { RuleBasedController } from './sources/rule-based.controller';
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import { LoggingModule } from './logging/logging.module';
     ProxyModule,
     LoggingModule,
   ],
+  controllers: [RuleBasedController],
 })
 export class AppModule {}

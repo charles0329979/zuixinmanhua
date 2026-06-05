@@ -11,7 +11,15 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 async function fetchJSON<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, options);
-  if (!res.ok) throw new Error(`API Error: ${res.status} ${res.statusText}`);
+  if (!res.ok) {
+    // Try to extract error message from JSON response body
+    let message = `API Error: ${res.status} ${res.statusText}`;
+    try {
+      const body = await res.json();
+      if (body.message) message = body.message;
+    } catch {}
+    throw new Error(message);
+  }
   return res.json();
 }
 

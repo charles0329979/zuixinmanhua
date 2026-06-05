@@ -53,7 +53,27 @@ export default function ComicDetailPage() {
   };
 
   if (loading) return <div className="text-center py-16 text-gray-400">加载中...</div>;
-  if (error) return <div className="text-center py-16 text-red-500">❌ {error}</div>;
+  if (error) {
+    const showYemanLink = params.source === 'yeman';
+    return (
+      <div className="text-center py-16 space-y-4">
+        <p className="text-red-500">❌ {error}</p>
+        {showYemanLink && (
+          <div className="space-y-2">
+            <p className="text-sm text-gray-500">野蛮漫画使用 KIMICMS 反爬保护，服务端无法直接访问。搜索功能正常，但详情/章节/图片需要在浏览器中直连访问。</p>
+            <a
+              href={`https://www.yemancomic.com/book/${params.comicId}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block btn-primary text-sm px-4 py-2"
+            >
+              🔗 在野蛮漫画网站阅读
+            </a>
+          </div>
+        )}
+      </div>
+    );
+  }
   if (!comic) return <div className="text-center py-16 text-gray-400">未找到漫画</div>;
 
   return (

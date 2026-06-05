@@ -3,7 +3,7 @@
     "id": "baozi",
     "name": "包子漫画",
     "host": "https://www.baozimh.com",
-    "enabled": true,
+    "enabled": false,
     "language": "zh",
     "weight": 100,
     "tags": [
@@ -44,7 +44,7 @@
     },
     "timeoutMs": 10000,
     "createdAt": "2026-06-04T15:22:07.064Z",
-    "updatedAt": "2026-06-04T15:22:07.064Z"
+    "updatedAt": "2026-06-05T02:16:58.723Z"
   },
   {
     "id": "manhuadui",
@@ -140,7 +140,7 @@
     },
     "timeoutMs": 10000,
     "createdAt": "2026-06-05T00:00:00.000Z",
-    "updatedAt": "2026-06-05T00:00:00.000Z"
+    "updatedAt": "2026-06-05T02:16:59.661Z"
   },
   {
     "id": "colamanga",

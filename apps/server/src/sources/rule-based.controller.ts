@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Patch, Param, Body, Query } from '@nestjs/common';
 import { sourceStore, MangaSource } from './source-store';
-import { searchBySource, getDetailBySource, getChaptersBySource, getImagesBySource, aggregatedSearch } from './source-parser';
+import { searchBySource, getDetailBySource, getChaptersBySource, getImagesBySource, aggregatedSearch, parseSearchHTML, parseDetailHTML, parseChaptersHTML, parseImagesHTML } from './source-parser';
 
 @Controller()
 export class RuleBasedController {
@@ -99,6 +99,56 @@ export class RuleBasedController {
       return { success: true, data: images };
     } catch (e: any) {
       return { success: false, message: e.message || '获取图片失败' };
+    }
+  }
+
+  // ========== Client-mode parse 端点 (客户端预取HTML，服务端CSS解析) ==========
+
+  @Post('rule-parse/search')
+  parseSearch(@Body() body: { sourceId: string; html: string }) {
+    const source = sourceStore.getSourceById(body.sourceId);
+    if (!source) return { success: false, message: '书源不存在' };
+    try {
+      const results = parseSearchHTML(source, body.html);
+      return { success: true, data: results };
+    } catch (e: any) {
+      return { success: false, message: e.message || '解析搜索失败' };
+    }
+  }
+
+  @Post('rule-parse/detail')
+  parseDetail(@Body() body: { sourceId: string; html: string }) {
+    const source = sourceStore.getSourceById(body.sourceId);
+    if (!source) return { success: false, message: '书源不存在' };
+    try {
+      const detail = parseDetailHTML(source, body.html);
+      return { success: true, data: { ...detail, sourceId: source.id, sourceName: source.name } };
+    } catch (e: any) {
+      return { success: false, message: e.message || '解析详情失败' };
+    }
+  }
+
+  @Post('rule-parse/chapters')
+  parseChapters(@Body() body: { sourceId: string; html: string }) {
+    const source = sourceStore.getSourceById(body.sourceId);
+    if (!source) return { success: false, message: '书源不存在' };
+    try {
+      const chapters = parseChaptersHTML(source, body.html);
+      return { success: true, data: chapters };
+    } catch (e: any) {
+      return { success: false, message: e.message || '解析章节失败' };
+    }
+  }
+
+  @Post('rule-parse/images')
+  parseImages(@Body() body: { sourceId: string; html: string }) {
+    const source = sourceStore.getSourceById(body.sourceId);
+    if (!source) return { success: false, message: '书源不存在' };
+    try {
+      const images = parseImagesHTML(source, body.html);
+      return { success: true, data: images };
+    } catch (e: any) {
+      return { success: false, message: e.message || '解析图片失败' };
     }
   }
 }

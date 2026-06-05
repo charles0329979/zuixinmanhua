@@ -10,11 +10,15 @@ export interface MangaSource {
   language: string
   weight: number
   tags: string[]
+  /** 'server' = 服务端抓取解析, 'client' = 客户端抓取HTML后提交服务端解析 (用于反爬严格的站点) */
+  mode?: 'server' | 'client'
 
   search: {
     url: string
     method?: 'GET' | 'POST'
     keywordParam?: string
+    /** 'html' = CSS选择器解析, 'json' = JSON路径解析 (如 KIMICMS API) */
+    responseType?: 'html' | 'json'
     listSelector: string
     titleSelector: string
     coverSelector: string

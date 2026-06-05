@@ -93,6 +93,56 @@
     "updatedAt": "2026-06-04T15:26:59.967Z"
   },
   {
+    "id": "yeman",
+    "name": "野蛮漫画",
+    "host": "https://www.yemancomic.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 95,
+    "mode": "client",
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫",
+      "韩漫"
+    ],
+    "search": {
+      "url": "/api/front/index/search?key={{keyword}}",
+      "method": "GET",
+      "responseType": "json",
+      "listSelector": "data",
+      "titleSelector": "name",
+      "coverSelector": "cover",
+      "detailUrlSelector": "info_url",
+      "latestChapterSelector": "lastchapter",
+      "statusSelector": "state",
+      "updateTimeSelector": "lastupdate_a"
+    },
+    "detail": {
+      "titleSelector": "h1.title",
+      "coverSelector": "meta[property=\"og:image\"]",
+      "authorSelector": ".authorJump",
+      "descriptionSelector": "meta[property=\"og:description\"]",
+      "statusSelector": ".sort",
+      "latestChapterSelector": ".last-update em"
+    },
+    "chapters": {
+      "listSelector": "li.item a[href*=\"/chapter/\"]",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "#img-box .acgn-reader-chapter__item img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-05T00:00:00.000Z",
+    "updatedAt": "2026-06-05T00:00:00.000Z"
+  },
+  {
     "id": "colamanga",
     "name": "可乐漫画",
     "host": "https://www.colamanga.com",

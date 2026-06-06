@@ -122,48 +122,69 @@ export class ManwaAdapter extends BaseAdapter {
     const { data } = await this.fetch(`/chapter/${chapterId}/`);
     const $ = cheerio.load(data);
 
-    // 获取图片 CDN 域名 (优先用已验证可用的 mwappimgs.cc)
-    const cdnMatch = data.match(/window\.current_img_prefix\s*=\s*['"]([^'"]+)['"]/);
-    const pageCdn = cdnMatch ? cdnMatch[1] : null;
-    // 使用页面上指定的 CDN，但优先使用已验证的 mwappimgs.cc
-    const cdnHost = CDN_HOSTS[0];
-
     // 元数据
     const fullTitle = $('title').text().trim();
-    const parts = fullTitle.split('-');
+    const parts = fullTitle.split(/[-–|]/);
     const comicTitle = parts[0]?.trim() || '';
     const chapterTitle = parts[1]?.trim() || '';
 
-    // 提取图片路径: /upload/book/id/{comicId}/{chapterId}/{hash}.webp
     const images: string[] = [];
     const seen = new Set<string>();
 
-    // 方法1: 正则匹配 upload 路径，过滤占位符（< 5KB 的无效图片）
-    const re = /\/upload[^"'\s]*book[^"'\s]*\/\d+\/(\d+)\/[a-f0-9]+\.(webp|jpg|png|jpeg)/gi;
-    let m;
-    const candidates: string[] = [];
-    while ((m = re.exec(data)) !== null) {
-      const path = m[0];
-      if (!seen.has(path) && m[1] === chapterId) {
-        seen.add(path);
-        candidates.push(path.startsWith('http') ? path
-          : path.startsWith('/static') ? cdnHost + path
-          : cdnHost + '/static' + (path.startsWith('/') ? '' : '/') + path);
+    const add = (url: string) => {
+      if (!url) return;
+      let clean = url.trim();
+      // 过滤占位符
+      if (/imagecover|placeholder|loading|blank|1x1|spacer/i.test(clean)) return;
+      if (clean.includes('/static/images/') && !clean.includes('/upload')) return;
+      // 补全相对 URL
+      if (!clean.startsWith('http')) {
+        clean = (clean.startsWith('/') ? '' : '/') + clean;
+        // Use CDN host from the page, fallback to first CDN
+        clean = CDN_HOSTS[0] + clean;
+      }
+      if (seen.has(clean)) return;
+      seen.add(clean);
+      images.push(clean);
+    };
+
+    // 方法1: data-r-src 属性 (漫蛙使用自定义 lazy-load)
+    // 元素: <img class="content-img lazy_img" data-r-src="FULL_CDN_URL" ...>
+    $('.content-img, .img-content img, #cp_img img').each((_, el) => {
+      const $el = $(el);
+      const realSrc = $el.attr('data-r-src') || $el.attr('data-original') || $el.attr('data-src') || $el.attr('src');
+      if (realSrc) add(realSrc);
+    });
+
+    // 方法2: 正则匹配 HTML 中的图片路径
+    // 路径格式: /static/upload2/book/id/{comicId}/{chapterId}/{hash}_zb.webp
+    if (images.length === 0) {
+      const re = /\/static\/upload2\/book\/id\/\d+\/(\d+)\/[a-f0-9_]+\.(?:webp|jpg|png|jpeg)/gi;
+      let m;
+      while ((m = re.exec(data)) !== null) {
+        if (m[1] === chapterId) add(m[0]);
       }
     }
-    images.push(...candidates);
 
-    // 方法2: 在 #img-content 容器内找
+    // 方法3: 更宽泛的正则 — 扫描所有图片 URL
     if (images.length === 0) {
-      $('#img-content img, #cp_img img').each((_, el) => {
-        const src = $(el).attr('src') || $(el).attr('data-original') || $(el).attr('data-src') || '';
-        if (src && !src.includes('imagecover') && !src.includes('/static/images/') && !src.includes('static/upload2/user')) {
-          if (!seen.has(src)) {
-            seen.add(src);
-            images.push(src.startsWith('http') ? src : cdnHost + (src.startsWith('/') ? '' : '/') + src);
-          }
-        }
-      });
+      const re = /(?:data-r-src|data-original|data-src|src)\s*=\s*["']([^"']+\.(?:webp|jpg|png|jpeg)[^"']*)["']/gi;
+      let m;
+      while ((m = re.exec(data)) !== null) {
+        add(m[1]);
+      }
+    }
+
+    // 方法4: 通用 URL 匹配 — 找所有包含 upload + chapterId 的图片链接
+    if (images.length === 0) {
+      const re = new RegExp(
+        `(https?://[^"'>\\s]+?upload[^"'>\\s]*?${chapterId}[^"'>\\s]*?\\.(?:webp|jpg|png|jpeg)[^"'>\\s]*)`,
+        'gi',
+      );
+      let m;
+      while ((m = re.exec(data)) !== null) {
+        add(m[1]);
+      }
     }
 
     return { chapterId, comicTitle, chapterTitle, images };

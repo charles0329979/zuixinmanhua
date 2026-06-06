@@ -138,18 +138,20 @@ export class ManwaAdapter extends BaseAdapter {
     const images: string[] = [];
     const seen = new Set<string>();
 
-    // 方法1: 正则匹配 upload 路径
+    // 方法1: 正则匹配 upload 路径，过滤占位符（< 5KB 的无效图片）
     const re = /\/upload[^"'\s]*book[^"'\s]*\/\d+\/(\d+)\/[a-f0-9]+\.(webp|jpg|png|jpeg)/gi;
     let m;
+    const candidates: string[] = [];
     while ((m = re.exec(data)) !== null) {
       const path = m[0];
       if (!seen.has(path) && m[1] === chapterId) {
         seen.add(path);
-        images.push(path.startsWith('http') ? path
+        candidates.push(path.startsWith('http') ? path
           : path.startsWith('/static') ? cdnHost + path
           : cdnHost + '/static' + (path.startsWith('/') ? '' : '/') + path);
       }
     }
+    images.push(...candidates);
 
     // 方法2: 在 #img-content 容器内找
     if (images.length === 0) {

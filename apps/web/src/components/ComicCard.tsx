@@ -23,9 +23,18 @@ const sourceColors: Record<string, string> = {
 export function ComicCard({ comic, showSource = true }: ComicCardProps) {
   const sourceColor = sourceColors[comic.source] || 'bg-gray-100 text-gray-600';
 
+  const handleClick = () => {
+    // Cache search result data for detail page fallback (e.g. yeman KIMICMS blocked)
+    try {
+      const cacheKey = `comic-cache:${comic.source}:${comic.comicId}`;
+      sessionStorage.setItem(cacheKey, JSON.stringify(comic));
+    } catch {}
+  };
+
   return (
     <Link
       href={`/comic/${comic.source}/${comic.comicId}`}
+      onClick={handleClick}
       className="card flex gap-3 p-3 hover:shadow-md transition-shadow cursor-pointer"
     >
       {/* 封面 */}

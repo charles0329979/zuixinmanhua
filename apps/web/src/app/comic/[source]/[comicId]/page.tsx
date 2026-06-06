@@ -31,6 +31,18 @@ export default function ComicDetailPage() {
         setChapters(chs || []);
         setIsFav(fav);
       } catch (e: any) {
+        // Fallback: try sessionStorage cache (from search results)
+        try {
+          const cacheKey = `comic-cache:${params.source}:${params.comicId}`;
+          const cached = sessionStorage.getItem(cacheKey);
+          if (cached) {
+            const data = JSON.parse(cached);
+            setComic(data);
+            setError('');
+            setLoading(false);
+            return;
+          }
+        } catch {}
         setError(e.message || '加载失败');
       } finally {
         setLoading(false);

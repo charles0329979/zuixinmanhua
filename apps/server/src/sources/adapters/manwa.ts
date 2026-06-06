@@ -16,7 +16,14 @@ import { ComicInfo, ChapterInfo, ChapterDetail, AdapterContext } from '../adapte
  * - 图片: /chapter/{{chId}} → 路径 /upload/book/id/... 嵌入 HTML
  */
 
-const DEFAULT_CDN = 'https://mwfimsvfast29.cc';
+// CDN 域名优先级列表（从 checkImgLine() base64 解码提取）
+const CDN_HOSTS = [
+  'https://mwappimgs.cc',
+  'https://mwfimsvfast29.cc',
+  'https://mwfimsvfast36.cc',
+  'https://mwfimsvfast31.cc',
+  'https://mwfimsvfast25.cc',
+];
 
 export class ManwaAdapter extends BaseAdapter {
   id = 'manwa';
@@ -115,9 +122,11 @@ export class ManwaAdapter extends BaseAdapter {
     const { data } = await this.fetch(`/chapter/${chapterId}/`);
     const $ = cheerio.load(data);
 
-    // 获取图片 CDN 域名
+    // 获取图片 CDN 域名 (优先用已验证可用的 mwappimgs.cc)
     const cdnMatch = data.match(/window\.current_img_prefix\s*=\s*['"]([^'"]+)['"]/);
-    const cdnHost = cdnMatch ? cdnMatch[1] : DEFAULT_CDN;
+    const pageCdn = cdnMatch ? cdnMatch[1] : null;
+    // 使用页面上指定的 CDN，但优先使用已验证的 mwappimgs.cc
+    const cdnHost = CDN_HOSTS[0];
 
     // 元数据
     const fullTitle = $('title').text().trim();

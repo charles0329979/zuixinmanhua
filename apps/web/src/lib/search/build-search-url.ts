@@ -15,13 +15,17 @@ const PLACEHOLDERS = [
   /%s/g,
 ];
 
-// ---- URL 候选字段 ----
+// ---- URL 候选字段 (path 优先，url 有歧义放在最后) ----
 const URL_CANDIDATES = [
   'path',
-  'url',
   'searchUrl',
   'ruleSearchUrl',
+  'url',
 ];
+
+function looksLikeUrl(s: string): boolean {
+  return /^https?:\/\//i.test(s) || /^\/[^@]/.test(s);
+}
 
 /**
  * 从 source 对象中提取搜索 URL 模板
@@ -37,11 +41,15 @@ export function extractSearchUrlTemplate(
   for (const field of URL_CANDIDATES) {
     const fromSearch = search[field];
     if (typeof fromSearch === 'string' && fromSearch.trim()) {
-      return fromSearch.trim();
+      const val = fromSearch.trim();
+      if (field === 'url' && !looksLikeUrl(val)) continue;
+      return val;
     }
     const fromRaw = raw[field];
     if (typeof fromRaw === 'string' && fromRaw.trim()) {
-      return fromRaw.trim();
+      const val = fromRaw.trim();
+      if (field === 'url' && !looksLikeUrl(val)) continue;
+      return val;
     }
   }
 

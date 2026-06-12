@@ -54,12 +54,21 @@ const KEYWORD_PLACEHOLDERS = [
 ];
 
 // ---- URL 候选字段 (按优先级) ----
+// 注意: url 字段在 comicfs 中有歧义 — 可能是搜索 URL 也可能是CSS选择器
+// 所以 url 放在最后，并增加 URL 格式检测
 const URL_FIELD_CANDIDATES = [
-  'url',
   'path',
   'searchUrl',
   'ruleSearchUrl',
+  'url', // 最后尝试 — 需验证格式
 ];
+
+/**
+ * 判断一个字符串是否可能是 URL (而非 CSS 选择器)
+ */
+function looksLikeUrl(s: string): boolean {
+  return /^https?:\/\//i.test(s) || /^\/[^@]/.test(s);
+}
 
 const SELECTOR_FIELD_MAP: Record<string, string[]> = {
   listSelector: ['item', 'list', 'ruleSearchList'],
@@ -86,12 +95,17 @@ function extractUrlTemplate(source: Record<string, unknown>): string | null {
     // 先查 search.xxx
     const fromSearch = search[field];
     if (typeof fromSearch === 'string' && fromSearch.trim()) {
-      return fromSearch.trim();
+      const val = fromSearch.trim();
+      // url 字段有歧义 — 跳过明显是 CSS 选择器的值
+      if (field === 'url' && !looksLikeUrl(val)) continue;
+      return val;
     }
     // 再查 metadata.raw.xxx (嵌套)
     const fromRaw = raw[field];
     if (typeof fromRaw === 'string' && fromRaw.trim()) {
-      return fromRaw.trim();
+      const val = fromRaw.trim();
+      if (field === 'url' && !looksLikeUrl(val)) continue;
+      return val;
     }
   }
 

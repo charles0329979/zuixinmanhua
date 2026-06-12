@@ -1,0 +1,47 @@
+{
+  "id": "yz4-chaoxing-com-1ff2b33e",
+  "name": "📚 超星图书馆",
+  "host": "http://yz4.chaoxing.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "$.[*]",
+    "title": "name",
+    "url": "mobileulr",
+    "cover": "coverUrl",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "tag.h2.0@text",
+    "cover": "",
+    "author": "class.artCon@tag.p@text##\\s*编?著",
+    "description": "##[\\s\\S]*##<br>★★★     超星·出版     ★★★<br>★★★   本书暂无简介  ★★★###",
+    "status": "",
+    "latestChapter": "class.con@tag.a.-1@text"
+  },
+  "chapters": {
+    "list": "+class.con@tag.a",
+    "title": "text##^目录$",
+    "url": "attr##&name=.+"
+  },
+  "images": {
+    "list": "class.ztArtCon@tag.p@html##([\\w，、。！？]{26}[。！？；]+[”’]?)(?=[^\\n]{27})##$1<br>",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

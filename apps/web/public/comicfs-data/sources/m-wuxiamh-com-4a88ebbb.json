@@ -1,0 +1,44 @@
+{
+  "id": "m-wuxiamh-com-4a88ebbb",
+  "name": "🎨 武侠漫画",
+  "host": "https://m.wuxiamh.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.wuxiamh.com/search/?keywords={{keyword}}",
+    "item": "class.UpdateList@class.itemBox",
+    "title": "class.title@text",
+    "url": "class.itemImg@a@href",
+    "cover": "tag.mip-img@src",
+    "latest": "class.coll@tag.a@text||class.info@tag.a@text",
+    "status": "class.txtItme.1@text&&class.txtItme.2@text##\\||\\s.*",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.title@tag.h1@text##漫画",
+    "cover": "class.img@tag.mip-img@src",
+    "author": "class.left.3@text",
+    "description": "class.txtDesc@text##简介.|介绍.",
+    "status": "class.left.7@text",
+    "latestChapter": "class.left.1@text"
+  },
+  "chapters": {
+    "list": "-id.chapter-list-1@a!0",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.erPag.1@tag.img.-1@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ajiu-36-4dbdaa78",
+  "name": "[阿玖·AJiu]36漫画",
+  "host": "https://m.36mh.net",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search/?keywords={{keyword}}",
+    "item": "class.itemBox",
+    "title": "class.title@text",
+    "url": "tag.a.0@href",
+    "cover": "",
+    "latest": "class.coll@text",
+    "status": "class.pd@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "class.txtDesc@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "-id.chapter-list-4@tag.li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "tag.mip-link@tag.mip-img@src",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

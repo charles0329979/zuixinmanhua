@@ -1,0 +1,44 @@
+{
+  "id": "amcomic-com-5c98f0de",
+  "name": "一个漫画",
+  "host": "https://www.amcomic.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "li.stui-vodlist__item",
+    "title": "h4@text",
+    "url": "a.0@href",
+    "cover": "a.0@data-original",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": ".stui-content__playlist@li",
+    "title": "a@text",
+    "url": "a@href##$##,{\"webView\":true}"
+  },
+  "images": {
+    "list": ".imglist@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ajiu-4e513565",
+  "name": "[阿玖·AJiu]下拉式漫画",
+  "host": "https://m.xialashimanhua.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search/?keywords={{keyword}}",
+    "item": "class.itemBox",
+    "title": "class.itemTxt@tag.a@text",
+    "url": "class.itemTxt@tag.a@href",
+    "cover": "tag.mip-img@src",
+    "latest": "class.coll@text",
+    "status": "class.itemTxt@tag.p.1@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "class.txtDesc@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "-class.list@tag.a.!0",
+    "title": "@text",
+    "url": "@href"
+  },
+  "images": {
+    "list": "tag.mip-img.0@src##(http.*w...)##<img src=\"$1\"/>",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

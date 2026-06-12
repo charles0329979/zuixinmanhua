@@ -1,0 +1,44 @@
+{
+  "id": "book-sbkk8-com-90a95e4b",
+  "name": "📚天涯知识库",
+  "host": "http://book.sbkk8.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": ".mululist||.bookList",
+    "title": "a.-1@text",
+    "url": "a.-1@href",
+    "cover": "img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": ".fm img@src",
+    "author": "",
+    "description": ".des p@html",
+    "status": "",
+    "latestChapter": ".mulu a.-1@text"
+  },
+  "chapters": {
+    "list": ".mulu li a||h1",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "#content p@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

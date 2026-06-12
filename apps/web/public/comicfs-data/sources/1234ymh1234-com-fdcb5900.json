@@ -1,0 +1,44 @@
+{
+  "id": "1234ymh1234-com-fdcb5900",
+  "name": "漫画1234ymh1234.com",
+  "host": "https://www.ymh1234.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search/?keywords={{keyword}}",
+    "item": "class.dmList clearfix@class.item-lg",
+    "title": "class.ell@text",
+    "url": "class.pic@a@href",
+    "cover": "class.pic@img@src",
+    "latest": "class.tt@text##更新至",
+    "status": "dl@p.-2@a.0@text&&dl@p.-2@a.1@text&&dl@p.-2@a.2@text&&dl@p.-2@a.3@text&&dl@p.-2@a.4@text&&dl@p.-2@a.5@text&&dl@p.-4@span@text&&class.red@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "class.w260.1@text##原著作者：",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "id.chapter-list-1@li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

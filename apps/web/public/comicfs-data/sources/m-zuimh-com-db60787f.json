@@ -1,0 +1,44 @@
+{
+  "id": "m-zuimh-com-db60787f",
+  "name": "最漫画📱",
+  "host": "https://m.zuimh.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.zuimh.com/search/?keywords={{keyword}}",
+    "item": "class.itemBox",
+    "title": "class.title@text",
+    "url": "tag.a.0@href",
+    "cover": "img@src",
+    "latest": "tag.a.-1@text",
+    "status": "tag.p.1@text##\\|##,",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "id.comicName@text",
+    "cover": "",
+    "author": "class.txtItme.0@text",
+    "description": "id.full-des@text##介绍:",
+    "status": "",
+    "latestChapter": "class.chapter-warp.0@tag.ul@tag.li.-2@tag.a@text"
+  },
+  "chapters": {
+    "list": "id.chapter-list-1@li!-1@a||id.chapter-list-2@li!-1@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.image-content@img@html##alt.*\\(\\)",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

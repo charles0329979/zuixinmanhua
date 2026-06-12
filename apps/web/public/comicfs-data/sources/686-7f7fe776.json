@@ -1,0 +1,44 @@
+{
+  "id": "686-7f7fe776",
+  "name": "🎨 686漫画✈️",
+  "host": "https://www.686mh.com",
+  "language": "zh",
+  "weight": 50,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.686mh.com/search?keyword={{keyword}}&page={{page}}",
+    "item": "class.comic-sort@tag.li||class.manga-list-2@tag.li||class.rank-list@tag.a",
+    "title": "h3@text",
+    "url": "tag.a@href",
+    "cover": "tag.img@data-src",
+    "latest": "class.manga-list-2-tip@text##已更新||tag.span.-1@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.name@text",
+    "cover": "",
+    "author": "class.author@text",
+    "description": "class.content@text",
+    "status": ".tags-txt@text",
+    "latestChapter": ".chapterlist@tag.li.-1@text"
+  },
+  "chapters": {
+    "list": ".chapterlist@tag.li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": ".comiclist@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "hanmanju-com-1b29e2c5",
+  "name": "韩漫居",
+  "host": "https://www.hanmanju.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "class.book-list@li",
+    "title": "class.book-list-info-title@text",
+    "url": "class.book-list-info@a@href",
+    "cover": "class.book-list-cover@a@img@data-original",
+    "latest": "",
+    "status": "class.book-list-info-bottom-right-font@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": "class.detail-list-1@li.-1@a@text"
+  },
+  "chapters": {
+    "list": "id.detail-list-select@li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "id.cp_img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "xxhm-net-f66b2f77",
+  "name": "羞羞韩漫(登录)",
+  "host": "https://www.xxhm.net/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.xxhm.net/plus/search.php?keyword={{keyword}}&pagesize=10&searchtype=titlekeyword&PageNo={{page}}",
+    "item": "class.sul@li",
+    "title": "class.name@text",
+    "url": "a@href",
+    "cover": "class.img@img@data-original",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": "class.dl-left.3@dd@text"
+  },
+  "chapters": {
+    "list": "id.detail-list-select@li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "id.listtj@img[0:-16]@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

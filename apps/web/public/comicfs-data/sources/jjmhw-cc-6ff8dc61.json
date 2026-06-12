@@ -1,0 +1,44 @@
+{
+  "id": "jjmhw-cc-6ff8dc61",
+  "name": "🔞 久久动漫",
+  "host": "https://www.jjmhw.cc/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search?keyword={{keyword}}",
+    "item": ".book-list-info",
+    "title": ".book-list-info-title@text",
+    "url": ".book-list-info@a.0@href",
+    "cover": "tag.img@data-original",
+    "latest": "",
+    "status": ".book-list-info-bottom-right-font@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".detail-main-info-title@text",
+    "cover": ".detail-main@img@data-original",
+    "author": ".detail-main-info-author@a@text",
+    "description": ".detail-desc@text",
+    "status": "#detail-list-title@span.0@text&&.detail-main-info-class@a@text&&#detail-list-title@span.1@text##更新",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "#detail-list-select@li@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "#cp_img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

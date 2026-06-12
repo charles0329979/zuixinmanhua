@@ -1,0 +1,8 @@
+{
+  "name": "manga-source-registry",
+  "version": "2026.06.07",
+  "updatedAt": "2026-06-07T14:31:42.567Z",
+  "sourceCount": 81,
+  "minClientVersion": "1.0.0",
+  "indexUrl": "./index.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "sumanku-com-5e6f689f",
+  "name": "速漫库",
+  "host": "http://www.sumanku.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "{Referer:http://www.sumanku.com/}",
+    "item": "li",
+    "title": "div.card-text@text",
+    "url": ".card a@href@put:{u:\".card a@href\"}",
+    "cover": "img@src",
+    "latest": "div.abs-bottom@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "h1@text",
+    "cover": "[property$=og:image]@content",
+    "author": "p:nth-of-type(3) span.l@text",
+    "description": "p.content@text",
+    "status": ".gray span:nth-of-type(1)@text",
+    "latestChapter": ".chd > span@text"
+  },
+  "chapters": {
+    "list": "data.list",
+    "title": "name",
+    "url": "http://www.sumanku.com@get:{u}{{$.id}}.html,{'webView':true}"
+  },
+  "images": {
+    "list": "img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

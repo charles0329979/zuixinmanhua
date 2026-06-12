@@ -1,0 +1,44 @@
+{
+  "id": "122-228-8-21-fc66ab9c",
+  "name": "猫番国漫(推荐)",
+  "host": "http://122.228.8.21:3333",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search?key={{keyword}}",
+    "item": "data",
+    "title": "key##<[^>]+>##",
+    "url": "relationId##(.*)##http://122.228.8.21:3333/booksinfo?bookId=$1###",
+    "cover": "relationId##(.*)##http://39.99.239.44/mw/mw.php?url=https://39e3lsm4h5s27hcnuea71sxhu0nj7da8-cdn.imgresovrces.net:23647/cover/comic/$1.webp###",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "bookName##<[^>]+>##",
+    "cover": "",
+    "author": "authorName",
+    "description": "intro",
+    "status": "",
+    "latestChapter": "latestChapterName"
+  },
+  "chapters": {
+    "list": "chapters",
+    "title": "chapterName##<[^>]+>##",
+    "url": "chapterId&&volumnName##(.*)\\n(.*)##http://122.228.8.21:3333/Img?bookId=$2&chapterId=$1###"
+  },
+  "images": {
+    "list": "items.url",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.624Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "hanmanmianfei-net-b6b94bf4",
+  "name": "韩漫免费看",
+  "host": "https://www.hanmanmianfei.net",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.hanmanmianfei.net/search?key={{keyword}}",
+    "item": ".manga-i-list .manga-i-list-item",
+    "title": ".manga-i-list-title@text",
+    "url": ".manga-i-list-item a@href",
+    "cover": ".manga-i-cover@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".detail-main-title@text",
+    "cover": ".detail-bar-img@src",
+    "author": "{{@@ .detail-main-subtitle .block:nth-of-type(1) a@text}}",
+    "description": "{{@@ .detail-main-content:nth-of-type(1) @text}}",
+    "status": "{{@@ .detail-main-subtitle .block:nth-of-type(2) a@text}}",
+    "latestChapter": "<js>\nvar doc = org.jsoup.Jsoup.parse(result);\nvar info = doc.select(\".detail-list\").select(\".detail-list-item\");\n\nresult = info.last().text()\n</js>"
+  },
+  "chapters": {
+    "list": ".detail-list .detail-list-item",
+    "title": ".detail-list-item a@text",
+    "url": ".detail-list-item a@href"
+  },
+  "images": {
+    "list": ".view-main-1@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

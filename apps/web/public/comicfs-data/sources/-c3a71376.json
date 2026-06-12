@@ -1,0 +1,44 @@
+{
+  "id": "-c3a71376",
+  "name": "咪咕漫画（原:彩色漫画，重修）",
+  "host": "https://www.migumh.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.migumh.com/search?keyword={{keyword}}&page={{page}}",
+    "item": "class.book-list@tag.li",
+    "title": "class.book-list-info@tag.a@tag.p.0@text",
+    "url": "class.book-list-cover@tag.a@href",
+    "cover": "class.book-list-cover@tag.a@img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "id.chapter_indexes@tag.ul@tag.li@tag.a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.view-main-1 readForm@img@data-original##(http.*\\.[a-z]+)##<img src=\"$1\">",
+    "srcAttr": "data-original"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

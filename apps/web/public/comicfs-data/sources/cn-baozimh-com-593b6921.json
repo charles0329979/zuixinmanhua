@@ -1,0 +1,44 @@
+{
+  "id": "cn-baozimh-com-593b6921",
+  "name": "包子漫画",
+  "host": "https://cn.baozimh.com/",
+  "language": "zh",
+  "weight": 96,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "low",
+  "search": {
+    "path": "https://cn.baozimh.com/search?q={{keyword}}",
+    "item": "class.comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6",
+    "title": "class.comics-card__title@text",
+    "url": "class.comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6@tag.a@href",
+    "cover": "tag.amp-img.0@src",
+    "latest": "",
+    "status": "class.tabs cls@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.comics-detail__title@text",
+    "cover": "class.pure-u-1-1 pure-u-sm-1-3 pure-u-md-1-6@tag.amp-img.0@src",
+    "author": "class.comics-detail__author@text",
+    "description": "class.comics-detail__desc overflow-hidden@text",
+    "status": "class.tag-list@text",
+    "latestChapter": "class.supporting-text mt-2@tag.a@text"
+  },
+  "chapters": {
+    "list": "class.comics-chapters",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "class.comic-contain@html##<amp-img.*src=\"##<amp-img src=\"",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

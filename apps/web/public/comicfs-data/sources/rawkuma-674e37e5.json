@@ -1,0 +1,44 @@
+{
+  "id": "rawkuma-674e37e5",
+  "name": "📖 Rawkuma",
+  "host": "https://rawkuma.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "page/{{page}}/?s={{keyword}}",
+    "item": ".bs",
+    "title": ".tt@text",
+    "url": ".bsx@a.0@href",
+    "cover": ".limit@img@src",
+    "latest": ".epxs@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "-.clstyle@li",
+    "title": ".chapternum.0@text",
+    "url": ".eph-num@a@href"
+  },
+  "images": {
+    "list": "#readerarea@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": []
+  }
+}

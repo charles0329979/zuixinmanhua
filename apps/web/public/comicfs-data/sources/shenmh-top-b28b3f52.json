@@ -1,0 +1,44 @@
+{
+  "id": "shenmh-top-b28b3f52",
+  "name": "绅士漫画",
+  "host": "https://www.shenmh.top",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.shenmh.top/search/index?keywords={{keyword}}",
+    "item": "class.weui-panel__bd@a",
+    "title": "@title",
+    "url": "@href",
+    "cover": "class.weui-media-box__thumb@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.ca00-0cf2-ab62-1422@img@title",
+    "cover": "class.ca00-0cf2-ab62-1422@img@src",
+    "author": "class.a529-068d-be88-6744.0@text##作者：",
+    "description": "class.aa5d-c24c-a529-068d.1@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "id.html_box@class.item",
+    "title": "a@title",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.center@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

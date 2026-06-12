@@ -1,0 +1,44 @@
+{
+  "id": "so-ihuaben-com-bab3dad7",
+  "name": "话本小说②",
+  "host": "https://so.ihuaben.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://so.ihuaben.com/search?keyword={{keyword}}",
+    "item": ".searchresult",
+    "title": "h2@text",
+    "url": "h2 a@href",
+    "cover": "img.img-rounded@src",
+    "latest": "",
+    "status": ".list-inline.text-muted@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": ".biginfo@.cover@img@src",
+    "author": "",
+    "description": "",
+    "status": "label.bg-dwarning@text&&.HuabenListUL[3]@li@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": ".chapterlist@p",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "#contentsource@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": []
+  }
+}

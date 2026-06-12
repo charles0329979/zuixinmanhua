@@ -1,0 +1,44 @@
+{
+  "id": "hanhuaba-com-1d3d5f2b",
+  "name": "汉化吧",
+  "host": "http://www.hanhuaba.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": ">",
+    "item": "class.book-list@tag.ul@tag.li",
+    "title": "class.tit@tag.a@text",
+    "url": "class.tit@tag.a@href",
+    "cover": "class.pic@tag.img@src",
+    "latest": "",
+    "status": "class.info@tag.span.1@text&&class.info@tag.span.2@text##分类|:|：",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.info@class.title yahei@class.t@tag.h1@text",
+    "cover": "class.pic@tag.a@tag.img@src",
+    "author": "class.info@class.att@tag.span.1@text##作者：",
+    "description": "class.dtbarcont.0@text||id.zuop1C@text",
+    "status": "class.info@class.att@tag.span.0@text&&class.info@class.att@tag.span.2@text##类别|进度|：",
+    "latestChapter": "class.dtbarcont.2@text||id.zuop3C@text##最后更新时间："
+  },
+  "chapters": {
+    "list": "-class.column-list@class.text@tag.a||class.column-list@tag.a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.contentimg@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

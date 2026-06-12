@@ -1,0 +1,47 @@
+{
+  "id": "m-0d1fabc5",
+  "name": "漫画哥-M",
+  "host": "https://m.manhuag.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "p.search_list",
+    "title": "tag.a.0@text",
+    "url": "class.p2@tag.a@href||tag.a.0@href##^/##https://www.manhuag.com/",
+    "cover": "class.p2@tag.a@href||tag.a.0@href##/(\\d+)/(\\d+)/##https://www.manhuag.com/files/article/image/$1/$2/$2s.jpg",
+    "latest": "",
+    "status": "tag.a.1@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "h1.text-center@text",
+    "cover": ".info1 img@src",
+    "author": "h3.text-center a@text",
+    "description": "h3.text-center+div@text",
+    "status": "class.info3@tag.p.0@text##\\S+：(\\S+)[\\s\\S]+：(\\S+)##$1,$2",
+    "latestChapter": ".info3 a@text"
+  },
+  "chapters": {
+    "list": "class.list-charts.0@li@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.img@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.624Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

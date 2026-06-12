@@ -1,0 +1,44 @@
+{
+  "id": "gll8-com-6be64318",
+  "name": "鬼罗丽漫画",
+  "host": "http://www.gll8.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "class.news_list_1@a",
+    "title": "class.hdline@text",
+    "url": "href",
+    "cover": "img@src",
+    "latest": "class.news_list_tw_p@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "class.spanimg1@text##发布者：",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "class.article-content",
+    "title": "{{book.name}}",
+    "url": "{{baseUrl}}"
+  },
+  "images": {
+    "list": "class.article-content@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

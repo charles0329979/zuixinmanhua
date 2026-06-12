@@ -1,0 +1,44 @@
+{
+  "id": "san449-com-f80b04ef",
+  "name": "🔰 快乐图书",
+  "host": "https://www.san449.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.san449.com/?s={{keyword}}",
+    "item": ".box",
+    "title": "h2@a@text",
+    "url": ".focus@a@href",
+    "cover": "img@data-original",
+    "latest": ".subtitle@text",
+    "status": ".post-tags@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": ".dis@text",
+    "status": "",
+    "latestChapter": "h1@span@.subtitle@text"
+  },
+  "chapters": {
+    "list": ".article-paging@a",
+    "title": "span@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".article-content@p@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

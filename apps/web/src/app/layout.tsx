@@ -28,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/favorites" className="btn-ghost">书架</Link>
               <Link href="/history" className="btn-ghost">历史</Link>
               <Link href="/sources" className="btn-ghost">📚 书源仓库</Link>
+              <Link href="/settings/sources" className="btn-ghost">🌐 远程书源</Link>
               <Link href="/admin/sources" className="btn-ghost">⚙️ 管理</Link>
             </nav>
           </div>

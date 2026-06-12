@@ -1,0 +1,44 @@
+{
+  "id": "rimanzhijia-com-79df29b2",
+  "name": "日漫之家",
+  "host": "https://rimanzhijia.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://rimanzhijia.com/index.php/search/{{keyword}}/{{page}}",
+    "item": "class.tbox_m@tag.li",
+    "title": "tag.h4@text",
+    "url": "a@href",
+    "cover": "mip-img@src",
+    "latest": "tag.span@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.data@tag.h1@text",
+    "cover": "img@src",
+    "author": "class.dir@text",
+    "description": "class.tbox_js@text",
+    "status": "class.yac@text##类别：",
+    "latestChapter": "class.act@text##更新："
+  },
+  "chapters": {
+    "list": "class.list_block show@tag.li",
+    "title": "tag.a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "id.comic_pic@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

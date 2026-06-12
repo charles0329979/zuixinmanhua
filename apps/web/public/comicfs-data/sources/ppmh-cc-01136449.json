@@ -1,0 +1,44 @@
+{
+  "id": "ppmh-cc-01136449",
+  "name": "皮皮漫画",
+  "host": "https://www.ppmh.cc",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.ppmh.cc/search?keyword={{keyword}}&page={{page}}",
+    "item": "class.book-list@tag.li||class.manga-list-2@tag.li||class.rank-list@tag.a",
+    "title": "tag.p.0@text",
+    "url": "href&&tag.a@href",
+    "cover": "tag.img@data-original",
+    "latest": "class.manga-list-2-tip@text##已更新||tag.span.-1@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.detail-main-info-title@text",
+    "cover": "class.detail-main-bg@data-original",
+    "author": "class.detail-main-info-author.1@a@text",
+    "description": "class.detail-desc@text",
+    "status": "class.detail-main-info-class@tag.a@text",
+    "latestChapter": "id.detail-list-select@tag.li.-1@text"
+  },
+  "chapters": {
+    "list": "tag.ul@tag.li",
+    "title": "text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "id.cp_img@img!-1@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.623Z",
+    "warnings": []
+  }
+}

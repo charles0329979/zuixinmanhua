@@ -1,0 +1,44 @@
+{
+  "id": "ciyuanrukou-com-3798af86",
+  "name": "👙九妖漫画",
+  "host": "https://ciyuanrukou.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/index.php/search?key={{keyword}}",
+    "item": "class.cate-comic-list clearfix@class.common-comic-item",
+    "title": "class.comic__title@tag.a@text",
+    "url": "class.comic__title@tag.a@href",
+    "cover": "class.cover@tag.img@data-original",
+    "latest": "class.comic-update@tag.a@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.de-info__box@class.comic-title j-comic-title@text",
+    "cover": "class.de-info__cover@tag.img@src",
+    "author": "class.comic-author@class.name@tag.a@text",
+    "description": "class.comic-intro@class.intro@text",
+    "status": "class.comic-status@class.text.0@tag.b@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "class.chapter__list-box clearfix@tag.li@tag.a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.rd-article-wr clearfix@class.rd-article__pic hide@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

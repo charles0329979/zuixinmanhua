@@ -1,0 +1,44 @@
+{
+  "id": "mangaonlineteam-46edf621",
+  "name": "mangaonlineteam",
+  "host": "https://mangaonlineteam.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "low",
+  "search": {
+    "path": "https://mangaonlineteam.com/?s=god&post_type=wp-manga",
+    "item": "class.c-tabs-item@class.row c-tabs-item__content",
+    "title": ".h4@a@text",
+    "url": ".h4@a@href",
+    "cover": "class.tab-thumb c-image-hover@img@data-src",
+    "latest": "",
+    "status": "class.summary-content@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".post-title@h1@text",
+    "cover": "",
+    "author": "",
+    "description": ".summary__content show-more@h4@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "-class.main version-chap no-volumn@tag.li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.page-break @img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.621Z",
+    "warnings": []
+  }
+}

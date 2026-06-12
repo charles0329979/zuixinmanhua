@@ -1,0 +1,44 @@
+{
+  "id": "manhuaus-5b2369d0",
+  "name": "manhuaus",
+  "host": "https://manhuaus.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "low",
+  "search": {
+    "path": "https://manhuaus.com/?s={{keyword}}&post_type=wp-manga&post_type=wp-manga",
+    "item": "class.c-tabs-item@class.row c-tabs-item__content",
+    "title": ".h4@a@text",
+    "url": ".h4@a@href",
+    "cover": "class.col-4 col-md-2@class.tab-thumb c-image-hover@a@img@data-src",
+    "latest": "",
+    "status": "class.summary-content@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.post-title@h1@text",
+    "cover": "",
+    "author": "",
+    "description": "class.summary__content show-more@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "-class.wp-manga-chapter    ",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.reading-content@class.page-break no-gaps@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.621Z",
+    "warnings": []
+  }
+}

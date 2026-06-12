@@ -1,0 +1,44 @@
+{
+  "id": "hanmanta-com-942da3d5",
+  "name": "韩漫塔",
+  "host": "https://hanmanta.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://hanmanta.com/tag/{{keyword}}",
+    "item": "class.books-res@class.item",
+    "title": "class.title@text",
+    "url": "class.item@a@href",
+    "cover": "class.cover@img@data-original",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": "class.small@text"
+  },
+  "chapters": {
+    "list": "id.html_box@class.item",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.read-article@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

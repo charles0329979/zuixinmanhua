@@ -1,0 +1,44 @@
+{
+  "id": "m-mhkami-com-2738fb69",
+  "name": "我的漫神（优）",
+  "host": "https://m.mhkami.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "data",
+    "title": "name",
+    "url": "info_url",
+    "cover": "cover",
+    "latest": "",
+    "status": "tags",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "[property=\"og:novel:book_name\"]@content",
+    "cover": "",
+    "author": "[property=\"og:novel:author\"]@content",
+    "description": "[property=\"og:description\"]@content",
+    "status": "[property=\"og:novel:category\"]@content",
+    "latestChapter": "[property=\"og:novel:latest_chapter_name\"]@content"
+  },
+  "chapters": {
+    "list": ".chapter-list@li@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": ".epContent@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": []
+  }
+}

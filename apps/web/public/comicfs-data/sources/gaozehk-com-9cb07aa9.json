@@ -1,0 +1,44 @@
+{
+  "id": "gaozehk-com-9cb07aa9",
+  "name": "🌠 高泽漫画",
+  "host": "https://www.gaozehk.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.gaozehk.com/search?searchkey={{keyword}}",
+    "item": "div.mt20>div.classification||ul#list>li",
+    "title": "h2>a@text||a>img@alt",
+    "url": "##<a.*?href=\"([^\"]+)\"##$1###",
+    "cover": "##<img.*?src=\"([^\"]+)\"##$1###",
+    "latest": "",
+    "status": "p@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "div.ctdbLeft>a@title||div.ncp1b_div.ncp1b_tit@text",
+    "cover": "div.ctdbLeft>a>img@src||div.nmain_com_p1>img@data-src",
+    "author": "",
+    "description": "p[id=\"worksDesc\"]@text||div.nmain_com_p.nmain_com_p2>p.0@text##$##\n翻页效果请设置滚动🙄❗❗❗",
+    "status": "span[class=labelBox]@text&&[class~=status]@text&&span.ncp1b_tips@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "ul#detail-list-select-1>li||ul#ncp3_ul>li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "div.loadimg>img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": []
+  }
+}

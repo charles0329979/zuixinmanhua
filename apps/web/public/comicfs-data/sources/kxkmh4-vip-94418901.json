@@ -1,0 +1,44 @@
+{
+  "id": "kxkmh4-vip-94418901",
+  "name": "❤️开心看漫画",
+  "host": "http://kxkmh4.vip/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/manga/search?keyword={{keyword}}",
+    "item": "class.col-lg-2 col-md-3 col-sm-4 col-6",
+    "title": "h6@a@text",
+    "url": "h6@a@href",
+    "cover": "class.product__item__pic set-bg@data-setbg",
+    "latest": "",
+    "status": "class.ep@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "class.anime__details__text@p.1@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "class.anime__details__episodes@a[-1:0]",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.blog__details__content@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

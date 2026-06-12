@@ -1,0 +1,44 @@
+{
+  "id": "bwhanman-com-4fcfc11f",
+  "name": "🌵背窝韩漫🌵",
+  "host": "https://bwhanman.com",
+  "language": "zh",
+  "weight": 46,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://bwhanman.com/site/search?keyword={{keyword}}",
+    "item": "class.flexbetween@li",
+    "title": "tag.h2@text",
+    "url": "tag.a@href",
+    "cover": "class.newimg@img@data-src",
+    "latest": "tag.span.-1@text##更新至",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "tag.h3@text",
+    "cover": "",
+    "author": "",
+    "description": "class.novel-intro@p@html",
+    "status": "class.hottag flexstart@em@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "id.chapters@li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "class.u-reading-content@img@html##src=\"/.*?v=.*\" class=\"lazyload\"",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

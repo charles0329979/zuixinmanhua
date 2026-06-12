@@ -1,0 +1,44 @@
+{
+  "id": "wap-5c5ee668",
+  "name": "WAP漫画",
+  "host": "https://www.wapmh.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search?keyword={{keyword}}",
+    "item": ".item",
+    "title": ".title@a@text",
+    "url": "tag.a.0@href",
+    "cover": ".thumbnail@tag.img@data-src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".title-warper .title@text",
+    "cover": "",
+    "author": ".title-warper .update-time@text",
+    "description": "",
+    "status": "#randomColor@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": ".chapter-list .item@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": ".comiclist@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

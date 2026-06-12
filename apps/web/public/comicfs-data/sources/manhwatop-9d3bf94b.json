@@ -1,0 +1,44 @@
+{
+  "id": "manhwatop-9d3bf94b",
+  "name": "manhwatop",
+  "host": "https://manhwatop.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://manhwatop.com/?s=god&post_type=wp-manga",
+    "item": "class.c-tabs-item@class.row c-tabs-item__content",
+    "title": "class.tab-thumb c-image-hover@a@title",
+    "url": "class.tab-thumb c-image-hover@a@href",
+    "cover": "class.tab-thumb c-image-hover@a@img@data-src",
+    "latest": "",
+    "status": "class.post-content_item mg_genres @class.summary-content@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "class.summary__content @p@text",
+    "status": "",
+    "latestChapter": "class.wp-manga-action-button@data-post"
+  },
+  "chapters": {
+    "list": "-class.listing-chapters_wrap show-more@tag.li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "class.reading-content@class.page-break!0@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.621Z",
+    "warnings": []
+  }
+}

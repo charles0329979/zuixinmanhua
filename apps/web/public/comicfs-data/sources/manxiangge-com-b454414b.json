@@ -1,0 +1,44 @@
+{
+  "id": "manxiangge-com-b454414b",
+  "name": "漫香阁",
+  "host": "https://manxiangge.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://manxiangge.com",
+    "item": "",
+    "title": "",
+    "url": "",
+    "cover": "",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "tag.h2@text",
+    "cover": "",
+    "author": "",
+    "description": "class.infoR@p@text",
+    "status": "id.menu@tag.li.-1:-2:1@text",
+    "latestChapter": "class.dstate@text"
+  },
+  "chapters": {
+    "list": "class.listmh@li@a||tag.title",
+    "title": "text##- 漫香阁",
+    "url": "href"
+  },
+  "images": {
+    "list": ".contentmh@img@html##data-original##src",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

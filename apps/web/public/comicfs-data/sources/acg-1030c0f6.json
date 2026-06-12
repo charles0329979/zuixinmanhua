@@ -1,0 +1,44 @@
+{
+  "id": "acg-1030c0f6",
+  "name": "ACG和谐漫画",
+  "host": "https://m.acgz1.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.acgz1.com/search/?keywords={{keyword}}",
+    "item": ".UpdateList@.itemBox||id.comic-items@tag.li",
+    "title": ".title@text||.txtA@text",
+    "url": "a@href",
+    "cover": "img@src",
+    "latest": "class.coll@text||class.red@text",
+    "status": ".pd@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "#simple-des@text",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "#chapter-list-1@li!-1@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": ".image-content@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.624Z",
+    "warnings": []
+  }
+}

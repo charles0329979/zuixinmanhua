@@ -1,0 +1,331 @@
+{
+  "enabled": true,
+  "sourceIds": [
+    "manmanapp-com-f559632a",
+    "cn-baozimh-com-593b6921",
+    "mangaonlineteam-46edf621",
+    "manhuaus-5b2369d0",
+    "17te-com-177ee4b3",
+    "comic-acgn-cc-3a3cb31b",
+    "686-7f7fe776",
+    "toptoon-f13728b6",
+    "bwhanman-com-4fcfc11f",
+    "jsohan-com-9b3e31d5",
+    "litu100-xyz-e7cac801",
+    "ajiu-36-4dbdaa78",
+    "ajiu-4e513565",
+    "htmanga9-09c10e9d",
+    "haxc-47c6ef3f",
+    "kxkmh4-vip-94418901",
+    "dingmanhua-com-cf9e19cc",
+    "gaozehk-com-9cb07aa9",
+    "qipamh-com-b2c416e7",
+    "m-247217dd",
+    "abyssesml-ddb23d6b",
+    "18-9b82e597",
+    "m-hmba-vip-b43c5f95",
+    "ikanwzd-top-1ba24e5f",
+    "m-wuxiamh-com-4a88ebbb",
+    "boylove-live-3cace8b0",
+    "boylove6-xyz-43416307",
+    "ciyuanrukou-com-3798af86",
+    "wap-faloo-com-08afa374",
+    "3004ss-com-60c052bd",
+    "rawkuma-674e37e5",
+    "yz4-chaoxing-com-1ff2b33e",
+    "book-sbkk8-com-90a95e4b",
+    "jjmhw-cc-6ff8dc61",
+    "san449-com-f80b04ef",
+    "xiuren-1f9f587a",
+    "27-m-1f1be540",
+    "92-16d01b91",
+    "biqug-org-47530161",
+    "m-icekr-com-07314e13",
+    "m-diya1-com-123e681f",
+    "2kande-com-86eed218",
+    "gll8-com-6be64318",
+    "hanmanju-com-1b29e2c5",
+    "hanmanmianfei-net-b6b94bf4",
+    "hanmanta-com-942da3d5",
+    "hanhuaba-com-1d3d5f2b",
+    "6-59777418",
+    "app2-haomanwu-com-52589416",
+    "so-ihuaben-com-bab3dad7",
+    "cloudflare-fw-91mh-912023-xyz-77b0e9ae",
+    "kxkmh-com-8e0383c3",
+    "copymanga-net-08ef5e07",
+    "1234ymh1234-com-fdcb5900",
+    "160-afbaa1ab",
+    "m-0d1fabc5",
+    "manxiangge-com-b454414b",
+    "xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq-mxgmh-com-b161a5b1",
+    "122-228-8-21-fc66ab9c",
+    "xn--oiji-k32hr15anv9f-155comic25-icu-39b7c568",
+    "-c3a71376",
+    "ppmh-cc-01136449",
+    "7mm-cfac429d",
+    "rimanzhijia-com-79df29b2",
+    "m-roumh-com-cfe798c4",
+    "sesemanhua-com-ff0230b4",
+    "hentaicomic-org-c9d92b1f",
+    "shenmh-top-b28b3f52",
+    "wnacg-top-e7134456",
+    "sumanku-com-5e6f689f",
+    "m-xm124-com-9fa7a79e",
+    "m-mhkami-com-2738fb69",
+    "jinzandp-com-cc04c9fe",
+    "xxhm-net-f66b2f77",
+    "amcomic-com-5c98f0de",
+    "m-csxsrc-com-7bd5ed20",
+    "m-zuimh-com-db60787f",
+    "wutuxs-com-5e90f19f",
+    "acg-1030c0f6",
+    "manhwatop-9d3bf94b",
+    "wap-5c5ee668"
+  ],
+  "verified": [
+    {
+      "id": "manmanapp-com-f559632a"
+    },
+    {
+      "id": "cn-baozimh-com-593b6921"
+    },
+    {
+      "id": "mangaonlineteam-46edf621"
+    },
+    {
+      "id": "manhuaus-5b2369d0"
+    },
+    {
+      "id": "17te-com-177ee4b3"
+    },
+    {
+      "id": "comic-acgn-cc-3a3cb31b"
+    },
+    {
+      "id": "686-7f7fe776"
+    },
+    {
+      "id": "toptoon-f13728b6"
+    },
+    {
+      "id": "bwhanman-com-4fcfc11f"
+    },
+    {
+      "id": "jsohan-com-9b3e31d5"
+    },
+    {
+      "id": "litu100-xyz-e7cac801"
+    },
+    {
+      "id": "ajiu-36-4dbdaa78"
+    },
+    {
+      "id": "ajiu-4e513565"
+    },
+    {
+      "id": "htmanga9-09c10e9d"
+    },
+    {
+      "id": "haxc-47c6ef3f"
+    },
+    {
+      "id": "kxkmh4-vip-94418901"
+    },
+    {
+      "id": "dingmanhua-com-cf9e19cc"
+    },
+    {
+      "id": "gaozehk-com-9cb07aa9"
+    },
+    {
+      "id": "qipamh-com-b2c416e7"
+    },
+    {
+      "id": "m-247217dd"
+    },
+    {
+      "id": "abyssesml-ddb23d6b"
+    },
+    {
+      "id": "18-9b82e597"
+    },
+    {
+      "id": "m-hmba-vip-b43c5f95"
+    },
+    {
+      "id": "ikanwzd-top-1ba24e5f"
+    },
+    {
+      "id": "m-wuxiamh-com-4a88ebbb"
+    },
+    {
+      "id": "boylove-live-3cace8b0"
+    },
+    {
+      "id": "boylove6-xyz-43416307"
+    },
+    {
+      "id": "ciyuanrukou-com-3798af86"
+    },
+    {
+      "id": "wap-faloo-com-08afa374"
+    },
+    {
+      "id": "3004ss-com-60c052bd"
+    },
+    {
+      "id": "rawkuma-674e37e5"
+    },
+    {
+      "id": "yz4-chaoxing-com-1ff2b33e"
+    },
+    {
+      "id": "book-sbkk8-com-90a95e4b"
+    },
+    {
+      "id": "jjmhw-cc-6ff8dc61"
+    },
+    {
+      "id": "san449-com-f80b04ef"
+    },
+    {
+      "id": "xiuren-1f9f587a"
+    },
+    {
+      "id": "27-m-1f1be540"
+    },
+    {
+      "id": "92-16d01b91"
+    },
+    {
+      "id": "biqug-org-47530161"
+    },
+    {
+      "id": "m-icekr-com-07314e13"
+    },
+    {
+      "id": "m-diya1-com-123e681f"
+    },
+    {
+      "id": "2kande-com-86eed218"
+    },
+    {
+      "id": "gll8-com-6be64318"
+    },
+    {
+      "id": "hanmanju-com-1b29e2c5"
+    },
+    {
+      "id": "hanmanmianfei-net-b6b94bf4"
+    },
+    {
+      "id": "hanmanta-com-942da3d5"
+    },
+    {
+      "id": "hanhuaba-com-1d3d5f2b"
+    },
+    {
+      "id": "6-59777418"
+    },
+    {
+      "id": "app2-haomanwu-com-52589416"
+    },
+    {
+      "id": "so-ihuaben-com-bab3dad7"
+    },
+    {
+      "id": "cloudflare-fw-91mh-912023-xyz-77b0e9ae"
+    },
+    {
+      "id": "kxkmh-com-8e0383c3"
+    },
+    {
+      "id": "copymanga-net-08ef5e07"
+    },
+    {
+      "id": "1234ymh1234-com-fdcb5900"
+    },
+    {
+      "id": "160-afbaa1ab"
+    },
+    {
+      "id": "m-0d1fabc5"
+    },
+    {
+      "id": "manxiangge-com-b454414b"
+    },
+    {
+      "id": "xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq-mxgmh-com-b161a5b1"
+    },
+    {
+      "id": "122-228-8-21-fc66ab9c"
+    },
+    {
+      "id": "xn--oiji-k32hr15anv9f-155comic25-icu-39b7c568"
+    },
+    {
+      "id": "-c3a71376"
+    },
+    {
+      "id": "ppmh-cc-01136449"
+    },
+    {
+      "id": "7mm-cfac429d"
+    },
+    {
+      "id": "rimanzhijia-com-79df29b2"
+    },
+    {
+      "id": "m-roumh-com-cfe798c4"
+    },
+    {
+      "id": "sesemanhua-com-ff0230b4"
+    },
+    {
+      "id": "hentaicomic-org-c9d92b1f"
+    },
+    {
+      "id": "shenmh-top-b28b3f52"
+    },
+    {
+      "id": "wnacg-top-e7134456"
+    },
+    {
+      "id": "sumanku-com-5e6f689f"
+    },
+    {
+      "id": "m-xm124-com-9fa7a79e"
+    },
+    {
+      "id": "m-mhkami-com-2738fb69"
+    },
+    {
+      "id": "jinzandp-com-cc04c9fe"
+    },
+    {
+      "id": "xxhm-net-f66b2f77"
+    },
+    {
+      "id": "amcomic-com-5c98f0de"
+    },
+    {
+      "id": "m-csxsrc-com-7bd5ed20"
+    },
+    {
+      "id": "m-zuimh-com-db60787f"
+    },
+    {
+      "id": "wutuxs-com-5e90f19f"
+    },
+    {
+      "id": "acg-1030c0f6"
+    },
+    {
+      "id": "manhwatop-9d3bf94b"
+    },
+    {
+      "id": "wap-5c5ee668"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "27-m-1f1be540",
+  "name": "27漫画-M",
+  "host": "https://m.2mzx.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.2mzx.com/search/?keywords={{keyword}}&page={{page}}",
+    "item": "class.itemBox||class.list-comic",
+    "title": "class.title@text||class.txtA@text",
+    "url": "tag.a.0@href",
+    "cover": "tag.mip-img@src",
+    "latest": "class.coll@text||class.info@tag.a@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "tag.h1@alt",
+    "cover": "id.Cover@tag.mip-img@src",
+    "author": "class.pic_zi.1@tag.dd@text",
+    "description": "class.txtDesc@text##简介：",
+    "status": "class.pic_zi.2@tag.dd@text",
+    "latestChapter": "class.pic_zi.0@tag.dd@text"
+  },
+  "chapters": {
+    "list": "-#chapter-list-1@tag.li@a",
+    "title": "text",
+    "url": "href@put:{cid:\"href##.*\\\\/(\\\\d+)\\\\.html##$1\"}"
+  },
+  "images": {
+    "list": "class.erPag@mip-img@html##mip-",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

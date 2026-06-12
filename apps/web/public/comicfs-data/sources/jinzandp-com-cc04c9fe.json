@@ -1,0 +1,44 @@
+{
+  "id": "jinzandp-com-cc04c9fe",
+  "name": "新新漫画",
+  "host": "https://jinzandp.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://jinzandp.com/index.php/search?key={{keyword}}",
+    "item": ".cy_list_mh@ul",
+    "title": ".title@a@text",
+    "url": ".title@a@href",
+    "cover": "img@src",
+    "latest": ".updata@a@text",
+    "status": ".biaoqian@a@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".cy_title@text",
+    "cover": ".cy_info_cover@a@img@src",
+    "author": ".cy_xinxi.0@span.0@text",
+    "description": "id.comic-description@textNodes",
+    "status": ".cy_xinxi.1@span.0@a@text",
+    "latestChapter": ".cy_zhangjie_top@p.0@a@text"
+  },
+  "chapters": {
+    "list": "-class.chapter__item",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".rd-article-wr@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

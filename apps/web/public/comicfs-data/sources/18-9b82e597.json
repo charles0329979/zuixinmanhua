@@ -1,0 +1,44 @@
+{
+  "id": "18-9b82e597",
+  "name": "🎨 18禁漫",
+  "host": "https://www.18mh.cc",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search-index?searchType=1&q={{keyword}}",
+    "item": "class.liemh htmls indliemh@tag.li",
+    "title": "class.tit@text",
+    "url": "tag.a@href",
+    "cover": "tag.img@data-url",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "class.mh-detail@tag.img@data-url",
+    "author": "class.mh-detail@tag.p.0@text##漫畫作者：",
+    "description": "",
+    "status": "class.mh-detail@tag.a.2@text",
+    "latestChapter": "class.mh-detail@tag.a.0@tag.em@text"
+  },
+  "chapters": {
+    "list": "+class.b1.0@tag.li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "class.e.0@tag.img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

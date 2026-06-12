@@ -146,10 +146,17 @@ export function parseSearchFromHTML(source: MangaSource, $: cheerio.CheerioAPI):
       } catch {}
       if (cover) cover = resolveUrl(source.host, cover);
       let detailUrl = '';
-      if (source.search.detailUrlSelector === '&') {
-        detailUrl = $el.attr('href') || '';
-      } else {
-        detailUrl = extractAttr($el, source.search.detailUrlSelector, 'href');
+      let dlUrlAttr = 'href';
+      let dlUrlSel = source.search.detailUrlSelector || '';
+      if (dlUrlSel && dlUrlSel.includes('@') && !dlUrlSel.startsWith('@')) {
+        const parts = dlUrlSel.split('@');
+        dlUrlSel = parts[0];
+        dlUrlAttr = parts[1];
+      }
+      if (dlUrlSel === '&') {
+        detailUrl = $el.attr(dlUrlAttr) || '';
+      } else if (dlUrlSel) {
+        detailUrl = extractAttr($el, dlUrlSel, dlUrlAttr);
       }
       if (detailUrl) detailUrl = resolveUrl(source.host, detailUrl);
 
@@ -181,11 +188,19 @@ export async function getChaptersBySource(source: MangaSource, detailUrl: string
       const $el = $(el);
       const title = extractText($el, source.chapters.titleSelector);
       let url = '';
-      // '&' means the element itself is the link
-      if (source.chapters.urlSelector === '&') {
-        url = $el.attr('href') || '';
-      } else {
-        url = extractAttr($el, source.chapters.urlSelector, 'href');
+      let urlAttr = 'href';
+      let urlSel = source.chapters.urlSelector || '';
+      // Support selector@attr syntax (e.g. ".j-chapter-link@data-hreflink")
+      if (urlSel && urlSel.includes('@') && !urlSel.startsWith('@')) {
+        const parts = urlSel.split('@');
+        urlSel = parts[0];
+        urlAttr = parts[1];
+      }
+      // '&' means the element itself
+      if (urlSel === '&') {
+        url = $el.attr(urlAttr) || '';
+      } else if (urlSel) {
+        url = extractAttr($el, urlSel, urlAttr);
       }
       if (url) url = resolveUrl(source.host, url);
       if (title) chapters.push({ title, url });
@@ -266,10 +281,18 @@ export function parseChaptersHTML(source: MangaSource, html: string): { title: s
       const $el = $(el);
       const title = extractText($el, source.chapters.titleSelector);
       let url = '';
-      if (source.chapters.urlSelector === '&') {
-        url = $el.attr('href') || '';
-      } else {
-        url = extractAttr($el, source.chapters.urlSelector, 'href');
+      let urlAttr = 'href'; // default: extract href attribute
+      let urlSel = source.chapters.urlSelector || '';
+      // Support selector@attr syntax (e.g. ".j-chapter-link@data-hreflink")
+      if (urlSel && urlSel.includes('@') && !urlSel.startsWith('@')) {
+        const parts = urlSel.split('@');
+        urlSel = parts[0];
+        urlAttr = parts[1];
+      }
+      if (urlSel === '&') {
+        url = $el.attr(urlAttr) || '';
+      } else if (urlSel) {
+        url = extractAttr($el, urlSel, urlAttr);
       }
       if (url) url = resolveUrl(source.host, url);
       if (title) chapters.push({ title, url });

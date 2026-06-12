@@ -1,0 +1,44 @@
+{
+  "id": "m-xm124-com-9fa7a79e",
+  "name": "土豆漫画网📱",
+  "host": "https://m.xm124.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.xm124.com/search/?keywords={{keyword}}&page={{page}}",
+    "item": "class.itemBox||class.list-comic",
+    "title": "class.title@text||class.txtA@text",
+    "url": "tag.a@href",
+    "cover": "tag.mip-img@src",
+    "latest": "class.coll@text||class.info@text",
+    "status": "class.txtitme.1@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.view-sub@tag.h1@text",
+    "cover": "id.Cover@tag.mip-img@src",
+    "author": "class.pic_zi.1@tag.dd@text",
+    "description": "class.txtDesc@text##^.*简介：|介绍:",
+    "status": "class.pic_zi.2@tag.dd@text",
+    "latestChapter": "class.pic_zi.0@tag.dd@text"
+  },
+  "chapters": {
+    "list": "-class.list@tag.li!0@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.erPag@tag.mip-img@html##mip\\-",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.623Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "manmanapp-com-f559632a",
+  "name": "漫漫漫画",
+  "host": "https://www.manmanapp.com#yc1101",
+  "language": "zh",
+  "weight": 100,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "low",
+  "search": {
+    "path": "/search/word-{{keyword}}.html",
+    "item": ".classification",
+    "title": ".title@text",
+    "url": "a.0@href",
+    "cover": "img@src",
+    "latest": "",
+    "status": "❤️{{@@.supplement@ownText}}",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": ".pic img@src",
+    "author": "",
+    "description": ".supplement@html",
+    "status": "{{book.kind}},{{@@.type@text}}##类型：",
+    "latestChapter": ".comic_list li.0@h4@img@src&&.comic_list li.0@h3@text##.*book_ic.*?\\n##🔒"
+  },
+  "chapters": {
+    "list": "$.data",
+    "title": "$.title",
+    "url": "https://www.manmanapp.com/comic/detail-{{$.id}}.html"
+  },
+  "images": {
+    "list": ".man_img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

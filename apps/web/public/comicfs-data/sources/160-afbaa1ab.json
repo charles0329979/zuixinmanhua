@@ -1,0 +1,44 @@
+{
+  "id": "160-afbaa1ab",
+  "name": "漫画160📱",
+  "host": "https://m.mh160.net",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.mh160.net/search?key={{keyword}}&page={{page}}",
+    "item": ".search-result@li||id.listbody@tag.li||class.itemTxt||.catagory-list@li",
+    "title": ".title@text||class.txtA@text||class.title@text",
+    "url": "tag.a@href",
+    "cover": "##url\\('(.*?)'\\)##$1###",
+    "latest": "class.chapter@text||tag.p.0@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".comic-detail@.name@text",
+    "cover": "",
+    "author": "",
+    "description": ".comic-describe@text",
+    "status": "",
+    "latestChapter": ".last-chapter@text"
+  },
+  "chapters": {
+    "list": ".catalog-list@tag.li",
+    "title": ".name@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": ".comic-list@li@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.623Z",
+    "warnings": []
+  }
+}

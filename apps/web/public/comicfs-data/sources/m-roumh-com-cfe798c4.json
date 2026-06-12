@@ -1,0 +1,44 @@
+{
+  "id": "m-roumh-com-cfe798c4",
+  "name": "肉色漫画",
+  "host": "https://m.roumh.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.roumh.com/wapsearch/{{keyword}}",
+    "item": "class.sr_ul@li",
+    "title": "class.sr_tit@tag.h2@text",
+    "url": "tag.a@href",
+    "cover": "tag.a@img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.d_he_r@tag.a@text",
+    "cover": "class.fl d_he_img@img@src",
+    "author": "class.d_he_r@tag.p.2@text",
+    "description": "class.d_he_tit@text##/简介：",
+    "status": "class.d_he_r@tag.p.3@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "class.d_cen_ul@li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "class.lazy@data-original",
+    "srcAttr": "data-original"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

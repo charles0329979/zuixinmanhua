@@ -1,0 +1,44 @@
+{
+  "id": "ikanwzd-top-1ba24e5f",
+  "name": "🎨 久久漫画网",
+  "host": "https://www.ikanwzd.top/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "class.book-list@tag.li",
+    "title": "class.book-list-info-title@text",
+    "url": "class.book-list-cover@tag.a@href",
+    "cover": "class.book-list-cover-img lazy@data-original",
+    "latest": "",
+    "status": "class.book-list-info-bottom-right-font@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.detail-main-info-title@text",
+    "cover": "class.detail-main-cover@tag.img@data-original",
+    "author": "class.detail-main-info-author.1@tag.a@text",
+    "description": "class.detail-desc@text",
+    "status": "class.detail-main-info-class@tag.span@tag.a@text&&",
+    "latestChapter": "class.detail-list-title-3@text"
+  },
+  "chapters": {
+    "list": "id.detail-list-select@tag.li",
+    "title": "class.chapteritem@title",
+    "url": "class.chapteritem@href"
+  },
+  "images": {
+    "list": "id.cp_img@tag.img@html##data-original##src",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

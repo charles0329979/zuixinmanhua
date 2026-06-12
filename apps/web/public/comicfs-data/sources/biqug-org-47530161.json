@@ -1,0 +1,44 @@
+{
+  "id": "biqug-org-47530161",
+  "name": "笔趣阁漫画",
+  "host": "https://www.biqug.org/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.biqug.org/index.php/search?key={{keyword}}",
+    "item": "div.common-comic-item",
+    "title": ".comic__title a@text",
+    "url": ".comic__title a@href",
+    "cover": "img@src##!cover-400",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "p.j-comic-title",
+    "cover": ".de-info__cover img@src##!cover-400",
+    "author": ".name a@text",
+    "description": "{{@@p.intro@text}}\n{{@@span.text:nth-of-type(n+2)@text}}",
+    "status": "b a@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "a.j-chapter-link",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "img.lazy-read@html##!cover-800",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

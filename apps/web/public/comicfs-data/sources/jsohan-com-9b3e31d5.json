@@ -1,0 +1,44 @@
+{
+  "id": "jsohan-com-9b3e31d5",
+  "name": "极速漫画",
+  "host": "https://jsohan.com/",
+  "language": "zh",
+  "weight": 10,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://jsohan.com/search?searchkey={{keyword}}",
+    "item": ".classification",
+    "title": "h2@text",
+    "url": "a@href",
+    "cover": "img@data-src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "h1@textNodes",
+    "cover": ".ctdbLeft@a@img@src",
+    "author": "p[0]@textNodes",
+    "description": "p[1]@textNodes",
+    "status": ".labelBox@text",
+    "latestChapter": "span[4]@textNodes"
+  },
+  "chapters": {
+    "list": ".view-win-list.detail-list-select@li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".loadimg@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.629Z",
+    "warnings": []
+  }
+}

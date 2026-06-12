@@ -1,0 +1,44 @@
+{
+  "id": "litu100-xyz-e7cac801",
+  "name": "丽图漫画",
+  "host": "https://litu100.xyz/",
+  "language": "zh",
+  "weight": 10,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://litu100.xyz/comics/kk-{{keyword}}.html",
+    "item": ".item",
+    "title": "a[1]@text",
+    "url": "a@href",
+    "cover": "a[0]@img@src",
+    "latest": "span@text",
+    "status": "div[3]@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".title@text",
+    "cover": ".cover@img@src",
+    "author": ".author@text",
+    "description": ".status[1]@text",
+    "status": ".country@text",
+    "latestChapter": ".status[2]@text"
+  },
+  "chapters": {
+    "list": ".chapters@a",
+    "title": ".chapter@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".article.comic@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.626Z",
+    "warnings": []
+  }
+}

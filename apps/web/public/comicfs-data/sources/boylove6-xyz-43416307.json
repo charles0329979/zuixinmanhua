@@ -1,0 +1,44 @@
+{
+  "id": "boylove6-xyz-43416307",
+  "name": "🐑 香香腐宅",
+  "host": "https://boylove6.xyz",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/home/api/searchk?keyword={{keyword}}&type=1&pageNo={{page}}",
+    "item": "result.list",
+    "title": "title@put:{id:$.id}",
+    "url": "/home/book/index/id/{{$.id}}",
+    "cover": "image",
+    "latest": "last_chapter_title",
+    "status": "keyword",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "&nbsp;&nbsp;🎋更新时间：{{@@class.stui-content__detail@tag.p.3@textNodes}}{{'\\n&lrm;\\n'}}{{@@.detail-text@html}}",
+    "status": "",
+    "latestChapter": "class.stui-content__detail@tag.p.4@textNodes"
+  },
+  "chapters": {
+    "list": "result.list",
+    "title": "title",
+    "url": "/home/book/capter/id/{{$.id}}"
+  },
+  "images": {
+    "list": "class.reader-cartoon-image!-1@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.624Z",
+    "warnings": []
+  }
+}

@@ -156,16 +156,22 @@ export default function ReaderPage() {
     };
   }, [handleScroll]);
 
+  // 图片加载完成 — 过滤占位符（< 50px 的无效小图）
+  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.target as HTMLImageElement;
+    if (img.naturalWidth < 50 || img.naturalHeight < 50) {
+      img.style.display = 'none';
+    }
+  }, []);
+
   // 图片加载失败处理 — 限制重试次数
   const handleImageError = useCallback((index: number, url: string, e: React.SyntheticEvent<HTMLImageElement>) => {
     const retries = imageRetries.current.get(index) || 0;
     if (retries < MAX_IMAGE_RETRIES) {
       imageRetries.current.set(index, retries + 1);
-      // 重试：重新设置 src（带随机参数避免缓存）
       const img = e.target as HTMLImageElement;
       img.src = url + (url.includes('?') ? '&' : '?') + '_retry=' + (retries + 1);
     } else {
-      // 超过重试次数，隐藏
       (e.target as HTMLImageElement).style.display = 'none';
     }
   }, []);

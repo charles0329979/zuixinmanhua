@@ -1,0 +1,44 @@
+{
+  "id": "toptoon-f13728b6",
+  "name": "🌵TOPTOON顶通漫画-国际中文精选版🌵",
+  "host": "https://18toptoon.org/",
+  "language": "zh",
+  "weight": 49,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://18toptoon.org/search?keyword={{keyword}}",
+    "item": ".list_area.-1@li",
+    "title": ".title@text",
+    "url": "a@href",
+    "cover": ".thumb_img@data-src",
+    "latest": "",
+    "status": ".epicon_starpoint_txt@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".infoContent@class.title@text",
+    "cover": ".swiper-slide@img@src",
+    "author": "",
+    "description": ".desc@html",
+    "status": ".hashTag@a@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "class.list_area filtr-container detail-list-select@li",
+    "title": "a@text",
+    "url": "a@href##$##,{'webView': true}"
+  },
+  "images": {
+    "list": "id.enc_img@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

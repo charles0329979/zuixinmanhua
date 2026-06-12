@@ -1,0 +1,44 @@
+{
+  "id": "m-csxsrc-com-7bd5ed20",
+  "name": "长沙❤️💜",
+  "host": "https://m.csxsrc.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "class.list@tag.li",
+    "title": "tag.a.1@text",
+    "url": "tag.a.0@href",
+    "cover": "tag.img.0@src",
+    "latest": "tag.a.3@text",
+    "status": "tag.span.0@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.detail@tag.strong@text",
+    "cover": "class.detail@tag.img.0@src",
+    "author": "class.detail@tag.a.0@text",
+    "description": "id.intro@text",
+    "status": "class.detail@tag.a.1@text",
+    "latestChapter": "class.detail@tag.a.2@text"
+  },
+  "chapters": {
+    "list": "class.read@li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "class.content@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": []
+  }
+}

@@ -17,6 +17,11 @@
     "@types/sql.js": "^1.4.11",
     "axios": "^1.7.0",
     "cheerio": "^1.0.0",
+    "http-mitm-proxy": "^1.1.0",
+    "http-proxy": "^1.18.1",
+    "puppeteer-core": "^25.1.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "sql.js": "^1.14.1"

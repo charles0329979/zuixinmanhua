@@ -1,0 +1,44 @@
+{
+  "id": "92-16d01b91",
+  "name": "92韩漫(修复)",
+  "host": "https://www.92hm.top",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.92hm.top/search?keyword={{keyword}}",
+    "item": "class.book-list@li",
+    "title": "class.book-list-info-title@text",
+    "url": "tag.a@href",
+    "cover": "img@data-original",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "#detail-list-select@li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "#cp_img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

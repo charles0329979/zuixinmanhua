@@ -1,0 +1,44 @@
+{
+  "id": "17te-com-177ee4b3",
+  "name": "🎨 特漫网站",
+  "host": "https://www.17te.com",
+  "language": "zh",
+  "weight": 62,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.17te.com/search?keyword={{keyword}}",
+    "item": "class.mh-item",
+    "title": "tag.h2@text",
+    "url": "class.mh-item@tag.a@href",
+    "cover": "class.mh-cover@style",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "class.banner_detail_form@tag.div@tag.img.0@src",
+    "author": "class.subtitle@text",
+    "description": "class.info@tag.p.3@text",
+    "status": "class.info@tag.p.2@tag.span@tag.a@text",
+    "latestChapter": "class.view-win-list detail-list-select@tag.li.-1@text"
+  },
+  "chapters": {
+    "list": "class.view-win-list detail-list-select@tag.li@tag.a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.comicpage@tag.div@tag.img@html##alt.*\\(\\)",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

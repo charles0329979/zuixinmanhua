@@ -1,0 +1,44 @@
+{
+  "id": "comic-acgn-cc-3a3cb31b",
+  "name": "🎨 动漫戏说[修|仅发现]",
+  "host": "https://comic.acgn.cc#仅发现",
+  "language": "zh",
+  "weight": 59,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://comic.acgn.cc/searchcse?cx=008124722090293425135:i6inzsizmqg&cof=FORID:11&ie=UTF-8&q={{keyword}}&sa=搜尋",
+    "item": "class.display@tag.li",
+    "title": "tag.a.1@text",
+    "url": "tag.a.1@href",
+    "cover": "tag.img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "tag.h3@text",
+    "cover": "",
+    "author": "class.mss.0@tag.a@text",
+    "description": "class.gameshows@tag.dd.1@text##\\s",
+    "status": "class.mss.3@tag.a@text",
+    "latestChapter": "class.mss.4@tag.a@text"
+  },
+  "chapters": {
+    "list": "-id.comic_chapter@tag.li",
+    "title": "tag.a@text",
+    "url": "tag.a@href"
+  },
+  "images": {
+    "list": "id.pic_list@class.pic@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

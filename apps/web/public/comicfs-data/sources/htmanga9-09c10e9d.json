@@ -1,0 +1,47 @@
+{
+  "id": "htmanga9-09c10e9d",
+  "name": "⌨绅士漫画(htmanga9)🔞",
+  "host": "https://www.htmanga9.top/##旅途",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/q/?q={{keyword}}&m=&f=_all&s=create_time_DESC&p={{page}}",
+    "item": "ul@.col_2@li||.gallary_item",
+    "title": ".txtA@text||a@text",
+    "url": "a@.ImgA@href||a@href",
+    "cover": ".ImgA@img@src||img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "h2@text",
+    "cover": ".pic@img@src",
+    "author": ".uwuinfo@p.0@text",
+    "description": "",
+    "status": "label@text##分類：|頁數：<js>result</js>##／##,",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": ".gallary_item",
+    "title": ".title@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": "img.1@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

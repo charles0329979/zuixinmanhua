@@ -1,0 +1,44 @@
+{
+  "id": "dingmanhua-com-cf9e19cc",
+  "name": "🌠 顶漫画网",
+  "host": "https://www.dingmanhua.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.dingmanhua.com/search/?q={{keyword}}&page={{page}}",
+    "item": "div.col-lg-2",
+    "title": "div.card@text",
+    "url": "a.stretched-link@href",
+    "cover": "",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "p.fs-4@text",
+    "cover": "img.rounded@data-src",
+    "author": ".author-content a@text",
+    "description": "{{@@.tags-content span@text}}{{@@.tags-content a@text}}\n{{@@div.summary-content@text}}",
+    "status": "li:nth-of-type(2) a.hover_red@text",
+    "latestChapter": ".new-content a@text"
+  },
+  "chapters": {
+    "list": "a.text-truncate",
+    "title": "text",
+    "url": "href##$##,{'webView':true}"
+  },
+  "images": {
+    "list": "img.entered@data-src##(.*).webp##<img src=\"$1.webp\">",
+    "srcAttr": "data-src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

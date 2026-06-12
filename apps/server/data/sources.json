@@ -3,7 +3,7 @@
     "id": "baozi",
     "name": "包子漫画",
     "host": "https://www.baozimh.com",
-    "enabled": false,
+    "enabled": true,
     "language": "zh",
     "weight": 100,
     "tags": [
@@ -44,7 +44,7 @@
     },
     "timeoutMs": 10000,
     "createdAt": "2026-06-04T15:22:07.064Z",
-    "updatedAt": "2026-06-05T02:16:58.723Z"
+    "updatedAt": "2026-06-07T12:59:22.147Z"
   },
   {
     "id": "manhuadui",
@@ -140,7 +140,7 @@
     },
     "timeoutMs": 10000,
     "createdAt": "2026-06-05T00:00:00.000Z",
-    "updatedAt": "2026-06-05T02:16:59.661Z"
+    "updatedAt": "2026-06-07T12:59:16.531Z"
   },
   {
     "id": "colamanga",
@@ -188,5 +188,192 @@
     "timeoutMs": 10000,
     "createdAt": "2026-06-04T15:22:07.064Z",
     "updatedAt": "2026-06-04T15:27:00.010Z"
+  },
+  {
+    "id": "yydsmh",
+    "name": "YYDS漫画",
+    "host": "https://www.yydsmh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 100,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?searchkey={{keyword}}",
+      "method": "GET",
+      "listSelector": "#js_comicSortList > li",
+      "titleSelector": "a > p",
+      "coverSelector": "a > div > img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": "a > div > span",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": "#detail > div > div.book-name > h1 > span",
+      "coverSelector": "div.book-cover.comic-item > div > img",
+      "authorSelector": "#detail > div > div.book-name > h1 > span",
+      "descriptionSelector": "#js_desc_content",
+      "statusSelector": "div.book-name > div > ul.types > li:nth-child(3) > a",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": "#js_chapters > li",
+      "titleSelector": "a",
+      "urlSelector": "a"
+    },
+    "images": {
+      "listSelector": "#imgsec img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-07T08:47:46.588Z"
+  },
+  {
+    "id": "mkzhan",
+    "name": "漫客栈",
+    "host": "https://www.mkzhan.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 95,
+    "tags": [
+      "中文",
+      "国漫"
+    ],
+    "search": {
+      "url": "/search/?keyword={{keyword}}",
+      "method": "GET",
+      "listSelector": ".search-comic-list .common-comic-item",
+      "titleSelector": ".comic__title a",
+      "coverSelector": "img",
+      "detailUrlSelector": ".cover",
+      "latestChapterSelector": ".comic__title",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".comic-title",
+      "coverSelector": ".de-info__cover img",
+      "authorSelector": ".name",
+      "descriptionSelector": ".intro-total",
+      "statusSelector": ".comic-title",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".chapter__list-box li",
+      "titleSelector": "a",
+      "urlSelector": ".j-chapter-link@data-hreflink"
+    },
+    "images": {
+      "listSelector": ".comicpage img, .comic-contain img, amp-img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-07T12:44:05.096Z"
+  },
+  {
+    "id": "manhuadb",
+    "name": "漫画DB",
+    "host": "https://www.manhuadb.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 90,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?q={{keyword}}",
+      "method": "GET",
+      "listSelector": ".comic-list .comic-item",
+      "titleSelector": ".comic-title",
+      "coverSelector": ".comic-cover img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": ".comic-chapter",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".comic-title",
+      "coverSelector": ".comic-cover img",
+      "authorSelector": ".comic-author",
+      "descriptionSelector": ".comic-description",
+      "statusSelector": ".comic-status",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".chapter-list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": ".comic-content img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-07T08:47:46.588Z"
+  },
+  {
+    "id": "colamanga_v2",
+    "name": "可乐漫画v2",
+    "host": "https://www.colamanga.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 85,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?type=1&searchString={{keyword}}",
+      "method": "GET",
+      "listSelector": ".fed-deta-info",
+      "titleSelector": "h1 a",
+      "coverSelector": ".fed-list-pics img",
+      "detailUrlSelector": "h1 a",
+      "latestChapterSelector": ".fed-part-rows a",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": "h1.fed-part-eone",
+      "coverSelector": ".fed-list-pics img",
+      "authorSelector": ".fed-part-rows li:nth-child(1) a",
+      "descriptionSelector": ".fed-part-esan",
+      "statusSelector": ".fed-part-rows li:nth-child(3)",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".all_data_list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": ".fed-part-layout img",
+      "srcAttribute": "data-original"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-07T08:47:46.588Z"
   }
 ]

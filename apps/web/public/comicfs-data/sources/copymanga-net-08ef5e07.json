@@ -1,0 +1,44 @@
+{
+  "id": "copymanga-net-08ef5e07",
+  "name": "拷贝漫画",
+  "host": "https://www.copymanga.net",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.copymanga.net/api/kb/web/search/count?offset=0&platform=2&limit=12&q={{keyword}}",
+    "item": "$.results.comic.list[*]",
+    "title": "$.name",
+    "url": "https://www.copymanga.net/comic/{{$.path_word}},{\"webView\":true}",
+    "cover": "$.cover",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "class.intro@text",
+    "status": "class.comicParticulars-tag@a@text&&class.comicParticulars-right-txt.-1@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "id.default全部@a!-1",
+    "title": "text",
+    "url": "href##$##,{\"webView\":true}"
+  },
+  "images": {
+    "list": "class.comicContent-image-all@img@html##\\s+src=\".*?\"",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

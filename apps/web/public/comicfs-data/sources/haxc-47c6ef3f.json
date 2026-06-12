@@ -1,0 +1,47 @@
+{
+  "id": "haxc-47c6ef3f",
+  "name": "✐ ㊣爱奇艺漫画 #Haxc",
+  "host": "https://www.iqiyi.com/manhua#♤Haxc",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://www.iqiyi.com/manhua/search-keyword={{keyword}}_{{page}}",
+    "item": "class.stacksList@tag.li||class.cartoon-hot-ul@tag.li",
+    "title": "class.stacksBook-tit@text||class.cartoon-item-tit@text",
+    "url": "tag.a.0@href",
+    "cover": "tag.img@src",
+    "latest": "class.stacksBook-newchapter@tag.a@title||class.cartoon-update-h@text##更新至",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.detail-tit@tag.h1@text",
+    "cover": "",
+    "author": "class.author.0@tag.span@text",
+    "description": "class.detail-docu@text",
+    "status": "class.detail-tit@tag.a@text",
+    "latestChapter": "class.cata-update@text##^.*?\\s"
+  },
+  "chapters": {
+    "list": "$.data.episodes.*",
+    "title": "$.episodeTitle",
+    "url": "https://www.iqiyi.com/manhua/reader/{$.comicId}_{$.episodeId}.html"
+  },
+  "images": {
+    "list": "class.main-container@li@img@html##data-original##src",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.621Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

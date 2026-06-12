@@ -1,0 +1,44 @@
+{
+  "id": "wap-faloo-com-08afa374",
+  "name": "💰 飞卢小说",
+  "host": "https://wap.faloo.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": ".novelList li",
+    "title": "a.1@text",
+    "url": "a.1@href",
+    "cover": "img.0@src",
+    "latest": "",
+    "status": ".nl_r1_author a.1@text&&em@text&&.date@text&&.tag@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".info h1@text",
+    "cover": ".cover_box img@src",
+    "author": ".info a.0@text",
+    "description": "🏷️   {{@class.tagList.0@text}}{{'\\n'+'​'}}\n{{@#novel_intro@html}}##展开收起|飞卢小说(.|\\n)*",
+    "status": ".info a.1@text&&.info .tag@text&&.info li.4@text##.*：|\\s.*|小说",
+    "latestChapter": ".newNode@text##[\\(（【].*?[求更谢乐发订合补加].*?[】）\\)]"
+  },
+  "chapters": {
+    "list": ".v_nodeList li",
+    "title": "a@text##[\\(（【].*?[求更谢乐发订合补加].*?[】）\\)]",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".nodeContent@p@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

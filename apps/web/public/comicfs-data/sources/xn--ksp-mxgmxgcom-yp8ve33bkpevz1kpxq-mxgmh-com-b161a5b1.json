@@ -1,0 +1,44 @@
+{
+  "id": "xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq-mxgmh-com-b161a5b1",
+  "name": "漫香阁",
+  "host": "https://xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq.mxgmh.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/search.php?key={{keyword}}&typeid=0&p={{page}}",
+    "item": "a",
+    "title": ".topgrid-desc@h3@text",
+    "url": "href",
+    "cover": "",
+    "latest": "",
+    "status": "tag.span.0@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": "",
+    "description": "",
+    "status": "",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "tag.html",
+    "title": "tag.title@text## - 漫香阁.com",
+    "url": ""
+  },
+  "images": {
+    "list": ".contentmh@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

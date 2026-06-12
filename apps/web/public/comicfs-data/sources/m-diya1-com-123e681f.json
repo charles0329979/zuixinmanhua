@@ -1,0 +1,47 @@
+{
+  "id": "m-diya1-com-123e681f",
+  "name": "蒂亚漫画📱",
+  "host": "https://m.diya1.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://m.diya1.com/search/?keywords={{keyword}}&page={{page}}",
+    "item": "class.itemBox||class.list-comic",
+    "title": "class.title@text||class.txtA@text",
+    "url": "tag.a@href",
+    "cover": "tag.img@src",
+    "latest": "class.coll@text",
+    "status": "class.pd@text##\\|##,",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "id.comicName@text",
+    "cover": "id.Cover@tag.img@src",
+    "author": "class.txtItme.0@text",
+    "description": "id.full-des@text||id.simple-des@text##.*介绍:|.*简介：",
+    "status": "class.txtItme.1@tag.a@text&&class.txtItme.2@tag.a.-1@text",
+    "latestChapter": "@js:org.jsoup.Jsoup.parse(result).select(\".chapter-warp a[href$=html]\").toArray().pop().text()"
+  },
+  "chapters": {
+    "list": ".chapter-body.-1@li!-1@a||.chapter-body.0@li!-1@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "class.image-content@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

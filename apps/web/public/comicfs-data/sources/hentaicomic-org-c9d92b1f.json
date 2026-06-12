@@ -1,0 +1,44 @@
+{
+  "id": "hentaicomic-org-c9d92b1f",
+  "name": "绅士漫画",
+  "host": "https://www.hentaicomic.org",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/q/?q={{keyword}}&m=&f=_all&s=create_time_DESC&p={{page}}",
+    "item": ".col_2 li",
+    "title": "a.txtA@text",
+    "url": ".ImgA@href",
+    "cover": ".ImgA img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "h2@text",
+    "cover": "",
+    "author": "",
+    "description": ".uwconn p@html",
+    "status": "label@ownText##.*：",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "li.li",
+    "title": "span.name@text",
+    "url": ".pic_box a@href"
+  },
+  "images": {
+    "list": "img.photo@all",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": []
+  }
+}

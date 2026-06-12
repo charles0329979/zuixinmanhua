@@ -1,0 +1,44 @@
+{
+  "id": "cloudflare-fw-91mh-912023-xyz-77b0e9ae",
+  "name": "九妖漫画👙",
+  "host": "https://cloudflare.fw-91mh-912023.xyz",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://cloudflare.fw-91mh-912023.xyz/index.php/search/{{Key}}/{{Page}}",
+    "item": "class.cate-comic-list@class.common-comic-item",
+    "title": ".comic__title@text",
+    "url": "a@href",
+    "cover": ".lazy@data-original",
+    "latest": ".comic-update@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".j-comic-title@text",
+    "cover": ".lazy@src",
+    "author": ".name@text",
+    "description": ".intro@text",
+    "status": ".text@text##题材:",
+    "latestChapter": ".update-time@text"
+  },
+  "chapters": {
+    "list": ".chapter__list@ul@li",
+    "title": "a@text",
+    "url": "a@href"
+  },
+  "images": {
+    "list": ".lazy-read@data-original",
+    "srcAttr": "data-original"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

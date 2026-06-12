@@ -9,3 +9,16 @@ dist/
 coverage/
 .nyc_output/
 yeman_*
+
+# 二进制工具
+mitmproxy.exe
+mumu.exe
+mumu2.exe
+*.apk
+*.apk.1
+
+# MITM 抓包数据
+apps/server/data/captured/
+apps/server/data/mitm-certs/
+apps/server/proxy/
+pipimiao_extract/

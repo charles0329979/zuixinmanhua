@@ -1,0 +1,47 @@
+{
+  "id": "m-247217dd",
+  "name": "🍒 爱看书吧m",
+  "host": "https://m.ikshu8.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "}",
+    "item": "tag.tbody@tag.tr!0",
+    "title": "tag.a.0@text",
+    "url": "tag.a@href",
+    "cover": "tag.a.1@href##.*/(\\d+)_(\\d+)/.*##/files/article/image/$1/$2/$2s.jpg",
+    "latest": "tag.a.1@text",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "[property=\"og:novel:book_name\"]@content",
+    "cover": "[property=\"og:image\"]@content",
+    "author": "[property=\"og:novel:author\"]@content",
+    "description": "class.desc@text",
+    "status": "[property=\"og:novel:category\"]@content",
+    "latestChapter": "[property=\"og:novel:latest_chapter_name\"]@content##{{book.name}}"
+  },
+  "chapters": {
+    "list": "class.section-list.1@li@a",
+    "title": "text##[\\(（【].*[求更订谢乐发推].*",
+    "url": "href"
+  },
+  "images": {
+    "list": "id.content@html##\\s*{{chapter.title}}\\s*",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.622Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

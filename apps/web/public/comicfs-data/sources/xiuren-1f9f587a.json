@@ -1,0 +1,44 @@
+{
+  "id": "xiuren-1f9f587a",
+  "name": "🔰 XIUREN",
+  "host": "https://xiuren.biz",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/page/{{page}}?s={{keyword}}",
+    "item": ".box_wrap",
+    "title": "a.-3@text",
+    "url": "a.0@href",
+    "cover": "img@data-src",
+    "latest": "",
+    "status": "span.0@text",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "",
+    "cover": "",
+    "author": ".jeg_meta_author@a.-1@text",
+    "description": "",
+    "status": ".entry-content@div.-1@a@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "h1.jeg_post_title",
+    "title": "text",
+    "url": ""
+  },
+  "images": {
+    "list": ".content-inner@p@a!0@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.623Z",
+    "warnings": []
+  }
+}

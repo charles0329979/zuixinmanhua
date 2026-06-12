@@ -1,0 +1,44 @@
+{
+  "id": "m-hmba-vip-b43c5f95",
+  "name": "🎨 韩漫吧",
+  "host": "https://m.hmba.vip",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/home/search?action=search&q={{keyword}}",
+    "item": "class.pt-card-1.1@li",
+    "title": "a.1@text",
+    "url": "a.1@href",
+    "cover": "img@data-original",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "class.pt-name.0@text",
+    "cover": ".baseinfo img@src",
+    "author": "class.pt-info.1@text##作者.",
+    "description": ".intro@html##简介.",
+    "status": "class.pt-info.0:2:3@text##.*：|\\s.*",
+    "latestChapter": "#newchaperlist a.0@text"
+  },
+  "chapters": {
+    "list": "#chapterlist li a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "#BookText@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.627Z",
+    "warnings": []
+  }
+}

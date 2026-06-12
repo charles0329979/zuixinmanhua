@@ -1,0 +1,44 @@
+{
+  "id": "app2-haomanwu-com-52589416",
+  "name": "好漫屋",
+  "host": "https://app2.haomanwu.com",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "https://app2.haomanwu.com/index.php/search?key={{keyword}}",
+    "item": "ul li",
+    "title": "a@text",
+    "url": "a@href",
+    "cover": "img@data-original",
+    "latest": ".comic-update@text##更至：",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".j-comic-title@text##\\(最新在线\\)",
+    "cover": "",
+    "author": ".name@tag.a@text",
+    "description": ".intro-total@text",
+    "status": "class.comic-status@a@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": ".chapter__list@li@a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": ".rd-article__pic@img@html##src=\".*?png\"",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "xn--oiji-k32hr15anv9f-155comic25-icu-39b7c568",
+  "name": "每日色漫",
+  "host": "https://xn--oiji-k32hr15anv9f.155comic25.icu",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "server-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "/?s={{keyword}}",
+    "item": ".post-list@a",
+    "title": "tag.span@text",
+    "url": "href",
+    "cover": "tag.img@src",
+    "latest": "",
+    "status": "",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": ".post-data@text",
+    "cover": ".contents-ad.1@src",
+    "author": "",
+    "description": "",
+    "status": ".post-tag@text",
+    "latestChapter": ""
+  },
+  "chapters": {
+    "list": "tag.html",
+    "title": "tag.title@text",
+    "url": ""
+  },
+  "images": {
+    "list": ".contents-ad@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.625Z",
+    "warnings": []
+  }
+}

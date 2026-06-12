@@ -1,0 +1,47 @@
+{
+  "id": "abyssesml-ddb23d6b",
+  "name": "🎀图文韩漫[abyssesml]",
+  "host": "https://tuwenhanman.com/",
+  "language": "zh",
+  "weight": 0,
+  "enabledByDefault": true,
+  "mode": "client-parser",
+  "version": "1.0.0",
+  "riskLevel": "medium",
+  "search": {
+    "path": "{{org.jsoup.Jsoup.parse(java.ajax(source.getKey())).select('form[name=formsearch]').attr('action')}}?keyword={{keyword}}&searchtype=titlekeyword&channeltype=0&orderby=&kwtype=0&pagesize=30&typeid=0&TotalResult=500&PageNo={{page}}",
+    "item": "div:has(h2:contains(搜索结果))~dl",
+    "title": "dt:contains(18+)>a>span:not(:contains(18+))@text",
+    "url": "dt:contains(18+)>a@href",
+    "cover": "dt:contains(18+)>a@data-original",
+    "latest": "dd>h1>a[href]@text",
+    "status": "li:has(span:contains(分类))@textNodes&&\nli:has(span:contains(时间))@textNodes",
+    "updateTime": ""
+  },
+  "detail": {
+    "title": "[property$=book_name]@content",
+    "cover": "[property$=image]@content",
+    "author": "[property$=author]@content",
+    "description": "[property$=description]@content##(^|[。！？]+[”」）】]?)##$1<br>",
+    "status": "[property~=type|status|update_time]@content##\\s.*",
+    "latestChapter": "[property$=chapter_name]@content##[\\(（【].*?[求更谢乐发订合补加].*?[】）\\)]|^章节目录\\s*"
+  },
+  "chapters": {
+    "list": "div:has(ul:has(li:contains(目录)))>ul:not(:has(li:contains(目录)))>li>a",
+    "title": "text",
+    "url": "href"
+  },
+  "images": {
+    "list": "div:has(div:has(ul:has(li>a:contains(目录))))>div[0]@img@html",
+    "srcAttr": "src"
+  },
+  "metadata": {
+    "upstreamRepo": "yckceo-manga",
+    "upstreamId": "",
+    "createdAt": "2026-06-07T14:31:38.628Z",
+    "warnings": [
+      "规则包含 JS 代码，标记为 client-parser",
+      "规则包含 eval / <js> 等 JS 执行"
+    ]
+  }
+}

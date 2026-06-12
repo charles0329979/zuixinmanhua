@@ -1,45 +1,90 @@
 // ============================================================
 // 搜索 URL 构造器 — 兼容多种 comicfs 源字段命名
+// 委托给 legado-search-adapter 处理所有 Legado 格式
 // ============================================================
 import { isSafeUrl } from './safe-url';
 import { cleanHost } from '@/lib/manga-search/url-resolver';
 
+// ---- 占位符 ----
 const PLACEHOLDERS = [
-  /\{\{keyword\}\}/g, /\{keyword\}/g,
-  /\{\{key\}\}/g, /\{key\}/g,
+  /\{\{keyword\}\}/g,
+  /\{keyword\}/g,
+  /\{\{key\}\}/g,
+  /\{key\}/g,
   /searchKey/g,
+  /%s/g,
 ];
 
-export function extractSearchUrlTemplate(source: Record<string, unknown>): string | null {
+// ---- URL 候选字段 ----
+const URL_CANDIDATES = [
+  'path',
+  'url',
+  'searchUrl',
+  'ruleSearchUrl',
+];
+
+/**
+ * 从 source 对象中提取搜索 URL 模板
+ * 兼容 comicfs 主字段 + metadata.raw 嵌套字段
+ */
+export function extractSearchUrlTemplate(
+  source: Record<string, unknown>,
+): string | null {
   const search = (source.search || {}) as Record<string, unknown>;
   const metadata = (source.metadata || {}) as Record<string, unknown>;
   const raw = (metadata.raw || {}) as Record<string, unknown>;
-  const candidates = [search?.path, search?.url, search?.searchUrl, search?.ruleSearchUrl, raw?.searchUrl, raw?.ruleSearchUrl];
-  for (const c of candidates) { if (typeof c === 'string' && c.trim()) return c.trim(); }
+
+  for (const field of URL_CANDIDATES) {
+    const fromSearch = search[field];
+    if (typeof fromSearch === 'string' && fromSearch.trim()) {
+      return fromSearch.trim();
+    }
+    const fromRaw = raw[field];
+    if (typeof fromRaw === 'string' && fromRaw.trim()) {
+      return fromRaw.trim();
+    }
+  }
+
   return null;
 }
 
-export function buildSearchUrl(template: string, keyword: string, host: string): string | null {
+/**
+ * 用关键词替换 URL 模板占位符
+ * 返回完整 http/https URL，失败返回 null
+ */
+export function buildSearchUrl(
+  template: string,
+  keyword: string,
+  host: string,
+): string | null {
   const clean = cleanHost(host);
   let url = template;
   const encoded = encodeURIComponent(keyword);
   let replaced = false;
+
   for (const re of PLACEHOLDERS) {
-    if (re.test(url)) { url = url.replace(re, encoded); replaced = true; }
+    if (re.test(url)) {
+      url = url.replace(re, encoded);
+      replaced = true;
+      break;
+    }
   }
+
   if (!replaced) {
-    try {
-      const u = new URL(url.startsWith('http') ? url : `https://${url}`);
-      u.search += (u.search ? '&' : '?') + `keyword=${encoded}`;
-      url = u.toString();
-    } catch { url += (url.includes('?') ? '&' : '?') + `keyword=${encoded}`; }
+    const sep = url.includes('?') ? '&' : '?';
+    url += `${sep}keyword=${encoded}`;
   }
+
+  // 补全为完整 URL
   if (!/^https?:\/\//i.test(url)) {
     const base = clean.replace(/\/+$/, '');
     if (url.startsWith('/')) {
       const origin = base.match(/^(https?:\/\/[^/]+)/)?.[1] || base;
       url = `${origin}${url}`;
-    } else { url = `${base}/${url.replace(/^\//, '')}`; }
+    } else {
+      url = `${base}/${url.replace(/^\//, '')}`;
+    }
   }
+
   return isSafeUrl(url) ? url : null;
 }

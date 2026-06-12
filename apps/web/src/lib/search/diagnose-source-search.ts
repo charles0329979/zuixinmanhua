@@ -1,12 +1,12 @@
 // ============================================================
 // 单源诊断 — 逐步检测搜索链路的每个阶段
+// 使用 legado-search-adapter + 净化的 fetch
 // ============================================================
 import { fetchSourceById } from '@/lib/comicfs/client';
-import { extractSearchUrlTemplate, buildSearchUrl } from './build-search-url';
-import { fetchHtml } from './fetch-html';
+import { adaptLegadoSearch } from './legado-search-adapter';
+import { fetchHtml, type FetchErrorCode } from './fetch-html';
 import { parseHtmlResults } from './parse-html-results';
 import { cleanHost } from '@/lib/manga-search/url-resolver';
-import type { FetchErrorCode } from './fetch-html';
 
 // ---- 诊断步骤 ----
 export interface DiagnosisSteps {
@@ -31,8 +31,12 @@ export interface DiagnosisResult {
   host: string;
   keyword: string;
   failedAt: DiagnosisFailedAt | null;
-  error: string | null;
-  errorCode?: FetchErrorCode;
+  error: {
+    code: string;
+    message: string;
+    url?: string;
+    cause?: string;
+  } | null;
   steps: DiagnosisSteps;
   search: {
     rawSearchUrl: string;
@@ -46,28 +50,35 @@ export interface DiagnosisResult {
 }
 
 export type DiagnosisFailedAt =
-  | 'source-load' | 'search-rule' | 'url-build'
-  | 'safe-url' | 'fetch' | 'http-status'
-  | 'content-type' | 'selector' | 'parse';
+  | 'source-load'
+  | 'search-rule'
+  | 'url-build'
+  | 'safe-url'
+  | 'fetch'
+  | 'http-status'
+  | 'content-type'
+  | 'selector'
+  | 'parse';
 
-function step(defaults: Partial<DiagnosisSteps> = {}): DiagnosisSteps {
+function emptySteps(): DiagnosisSteps {
   return {
-    sourceLoaded: false, searchRuleFound: false, searchUrlBuilt: false,
-    urlSafe: false, fetchOk: false, httpStatus: 0, contentType: '',
-    htmlLength: 0, containsKeyword: false, selectorFound: false,
-    itemCount: 0, parsedCount: 0,
-    ...defaults,
+    sourceLoaded: false,
+    searchRuleFound: false,
+    searchUrlBuilt: false,
+    urlSafe: false,
+    fetchOk: false,
+    httpStatus: 0,
+    contentType: '',
+    htmlLength: 0,
+    containsKeyword: false,
+    selectorFound: false,
+    itemCount: 0,
+    parsedCount: 0,
   };
 }
 
-function makeResult(
-  sourceId: string, sourceName: string, host: string, keyword: string,
-  ok: boolean, failedAt: DiagnosisFailedAt | null, error: string | null,
-  steps: DiagnosisSteps, search: DiagnosisResult['search'],
-  sampleResults: DiagnosisResult['sampleResults'],
-  errorCode?: FetchErrorCode,
-): DiagnosisResult {
-  return { ok, sourceId, sourceName, host, keyword, failedAt, error, errorCode, steps, search, sampleResults };
+function emptySearch(): DiagnosisResult['search'] {
+  return { rawSearchUrl: '', finalSearchUrl: '', listSelector: '', titleSelector: '', urlSelector: '', coverSelector: '' };
 }
 
 // ---- 主诊断函数 ----
@@ -77,137 +88,173 @@ export async function diagnoseSourceSearch(
   keyword: string,
   _options?: { timeoutMs?: number },
 ): Promise<DiagnosisResult> {
-  const search = {
-    rawSearchUrl: '', finalSearchUrl: '',
-    listSelector: '', titleSelector: '', urlSelector: '', coverSelector: '',
-  };
+  const search = emptySearch();
   const sampleResults: DiagnosisResult['sampleResults'] = [];
 
-  // Step 1: Load source
+  // Step 1: Load source from comicfs
   let fullSource: Record<string, unknown>;
+  let sourceName = sourceId;
+  let host = '';
+
   try {
     const fetched = await fetchSourceById(sourceId);
-    if (!fetched) throw new Error('source not found');
+    if (!fetched) throw new Error('source not found in comicfs');
     fullSource = fetched as unknown as Record<string, unknown>;
+    sourceName = (fullSource.name as string) || sourceId;
+    host = cleanHost((fullSource.host as string) || '');
   } catch (err) {
-    return makeResult(sourceId, '', '', keyword, false, 'source-load',
-      String(err), step(), search, []);
+    return makeResult(sourceId, sourceName, host, keyword, false, 'source-load', {
+      code: 'SOURCE_NOT_FOUND',
+      message: err instanceof Error ? err.message : String(err),
+    }, emptySteps(), search, []);
   }
 
-  const sourceName = (typeof fullSource.name === 'string' ? fullSource.name : sourceId);
-  const rawHost = (typeof fullSource.host === 'string' ? fullSource.host : '');
-  const host = cleanHost(rawHost);
-  const steps = step({ sourceLoaded: true });
+  const steps = emptySteps();
+  steps.sourceLoaded = true;
 
-  // Step 2: Extract search URL template
-  const template = extractSearchUrlTemplate(fullSource);
-  if (!template) {
-    return makeResult(sourceId, sourceName, host, keyword, false, 'search-rule',
-      'No search URL template found in source rule', steps, search, []);
+  // Step 2: Extract search URL via Legado adapter
+  const adapted = adaptLegadoSearch(fullSource, keyword);
+
+  if (!adapted.ok) {
+    const failedAtMap: Record<string, DiagnosisFailedAt> = {
+      NO_SEARCH_URL: 'search-rule',
+      URL_BUILD_FAILED: 'url-build',
+      UNSUPPORTED_SEARCH_METHOD: 'url-build',
+    };
+    return makeResult(
+      sourceId, sourceName, host, keyword, false,
+      failedAtMap[adapted.error] || 'search-rule',
+      { code: adapted.error, message: adapted.reason },
+      steps, search, [],
+    );
   }
-  search.rawSearchUrl = template;
+
+  search.rawSearchUrl = adapted.config.urlTemplate;
+  search.finalSearchUrl = adapted.url;
+  search.listSelector = adapted.config.listSelector;
+  search.titleSelector = adapted.config.titleSelector;
+  search.urlSelector = adapted.config.detailUrlSelector;
+  search.coverSelector = adapted.config.coverSelector;
+
   steps.searchRuleFound = true;
-
-  // Step 3: Build final URL
-  const finalUrl = buildSearchUrl(template, keyword, host);
-  if (!finalUrl) {
-    return makeResult(sourceId, sourceName, host, keyword, false, 'url-build',
-      'Failed to build search URL', steps, search, []);
-  }
-  search.finalSearchUrl = finalUrl;
   steps.searchUrlBuilt = true;
   steps.urlSafe = true;
 
-  // Step 4: Fetch HTML
-  const htmlResult = await fetchHtml(finalUrl, host);
+  // Step 3: Fetch HTML
+  const htmlResult = await fetchHtml(adapted.url, host, adapted.config.headers);
+
   if (!htmlResult.ok) {
-    return makeResult(sourceId, sourceName, host, keyword, false, 'fetch',
-      htmlResult.error.message, steps, search, [], htmlResult.error.code);
+    return makeResult(sourceId, sourceName, host, keyword, false, 'fetch', {
+      code: htmlResult.error.code,
+      message: htmlResult.error.message,
+      url: htmlResult.error.url,
+      cause: htmlResult.error.cause,
+    }, steps, search, []);
   }
+
   steps.fetchOk = true;
-  steps.httpStatus = htmlResult.httpStatus || 200;
+  steps.httpStatus = htmlResult.httpStatus;
   steps.contentType = htmlResult.contentType;
   steps.htmlLength = htmlResult.body.length;
   steps.containsKeyword = htmlResult.body.includes(keyword);
 
-  // Step 5: Check selector
-  const listSelector = getSelector(fullSource, ['item', 'list', 'ruleSearchList']);
-  search.listSelector = listSelector;
-  search.titleSelector = getSelector(fullSource, ['title', 'ruleSearchName']);
-  search.urlSelector = getSelector(fullSource, ['url', 'detailUrl', 'ruleSearchNoteUrl']);
-  search.coverSelector = getSelector(fullSource, ['cover', 'ruleSearchCoverUrl']);
-
-  if (!listSelector) {
-    return makeResult(sourceId, sourceName, host, keyword, false, 'selector',
-      'Missing search list selector', steps, search, []);
+  // Step 4: Check selectors
+  if (!search.listSelector) {
+    return makeResult(sourceId, sourceName, host, keyword, false, 'selector', {
+      code: 'MISSING_SELECTOR',
+      message: 'Missing search list selector in source rule',
+    }, steps, search, []);
   }
   steps.selectorFound = true;
 
-  // Step 6: Parse
+  // Step 5: Parse HTML
   const parsed = parseHtmlResults(fullSource, htmlResult.body);
   if ('reason' in parsed) {
-    return makeResult(sourceId, sourceName, host, keyword, false, 'parse',
-      parsed.reason, steps, search, []);
+    return makeResult(sourceId, sourceName, host, keyword, false, 'parse', {
+      code: 'PARSE_ERROR',
+      message: parsed.reason,
+    }, steps, search, []);
   }
 
-  steps.itemCount = 0; // parseHtmlResults doesn't return item count separately
   steps.parsedCount = parsed.length;
 
   for (const r of parsed.slice(0, 5)) {
-    sampleResults.push({ title: r.title, detailUrl: r.detailUrl, cover: r.cover || null });
+    sampleResults.push({
+      title: r.title,
+      detailUrl: r.detailUrl,
+      cover: r.cover || null,
+    });
   }
 
-  return makeResult(sourceId, sourceName, host, keyword, parsed.length > 0,
+  return makeResult(
+    sourceId, sourceName, host, keyword,
+    parsed.length > 0,
     parsed.length > 0 ? null : 'parse',
-    parsed.length > 0 ? null : 'Parsed 0 results (selector may not match)',
-    steps, search, sampleResults);
-}
-
-// ---- 辅助 ----
-
-function getSelector(source: Record<string, unknown>, names: string[]): string {
-  const search = (source.search || {}) as Record<string, unknown>;
-  const raw = (((source.metadata || {}) as Record<string, unknown>).raw || {}) as Record<string, unknown>;
-  for (const name of names) {
-    const val = search?.[name] ?? raw?.[name];
-    if (typeof val === 'string' && val.trim()) return val.trim();
-  }
-  return '';
+    parsed.length > 0
+      ? null
+      : { code: 'NO_PARSED_RESULTS', message: 'Selector matched 0 results' },
+    steps, search, sampleResults,
+  );
 }
 
 // ---- 批量诊断 ----
 
+export interface BatchDiagnosisItem {
+  sourceId: string;
+  sourceName: string;
+  host: string;
+  ok: boolean;
+  failedAt: string | null;
+  error: { code: string; message: string; url?: string; cause?: string } | null;
+  httpStatus: number;
+  htmlLength: number;
+  itemCount: number;
+  parsedCount: number;
+  finalSearchUrl: string;
+}
+
+export interface BatchDiagnosisResult {
+  ok: boolean;
+  keyword: string;
+  limit: number;
+  total: number;
+  passed: number;
+  failed: number;
+  items: BatchDiagnosisItem[];
+  recommendedSourceIds: string[];
+}
+
 export async function diagnoseSourceBatch(
   keyword: string,
   limit: number,
-): Promise<{
-  items: Array<{
-    sourceId: string; sourceName: string; host: string;
-    ok: boolean; failedAt: string | null; error: string | null;
-    httpStatus: number; htmlLength: number; itemCount: number;
-    parsedCount: number; finalSearchUrl: string;
-  }>;
-  passed: number; failed: number; total: number;
-  recommendedSourceIds: string[];
-}> {
-  const { getActiveSources, refreshRemoteSources: refresh } = await import('@/lib/comicfs/source-loader');
+): Promise<BatchDiagnosisResult> {
+  const { getActiveSources, refreshRemoteSources: refresh } = await import(
+    '@/lib/comicfs/source-loader'
+  );
 
+  // 获取活跃源
   let sources: Awaited<ReturnType<typeof getActiveSources>>['sources'] = [];
-  try { sources = (await getActiveSources({ onlyOk: false })).sources; } catch { /* ok */ }
+  try {
+    sources = (await getActiveSources({ onlyOk: false })).sources;
+  } catch { /* ok */ }
   if (sources.length === 0) {
-    try { await refresh(); sources = (await getActiveSources({ onlyOk: false })).sources; } catch { /* ok */ }
+    try {
+      await refresh();
+      sources = (await getActiveSources({ onlyOk: false })).sources;
+    } catch { /* ok */ }
   }
 
+  // 过滤：low/medium + active
   const filtered = sources
     .filter((s) => s.riskLevel === 'low' || s.riskLevel === 'medium')
     .filter((s) => s.status === 'active')
-    .slice(0, limit);
+    .slice(0, Math.min(limit, 50));
 
-  const items: Awaited<ReturnType<typeof diagnoseSourceBatch>>['items'] = [];
-  let passed = 0;
+  const items: BatchDiagnosisItem[] = [];
   const recommendedSourceIds: string[] = [];
+  let passed = 0;
 
-  // Sequential with concurrency 2
+  // 并发限制 2
   for (let i = 0; i < filtered.length; i += 2) {
     const batch = filtered.slice(i, i + 2);
     const results = await Promise.allSettled(
@@ -217,16 +264,51 @@ export async function diagnoseSourceBatch(
       if (r.status === 'fulfilled') {
         const d = r.value;
         items.push({
-          sourceId: d.sourceId, sourceName: d.sourceName, host: d.host,
-          ok: d.ok, failedAt: d.failedAt, error: d.error,
-          httpStatus: d.steps.httpStatus, htmlLength: d.steps.htmlLength,
-          itemCount: d.steps.itemCount, parsedCount: d.steps.parsedCount,
+          sourceId: d.sourceId,
+          sourceName: d.sourceName,
+          host: d.host,
+          ok: d.ok,
+          failedAt: d.failedAt,
+          error: d.error,
+          httpStatus: d.steps.httpStatus,
+          htmlLength: d.steps.htmlLength,
+          itemCount: d.steps.itemCount,
+          parsedCount: d.steps.parsedCount,
           finalSearchUrl: d.search.finalSearchUrl,
         });
-        if (d.ok) { passed++; recommendedSourceIds.push(d.sourceId); }
+        if (d.ok) {
+          passed++;
+          recommendedSourceIds.push(d.sourceId);
+        }
       }
     }
   }
 
-  return { items, passed, failed: items.length - passed, total: items.length, recommendedSourceIds };
+  return {
+    ok: true,
+    keyword,
+    limit,
+    total: items.length,
+    passed,
+    failed: items.length - passed,
+    items,
+    recommendedSourceIds,
+  };
+}
+
+// ---- 辅助 ----
+
+function makeResult(
+  sourceId: string,
+  sourceName: string,
+  host: string,
+  keyword: string,
+  ok: boolean,
+  failedAt: DiagnosisFailedAt | null,
+  error: { code: string; message: string; url?: string; cause?: string } | null,
+  steps: DiagnosisSteps,
+  search: DiagnosisResult['search'],
+  sampleResults: DiagnosisResult['sampleResults'],
+): DiagnosisResult {
+  return { ok, sourceId, sourceName, host, keyword, failedAt, error, steps, search, sampleResults };
 }

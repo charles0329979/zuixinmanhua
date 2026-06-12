@@ -35,6 +35,18 @@ export interface DryRunSource {
   riskLevel: string;
 }
 
+/** 诊断信息 (当 results=0 时返回) */
+export interface SearchDiagnostics {
+  reason: string;
+  hint: string;
+  suggestedAction: string;
+  debugUrl: string;
+  mode: string;
+  verifiedCount: number;
+  attemptedSources: Array<{ id: string; name: string; host: string }>;
+  errors: UnifiedSearchError[];
+}
+
 /** 统一搜索响应 */
 export interface UnifiedSearchResponse {
   ok: boolean;
@@ -47,6 +59,7 @@ export interface UnifiedSearchResponse {
   results: UnifiedSearchResult[];
   errors: UnifiedSearchError[];
   sources?: DryRunSource[]; // dryRun 模式时填充
+  diagnostics?: SearchDiagnostics; // 诊断信息
 }
 
 /** 搜索选项 */

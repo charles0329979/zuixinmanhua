@@ -1,0 +1,25 @@
+{
+  "name": "@zuixinmanhua/network",
+  "version": "2.0.0",
+  "description": "Unified HTTP client with retry, circuit breaker, and platform strategies",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@zuixinmanhua/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "axios": "^1.7.0"
+  },
+  "peerDependenciesMeta": {
+    "axios": {
+      "optional": true
+    }
+  }
+}

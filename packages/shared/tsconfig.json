@@ -5,8 +5,9 @@
     "moduleResolution": "bundler",
     "strict": true,
     "outDir": "./dist",
-    "rootDir": "./src",
-    "declaration": true
+    "rootDir": "./src"
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

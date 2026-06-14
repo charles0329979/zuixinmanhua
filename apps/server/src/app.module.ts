@@ -8,6 +8,7 @@ import { SourcesModule } from './sources/sources.module';
 import { HealthModule } from './health/health.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { LoggingModule } from './logging/logging.module';
+import { SyncModule } from './sync/sync.module';
 import { RuleBasedController } from './sources/rule-based.controller';
 
 @Module({
@@ -21,6 +22,7 @@ import { RuleBasedController } from './sources/rule-based.controller';
     HealthModule,
     ProxyModule,
     LoggingModule,
+    SyncModule,
   ],
   controllers: [RuleBasedController],
 })

@@ -7,11 +7,14 @@
     "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter server dev\"",
     "dev:web": "pnpm --filter web dev",
     "dev:server": "pnpm --filter server dev",
-    "build": "pnpm --filter web build && pnpm --filter server build",
+    "build": "pnpm -r run build",
     "build:web": "pnpm --filter web build",
     "build:server": "pnpm --filter server build",
+    "build:packages": "pnpm --filter './packages/*' run build",
+    "typecheck": "pnpm -r run typecheck",
     "lint": "pnpm --filter web lint && pnpm --filter server lint",
-    "start": "pnpm --filter server start"
+    "start": "pnpm --filter server start",
+    "clean": "pnpm -r exec rm -rf dist tsconfig.tsbuildinfo"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

@@ -1,0 +1,17 @@
+{
+  "name": "@zuixinmanhua/storage",
+  "version": "2.0.0",
+  "description": "SQLite database abstraction with repositories for favorites, progress, history",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@zuixinmanhua/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

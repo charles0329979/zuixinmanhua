@@ -1,0 +1,18 @@
+{
+  "name": "@zuixinmanhua/parser",
+  "version": "2.0.0",
+  "description": "Legado selector engine — CSS/JSONPath parser for comic source rules",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@zuixinmanhua/types": "workspace:*",
+    "cheerio": "1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

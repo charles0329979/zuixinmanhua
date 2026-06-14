@@ -10,6 +10,10 @@
     "verify:search-sources": "tsx src/scripts/verify-searchable-sources.ts"
   },
   "dependencies": {
+    "@zuixinmanhua/types": "workspace:*",
+    "@zuixinmanhua/parser": "workspace:*",
+    "@zuixinmanhua/network": "workspace:*",
+    "@zuixinmanhua/source-core": "workspace:*",
     "cheerio": "^1.2.0",
     "idb": "^8.0.0",
     "next": "^15.1.0",

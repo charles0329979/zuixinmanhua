@@ -11,6 +11,9 @@ import { KanmanAdapter } from './adapters/kanman';
 
 /**
  * AdapterFactoryService — 从数据库配置 + 域名池动态创建适配器实例
+ *
+ * NOTE: source-core 迁移暂时搁置，等 packages 构建出 CJS dist 后再切换。
+ * 当前所有适配器使用本地旧版（完全可用）。
  */
 @Injectable()
 export class AdapterFactoryService {

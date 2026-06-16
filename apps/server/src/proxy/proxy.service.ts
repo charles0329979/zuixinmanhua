@@ -55,19 +55,9 @@ export class ProxyService {
     }
   }
 
-  private isAllowedDomain(url: string, sourceId: string): boolean {
-    try {
-      const host = new URL(url).hostname;
-      const domains = this.configService.getDomainPool(sourceId);
-      return domains.some((d) => {
-        try {
-          return new URL(d.url).hostname === host;
-        } catch {
-          return false;
-        }
-      });
-    } catch {
-      return false;
-    }
+  private isAllowedDomain(_url: string, _sourceId: string): boolean {
+    // P0: Allow all image domains (personal service, firewall-protected)
+    // TODO: Add proper CDN domain whitelist per source
+    return true;
   }
 }

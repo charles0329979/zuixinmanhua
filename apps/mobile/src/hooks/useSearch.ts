@@ -1,51 +1,46 @@
 // ============================================================
 // apps/mobile/src/hooks/useSearch.ts
-// ★ 共享搜索 Hook — 从服务端聚合搜索
+// ★ 共享搜索 Hook — 调用 server API
 // ============================================================
 
 import { useState, useCallback } from 'react';
+import * as api from '../api/client';
 
-const API_BASE = 'http://10.0.2.2:3001/api'; // Android emulator → host
-// const API_BASE = 'http://localhost:3001/api'; // iOS simulator / dev
-
-interface SearchResult {
+export interface DisplayResult {
   id: string;
+  comicId: string;
   title: string;
   cover: string;
-  sourceId: string;
+  source: string;
   sourceName: string;
   author?: string;
   latestChapter?: string;
   status?: string;
-  detailUrl: string;
 }
 
 export function useSearch() {
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [results, setResults] = useState<DisplayResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const search = useCallback(async (query: string) => {
+  const doSearch = useCallback(async (query: string) => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(
-        `${API_BASE}/search?q=${encodeURIComponent(query)}`,
-      );
-      const data = await response.json();
+      const data = await api.search(query);
       const sources = data.sources || [];
       const allResults = sources.flatMap(
-        (s: any) =>
-          (s.results || []).map((r: any) => ({
-            id: `${s.sourceId}:${r.detailUrl}`,
+        (s) =>
+          (s.results || []).map((r) => ({
+            id: `${s.source}:${r.comicId}`,
+            comicId: r.comicId,
             title: r.title,
-            cover: r.cover,
-            sourceId: s.sourceId,
+            cover: r.cover || '',
+            source: s.source,
             sourceName: s.sourceName,
             author: r.author,
-            latestChapter: r.latestChapter,
+            latestChapter: r.lastChapter,
             status: r.status,
-            detailUrl: r.detailUrl,
           })),
       );
       setResults(allResults);
@@ -56,5 +51,5 @@ export function useSearch() {
     }
   }, []);
 
-  return { results, loading, error, search };
+  return { results, loading, error, search: doSearch };
 }

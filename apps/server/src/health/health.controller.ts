@@ -1,9 +1,13 @@
 import { Controller, Get, Post, Param } from '@nestjs/common';
 import { HealthService } from './health.service';
+import { HealthSchedulerService } from './health-scheduler.service';
 
 @Controller('health')
 export class HealthController {
-  constructor(private readonly healthService: HealthService) {}
+  constructor(
+    private readonly healthService: HealthService,
+    private readonly scheduler: HealthSchedulerService,
+  ) {}
 
   /** GET /api/health — 所有书源健康摘要 */
   @Get()
@@ -17,17 +21,30 @@ export class HealthController {
     return this.healthService.getSourceHealth(source);
   }
 
-  /** POST /api/health/:source/check — 手动触发检测 */
+  /** POST /api/health/:source/check — 手动触发单源检测 */
   @Post(':source/check')
   async checkOne(@Param('source') source: string) {
     return this.healthService.checkSource(source);
   }
 
-  /** POST /api/health/check-all — 一键检测所有 */
+  /** POST /api/health/check-all — 一键全量检测 */
   @Post('check-all')
   async checkAll() {
-    const { SourceConfigService } = await import('../sources/config/source-config.service');
-    // We use the already-injected services via HealthService
-    return { message: 'Use individual check endpoints' };
+    await this.scheduler.triggerFullCheck();
+    return { message: '全量健康检查已触发', timestamp: new Date().toISOString() };
+  }
+
+  /** POST /api/health/report — 手动生成日报 */
+  @Post('report')
+  async generateReport() {
+    const report = await this.scheduler.triggerDailyReport();
+    return { message: '日报已生成', report };
+  }
+
+  /** POST /api/health/recover-blocked — 手动触发 blocked 源恢复检测 */
+  @Post('recover-blocked')
+  async recoverBlocked() {
+    await this.scheduler.checkBlockedRecovery();
+    return { message: 'Blocked 源恢复检测已触发', timestamp: new Date().toISOString() };
   }
 }

@@ -51,11 +51,17 @@ export function SearchScreen({ navigation }: any) {
         columnWrapperStyle={styles.row}
         renderItem={({ item }) => (
           <ComicCard
-            comic={item}
+            comic={{
+              title: item.title,
+              cover: item.cover,
+              source: item.source,
+              sourceName: item.sourceName,
+              lastChapter: item.latestChapter,
+            }}
             onPress={() =>
               navigation.navigate('ComicDetail', {
-                source: item.sourceId,
-                comicId: item.detailUrl,
+                source: item.source,
+                comicId: item.comicId,
                 title: item.title,
               })
             }
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
   },
   searchBtnText: { color: '#fff', fontWeight: '600' },
   loader: { marginTop: 40 },
-  error: { color: '#f87171', textAlign: 'center', marginTop: 20, padding: 16 },
+  error: { color: '#f87171', textAlign: 'center', marginTop: 20, paddingHorizontal: 16 },
   empty: { color: '#64748b', textAlign: 'center', marginTop: 60, fontSize: 16 },
   row: { gap: 8, paddingHorizontal: 8 },
 });

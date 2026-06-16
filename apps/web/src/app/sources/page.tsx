@@ -47,7 +47,7 @@ export default function SourcesPage() {
   const handleTest = async (source: MangaSource) => {
     setTesting(source.id); setTestResult('');
     try {
-      const res = await apiFetch<{ success: boolean; data?: { resultCount: number } }>(`${API}/rule-sources/test`, {
+      const res = await apiFetch<{ success: boolean; message?: string; data?: { resultCount: number } }>(`${API}/rule-sources/test`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ source }),
       });

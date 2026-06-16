@@ -12,6 +12,17 @@ import { ComicCard } from '../components/ComicCard';
 
 type Tab = 'reading' | 'favorites' | 'history';
 
+interface CardItem {
+  id: string;
+  comicId: string;
+  title: string;
+  source: string;
+  cover?: string;
+  lastChapter?: string;
+  chapterTitle?: string;
+  pageIndex?: number;
+}
+
 export function LibraryScreen({ navigation }: any) {
   const [tab, setTab] = useState<Tab>('reading');
   const {
@@ -25,20 +36,39 @@ export function LibraryScreen({ navigation }: any) {
     loadHistory();
   }, []);
 
-  const readingList = Object.values(progress).sort(
-    (a, b) => b.lastReadAt - a.lastReadAt,
-  );
+  const readingList: CardItem[] = Object.values(progress)
+    .sort((a, b) => b.lastReadAt - a.lastReadAt)
+    .map((p) => ({
+      id: p.id,
+      comicId: p.comicId,
+      title: p.comicTitle,
+      source: p.source,
+      chapterTitle: p.chapterTitle,
+      pageIndex: p.pageIndex,
+    }));
 
-  const renderTab = () => {
-    switch (tab) {
-      case 'reading':
-        return readingList;
-      case 'favorites':
-        return favorites;
-      case 'history':
-        return history;
-    }
-  };
+  const favoritesList: CardItem[] = favorites.map((f) => ({
+    id: f.id,
+    comicId: f.comicId,
+    title: f.title,
+    source: f.source,
+    cover: f.cover,
+    lastChapter: f.lastChapter,
+  }));
+
+  const historyList: CardItem[] = history.map((h) => ({
+    id: h.id,
+    comicId: h.comicId,
+    title: h.title,
+    source: h.source,
+    cover: h.cover,
+    chapterTitle: h.chapterTitle,
+  }));
+
+  const data: CardItem[] =
+    tab === 'reading' ? readingList :
+    tab === 'favorites' ? favoritesList :
+    historyList;
 
   return (
     <View style={styles.container}>
@@ -57,8 +87,8 @@ export function LibraryScreen({ navigation }: any) {
       </View>
 
       <FlatList
-        data={renderTab()}
-        keyExtractor={(item) => item.id || item.comicId}
+        data={data}
+        keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={styles.row}
         renderItem={({ item }) => (
@@ -69,7 +99,7 @@ export function LibraryScreen({ navigation }: any) {
               navigation.navigate('ComicDetail', {
                 source: item.source,
                 comicId: item.comicId,
-                title: item.title || item.comicTitle,
+                title: item.title,
               })
             }
           />

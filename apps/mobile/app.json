@@ -19,8 +19,6 @@
       },
       "package": "com.zuixinmanhua.reader"
     },
-    "plugins": [
-      "expo-sqlite"
-    ]
+    "plugins": []
   }
 }

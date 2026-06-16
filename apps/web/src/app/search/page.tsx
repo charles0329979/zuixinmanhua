@@ -422,6 +422,7 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
+    // @ts-expect-error React 19 Suspense type compatibility with Next.js 15
     <Suspense
       fallback={
         <div className="text-center py-16 text-gray-400">加载中...</div>

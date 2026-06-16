@@ -3,7 +3,13 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "outDir": "./dist",
-    "lib": ["ES2022", "DOM"]
+    "lib": ["ES2022", "DOM"],
+    "paths": {
+      "@zuixinmanhua/types": ["../../packages/types/src"],
+      "@zuixinmanhua/network": ["../../packages/network/src"],
+      "@zuixinmanhua/storage": ["../../packages/storage/src"],
+      "@zuixinmanhua/source-core": ["../../packages/source-core/src"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

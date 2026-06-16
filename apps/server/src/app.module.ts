@@ -10,6 +10,7 @@ import { ProxyModule } from './proxy/proxy.module';
 import { LoggingModule } from './logging/logging.module';
 import { SyncModule } from './sync/sync.module';
 import { RuleBasedController } from './sources/rule-based.controller';
+import { RuleSourceAdminController } from './sources/rule-source-admin.controller';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { RuleBasedController } from './sources/rule-based.controller';
     LoggingModule,
     SyncModule,
   ],
-  controllers: [RuleBasedController],
+  controllers: [RuleBasedController, RuleSourceAdminController],
 })
 export class AppModule {}

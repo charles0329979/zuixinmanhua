@@ -200,7 +200,36 @@ export class KanmanAdapter extends BaseAdapter {
         nextChapter: cd.next_chapter ? { chapterId: cd.next_chapter.chapter_newid, title: cd.next_chapter.chapter_name } : undefined,
       };
     } catch {
-      return { chapterId, comicTitle: '', chapterTitle: '', images: [] };
+      return this.getChapterImagesFallback(comicId, chapterId);
     }
+  }
+
+  /** Fallback: construct image URLs from chapter list rule field (for non-mainstream comics) */
+  private async getChapterImagesFallback(comicId: string, chapterId: string): Promise<ChapterDetail> {
+    const chapters = await this.getChapters(comicId);
+    const ch = chapters.find((c) => c.chapterId === chapterId);
+    if (!ch || !ch.url) {
+      return { chapterId, comicTitle: '', chapterTitle: ch?.title || '', images: [] };
+    }
+
+    const rule = ch.url; // format: /comic/L/name/ch1_327295/$$.jpg
+    const chapterDomain = (ch as any).chapter_domain || 'dm300.com';
+    const images: string[] = [];
+
+    for (let page = 1; page <= 200; page++) {
+      const imgUrl = `https://${chapterDomain}${rule.replace('$$', String(page))}`;
+      try {
+        const resp = await this.fetch(imgUrl);
+        if (resp.status === 200) {
+          images.push(imgUrl);
+        } else {
+          break;
+        }
+      } catch {
+        break;
+      }
+    }
+
+    return { chapterId, comicTitle: '', chapterTitle: ch.title, images };
   }
 }

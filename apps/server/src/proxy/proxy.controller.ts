@@ -6,16 +6,16 @@ import { ProxyService } from './proxy.service';
 export class ProxyController {
   constructor(private readonly proxyService: ProxyService) {}
 
-  /** GET /api/proxy/image?url=xxx&source=xxx */
+  /** GET /api/proxy/image?url=xxx&source=xxx (source is optional) */
   @Get('image')
   async proxyImage(
     @Query('url') url: string,
     @Query('source') source: string,
     @Res() res: Response,
   ) {
-    if (!url || !source) {
-      return res.status(400).json({ error: '缺少 url 或 source 参数' });
+    if (!url) {
+      return res.status(400).json({ error: '缺少 url 参数' });
     }
-    return this.proxyService.proxyImage(url, source, res);
+    return this.proxyService.proxyImage(url, source || '', res);
   }
 }

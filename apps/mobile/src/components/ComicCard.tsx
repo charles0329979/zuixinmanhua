@@ -1,6 +1,6 @@
 // ============================================================
 // apps/mobile/src/components/ComicCard.tsx
-// 漫画卡片组件 — 封面 + 标题 + 进度条
+// 漫画卡片组件 — 封面 + 标题 + 来源 + 进度条
 // ============================================================
 
 import React from 'react';
@@ -13,8 +13,8 @@ interface ComicCardProps {
     title?: string;
     comicTitle?: string;
     cover?: string;
-    sourceName?: string;
     source?: string;
+    sourceName?: string;
     lastChapter?: string;
     chapterTitle?: string;
     pageIndex?: number;
@@ -37,10 +37,11 @@ export function ComicCard({ comic, progress, onPress }: ComicCardProps) {
         source={
           cover
             ? { uri: cover }
-            : require('../../assets/placeholder.png')
+            : { uri: 'https://placehold.co/400x560/334155/64748b?text=No+Cover' }
         }
         style={styles.cover}
         resizeMode="cover"
+        defaultSource={{ uri: 'https://placehold.co/400x560/1e293b/475569?text=...' }}
       />
       <Text style={styles.title} numberOfLines={2}>
         {title}
@@ -50,14 +51,14 @@ export function ComicCard({ comic, progress, onPress }: ComicCardProps) {
           {sub}
         </Text>
       ) : null}
-      {comic.lastChapter || comic.chapterTitle ? (
+      {(comic.lastChapter || comic.chapterTitle) ? (
         <Text style={styles.chapter} numberOfLines={1}>
           {comic.lastChapter || comic.chapterTitle}
         </Text>
       ) : null}
       {progress ? (
         <View style={styles.progressBar}>
-          <View style={[styles.progressFill, { width: `${progress.pageIndex || 0}%` }]} />
+          <View style={[styles.progressFill, { width: `${Math.min(100, progress.pageIndex || 0)}%` }]} />
         </View>
       ) : null}
     </TouchableOpacity>
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 2, backgroundColor: '#334155', marginHorizontal: 10, marginBottom: 8,
+    borderRadius: 1, overflow: 'hidden',
   },
   progressFill: {
     height: '100%', backgroundColor: '#6366f1',

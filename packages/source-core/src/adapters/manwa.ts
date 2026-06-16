@@ -130,7 +130,25 @@ export class ManwaAdapter extends BaseAdapter {
       if (src) add(src);
     });
 
-    // Regex fallback
+    // Method 2: path-based regex — /static/upload2/book/id/{comicId}/{chapterId}/...
+    if (images.length === 0) {
+      const re = /\/static\/upload2\/book\/id\/\d+\/(\d+)\/[a-f0-9_]+\.(?:webp|jpg|png|jpeg)/gi;
+      let m;
+      while ((m = re.exec(data as string)) !== null) {
+        if (m[1] === chapterId) add(m[0]);
+      }
+    }
+
+    // Method 3: attribute regex — scan all img tag attributes
+    if (images.length === 0) {
+      const re = /(?:data-r-src|data-original|data-src|src)\s*=\s*["']([^"']+\.(?:webp|jpg|png|jpeg)[^"']*)["']/gi;
+      let m;
+      while ((m = re.exec(data as string)) !== null) {
+        add(m[1]);
+      }
+    }
+
+    // Method 4: generic URL matching
     if (images.length === 0) {
       const re = new RegExp(
         `(https?://[^"'>\\s]+?upload[^"'>\\s]*?${chapterId}[^"'>\\s]*?\\.(?:webp|jpg|png|jpeg)[^"'>\\s]*)`,

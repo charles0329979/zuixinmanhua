@@ -4,16 +4,19 @@ import { SourceConfigService } from '../sources/config/source-config.service';
 import { CircuitBreakerService } from '../sources/circuit-breaker.service';
 import { DatabaseService } from '../database/database.service';
 import { ComicInfo } from '../sources/adapter.interface';
-import { CircuitBreakerError } from '../sources/source-policy.types';
+import { SourceStoreService } from '../sources/source-store.service';
+import { searchBySource } from '../sources/source-parser';
+import { RankedResult, rankAndFilter, scoreResult } from './search-ranker';
 
 export interface SourceSearchResult {
-  source: string;
+  sourceId: string;
   sourceName: string;
+  sourceType: 'hardcoded' | 'rule' | 'comicfs';
   tier: string;
   healthStatus: string;
-  results: ComicInfo[];
+  results: RankedResult[];
   error?: string;
-  responseTimeMs?: number;
+  responseTimeMs: number;
   skipped?: boolean;
   skipReason?: string;
 }
@@ -26,8 +29,12 @@ export interface SearchResponse {
     sourcesSearched: number;
     sourcesFailed: number;
     sourcesSkipped: number;
+    ruleSources: number;
+    hardcodedSources: number;
   };
 }
+
+const DEFAULT_TIMEOUT_MS = 5000;
 
 @Injectable()
 export class SearchService {
@@ -37,23 +44,27 @@ export class SearchService {
     private readonly sourcesService: SourcesService,
     private readonly configService: SourceConfigService,
     private readonly circuitBreaker: CircuitBreakerService,
+    private readonly sourceStore: SourceStoreService,
     private readonly db: DatabaseService,
   ) {}
 
   async searchAll(query: string): Promise<SearchResponse> {
-    if (!query || query.trim().length === 0) {
-      return { query: '', sources: [], summary: { totalResults: 0, sourcesSearched: 0, sourcesFailed: 0, sourcesSkipped: 0 } };
+    const q = (query || '').trim();
+    if (!q) {
+      return {
+        query: '',
+        sources: [],
+        summary: { totalResults: 0, sourcesSearched: 0, sourcesFailed: 0, sourcesSkipped: 0, ruleSources: 0, hardcodedSources: 0 },
+      };
     }
 
-    const configs = this.configService.getEnabledSources();
-
-    // 按 tier 排序：core 先，supplement 后
-    const sorted = configs.sort((a, b) => {
+    // --- Hardcoded sources ---
+    const hcConfigs = this.configService.getEnabledSources();
+    const sorted = hcConfigs.sort((a, b) => {
       const order = { core: 0, supplement: 1, disabled: 2 };
       return (order[a.tier] ?? 99) - (order[b.tier] ?? 99);
     });
-
-    const searchable = sorted.filter((c) => {
+    const searchableHc = sorted.filter((c) => {
       const row = this.configService.getRawConfig(c.sourceId);
       const mode = (row as any)?.mode || 'server-parser';
       if (mode === 'external-only') return false;
@@ -61,117 +72,205 @@ export class SearchService {
       return true;
     });
 
-    const skipCount = sorted.length - searchable.length;
-    this.logger.log(`🔍 搜索 "${query}" — ${searchable.length}/${sorted.length} 个可搜索书源${skipCount > 0 ? ` (${skipCount} 跳过)` : ''}`);
+    // --- Rule-based sources ---
+    const ruleSources = this.sourceStore.getEnabled().filter(s => {
+      if (s.mode === 'client') return false; // skip client-mode sources on server
+      return true;
+    });
+
+    const totalSearchable = searchableHc.length + ruleSources.length;
+
+    this.logger.log(
+      `Search "${q}" → ${searchableHc.length} hardcoded + ${ruleSources.length} rule sources`,
+    );
 
     let totalResults = 0;
     let sourcesFailed = 0;
+    const skipCount = hcConfigs.length - searchableHc.length;
 
-    // Promise.allSettled — 单个源失败不影响其他源
-    const promises = searchable.map(async (config) => {
+    // --- Search hardcoded sources ---
+    const hcPromises = searchableHc.map(async (config): Promise<SourceSearchResult> => {
       const start = Date.now();
       try {
         const adapter = await this.sourcesService.getAdapter(config.sourceId);
         if (!adapter) {
           sourcesFailed++;
           return {
-            source: config.sourceId,
-            sourceName: config.name,
-            tier: config.tier,
-            healthStatus: 'unavailable',
-            results: [],
-            error: '域名解析失败，书源暂不可用',
+            sourceId: config.sourceId, sourceName: config.name, sourceType: 'hardcoded',
+            tier: config.tier, healthStatus: 'unavailable',
+            results: [], responseTimeMs: Date.now() - start,
+            error: '书源暂不可用',
           };
         }
-        const results = await adapter.search(query.trim());
-        const responseTime = Date.now() - start;
-        totalResults += results.length;
-
-        try {
-          this.db.run(
-            'INSERT INTO source_search_logs (source_id, keyword, is_success, result_count, response_time_ms) VALUES (?, ?, 1, ?, ?)',
-            [config.sourceId, query.trim(), results.length, responseTime],
-          );
-        } catch {}
-
+        const raw = await adapter.search(q);
+        const ranked = rankAndFilter(
+          raw.map(r => ({
+            title: r.title, cover: r.cover || '', detailUrl: r.comicId,
+            comicId: r.comicId, sourceId: config.sourceId, sourceName: config.name,
+            sourceType: 'hardcoded' as const, author: r.author,
+            latestChapter: r.lastChapter, status: r.status,
+          })),
+          q,
+        );
+        totalResults += ranked.length;
         return {
-          source: config.sourceId,
-          sourceName: config.name,
-          tier: config.tier,
-          healthStatus: this.getSourceOverallHealth(config.sourceId),
-          results,
-          responseTimeMs: responseTime,
+          sourceId: config.sourceId, sourceName: config.name, sourceType: 'hardcoded',
+          tier: config.tier, healthStatus: this.getSourceOverallHealth(config.sourceId),
+          results: ranked, responseTimeMs: Date.now() - start,
         };
       } catch (e: any) {
         sourcesFailed++;
-
-        // 熔断错误 — 记录到熔断器
-        if (e instanceof CircuitBreakerError) {
+        if (e.constructor?.name === 'CircuitBreakerError') {
           this.circuitBreaker.recordFailure(config.sourceId, e);
         }
-
-        const responseTime = Date.now() - start;
-        try {
-          this.db.run(
-            'INSERT INTO source_search_logs (source_id, keyword, is_success, result_count, response_time_ms, error_message) VALUES (?, ?, 0, 0, ?, ?)',
-            [config.sourceId, query.trim(), responseTime, e.message?.slice(0, 500)],
-          );
-        } catch {}
         return {
-          source: config.sourceId,
-          sourceName: config.name,
-          tier: config.tier,
-          healthStatus: this.getSourceOverallHealth(config.sourceId),
-          results: [],
-          error: e.message,
-          responseTimeMs: responseTime,
+          sourceId: config.sourceId, sourceName: config.name, sourceType: 'hardcoded',
+          tier: config.tier, healthStatus: this.getSourceOverallHealth(config.sourceId),
+          results: [], responseTimeMs: Date.now() - start, error: e.message,
         };
       }
     });
 
-    const sources = await Promise.allSettled(promises).then((results) =>
-      results.map((r) => (r.status === 'fulfilled' ? r.value : {
-        source: 'unknown', sourceName: 'unknown', tier: 'supplement',
-        healthStatus: 'error', results: [], error: '搜索过程异常',
-      } as SourceSearchResult))
+    // --- Search rule-based sources (with timeout) ---
+    const rulePromises = ruleSources.map(async (source): Promise<SourceSearchResult> => {
+      const start = Date.now();
+      const timeoutMs = source.timeoutMs || DEFAULT_TIMEOUT_MS;
+
+      try {
+        const raw = await Promise.race([
+          searchBySource(source, q),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs),
+          ),
+        ]);
+
+        const ranked = rankAndFilter(
+          raw.map(r => ({
+            title: r.title, cover: r.cover || '', detailUrl: r.detailUrl,
+            comicId: r.detailUrl, sourceId: source.id, sourceName: source.name,
+            sourceType: 'rule' as const, author: undefined,
+            latestChapter: r.latestChapter, status: r.status,
+          })),
+          q,
+        );
+        totalResults += ranked.length;
+        return {
+          sourceId: source.id, sourceName: source.name, sourceType: 'rule',
+          tier: 'supplement', healthStatus: 'unknown',
+          results: ranked, responseTimeMs: Date.now() - start,
+        };
+      } catch (e: any) {
+        sourcesFailed++;
+        return {
+          sourceId: source.id, sourceName: source.name, sourceType: 'rule',
+          tier: 'supplement', healthStatus: 'unknown',
+          results: [], responseTimeMs: Date.now() - start, error: e.message?.slice(0, 200),
+        };
+      }
+    });
+
+    // --- Execute all in parallel ---
+    const allResults = await Promise.allSettled([...hcPromises, ...rulePromises]);
+    const sources = allResults.map(r =>
+      r.status === 'fulfilled' ? r.value : {
+        sourceId: 'unknown', sourceName: 'unknown', sourceType: 'hardcoded' as const,
+        tier: 'supplement', healthStatus: 'error',
+        results: [], responseTimeMs: 0, error: '搜索异常',
+      },
     );
 
     return {
-      query: query.trim(),
+      query: q,
       sources,
       summary: {
         totalResults,
-        sourcesSearched: searchable.length,
+        sourcesSearched: totalSearchable,
         sourcesFailed,
         sourcesSkipped: skipCount,
+        ruleSources: ruleSources.length,
+        hardcodedSources: searchableHc.length,
       },
     };
   }
 
   async searchOne(source: string, query: string): Promise<SourceSearchResult> {
+    const q = query.trim();
+    const start = Date.now();
+
+    // Try hardcoded first
     const config = this.configService.getConfig(source);
-    if (!config) throw new Error(`书源 ${source} 不存在`);
-    const adapter = await this.sourcesService.getAdapter(source);
-    if (!adapter) throw new Error(`书源 ${source} 不可用`);
-    const results = await adapter.search(query.trim());
+    if (config) {
+      try {
+        const adapter = await this.sourcesService.getAdapter(source);
+        if (adapter) {
+          const raw = await adapter.search(q);
+          const ranked = rankAndFilter(
+            raw.map(r => ({
+              title: r.title, cover: r.cover || '', detailUrl: r.comicId,
+              comicId: r.comicId, sourceId: source, sourceName: config.name,
+              sourceType: 'hardcoded' as const, author: r.author,
+              latestChapter: r.lastChapter, status: r.status,
+            })),
+            q,
+          );
+          return {
+            sourceId: source, sourceName: config.name, sourceType: 'hardcoded',
+            tier: config.tier, healthStatus: this.getSourceOverallHealth(source),
+            results: ranked, responseTimeMs: Date.now() - start,
+          };
+        }
+      } catch (e: any) {
+        return {
+          sourceId: source, sourceName: config.name, sourceType: 'hardcoded',
+          tier: config.tier, healthStatus: 'error',
+          results: [], responseTimeMs: Date.now() - start, error: e.message,
+        };
+      }
+    }
+
+    // Try rule source
+    const ruleSource = this.sourceStore.getById(source);
+    if (ruleSource && ruleSource.enabled) {
+      try {
+        const raw = await searchBySource(ruleSource, q);
+        const ranked = rankAndFilter(
+          raw.map(r => ({
+            title: r.title, cover: r.cover || '', detailUrl: r.detailUrl,
+            comicId: r.detailUrl, sourceId: source, sourceName: ruleSource.name,
+            sourceType: 'rule' as const, author: undefined,
+            latestChapter: r.latestChapter, status: r.status,
+          })),
+          q,
+        );
+        return {
+          sourceId: source, sourceName: ruleSource.name, sourceType: 'rule',
+          tier: 'supplement', healthStatus: 'unknown',
+          results: ranked, responseTimeMs: Date.now() - start,
+        };
+      } catch (e: any) {
+        return {
+          sourceId: source, sourceName: ruleSource.name, sourceType: 'rule',
+          tier: 'supplement', healthStatus: 'error',
+          results: [], responseTimeMs: Date.now() - start, error: e.message,
+        };
+      }
+    }
+
     return {
-      source: adapter.id,
-      sourceName: adapter.name,
-      tier: config.tier,
-      healthStatus: this.getSourceOverallHealth(source),
-      results,
+      sourceId: source, sourceName: source, sourceType: 'hardcoded',
+      tier: 'disabled', healthStatus: 'unknown',
+      results: [], responseTimeMs: 0, error: '书源不存在',
     };
   }
 
-  /** 从 DB 获取书源总体健康状态 */
   private getSourceOverallHealth(sourceId: string): string {
     const checks = this.db.query<{ is_healthy: number }>(
       'SELECT is_healthy FROM source_health_status WHERE source_id = ?',
       [sourceId],
     );
     if (checks.length === 0) return 'unknown';
-    const allHealthy = checks.every((c) => c.is_healthy === 1);
-    const anyHealthy = checks.some((c) => c.is_healthy === 1);
+    const allHealthy = checks.every(c => c.is_healthy === 1);
+    const anyHealthy = checks.some(c => c.is_healthy === 1);
     if (allHealthy) return 'healthy';
     if (anyHealthy) return 'degraded';
     return 'unhealthy';

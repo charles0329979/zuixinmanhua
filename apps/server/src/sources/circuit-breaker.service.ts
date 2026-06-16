@@ -193,4 +193,22 @@ export class CircuitBreakerService {
     );
     return (rows || []).map((r) => r.source_id).filter((id) => !this.isBlocked(id));
   }
+
+  /** 获取所有当前 blocked 的书源 */
+  getAllBlockedSources(): { sourceId: string; blockedUntil: string; lastError: string }[] {
+    const rows = this.db.query<{
+      source_id: string;
+      blocked_until: string;
+      last_error: string;
+    }>(
+      `SELECT source_id, blocked_until, last_error
+       FROM source_configs
+       WHERE enabled = 1 AND health_status = 'blocked'`,
+    );
+    return (rows || []).map((r) => ({
+      sourceId: r.source_id,
+      blockedUntil: r.blocked_until || '',
+      lastError: r.last_error || '',
+    }));
+  }
 }

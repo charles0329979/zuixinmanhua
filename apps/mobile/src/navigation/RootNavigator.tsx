@@ -84,7 +84,7 @@ export function AppNavigator() {
         options={{
           headerShown: false,
           presentation: 'fullScreenModal',
-          animation: 'slideFromBottom',
+          animation: 'slide_from_bottom',
         }} />
     </Stack.Navigator>
   );

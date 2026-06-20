@@ -72,9 +72,14 @@ export class SearchService {
       return true;
     });
 
-    // --- Rule-based sources (disabled temporarily — too many concurrency issues) ---
-    // TODO: implement source-by-source staggered search with proper concurrency limits
-    const ruleSources: any[] = [];
+    // --- Rule-based sources (top 10 by weight, with 5s per-source timeout) ---
+    const allRuleSources = this.sourceStore.getEnabled().filter(s => {
+      if (s.mode === 'client') return false; // skip client-mode sources on server
+      return true;
+    });
+    const ruleSources = allRuleSources
+      .sort((a, b) => (b.weight || 0) - (a.weight || 0))
+      .slice(0, 10);
 
     const totalSearchable = searchableHc.length + ruleSources.length;
 
@@ -168,7 +173,7 @@ export class SearchService {
     });
 
     // --- Execute all in parallel with global timeout ---
-    const GLOBAL_TIMEOUT_MS = 8000;
+    const GLOBAL_TIMEOUT_MS = 15000;
     const allPromises = Promise.allSettled([...hcPromises, ...rulePromises]);
     const allResults = await Promise.race([
       allPromises,

@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   image: { width: SCREEN_WIDTH, height: SCREEN_WIDTH * 1.45 },
   endNav: {
     flexDirection: 'row', justifyContent: 'space-between',
-    padding: 16, gap: 12,
+    padding: 16,
   },
   navBtn: {
     flex: 1, backgroundColor: '#1e293b', borderRadius: 8,

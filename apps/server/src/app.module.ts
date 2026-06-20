@@ -9,6 +9,7 @@ import { HealthModule } from './health/health.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { LoggingModule } from './logging/logging.module';
 import { SyncModule } from './sync/sync.module';
+import { OtaModule } from './ota/ota.module';
 import { RuleBasedController } from './sources/rule-based.controller';
 import { RuleSourceAdminController } from './sources/rule-source-admin.controller';
 
@@ -24,6 +25,7 @@ import { RuleSourceAdminController } from './sources/rule-source-admin.controlle
     ProxyModule,
     LoggingModule,
     SyncModule,
+    OtaModule,
   ],
   controllers: [RuleBasedController, RuleSourceAdminController],
 })

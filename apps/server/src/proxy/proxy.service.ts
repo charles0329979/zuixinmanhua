@@ -8,15 +8,14 @@ export class ProxyService {
   constructor(private readonly configService: SourceConfigService) {}
 
   /**
-   * 流式转发图片，注入 Referer 和 User-Agent
-   * 不存储图片到本地
+   * 缓冲式转发图片，注入 Referer 和 User-Agent
+   * 使用 arraybuffer 避免 chunked transfer 导致 RN Image 加载失败
    */
   async proxyImage(
     url: string,
     sourceId: string,
     res: any,
   ): Promise<void> {
-    // 安全检查：只允许代理已注册书源域名下的图片
     if (!this.isAllowedDomain(url, sourceId)) {
       res.status(403).json({ error: '域名不在允许列表中' });
       return;
@@ -27,26 +26,32 @@ export class ProxyService {
 
     try {
       const response = await axios.get(url, {
-        responseType: 'stream',
-        timeout: 15000,
+        responseType: 'arraybuffer',
+        timeout: 30000,
         headers: {
           'User-Agent': requestConfig.userAgent || 'Mozilla/5.0',
           Referer: config?.domains[0]?.url || '',
         },
       });
 
+      var ct = String(response.headers['content-type'] || '');
+      // If CDN doesn't give a proper image Content-Type, guess from URL extension
+      if (!ct || ct === 'binary/octet-stream' || ct.indexOf('image/') !== 0) {
+        var urlLower = url.toLowerCase();
+        if (urlLower.indexOf('.webp') !== -1) ct = 'image/webp';
+        else if (urlLower.indexOf('.png') !== -1) ct = 'image/png';
+        else if (urlLower.indexOf('.gif') !== -1) ct = 'image/gif';
+        else ct = 'image/jpeg';
+      }
+
+      const buffer = Buffer.from(response.data);
       res.set({
-        'Content-Type': response.headers['content-type'] || 'image/jpeg',
+        'Content-Type': ct,
+        'Content-Length': buffer.length,
         'Cache-Control': 'public, max-age=86400',
         'Access-Control-Allow-Origin': '*',
       });
-
-      response.data.pipe(res);
-
-      response.data.on('error', (e: any) => {
-        this.logger.warn(`图片流错误: ${e.message}`);
-        if (!res.headersSent) res.status(502).end();
-      });
+      res.send(buffer);
     } catch (e: any) {
       this.logger.warn(`图片代理失败 [${sourceId}]: ${url} — ${e.message}`);
       if (!res.headersSent) {
@@ -57,7 +62,6 @@ export class ProxyService {
 
   private isAllowedDomain(_url: string, _sourceId: string): boolean {
     // P0: Allow all image domains (personal service, firewall-protected)
-    // TODO: Add proper CDN domain whitelist per source
     return true;
   }
 }

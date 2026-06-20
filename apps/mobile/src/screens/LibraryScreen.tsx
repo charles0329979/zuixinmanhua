@@ -117,7 +117,7 @@ export function LibraryScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0f172a' },
   tabs: {
-    flexDirection: 'row', padding: 8, gap: 8,
+    flexDirection: 'row', padding: 8,
     borderBottomWidth: 1, borderBottomColor: '#1e293b',
   },
   tab: {
@@ -128,5 +128,5 @@ const styles = StyleSheet.create({
   tabText: { color: '#64748b', fontSize: 14, fontWeight: '500' },
   tabTextActive: { color: '#6366f1' },
   empty: { color: '#64748b', textAlign: 'center', marginTop: 60, fontSize: 16 },
-  row: { gap: 8, paddingHorizontal: 8 },
+  row: { paddingHorizontal: 4, marginBottom: 8 },
 });

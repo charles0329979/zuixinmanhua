@@ -81,7 +81,7 @@ export function SearchScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0f172a' },
-  searchBar: { flexDirection: 'row', padding: 12, gap: 8 },
+  searchBar: { flexDirection: 'row', padding: 12 },
   input: {
     flex: 1, backgroundColor: '#1e293b', borderRadius: 10,
     paddingHorizontal: 16, paddingVertical: 10, color: '#f1f5f9',
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   },
   searchBtn: {
     backgroundColor: '#6366f1', borderRadius: 10,
-    paddingHorizontal: 20, justifyContent: 'center',
+    paddingHorizontal: 20, justifyContent: 'center', marginLeft: 8,
   },
   searchBtnText: { color: '#fff', fontWeight: '600' },
   loader: { marginTop: 40 },
   error: { color: '#f87171', textAlign: 'center', marginTop: 20, paddingHorizontal: 16 },
   empty: { color: '#64748b', textAlign: 'center', marginTop: 60, fontSize: 16 },
-  row: { gap: 8, paddingHorizontal: 8 },
+  row: { paddingHorizontal: 4 },
 });

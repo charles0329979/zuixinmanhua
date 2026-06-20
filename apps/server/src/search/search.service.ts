@@ -72,11 +72,9 @@ export class SearchService {
       return true;
     });
 
-    // --- Rule-based sources ---
-    const ruleSources = this.sourceStore.getEnabled().filter(s => {
-      if (s.mode === 'client') return false; // skip client-mode sources on server
-      return true;
-    });
+    // --- Rule-based sources (disabled temporarily — too many concurrency issues) ---
+    // TODO: implement source-by-source staggered search with proper concurrency limits
+    const ruleSources: any[] = [];
 
     const totalSearchable = searchableHc.length + ruleSources.length;
 
@@ -169,15 +167,28 @@ export class SearchService {
       }
     });
 
-    // --- Execute all in parallel ---
-    const allResults = await Promise.allSettled([...hcPromises, ...rulePromises]);
-    const sources = allResults.map(r =>
-      r.status === 'fulfilled' ? r.value : {
-        sourceId: 'unknown', sourceName: 'unknown', sourceType: 'hardcoded' as const,
-        tier: 'supplement', healthStatus: 'error',
-        results: [], responseTimeMs: 0, error: '搜索异常',
-      },
-    );
+    // --- Execute all in parallel with global timeout ---
+    const GLOBAL_TIMEOUT_MS = 8000;
+    const allPromises = Promise.allSettled([...hcPromises, ...rulePromises]);
+    const allResults = await Promise.race([
+      allPromises,
+      new Promise<PromiseSettledResult<SourceSearchResult>[]>((resolve) =>
+        setTimeout(() => resolve([]), GLOBAL_TIMEOUT_MS)
+      ),
+    ]);
+    const sources = allResults.length > 0
+      ? allResults.map(r =>
+          r.status === 'fulfilled' ? r.value : {
+            sourceId: 'unknown', sourceName: 'unknown', sourceType: 'hardcoded' as const,
+            tier: 'supplement', healthStatus: 'error',
+            results: [], responseTimeMs: 0, error: '搜索异常',
+          },
+        )
+      : [{
+          sourceId: 'system', sourceName: '系统', sourceType: 'hardcoded' as const,
+          tier: 'core', healthStatus: 'healthy',
+          results: [], responseTimeMs: GLOBAL_TIMEOUT_MS, error: '搜索超时，请尝试单源搜索',
+        }];
 
     return {
       query: q,

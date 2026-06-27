@@ -102,7 +102,12 @@ function extractText(el: cheerio.Cheerio<any>, sel: string): string {
 }
 
 export async function searchBySource(source: MangaSource, keyword: string): Promise<AggregatedComicResult[]> {
-  const url = source.search.url.replace('{{keyword}}', encodeURIComponent(keyword));
+  let url = source.search.url
+    .replace('{{keyword}}', encodeURIComponent(keyword))
+    .replace('{{key}}', encodeURIComponent(keyword))
+    .replace('{{searchKey}}', encodeURIComponent(keyword))
+    .replace('{{wd}}', encodeURIComponent(keyword))
+    .replace('{{query}}', encodeURIComponent(keyword));
   const fullUrl = resolveUrl(source.host, url);
 
   // JSON response type (e.g. KIMICMS search API)

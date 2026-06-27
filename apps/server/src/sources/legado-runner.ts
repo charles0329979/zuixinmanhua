@@ -1,5 +1,81 @@
-// Legado DSL Runner — executes Legado @js: expressions via QuickJS
+// Legado DSL Runner — executes Legado @js: expressions + CSS selector conversion
 import { MangaSource } from './source-store';
+
+/**
+ * Convert a Legado CSS selector to standard CSS + attribute to extract.
+ *
+ * Legado syntax:
+ *   class.xxx    → .xxx (CSS class selector)
+ *   tag.xxx      → xxx   (CSS tag selector)
+ *   id.xxx       → #xxx  (CSS id selector)
+ *   @attr        → extract attribute (text, href, src, data-xxx, etc.)
+ *   @tag.xxx     → child selector: find <xxx> descendants
+ *   @class.xxx   → child selector: find .xxx descendants
+ *   @@           → escaped @ (literal @ character)
+ *   @js:         → JavaScript expression (handled by splitLegadoSelector)
+ *
+ * Examples:
+ *   "class.update_con@tag.li" → css: ".update_con li", attr: "text"
+ *   "tag.img@src"             → css: "img",            attr: "src"
+ *   "class.title@text"        → css: ".title",         attr: "text"
+ *   "a@href"                  → css: "a",              attr: "href"
+ *   "class.list@tag.a@href"   → css: ".list a",        attr: "href"
+ */
+export function convertLegadoCss(raw: string): { cssSelector: string; attr: string } {
+  if (!raw) return { cssSelector: 'body', attr: 'text' };
+
+  // Step 1: Temporarily replace @@ with placeholder
+  const escaped = raw.replace(/@@/g, '\x00AT\x00');
+
+  // Step 2: Split by @ (but not inside \n@js:)
+  const parts = escaped.split('@');
+
+  // Step 3: Convert the first part (CSS selector base)
+  let cssParts: string[] = [];
+  const firstPart = parts[0].trim();
+  if (firstPart) {
+    // Convert class.xxx → .xxx, tag.xxx → xxx, id.xxx → #xxx
+    cssParts.push(convertBaseSelector(firstPart));
+  }
+
+  // Step 4: Process remaining parts
+  let attr = 'text'; // default
+
+  for (let i = 1; i < parts.length; i++) {
+    let part = parts[i].trim();
+
+    // Restore escaped @
+    part = part.replace(/\x00AT\x00/g, '@');
+
+    if (!part) continue;
+
+    // Check if it's a child selector (tag.xxx, class.xxx, id.xxx)
+    if (part.startsWith('tag.')) {
+      cssParts.push(part.slice(4)); // tag name only
+    } else if (part.startsWith('class.')) {
+      cssParts.push('.' + part.slice(6));
+    } else if (part.startsWith('id.')) {
+      cssParts.push('#' + part.slice(3));
+    } else {
+      // It's an attribute to extract (text, href, src, data-xxx, etc.)
+      attr = part;
+    }
+  }
+
+  const cssSelector = cssParts.join(' ').trim() || 'body';
+  return { cssSelector, attr };
+}
+
+/** Convert Legado base selector to CSS: class.xxx→.xxx, tag.xxx→xxx, id.xxx→#xxx */
+function convertBaseSelector(raw: string): string {
+  const parts = raw.split(',').map(p => p.trim());
+  return parts.map(part => {
+    if (part.startsWith('class.')) return '.' + part.slice(6);
+    if (part.startsWith('tag.')) return part.slice(4);
+    if (part.startsWith('id.')) return '#' + part.slice(3);
+    return part; // already a CSS selector
+  }).join(', ');
+}
 
 /** Split a Legado selector into [cssPart, jsPart] */
 export function splitLegadoSelector(selector: string): { cssPart: string; jsPart: string } {

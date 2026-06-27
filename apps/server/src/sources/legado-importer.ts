@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { MangaSource } from "./source-store";
 import { sourceStore } from "./source-store";
+import { convertLegadoCss, splitLegadoSelector } from "./legado-runner";
 
 interface LegadoSource {
   bookSourceName?: string; bookSourceUrl?: string; bookSourceType?: number;
@@ -41,6 +42,26 @@ export function convertLegadoToMangaSource(raw) {
   var img = raw.ruleContent || {};
   var hasJs = hasJsExpr(Object.assign({}, s, d, c, img));
   var isManga = raw.bookSourceType === 2 || (raw.bookSourceGroup || "").includes("漫画");
+
+  // Convert Legado CSS selectors to standard CSS
+  var listCss = convertLegadoCss(s.bookList || "");
+  var titleCss = convertLegadoCss(s.name || "");
+  var coverCss = convertLegadoCss(s.coverUrl || "");
+  var urlCss = convertLegadoCss(s.bookUrl || "");
+  var authCss = convertLegadoCss(s.author || "");
+  var lastCss = convertLegadoCss(s.lastChapter || "");
+  var detTitleCss = convertLegadoCss(d.name || "");
+  var detCoverCss = convertLegadoCss(d.coverUrl || "");
+  var detAuthCss = convertLegadoCss(d.author || "");
+  var detDescCss = convertLegadoCss(d.intro || "");
+  var chListCss = convertLegadoCss(c.chapterList || "");
+  var chNameCss = convertLegadoCss(c.chapterName || "");
+  var chUrlCss = convertLegadoCss(c.chapterUrl || "");
+  var imgCss = convertLegadoCss(img.content || "");
+
+  // Use responseType:'json' if searchUrl has {{key}} without {{page}} pattern (JSON API)
+  var isJsonSearch = raw.searchUrl && raw.searchUrl.includes("{{key}}") && !raw.searchUrl.includes("{{page}}");
+
   var source: MangaSource = {
     id: id, name: name.slice(0, 50), host: host,
     enabled: raw.enabled !== false, language: "zh",
@@ -49,30 +70,31 @@ export function convertLegadoToMangaSource(raw) {
     mode: "server",
     search: {
       url: raw.searchUrl || "/search?keyword={{keyword}}",
-      method: "GET", responseType: "html",
-      listSelector: parseSelector(s.bookList || "").selector || "body",
-      titleSelector: parseSelector(s.name || "").selector || "h1",
-      coverSelector: parseSelector(s.coverUrl || "").selector || "img",
-      detailUrlSelector: parseSelector(s.bookUrl || "").selector || "a",
-      latestChapterSelector: parseSelector(s.lastChapter || "").selector || undefined,
+      method: "GET",
+      responseType: isJsonSearch ? "json" : "html",
+      listSelector: listCss.cssSelector || "body",
+      titleSelector: titleCss.cssSelector || "h1",
+      coverSelector: coverCss.cssSelector || "img",
+      detailUrlSelector: urlCss.cssSelector || "a",
+      latestChapterSelector: lastCss.cssSelector || undefined,
       statusSelector: undefined, updateTimeSelector: undefined,
     },
     detail: {
-      titleSelector: parseSelector(d.name || "").selector || "title",
-      coverSelector: parseSelector(d.coverUrl || "").selector || undefined,
-      authorSelector: parseSelector(d.author || "").selector || undefined,
-      descriptionSelector: parseSelector(d.intro || "").selector || undefined,
-      statusSelector: parseSelector(d.kind || "").selector || undefined,
+      titleSelector: detTitleCss.cssSelector || "title",
+      coverSelector: detCoverCss.cssSelector || undefined,
+      authorSelector: detAuthCss.cssSelector || undefined,
+      descriptionSelector: detDescCss.cssSelector || undefined,
+      statusSelector: undefined,
       latestChapterSelector: undefined,
     },
     chapters: {
-      listSelector: parseSelector(c.chapterList || "").selector || "li",
-      titleSelector: parseSelector(c.chapterName || "").selector || "a",
-      urlSelector: parseSelector(c.chapterUrl || "").selector || "a",
+      listSelector: chListCss.cssSelector || "li",
+      titleSelector: chNameCss.cssSelector || "a",
+      urlSelector: chUrlCss.cssSelector || "a",
     },
     images: {
-      listSelector: parseSelector(img.content || "").selector || "img",
-      srcAttribute: parseSelector(img.content || "").attr === "js" ? "src" : parseSelector(img.content || "").attr || "src",
+      listSelector: imgCss.cssSelector || "img",
+      srcAttribute: imgCss.attr || "src",
     },
     headers: raw.header || undefined,
     timeoutMs: raw.respondTime ? Math.min(raw.respondTime, 15000) : undefined,

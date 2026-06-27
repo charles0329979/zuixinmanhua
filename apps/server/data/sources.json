@@ -4123,5 +4123,51 @@
     },
     "createdAt": "2026-06-27T13:41:50.402Z",
     "updatedAt": "2026-06-27T13:41:50.402Z"
+  },
+  {
+    "id": "lg-dig1t1",
+    "name": "再漫画",
+    "host": "https://manhua.zaimanhua.com/",
+    "enabled": true,
+    "language": "zh",
+    "weight": 50,
+    "tags": [
+      "漫画"
+    ],
+    "mode": "server",
+    "search": {
+      "url": "https://manhua.zaimanhua.com/dynamic/{{key}}",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": "class.update_con",
+      "titleSelector": "class.title",
+      "coverSelector": "tag.img",
+      "detailUrlSelector": "https://manhua.zaimanhua.com/api/v1/comic1/comic/detail?channel=%20pc&app_name=zmh&version=1.0.0&comic_py={{@@class.title@tag.a"
+    },
+    "detail": {
+      "titleSelector": "$..comicInfo.title",
+      "coverSelector": "$..cover",
+      "authorSelector": "$..authorName",
+      "descriptionSelector": "$..description",
+      "statusSelector": "{{$..status}}\n{{$..readerGroup}}\n{{$..types##/##,}}"
+    },
+    "chapters": {
+      "listSelector": "$..chapterList\n@js:\nresult = JSON.parse(result)[0]\nres = []\nresult.reverse().forEach(v=>{\n  res.push(JSON.stringify({\n    chapter_title: v.title,\n    isV: true\n  }))\n  v.data.reverse().forEach(c=>{\n    res.push(JSON.stringify(c))\n  })\n})\nres",
+      "titleSelector": "$.chapter_title",
+      "urlSelector": "@js:\nresult = JSON.parse(result)\nresult.isV? '' : `https://manhua.zaimanhua.com/api/v1/comic1/chapter/detail?channel=pc&app_name=zmh&version=1.0.0&comic_id=${java.get('bid')}&chapter_id=${result.chapter_id}`"
+    },
+    "images": {
+      "listSelector": "$..page_url\n@js:\nJSON.parse(result).map(url=>`<img src=\"${url}\">`).join('\\n')",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 15000,
+    "createdAt": "2026-06-27T15:04:46.311Z",
+    "updatedAt": "2026-06-27T15:04:46.323Z",
+    "jsRules": {
+      "engine": "quickjs",
+      "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+      "timeoutMs": 8000,
+      "memoryLimitMb": 16
+    }
   }
 ]

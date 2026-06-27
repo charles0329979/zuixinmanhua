@@ -3,11 +3,12 @@
 // 规则书源管理 — 导入、检测、同步
 // ============================================================
 
-import { Controller, Get, Post, Logger } from '@nestjs/common';
+import { Controller, Get, Post, Body, Logger } from '@nestjs/common';
 import { SourceStoreService } from './source-store.service';
 import { sourceStore } from './source-store';
 import { importComicfsDir, readComicfsIndex } from './comicfs-importer';
 import { searchBySource } from './source-parser';
+import { fetchAndImport } from './legado-importer';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -138,6 +139,31 @@ export class RuleSourceAdminController {
       }
     }
     return { ok: true, enabled };
+  }
+
+  /** POST /api/rule-sources/legado/fetch — 从社区仓库导入 Legado 源 */
+  @Post('legado/fetch')
+  async fetchLegado(@Body() body: { url?: string; filterType?: number }) {
+    const url = body.url || 'https://raw.githubusercontent.com/jiwangyihao/source-j-legado/master/zaimanhua.json';
+    const filterType = body.filterType;
+    this.logger.log(`Fetching Legado sources from: ${url}`);
+    const result = await fetchAndImport(url, filterType);
+    this.logger.log(`Legado import done: ${result.imported} imported, ${result.skipped} skipped (total: ${result.total})`);
+    return { ok: true, ...result, url };
+  }
+
+  /** POST /api/rule-sources/legado/import-json — 直接粘贴 Legado JSON 导入 */
+  @Post('legado/import-json')
+  async importLegadoJson(@Body() body: { sources: any[] }) {
+    const { convertLegadoToMangaSource } = await import('./legado-importer');
+    const converted: any[] = [];
+    for (const raw of body.sources || []) {
+      const src = convertLegadoToMangaSource(raw);
+      if (src) converted.push(src);
+    }
+    if (converted.length > 0) sourceStore.importSources(converted);
+    this.logger.log(`Legado JSON import: ${converted.length} sources`);
+    return { ok: true, imported: converted.length };
   }
 
   /** GET /api/rule-sources/stats — 规则源统计 */

@@ -1,9 +1,61 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import * as https from 'https';
 import type { MangaSource } from './source-store';
+
+// HTTPS agent that allows insecure SSL (for sites with expired/bad certs)
+const insecureAgent = new https.Agent({ rejectUnauthorized: false });
+
+function getAxiosConfig(source: MangaSource, overrides: Record<string, any> = {}): Record<string, any> {
+  const config: Record<string, any> = {
+    timeout: source.timeoutMs || 10000,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36',
+      ...(source.headers || {}),
+    },
+    responseType: 'text',
+    ...overrides,
+  };
+  // Use insecure HTTPS agent for sources with SSL issues (e.g. expired certs)
+  const srcAny = source as any;
+  if (srcAny.allowInsecureSSL) {
+    config.httpsAgent = insecureAgent;
+  }
+  return config;
+}
 
 // Re-export for external use
 export type { MangaSource };
+
+// ============================================================
+// Images API handler — for sources that use AJAX to load images
+// (e.g. YYDS calls POST /api/comic/read/pics to get real URLs)
+// ============================================================
+interface ImagesApiConfig {
+  url: string;
+  method?: 'GET' | 'POST';
+  /** JSON path to image array, e.g. "data.pic" */
+  listPath: string;
+  /** Field name for each image URL in the list, e.g. "pic" */
+  urlField: string;
+  /** Extra body params to send with the request */
+  bodyParams?: Record<string, string>;
+  /** CSS selector to extract additional params from the HTML */
+  extractParams?: {
+    /** CSS selector for the element containing the param */
+    selector: string;
+    /** Attribute name to extract */
+    attribute: string;
+    /** Map attribute value to this param name */
+    paramName: string;
+    /** Default value if not found */
+    defaultValue?: string;
+  }[];
+  /** Total image limit (fetched across multiple offset batches) */
+  totalLimit?: number;
+  /** Batch size per request */
+  batchSize?: number;
+}
 export interface AggregatedSearchResponse {
   keyword: string; totalResults: number;
   sources: { sourceId: string; sourceName: string; results: AggregatedComicResult[]; error?: string }[];
@@ -15,11 +67,7 @@ export interface AggregatedComicResult {
 }
 
 async function fetchHTML(url: string, source: MangaSource): Promise<cheerio.CheerioAPI> {
-  const resp = await axios.get(url, {
-    timeout: source.timeoutMs || 5000,
-    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', ...(source.headers || {}) },
-    responseType: 'text',
-  });
+  const resp = await axios.get(url, getAxiosConfig(source));
   return cheerio.load(resp.data);
 }
 
@@ -64,11 +112,7 @@ export async function searchBySource(source: MangaSource, keyword: string): Prom
 
 /** JSON API 搜索 — 将 CSS 选择器字段重用作 JSON 字段名 */
 async function searchBySourceJSON(source: MangaSource, fullUrl: string): Promise<AggregatedComicResult[]> {
-  const resp = await axios.get(fullUrl, {
-    timeout: source.timeoutMs || 5000,
-    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', ...(source.headers || {}) },
-    responseType: 'json',
-  });
+  const resp = await axios.get(fullUrl, getAxiosConfig(source, { responseType: 'json' }));
   const json = resp.data;
 
   // listSelector 当作 JSON 路径，如 "data" 或 "data.list"
@@ -210,6 +254,13 @@ export async function getChaptersBySource(source: MangaSource, detailUrl: string
 }
 
 export async function getImagesBySource(source: MangaSource, chapterUrl: string): Promise<string[]> {
+  // Check for imagesApi support (sources that use AJAX to load images)
+  const srcAny = source as any;
+  if (srcAny.imagesApi) {
+    return getImagesByApi(source, srcAny.imagesApi as ImagesApiConfig, chapterUrl);
+  }
+
+  // Standard HTML parsing method
   const fullUrl = resolveUrl(source.host, chapterUrl);
   const $ = await fetchHTML(fullUrl, source);
   const images: string[] = [];
@@ -220,6 +271,123 @@ export async function getImagesBySource(source: MangaSource, chapterUrl: string)
     } catch {}
   });
   return images;
+}
+
+/** Fetch images via API (for sources like YYDS that use JS lazy-loading) */
+async function getImagesByApi(
+  source: MangaSource,
+  apiConfig: ImagesApiConfig,
+  chapterUrl: string,
+): Promise<string[]> {
+  const allImages: string[] = [];
+  const seen = new Set<string>();
+  const batchSize = apiConfig.batchSize || 999;
+  const totalLimit = apiConfig.totalLimit || 999;
+  const method = (apiConfig.method || 'POST').toUpperCase();
+
+  // First, fetch the chapter HTML to extract any needed params
+  let extractedParams: Record<string, string> = {};
+  if (apiConfig.extractParams && apiConfig.extractParams.length > 0) {
+    try {
+      const fullUrl = resolveUrl(source.host, chapterUrl);
+      const $ = await fetchHTML(fullUrl, source);
+      for (const ep of apiConfig.extractParams) {
+        const $el = $(ep.selector).first();
+        const val = $el.attr(ep.attribute) || ep.defaultValue || '';
+        extractedParams[ep.paramName] = val;
+      }
+    } catch (e: any) {
+      // If HTML fetch fails, proceed with defaults
+    }
+  }
+
+  // Extract chapter ID from the chapterUrl
+  // e.g. /episode/1393/124128.html → 124128
+  const chIdMatch = chapterUrl.match(/(\d+)\.html?$/);
+  const chapterId = chIdMatch ? chIdMatch[1] : '';
+
+  // Fetch images in batches
+  for (let offset = 0; offset < totalLimit; offset += batchSize) {
+    try {
+      const body: Record<string, any> = {
+        id: chapterId,
+        offset: offset,
+        limit: Math.min(batchSize, totalLimit - offset),
+        ...(apiConfig.bodyParams || {}),
+        ...extractedParams,
+      };
+
+      let resp: any;
+      const apiUrl = resolveUrl(source.host, apiConfig.url);
+
+      if (method === 'POST') {
+        resp = await axios.post(apiUrl, body, getAxiosConfig(source, {
+          responseType: 'json',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            ...(source.headers || {}),
+          },
+        }));
+      } else {
+        resp = await axios.get(apiUrl, getAxiosConfig(source, {
+          responseType: 'json',
+          params: body,
+        }));
+      }
+
+      const json = resp.data;
+      if (!json) break;
+
+      // Navigate to the image list via listPath (e.g. "data.pic")
+      let arr: any[] = json;
+      const pathParts = apiConfig.listPath.split('.');
+      for (const key of pathParts) {
+        if (arr && typeof arr === 'object' && key in arr) {
+          arr = arr[key];
+        } else {
+          arr = [];
+          break;
+        }
+      }
+      if (!Array.isArray(arr) || arr.length === 0) break;
+
+      for (const item of arr) {
+        const imgUrl = item[apiConfig.urlField];
+        if (imgUrl && typeof imgUrl === 'string' && !seen.has(imgUrl)) {
+          seen.add(imgUrl);
+          allImages.push(resolveUrl(source.host, imgUrl));
+        }
+      }
+
+      // If we got fewer than batchSize, we've reached the end
+      if (arr.length < Math.min(batchSize, totalLimit - offset)) break;
+    } catch (e: any) {
+      // If any batch fails, stop
+      break;
+    }
+  }
+
+  // Encode URLs with spaces/Chinese chars for direct loading
+  return allImages.map(function(u) {
+    try {
+      // Encode path segments while preserving protocol+host
+      var protoEnd = u.indexOf('://');
+      if (protoEnd > 0) {
+        var proto = u.slice(0, protoEnd + 3);
+        var rest = u.slice(protoEnd + 3);
+        var pathStart = rest.indexOf('/');
+        if (pathStart > 0) {
+          var host = rest.slice(0, pathStart);
+          var rawPath = rest.slice(pathStart);
+          var encodedPath = rawPath.split('/').map(function(seg) {
+            return encodeURIComponent(decodeURIComponent(seg));
+          }).join('/');
+          return proto + host + encodedPath;
+        }
+      }
+    } catch(e) {}
+    return u;
+  });
 }
 
 // ========== Parse-only 函数 (用于 client 模式 — 客户端预取 HTML 后提交解析) ==========

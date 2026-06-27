@@ -234,7 +234,25 @@
     },
     "timeoutMs": 10000,
     "createdAt": "2026-06-07T08:47:46.588Z",
-    "updatedAt": "2026-06-07T08:47:46.588Z"
+    "updatedAt": "2026-06-26T03:15:55.456Z",
+    "imagesApi": {
+      "url": "/api/comic/read/pics",
+      "method": "POST",
+      "listPath": "data.pic",
+      "urlField": "pic",
+      "bodyParams": {},
+      "extractParams": [
+        {
+          "selector": ".reader-pic-slot",
+          "attribute": "data-aid",
+          "paramName": "aid",
+          "defaultValue": ""
+        }
+      ],
+      "totalLimit": 999,
+      "batchSize": 50
+    },
+    "allowInsecureSSL": true
   },
   {
     "id": "mkzhan",
@@ -4064,5 +4082,46 @@
     "timeoutMs": 8000,
     "createdAt": "2026-06-16T15:46:59.879Z",
     "updatedAt": "2026-06-16T15:46:59.880Z"
+  },
+  {
+    "id": "manwa",
+    "name": "漫蛙",
+    "host": "https://manwafz.cc",
+    "enabled": true,
+    "language": "zh",
+    "weight": 90,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "",
+      "method": "GET",
+      "listSelector": "",
+      "titleSelector": "",
+      "coverSelector": "",
+      "detailUrlSelector": ""
+    },
+    "detail": {
+      "titleSelector": ""
+    },
+    "chapters": {
+      "listSelector": "",
+      "titleSelector": "",
+      "urlSelector": ""
+    },
+    "images": {
+      "listSelector": "",
+      "srcAttribute": ""
+    },
+    "jsRules": {
+      "engine": "quickjs",
+      "scriptFile": "manwa-decrypt.js",
+      "timeoutMs": 5000,
+      "memoryLimitMb": 16
+    },
+    "createdAt": "2026-06-27T13:41:50.402Z",
+    "updatedAt": "2026-06-27T13:41:50.402Z"
   }
 ]

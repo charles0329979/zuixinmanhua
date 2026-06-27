@@ -8,6 +8,9 @@ import { CopyAdapter } from './adapters/copy';
 import { BaoziAdapter } from './adapters/baozi';
 import { DongmanZhijiaAdapter } from './adapters/dongmanzhijia';
 import { KanmanAdapter } from './adapters/kanman';
+import { LegadoAdapter } from './adapters/legado.adapter';
+import { JsEngineService } from './js-engine.service';
+import { sourceStore } from './source-store';
 
 /**
  * AdapterFactoryService — 从数据库配置 + 域名池动态创建适配器实例
@@ -23,6 +26,7 @@ export class AdapterFactoryService {
   constructor(
     private readonly configService: SourceConfigService,
     private readonly domainResolver: DomainResolverService,
+    private readonly jsEngine: JsEngineService,
   ) {}
 
   /** 获取一个已注入上下文的适配器实例 */
@@ -90,7 +94,19 @@ export class AdapterFactoryService {
       case 'baozi': return new BaoziAdapter(ctx);
       case 'dongmanzhijia': return new DongmanZhijiaAdapter(ctx);
       case 'kanman': return new KanmanAdapter(ctx);
-      default: throw new Error(`未知适配器: ${sourceId}`);
+      default:
+        // Check if this is a JS-powered source
+        const ruleSource = sourceStore.getSourceById(sourceId);
+        if (ruleSource?.jsRules && ruleSource.enabled) {
+          this.logger.debug(`🔧 创建 JS 适配器: ${sourceId} -> ${ruleSource.host}`);
+          return new LegadoAdapter(ctx, this.jsEngine, {
+            id: ruleSource.id,
+            name: ruleSource.name,
+            host: ruleSource.host,
+            jsRules: ruleSource.jsRules,
+          });
+        }
+        throw new Error(`未知适配器: ${sourceId}`);
     }
   }
 }

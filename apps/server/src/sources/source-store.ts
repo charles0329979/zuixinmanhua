@@ -20,8 +20,31 @@ export interface MangaSource {
   };
   chapters: { listSelector: string; titleSelector: string; urlSelector: string };
   images: { listSelector: string; srcAttribute: string };
+  /** Optional: JavaScript-based source rules (executed via QuickJS sandbox) */
+  jsRules?: {
+    engine: 'quickjs';
+    /** Inline JS source code */
+    script?: string;
+    /** Path to .js file relative to data/scripts/ directory */
+    scriptFile?: string;
+    /** Per-function timeout in ms (default: 5000) */
+    timeoutMs?: number;
+    /** VM memory limit in MB (default: 16, max: 64) */
+    memoryLimitMb?: number;
+  };
+  /** Optional: API-based image fetching for sources that use JS lazy-loading (e.g. YYDS) */
+  imagesApi?: {
+    url: string; method?: 'GET' | 'POST'; listPath: string; urlField: string;
+    bodyParams?: Record<string, string>;
+    extractParams?: {
+      selector: string; attribute: string; paramName: string; defaultValue?: string;
+    }[];
+    totalLimit?: number; batchSize?: number;
+  };
   headers?: Record<string, string>;
   timeoutMs?: number;
+  /** Allow insecure HTTPS connections (for sites with expired/bad SSL certs) */
+  allowInsecureSSL?: boolean;
   createdAt: string; updatedAt: string;
 }
 

@@ -1,6 +1,26 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
+import * as https from 'https';
 import { SourceConfigService } from '../sources/config/source-config.service';
+import { sourceStore } from '../sources/source-store';
+import { JsEngineService } from '../sources/js-engine.service';
+
+// Dynamic import for ESM sharp
+let sharpModule: any = null;
+async function getSharp() {
+  if (!sharpModule) {
+    sharpModule = await import('sharp');
+  }
+  return sharpModule.default || sharpModule;
+}
+
+// HTTPS agent that allows insecure SSL (for CDNs with bad/expired certs)
+// Also enables older TLS versions for compatibility with non-standard CDNs
+const insecureAgent = new https.Agent({
+  rejectUnauthorized: false,
+  minVersion: 'TLSv1' as any,
+  maxVersion: 'TLSv1.3' as any,
+});
 
 // ============================================================
 // ProxyService — 图片代理 (防盗链绕过 + Content-Type 检测)
@@ -27,7 +47,10 @@ export class ProxyService {
     dongmanzhijia: 'https://www.dmzj.com/',
   };
 
-  constructor(private readonly configService: SourceConfigService) {}
+  constructor(
+    private readonly configService: SourceConfigService,
+    private readonly jsEngine: JsEngineService,
+  ) {}
 
   // ============================================================
   // Bug 1 fix: getRefererForSource — 安全获取 Referer
@@ -45,7 +68,17 @@ export class ProxyService {
       return this.refererMap[sourceId];
     }
 
-    // 2. 数据库中的书源配置 (可能包含 domain)
+    // 2. OTA 规则源 — 查 sources.json 获取 host
+    try {
+      const ruleSource = sourceStore.getSourceById(sourceId);
+      if (ruleSource?.host) {
+        return ruleSource.host.endsWith('/') ? ruleSource.host : ruleSource.host + '/';
+      }
+    } catch {
+      // ignore
+    }
+
+    // 3. 数据库中的书源配置 (可能包含 domain)
     try {
       const config = this.configService.getConfig(sourceId);
       if (config?.domains?.[0]?.url) {
@@ -55,7 +88,7 @@ export class ProxyService {
       // 规则源可能不在 DB 中，忽略
     }
 
-    // 3. sourceId 本身是合法 URL 的情况 (极少，但防御)
+    // 4. sourceId 本身是合法 URL 的情况 (极少，但防御)
     try {
       const parsed = new URL(sourceId);
       return `${parsed.protocol}//${parsed.hostname}/`;
@@ -233,10 +266,36 @@ export class ProxyService {
 
     let axiosResponse: any;
     try {
-      axiosResponse = await axios.get(url, {
+      // Encode URL to handle spaces, Chinese chars in CDN paths.
+      // Must encode path segments but PRESERVE query string (?param=value).
+      let fetchUrl = url;
+      try {
+        const protoEnd = url.indexOf('://');
+        if (protoEnd > 0) {
+          const proto = url.slice(0, protoEnd + 3);
+          const rest = url.slice(protoEnd + 3);
+          const pathStart = rest.indexOf('/');
+          if (pathStart > 0) {
+            const host = rest.slice(0, pathStart);
+            const rawPathAndQuery = rest.slice(pathStart);
+            // Split query string off before encoding path
+            const qIdx = rawPathAndQuery.indexOf('?');
+            const rawPath = qIdx > 0 ? rawPathAndQuery.slice(0, qIdx) : rawPathAndQuery;
+            const query = qIdx > 0 ? rawPathAndQuery.slice(qIdx) : '';
+            // Encode path segments (skip empty segments from trailing slashes)
+            const encodedPath = rawPath.split('/').map(function(seg) {
+              return seg ? encodeURIComponent(decodeURIComponent(seg)) : '';
+            }).join('/');
+            fetchUrl = proto + host + encodedPath + query;
+          }
+        }
+      } catch {}
+
+      axiosResponse = await axios.get(fetchUrl, {
         responseType: 'arraybuffer',
         timeout: 30000,
         headers,
+        httpsAgent: insecureAgent,
       });
     } catch (e: any) {
       // --- Bug 5 fix: 结构化错误响应 ---
@@ -302,11 +361,41 @@ export class ProxyService {
 
     // --- Bug 3 fix: magic bytes 检测 ---
 
-    const contentType = this.detectContentType(
+    let contentType = this.detectContentType(
       axiosResponse.headers['content-type'],
       url,
       buffer,
     );
+
+    // Manwa decryption: CDN serves AES-encrypted images
+    if (sourceId === 'manwa') {
+      const manwaSource = sourceStore.getSourceById('manwa');
+      if (manwaSource?.jsRules) {
+        try {
+          const ctx = { sourceId: 'manwa', sourceName: '漫蛙', sourceHost: manwaSource.host };
+          buffer = await this.jsEngine.decryptImage(ctx, manwaSource.jsRules, buffer, {
+            imageUrl: url,
+            size: buffer.length,
+          });
+          contentType = 'image/jpeg';
+          this.logger.debug(`[PROXY] Manwa decrypted: ${url?.slice(0, 80)}`);
+        } catch (e: any) {
+          this.logger.warn(`[PROXY] Manwa decryption failed: ${e.message}`);
+          // Return raw data — client may handle it (or show error)
+        }
+      }
+    }
+
+    // Convert WebP to JPEG for compatibility with older Android/React Native
+    if (contentType === 'image/webp') {
+      try {
+        const sharp = await getSharp();
+        buffer = await sharp(buffer).jpeg({ quality: 85 }).toBuffer();
+        contentType = 'image/jpeg';
+      } catch (e: any) {
+        this.logger.warn(`[PROXY] WebP→JPEG conversion failed, sending original: ${e.message}`);
+      }
+    }
 
     res.set({
       'Content-Type': contentType,

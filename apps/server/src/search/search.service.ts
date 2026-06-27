@@ -36,6 +36,15 @@ export interface SearchResponse {
 
 const DEFAULT_TIMEOUT_MS = 5000;
 
+/** Shorter timeout for rule-based sources to avoid blocking the whole search */
+const RULE_SOURCE_TIMEOUT_MS = 3000;
+
+/** Global search timeout (wait for all parallel source searches to settle) */
+const GLOBAL_TIMEOUT_MS = 25000;
+
+/** Max number of rule-based sources to search (by weight, descending) */
+const MAX_RULE_SOURCES = 15;
+
 @Injectable()
 export class SearchService {
   private readonly logger = new Logger(SearchService.name);
@@ -72,14 +81,15 @@ export class SearchService {
       return true;
     });
 
-    // --- Rule-based sources (top 10 by weight, with 5s per-source timeout) ---
+    // --- Rule-based sources (top N by weight, with shorter per-source timeout) ---
     const allRuleSources = this.sourceStore.getEnabled().filter(s => {
       if (s.mode === 'client') return false; // skip client-mode sources on server
+      if ((s.weight || 0) <= 0) return false; // skip zero-weight (untested/broken) sources
       return true;
     });
     const ruleSources = allRuleSources
       .sort((a, b) => (b.weight || 0) - (a.weight || 0))
-      .slice(0, 10);
+      .slice(0, MAX_RULE_SOURCES);
 
     const totalSearchable = searchableHc.length + ruleSources.length;
 
@@ -137,7 +147,7 @@ export class SearchService {
     // --- Search rule-based sources (with timeout) ---
     const rulePromises = ruleSources.map(async (source): Promise<SourceSearchResult> => {
       const start = Date.now();
-      const timeoutMs = source.timeoutMs || DEFAULT_TIMEOUT_MS;
+      const timeoutMs = Math.min(source.timeoutMs || DEFAULT_TIMEOUT_MS, RULE_SOURCE_TIMEOUT_MS);
 
       try {
         const raw = await Promise.race([
@@ -173,7 +183,6 @@ export class SearchService {
     });
 
     // --- Execute all in parallel with global timeout ---
-    const GLOBAL_TIMEOUT_MS = 15000;
     const allPromises = Promise.allSettled([...hcPromises, ...rulePromises]);
     const allResults = await Promise.race([
       allPromises,

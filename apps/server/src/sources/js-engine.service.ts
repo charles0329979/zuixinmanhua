@@ -166,4 +166,72 @@ if(typeof atob==='undefined'){globalThis.atob=function(s){var c='ABCDEFGHIJKLMNO
 
     return parts.join('\n');
   }
+
+  // ============================================================
+  // Legado Runtime — execute @js: expressions
+  // ============================================================
+
+  /** Execute a Legado-style @js: expression with result context + java.put/get */
+  async executeLegadoJs(
+    context: JsExecutionContext,
+    jsCode: string,
+    variables: Record<string, any> = {},
+    rules?: JsRulesConfig,
+  ): Promise<any> {
+    await this.ensureInit();
+
+    const fullCode = this.buildLegadoCode(jsCode, variables);
+    const timeout = rules?.timeoutMs ?? 5000;
+    const mem = Math.min(rules?.memoryLimitMb ?? 16, 64);
+    const qjs = await loadQuickJsFn(wasmVariant);
+
+    try {
+      const result = await qjs.runSandboxed(
+        async ({ evalCode }: any) => evalCode(fullCode),
+        { timeoutMs: timeout, memoryLimitMb: mem, allowFetch: true, allowFs: false },
+      );
+      if (result.ok && result.data !== undefined) {
+        try { return JSON.parse(result.data); } catch { return result.data; }
+      }
+      throw new Error(result.error?.message || 'Legado JS execution failed');
+    } finally {
+      try { qjs.module?.dispose?.(); } catch {}
+    }
+  }
+
+  /** Build code for Legado @js: execution with java API + result context */
+  private buildLegadoCode(jsCode: string, vars: Record<string, any>): string {
+    const parts: string[] = [];
+
+    // btoa/atob polyfill
+    parts.push(`
+if(typeof btoa==='undefined'){globalThis.btoa=function(s){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o='';var i=0;for(;i<s.length;i+=3){var a=s.charCodeAt(i)&255,b=i+1<s.length?s.charCodeAt(i+1)&255:NaN,d=i+2<s.length?s.charCodeAt(i+2)&255:NaN;o+=c.charAt(a>>2);o+=c.charAt(((a&3)<<4)|(isNaN(b)?0:(b>>4)));o+=isNaN(b)?'=':c.charAt(((b&15)<<2)|(isNaN(d)?0:(d>>6)));o+=isNaN(d)?'=':c.charAt(d&63);}return o;};}
+if(typeof atob==='undefined'){globalThis.atob=function(s){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';var o='';var i=0;s=s.replace(/[^A-Za-z0-9+/=]/g,'');for(;i<s.length;i+=4){var a=c.indexOf(s.charAt(i)),b=c.indexOf(s.charAt(i+1)),d=c.indexOf(s.charAt(i+2)),e=c.indexOf(s.charAt(i+3));o+=String.fromCharCode((a<<2)|(b>>4));if(d!==64)o+=String.fromCharCode(((b&15)<<4)|(d>>2));if(e!==64)o+=String.fromCharCode(((d&3)<<6)|e);}return o;};}
+`);
+
+    // CryptoJS
+    if (this.cryptoJsBundle) parts.push(this.cryptoJsBundle);
+
+    // Legado runtime: java.put/get + result context
+    const varsJson = JSON.stringify(vars);
+    parts.push(`
+var java_store = {};
+var java = {
+  put: function(k, v) { java_store[k] = v; },
+  get: function(k) { return java_store[k] || ''; },
+  getStr: function(k) { return String(java_store[k] || ''); }
+};
+var __vars = ${varsJson};
+for (var k in __vars) { globalThis[k] = __vars[k]; }
+var result = __vars.result || '';
+`);
+
+    // User's JS expression
+    parts.push(jsCode);
+
+    // Return both result and java_store
+    parts.push('JSON.stringify({result: result, java_store: java_store})');
+
+    return parts.join('\n');
+  }
 }

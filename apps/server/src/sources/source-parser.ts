@@ -2,6 +2,10 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import * as https from 'https';
 import type { MangaSource } from './source-store';
+import { splitLegadoSelector } from './legado-runner';
+
+/** Callback for executing JS expressions (provided by JsEngineService) */
+export type JsExecutor = (jsCode: string, variables: Record<string, any>) => Promise<any>;
 
 // HTTPS agent that allows insecure SSL (for sites with expired/bad certs)
 const insecureAgent = new https.Agent({ rejectUnauthorized: false });
@@ -253,23 +257,63 @@ export async function getChaptersBySource(source: MangaSource, detailUrl: string
   return chapters;
 }
 
-export async function getImagesBySource(source: MangaSource, chapterUrl: string): Promise<string[]> {
+export async function getImagesBySource(
+  source: MangaSource,
+  chapterUrl: string,
+  jsExec?: JsExecutor,
+): Promise<string[]> {
   // Check for imagesApi support (sources that use AJAX to load images)
   const srcAny = source as any;
   if (srcAny.imagesApi) {
     return getImagesByApi(source, srcAny.imagesApi as ImagesApiConfig, chapterUrl);
   }
 
+  // Check for @js: expression in image selector (Legado DSL)
+  const imgSel = source.images.listSelector;
+  const { cssPart, jsPart } = splitLegadoSelector(imgSel);
+
   // Standard HTML parsing method
   const fullUrl = resolveUrl(source.host, chapterUrl);
   const $ = await fetchHTML(fullUrl, source);
   const images: string[] = [];
-  $(source.images.listSelector).each((_, el) => {
+
+  if (cssPart) {
+    $(cssPart).each((_, el) => {
+      try {
+        const src = $(el).attr(source.images.srcAttribute) || $(el).attr('data-src') || $(el).attr('data-original') || '';
+        if (src) images.push(resolveUrl(source.host, src));
+      } catch {}
+    });
+  }
+
+  // If there's a @js: part, run it through the JS executor to transform results
+  if (jsPart && jsExec) {
     try {
-      const src = $(el).attr(source.images.srcAttribute) || $(el).attr('data-src') || $(el).attr('data-original') || '';
-      if (src) images.push(resolveUrl(source.host, src));
-    } catch {}
-  });
+      const result = await jsExec(jsPart, { result: JSON.stringify(images) });
+      if (result?.result !== undefined) {
+        // JS may return HTML <img> tags or URL array
+        const transformed = result.result;
+        if (typeof transformed === 'string') {
+          // Extract URLs from HTML img tags
+          const urlMatches = transformed.match(/src\s*=\s*["']([^"']+)["']/g);
+          if (urlMatches) {
+            return urlMatches.map((m: string) => {
+              const url = (m.match(/["']([^"']+)["']/) || [])[1] || '';
+              return url.startsWith('http') ? url : resolveUrl(source.host, url);
+            });
+          }
+        }
+        if (Array.isArray(transformed)) {
+          return transformed.map((u: string) =>
+            typeof u === 'string' ? (u.startsWith('http') ? u : resolveUrl(source.host, u)) : ''
+          ).filter(Boolean);
+        }
+      }
+    } catch (e: any) {
+      // JS execution failed, fall through to raw images
+    }
+  }
+
   return images;
 }
 

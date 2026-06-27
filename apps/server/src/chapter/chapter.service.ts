@@ -2,11 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SourcesService } from '../sources/sources.service';
 import { sourceStore } from '../sources/source-store';
 import { getImagesBySource } from '../sources/source-parser';
+import { JsEngineService } from '../sources/js-engine.service';
 
 @Injectable()
 export class ChapterService {
   private readonly logger = new Logger(ChapterService.name);
-  constructor(private readonly sourcesService: SourcesService) {}
+  constructor(
+    private readonly sourcesService: SourcesService,
+    private readonly jsEngine: JsEngineService,
+  ) {}
 
   async getChapterImages(source: string, comicId: string, chapterId: string) {
     // Try hardcoded adapter first
@@ -20,7 +24,17 @@ export class ChapterService {
     if (ruleSource && ruleSource.enabled) {
       try {
         const chapterUrl = decodeURIComponent(chapterId);
-        const images = await getImagesBySource(ruleSource, chapterUrl);
+
+        // Build JS executor for @js: expressions
+        let jsExec: any = undefined;
+        const srcAny = ruleSource as any;
+        if (srcAny.jsRules) {
+          const ctx = { sourceId: source, sourceName: ruleSource.name, sourceHost: ruleSource.host };
+          jsExec = (jsCode: string, vars: Record<string, any>) =>
+            this.jsEngine.executeLegadoJs(ctx, jsCode, vars, srcAny.jsRules);
+        }
+
+        const images = await getImagesBySource(ruleSource, chapterUrl, jsExec);
         const comicTitle = ruleSource.name || source;
         return {
           chapterId,

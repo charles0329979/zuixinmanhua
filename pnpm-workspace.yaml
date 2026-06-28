@@ -4,5 +4,6 @@ packages:
 allowBuilds:
   '@nestjs/core': true
   better-sqlite3: true
+  canvas: set this to true or false
   esbuild: set this to true or false
   sharp: true

@@ -1,0 +1,15 @@
+{
+  "repositoryId": "jiwangyihao-legado-manga",
+  "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+  "branch": "main",
+  "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+  "importedAt": "2026-06-27T17:50:43.689Z",
+  "files": [
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/zaimanhua.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-manga\\a36d68d59f6d157316952262301e9d553de4eec7\\7a2265dd2f24-zaimanhua.json",
+      "rawHash": "7a2265dd2f249d7c73316f825786c18d7010cd123d60221c49679ef89d0f4c9d",
+      "size": 3925
+    }
+  ]
+}

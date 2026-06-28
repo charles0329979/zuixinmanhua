@@ -1,0 +1,27 @@
+{
+  "runId": "run-2026-06-28T15-32-56-257Z",
+  "repositoryId": "ppcat-store",
+  "repositoryUrl": "https://github.com/AcgLibrary/ppcat_store",
+  "branch": "master",
+  "commitSha": "3b1d56d9cca6246995fe7a8d8e82281707fc72cf",
+  "startedAt": "2026-06-28T15:32:56.257Z",
+  "completedAt": "2026-06-28T15:33:02.407Z",
+  "filesScanned": 4,
+  "sourcesDiscovered": 4,
+  "sourcesParsed": 0,
+  "staticRejected": 0,
+  "networkFailed": 0,
+  "searchFailed": 0,
+  "fullChainPassed": 0,
+  "promoted": 0,
+  "quarantine": 0,
+  "manualReview": 4,
+  "errors": [],
+  "candidateReports": [
+    "ppcat-unknown-3972dc9744f6",
+    "ppcat-unknown-e118693fae9f",
+    "ppcat-unknown-824b023d12a1",
+    "ppcat-unknown-9aeef08d96eb"
+  ],
+  "totalDurationMs": 6150
+}

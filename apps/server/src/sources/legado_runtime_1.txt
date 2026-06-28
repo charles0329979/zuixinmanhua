@@ -1,0 +1,17 @@
+  async executeLegadoJs(ctx, jsCode, variables, rules) {
+    await this.ensureInit();
+    var fullCode = this.buildLegadoCode(jsCode, variables || {});
+    var timeout = (rules && rules.timeoutMs) || 5000;
+    var mem = Math.min((rules && rules.memoryLimitMb) || 16, 64);
+    var qjs = await loadQuickJsFn(wasmVariant);
+    try {
+      var result = await qjs.runSandboxed(
+        async function(arg) { return arg.evalCode(fullCode); },
+        { timeoutMs: timeout, memoryLimitMb: mem, allowFetch: true, allowFs: false }
+      );
+      if (result.ok && result.data !== undefined) {
+        try { return JSON.parse(result.data); } catch(e) { return result.data; }
+      }
+      throw new Error((result.error && result.error.message) || "Legado JS failed");
+    } finally { try { qjs.module && qjs.module.dispose && qjs.module.dispose(); } catch(e) {} }
+  }

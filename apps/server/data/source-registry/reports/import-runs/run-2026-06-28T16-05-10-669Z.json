@@ -1,0 +1,15 @@
+{
+  "runId": "run-2026-06-28T16-05-10-669Z",
+  "repositoryId": "ppcat-store",
+  "repositoryUrl": "https://github.com/AcgLibrary/ppcat_store",
+  "commitSha": "3b1d56d9cca6246995fe7a8d8e82281707fc72cf",
+  "startedAt": "2026-06-28T16:05:10.669Z",
+  "finishedAt": "2026-06-28T16:05:11.643Z",
+  "scannedFiles": 4,
+  "detectedSources": 0,
+  "parsedSources": 0,
+  "candidateSources": 0,
+  "manualReviewSources": 0,
+  "failedSources": 0,
+  "errors": []
+}

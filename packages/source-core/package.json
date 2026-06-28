@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@zuixinmanhua/types": "workspace:*",
+    "@zuixinmanhua/dom": "workspace:*",
     "@zuixinmanhua/parser": "workspace:*",
     "@zuixinmanhua/network": "workspace:*",
     "cheerio": "1.0.0"

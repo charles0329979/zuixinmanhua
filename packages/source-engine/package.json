@@ -1,0 +1,21 @@
+{
+  "name": "@zuixinmanhua/source-engine",
+  "version": "1.0.0",
+  "description": "Local comic search orchestrator — concurrent search, smart source selection, progressive results",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@zuixinmanhua/types": "workspace:*",
+    "@zuixinmanhua/dom": "workspace:*",
+    "@zuixinmanhua/parser": "workspace:*",
+    "@zuixinmanhua/network": "workspace:*",
+    "@zuixinmanhua/source-core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

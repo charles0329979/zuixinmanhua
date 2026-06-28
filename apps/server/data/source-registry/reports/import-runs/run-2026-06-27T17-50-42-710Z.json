@@ -1,0 +1,24 @@
+{
+  "runId": "run-2026-06-27T17-50-42-710Z",
+  "repositoryId": "jiwangyihao-legado-manga",
+  "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+  "branch": "main",
+  "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+  "startedAt": "2026-06-27T17:50:42.710Z",
+  "completedAt": "2026-06-27T17:50:43.694Z",
+  "filesScanned": 1,
+  "sourcesDiscovered": 1,
+  "sourcesParsed": 0,
+  "staticRejected": 0,
+  "networkFailed": 0,
+  "searchFailed": 0,
+  "fullChainPassed": 0,
+  "promoted": 0,
+  "quarantine": 0,
+  "manualReview": 1,
+  "errors": [],
+  "candidateReports": [
+    "4a419ec99f275c8f"
+  ],
+  "totalDurationMs": 984
+}

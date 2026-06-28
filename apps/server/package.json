@@ -22,16 +22,20 @@
     "@zuixinmanhua/source-core": "workspace:*",
     "@zuixinmanhua/types": "workspace:*",
     "axios": "^1.7.0",
+    "canvas": "^3.2.3",
     "cheerio": "^1.0.0",
+    "cycletls": "^2.0.5",
     "http-mitm-proxy": "^1.1.0",
     "http-proxy": "^1.18.1",
+    "playwright": "^1.61.1",
     "puppeteer-core": "^25.1.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "sharp": "^0.35.2",
-    "sql.js": "^1.14.1"
+    "sql.js": "^1.14.1",
+    "webp-hero": "^0.0.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.4.0",

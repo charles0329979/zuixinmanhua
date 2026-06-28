@@ -53,6 +53,43 @@ export type {
 } from './health';
 export { CircuitBreakerError, detectBlockPattern } from './health';
 
+// ---- source-origin (V4 import pipeline) ----
+export type {
+  SourceImportProvider,
+  SourceOrigin,
+  SourceCapabilities,
+  SourceLifecycleStatus,
+} from './source-origin';
+export {
+  VALID_TRANSITIONS,
+  isValidTransition,
+  STATUS_LABELS,
+} from './source-origin';
+
+// ---- source-canonical (V4 normalize format) ----
+export type {
+  CanonicalRuleSection,
+  CanonicalSourceDefinition,
+  FieldMapping,
+  UnmappedField,
+  ExternalFormatType,
+  FormatDetectionResult,
+} from './source-canonical';
+
+// ---- source-validation (V4 validation + candidate) ----
+export type {
+  SourceValidationResult,
+  StaticLintDetail,
+  NetworkCheckDetail,
+  SearchCheckDetail,
+  ChainCheckDetail,
+  SourceHealthScore,
+  ImportedSourceCandidate,
+  ImportRunReport,
+  ImportRunErrorSummary,
+  RepositoryConfig,
+} from './source-validation';
+
 // ---- comicfs ----
 export type {
   ComicfsManifest,

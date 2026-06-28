@@ -1,0 +1,17 @@
+{
+  "name": "@zuixinmanhua/dom",
+  "version": "1.0.0",
+  "description": "Lightweight HTML DOM parser — zero platform deps, RN compatible",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "htmlparser2": "^10.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

@@ -4,7 +4,7 @@
 // ============================================================
 
 import { Injectable } from '@nestjs/common';
-import type { MangaSource } from '@zuixinmanhua/types';
+import type { MangaSource } from './source-store';
 import { sourceStore as fileSourceStore } from './source-store';
 
 @Injectable()

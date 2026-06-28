@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@zuixinmanhua/types": "workspace:*",
-    "cheerio": "1.0.0"
+    "@zuixinmanhua/dom": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.0"

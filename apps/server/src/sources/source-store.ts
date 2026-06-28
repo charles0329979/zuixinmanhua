@@ -46,6 +46,31 @@ export interface MangaSource {
   /** Allow insecure HTTPS connections (for sites with expired/bad SSL certs) */
   allowInsecureSSL?: boolean;
   createdAt: string; updatedAt: string;
+
+  // === V4: 导入管道扩展字段 (全部可选，向后兼容) ===
+  origin?: {
+    provider: 'pipimiao' | 'github' | 'manual' | 'legado' | 'comicfs';
+    repositoryUrl?: string; branch?: string;
+    commitSha?: string; filePath?: string; importedAt: string; rawHash: string;
+  };
+  capabilities?: {
+    search: boolean; detail: boolean; chapters: boolean; images: boolean;
+    requiresJs: boolean; requiresLogin: boolean; requiresManualAdapter: boolean;
+  };
+  lifecycleStatus?: string;
+  validation?: {
+    staticPassed: boolean; networkPassed: boolean; searchPassed: boolean;
+    detailPassed: boolean; chaptersPassed: boolean; imagesPassed: boolean;
+    proxyPassed: boolean; latencyMs?: number; errorCode?: string;
+    errorMessage?: string; testedAt: string; layerDetails?: any;
+  };
+  healthScore?: {
+    total: number; staticScore: number; networkScore: number;
+    searchScore: number; detailScore: number; chapterScore: number;
+    imageScore: number; latencyScore: number;
+    recommendation: string;
+  };
+  conversionWarnings?: string[];
 }
 
 const STORE_PATH = path.join(__dirname, '..', '..', 'data', 'sources.json');
@@ -120,4 +145,67 @@ export const sourceStore = {
   },
 
   exportSources: (): MangaSource[] => readStore(),
+
+  // === V4: 导入管道扩展方法 ===
+
+  /** 设置书源权重 */
+  setWeight: (id: string, weight: number): MangaSource | null => {
+    const sources = readStore();
+    const s = sources.find(s => s.id === id);
+    if (!s) return null;
+    s.weight = weight;
+    s.updatedAt = new Date().toISOString();
+    writeStore(sources);
+    return s;
+  },
+
+  /** 批量更新书源字段 */
+  bulkUpdate: (updates: { id: string; changes: Partial<MangaSource> }[]): number => {
+    const sources = readStore();
+    const now = new Date().toISOString();
+    let count = 0;
+    for (const { id, changes } of updates) {
+      const idx = sources.findIndex(s => s.id === id);
+      if (idx === -1) continue;
+      sources[idx] = { ...sources[idx], ...changes, updatedAt: now };
+      count++;
+    }
+    if (count > 0) writeStore(sources);
+    return count;
+  },
+
+  /** 按生命周期状态筛选书源 */
+  getByStatus: (status: string): MangaSource[] => {
+    return readStore().filter(s => (s as any).lifecycleStatus === status);
+  },
+
+  /** 带来源信息批量导入 */
+  importWithOrigin: (list: MangaSource[], origin: {
+    provider: string; repositoryUrl: string; branch?: string;
+    commitSha?: string; filePath?: string; rawHash?: string;
+  }): number => {
+    const sources = readStore();
+    const now = new Date().toISOString();
+    let count = 0;
+    for (const item of list) {
+      const exists = sources.findIndex(s => s.id === item.id);
+      item.createdAt = item.createdAt || now;
+      item.updatedAt = now;
+      // 附加来源追溯
+      (item as any).origin = {
+        provider: origin.provider,
+        repositoryUrl: origin.repositoryUrl,
+        branch: origin.branch,
+        commitSha: origin.commitSha,
+        filePath: origin.filePath || '',
+        importedAt: now,
+        rawHash: origin.rawHash || '',
+      };
+      if (exists >= 0) { sources[exists] = item; }
+      else { sources.push(item); }
+      count++;
+    }
+    writeStore(sources);
+    return count;
+  },
 };

@@ -10,6 +10,7 @@ import { ProxyModule } from './proxy/proxy.module';
 import { LoggingModule } from './logging/logging.module';
 import { SyncModule } from './sync/sync.module';
 import { OtaModule } from './ota/ota.module';
+import { SourceImportModule } from './modules/source-import/source-import.module';
 import { RuleBasedController } from './sources/rule-based.controller';
 import { RuleSourceAdminController } from './sources/rule-source-admin.controller';
 
@@ -26,6 +27,7 @@ import { RuleSourceAdminController } from './sources/rule-source-admin.controlle
     LoggingModule,
     SyncModule,
     OtaModule,
+    SourceImportModule,
   ],
   controllers: [RuleBasedController, RuleSourceAdminController],
 })

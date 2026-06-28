@@ -1,0 +1,63 @@
+{
+  "repositoryId": "jiwangyihao-legado-all",
+  "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+  "branch": "main",
+  "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+  "importedAt": "2026-06-28T15:36:48.799Z",
+  "files": [
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/bilinovel-like.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\904c8b938675-bilinovel-like.json",
+      "rawHash": "904c8b9386753ea42ea4e5aef438c963db669c4ca9895cba68c74eac80f5a274",
+      "size": 35314
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/esjzone.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\f225f2d70788-esjzone.json",
+      "rawHash": "f225f2d70788057baefa178f32b03ce8574b6ba822606da7d2a5c4c6e33f2854",
+      "size": 20601
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/fishhawk.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\da3bc1b04216-fishhawk.json",
+      "rawHash": "da3bc1b04216d9ef0d64f87072ad89c271e3d973bf4b47dc5a04113e71cbfd81",
+      "size": 18215
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/fqweb.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\89b5bcbe7754-fqweb.json",
+      "rawHash": "89b5bcbe775412d4c220f489f2589724a7680440da6d097456c3b4588b2f9fa9",
+      "size": 8096
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/lk-lightnovel-us.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\1cbbb2ecfa7d-lk-lightnovel-us.json",
+      "rawHash": "1cbbb2ecfa7de09d309800de4eefe9b3f86f35bc1be4b71934e15beb13b9e9c2",
+      "size": 10291
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/masiro.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\3df9b7ca1a24-masiro.json",
+      "rawHash": "3df9b7ca1a2486fb840a6634ee4491d9298e61f5790062c202ce951c9b411ca7",
+      "size": 7702
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/rezero.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\335a99552417-rezero.json",
+      "rawHash": "335a9955241781c5588c626b5aa23f74b0d2df562b2da826b5da803f52511714",
+      "size": 6646
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/wenku.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\dd43bd63fc67-wenku.json",
+      "rawHash": "dd43bd63fc6743521fd72a6a33c5150386a33a38cd4873b2f0fcb8a6ad320912",
+      "size": 10824
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/zaimanhua.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\7a2265dd2f24-zaimanhua.json",
+      "rawHash": "7a2265dd2f249d7c73316f825786c18d7010cd123d60221c49679ef89d0f4c9d",
+      "size": 3925
+    }
+  ]
+}

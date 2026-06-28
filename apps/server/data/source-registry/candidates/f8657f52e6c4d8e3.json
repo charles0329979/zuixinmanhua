@@ -1,0 +1,90 @@
+{
+  "id": "f8657f52e6c4d8e3",
+  "name": "哔哩轻小说•台",
+  "normalizedSource": {
+    "id": "f8657f52e6c4d8e3",
+    "name": "哔哩轻小说•台",
+    "host": "https://tw.linovelib.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "https://cse.google.com.hk/cse?cx=649de34f5e63448cb#gsc.tab=0&gsc.q={{key}}&gsc.sort=&gsc.page={{page}},{webView:true}",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": ".gsc-expansionArea@class.gsc-webResult gsc-result\n@js:\nres=[]\nresult.forEach(item=>{\n  java.setContent(item)\n  if (String(java.getString(\"class.gs-title.0@tag.a.0@href\")).match(/novel\\/\\d+\\.html/gi)) {\n    res.push(item)\n  }\n})\nres",
+      "titleSelector": ".gs-title.0@tag.a.0@text##線上看\\|epub,txt下載_嗶哩輕小說\n@js:\njava.t2s(result)",
+      "coverSelector": "a@href@js:\nvar id = result.match(/\\/(\\d+)\\.html/)[1];\n'https://www.linovelib.com/files/article/image/'+parseInt(id/1000)+'/'+id+'/'+id+'s.jpg';",
+      "detailUrlSelector": "a.0@href"
+    },
+    "detail": {
+      "titleSelector": "[property=\"og:novel:book_name\"]@content\n@js:\njava.t2s(result)",
+      "coverSelector": ".book-cover@src",
+      "authorSelector": "[property=\"og:novel:author\"]@content\n@js:\njava.t2s(result)",
+      "descriptionSelector": "标签：{{@@class.tag-small red@text##\\s## - }}\n{{@@id.bookSummary@tag.content@textNodes}}\n@js:\njava.t2s(result)"
+    },
+    "chapters": {
+      "listSelector": "@js:\nif (String(src).match(errorReg())) {\n  src=ajax(baseUrl);\n}\njava.setContent(src)\nresult = java.getElement(\"id.catelogX@.chapter-li:not(.volume-cover)\");\n    //现实debug(尝试修复正文链接问题，和目录不全)\n    //《好友角色的我怎么可能大受欢迎》第三卷12\n    //《我的青春恋爱喜剧》\n    //2022-8-19\n    //原来的代码在源注释（已移除）\n    //2022-8-20修复https://w.linovelib.com/novel/2765.html目录加载失败\n    //2023-9-30使用易于理解的变量命名\n    //2023-10-7处理cid(1)以及连续多个cid(0)\n    //2023-11-11解决了一个原来手滑写出的bug\n    //2023-11-16处理连续多个卷名\n    //2023-12-12适配新版卷名\n    //2024-2-6处理《谁说从妥协开始的恋爱一定没结果》\n\nres = result\n//java.log(res)\n\nfor (i = 0; i < res.length; i++) {\n    java.setContent(res[i])\n    if (java.getString(\"tag.a@href\").match(/javascript:cid\\(.+\\)/gi)) {\n        if (String(res[(i == res.length - 1?i:i+1)]).match(/javascript:cid\\(.+\\)/gi)) {\n            java.setContent(res[i - 1])\n            prevLink = java.getString(\"a:not(:has(h3))@href\")\n            if (prevLink == \"\") {\n                java.setContent(res[i - 2])\n                prevLink = java.getString(\"tag.a@href\")\n            }\n            content = ajax(source.bookSourceUrl + prevLink)\n            java.setContent(content)\n            foot = java.getElements(\"id.footlink\")\n            path = prevLink\n\n            //java.log(foot)\n            while (String(foot).match(/下一页|下一頁/gi)) {\n            \t    //java.log(foot)\n                str = content.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n                path = String(str).match(/url_next\\:'.*?html/)[0].replace(\"url_next:'\", \"\")\n                content = java.ajax(\"https://w.linovelib.com\" + path)\n                java.setContent(content)\n                foot = java.getElements(\"id.footlink\")\n            }\n\n            next = ajax(source.bookSourceUrl + path)\n            str = next.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n            path = String(str).match(/url_next\\:'.*?html/)[0].replace(\"url_next:'\", \"\")\n            java.log('l:'+path)\n            res[i] = String(res[i]).replace(/javascript:cid\\(.+\\)/gi, path)\n        } else {\n            nextLink = \"\"\n            for (var j=1;nextLink==\"\";j++) {\n                java.setContent(res[i + j])\n                nextLink = java.getString(\"a:not(:has(h3))@href\")\n            }\n            next = ajax(source.bookSourceUrl + nextLink)\n            str = next.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n            try {\n              path = String(str).match(/url_previous\\:'.*?html/)[0].replace(\"url_previous:'\", \"\")\n            } catch(e) {\n            \t  java.toast(String(next)+\"\\n\")\n            \t  java.log(next)\n            \t  throw(\"目录解析报错开始：\\n\"+String(next)+\"\\n结束\")\n            \t}\n            //java.log(path)\n\n            res[i] = String(res[i]).replace(/javascript:cid\\(.+\\)/gi, path)\n        }\n    }\n\n    //java.log(res[i])\n}\nres",
+      "titleSelector": "text\n@js:\njava.t2s(result)",
+      "urlSelector": "@js:\n//只有不为卷名时返回URL，避免阅读自动合并\njava.getString(\"class.chapter-bar@text\")!=java.getString(\"text\") ? java.getString(\"tag.a@href\") : \"\""
+    },
+    "images": {
+      "listSelector": "#acontent@html\n@js:\nif (String(src).match(errorReg())) {\n  java.log(src)\n  src=ajax(baseUrl);\n  java.setContent(src);\n  result=java.getString(\"id.acontent@html\")\n}\njava.t2s(result.replace(/img1.readpai.com/gi,'img3.readpai.com'))",
+      "srcAttribute": "src"
+    },
+    "headers": "{\n\"Referer\":\"https://w.linovelib.com/\",\n\"User-Agent\":\"\",\n\"Accept-Language\":\"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6\",\n\"Accept\":\"*/*\"\n}",
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": true,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "search: contains @js: expressions — may require QuickJS runtime",
+      "detail: contains @js: expressions — may require QuickJS runtime",
+      "chapters: contains @js: expressions — may require QuickJS runtime",
+      "images: contains @js: expressions — may require QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime",
+      "Detected login requirement — may need authentication"
+    ],
+    "createdAt": "2026-06-27T17:52:18.365Z",
+    "updatedAt": "2026-06-27T17:52:18.365Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/bilinovel.json",
+    "importedAt": "2026-06-27T17:52:18.365Z",
+    "rawHash": "c06a766066da82b5a039f2feb4a3b43fb84b2de5c568938b32007de414556e3b"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": true,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "search: contains @js: expressions — may require QuickJS runtime",
+    "detail: contains @js: expressions — may require QuickJS runtime",
+    "chapters: contains @js: expressions — may require QuickJS runtime",
+    "images: contains @js: expressions — may require QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime",
+    "Detected login requirement — may need authentication"
+  ],
+  "createdAt": "2026-06-27T17:52:18.365Z",
+  "updatedAt": "2026-06-27T17:52:18.365Z"
+}

@@ -1,0 +1,89 @@
+{
+  "id": "2a2756e9655f802b",
+  "name": "轻小说文库",
+  "normalizedSource": {
+    "id": "2a2756e9655f802b",
+    "name": "轻小说文库",
+    "host": "https://www.wenku8.cc",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "/modules/article/search.php?searchtype=articlename&searchkey={{java.put('key',key)}}&page={{java.put('page',page)}},{\n    \"charset\": \"gbk\"\n}\n@js:\nif(new Date().getTime()-Number(cookie.getKey('http://www.wenku8.net','jieqiVisitTime').replace('jieqiArticlesearchTime%3D',''))*1000<6000){\n  java.toast('搜索频率过高，延迟'+(new Date().getTime()-Number(cookie.getKey(source.bookSourceUrl,'jieqiVisitTime').replace('jieqiArticlesearchTime%3D',''))*1000)/1000+'秒后继续')\n}\n//java.sleep(10)\nwhile(new Date().getTime()-Number(cookie.getKey(source.bookSourceUrl,'jieqiVisitTime').replace('jieqiArticlesearchTime%3D',''))*1000<6000){}\nresult",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": "<js>\n//搜索词\njava.toast('书名搜索成功，5s后开始作者搜索')\nwhile(new Date().getTime()-Number(cookie.getKey(source.bookSourceUrl,'jieqiVisitTime').replace('jieqiArticlesearchTime%3D',''))*1000<6000){}\nkey = java.get(\"key\")\npage = java.get(\"page\")\n//拼接搜索作者链接\nurl = `${source.bookSourceUrl}/modules/article/search.php?searchtype=author&searchkey=${key}&page=${page},{\n    \"charset\": \"gbk\"\n}`\ncombineHtml = result + java.ajax(url)\ncombineHtml\n</js>\n@css:#content>table td>div",
+      "titleSelector": "//div[2]/b/a/@title",
+      "coverSelector": "img@src",
+      "detailUrlSelector": "//div[2]/b/a/@href"
+    },
+    "detail": {
+      "titleSelector": "#content@tag.td.0@tag.td.0@tag.b@text",
+      "coverSelector": "#content@.0@.3@.0@.0@tag.img@src",
+      "authorSelector": "#content@tag.tbody.0@tag.tr.-1@tag.td.1@text##小说作者：",
+      "descriptionSelector": "//span[6]"
+    },
+    "chapters": {
+      "listSelector": ".css@tag.td",
+      "titleSelector": "text",
+      "urlSelector": "a@href"
+    },
+    "images": {
+      "listSelector": "#content@html##本文来自.*|最新.*一网打尽！\n@js:\nencode = function(str) {\n\t\t\treturn '&appver=1.13&request=' + java.base64Encode(str) + '&timetoken=' + (new Date().getTime());\n\t\t};\nif (result.match(\"不再提供该小说\")) {\n\t   response=java.post(\n\t   \t    \"http://app.wenku8.com/android.php\",\n\t   \t    encode('action=book&do=text&aid=' + baseUrl.match(/\\/(\\d+)(?=\\/|\\.htm)/gi)[1].replace('/','') + '&cid=' + baseUrl.match(/\\/(\\d+)(?=\\/|\\.htm)/gi)[2].replace('/','') + '&t=0'),\n\t   \t    {\n\t\t\t\t\t       'Content-Type': 'application/x-www-form-urlencoded',\n\t\t\t\t\t       'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 7.1.2; unknown Build/NZH54D)'\n        })\n    response.body().replace('<!--image-->http','<img src=\"http').replace('jpg<!--image-->','jpg\">')\n} else {\n\t   result\n}",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": true,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "search: contains @js: expressions — may require QuickJS runtime",
+      "detail: contains @js: expressions — may require QuickJS runtime",
+      "chapters: contains @js: expressions — may require QuickJS runtime",
+      "images: contains @js: expressions — may require QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime",
+      "Detected login requirement — may need authentication"
+    ],
+    "createdAt": "2026-06-28T15:36:48.810Z",
+    "updatedAt": "2026-06-28T15:36:48.810Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/wenku.json",
+    "importedAt": "2026-06-28T15:36:48.810Z",
+    "rawHash": "dd43bd63fc6743521fd72a6a33c5150386a33a38cd4873b2f0fcb8a6ad320912"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": true,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "search: contains @js: expressions — may require QuickJS runtime",
+    "detail: contains @js: expressions — may require QuickJS runtime",
+    "chapters: contains @js: expressions — may require QuickJS runtime",
+    "images: contains @js: expressions — may require QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime",
+    "Detected login requirement — may need authentication"
+  ],
+  "createdAt": "2026-06-28T15:36:48.810Z",
+  "updatedAt": "2026-06-28T15:36:48.810Z"
+}

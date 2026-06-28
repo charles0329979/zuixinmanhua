@@ -1,0 +1,33 @@
+{
+  "repositoryId": "ppcat-store",
+  "repositoryUrl": "https://github.com/AcgLibrary/ppcat_store",
+  "branch": "master",
+  "commitSha": "3b1d56d9cca6246995fe7a8d8e82281707fc72cf",
+  "importedAt": "2026-06-28T15:33:02.388Z",
+  "files": [
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/LICENSE",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\pipimiao\\ppcat-store\\3b1d56d9cca6246995fe7a8d8e82281707fc72cf\\3972dc9744f6-LICENSE",
+      "rawHash": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "size": 35149
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/README.md",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\pipimiao\\ppcat-store\\3b1d56d9cca6246995fe7a8d8e82281707fc72cf\\e118693fae9f-README.md",
+      "rawHash": "e118693fae9f10f43f5fc7fb974659678001e5ff10da9a9c26d5fb9b53f989f2",
+      "size": 26
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/meta",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\pipimiao\\ppcat-store\\3b1d56d9cca6246995fe7a8d8e82281707fc72cf\\824b023d12a1-meta",
+      "rawHash": "824b023d12a1074f4c5d518d748b925846fecb8d16e1ed67af43952e6d8a9781",
+      "size": 97
+    },
+    {
+      "sourceUrl": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/store",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\pipimiao\\ppcat-store\\3b1d56d9cca6246995fe7a8d8e82281707fc72cf\\9aeef08d96eb-store",
+      "rawHash": "9aeef08d96ebae52909730bb6c115f5a714a757a9c08e79c1de9fd909dfca311",
+      "size": 205565
+    }
+  ]
+}

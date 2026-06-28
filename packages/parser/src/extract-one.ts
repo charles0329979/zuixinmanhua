@@ -1,122 +1,103 @@
 // ============================================================
 // packages/parser/src/extract-one.ts
-// 从 HTML 中提取单个值
+// 从 HTML 中提取单个值 — 使用 @zuixinmanhua/dom
 //
-// 支持:
-//   class.title@text → 提取 .title 元素的文本
-//   a@href           → 提取 a 元素的 href 属性
-//   &                → 当前元素自身文本
-//   ||               → 回退选择器
-//   &&               → 多选择器拼接
-//   ##regex           → 正则过滤
+// 支持: class.title@text | a@href | & | || | && | ##regex
 // ============================================================
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { CheerioAPI, Cheerio } from 'cheerio';
+import type { DomNode, DomDocument } from '@zuixinmanhua/dom';
 import { splitChainSelector } from './chain-selector';
 import { applyRegexFilter } from './regex-filter';
 
 // ---- 内部属性提取 ----
 
-function extractText($el: Cheerio<any>): string {
-  if ($el.length === 0) return '';
-  return $el.first().text().trim();
+function extractText(node: DomNode): string {
+  return node.textContent;
 }
 
-function extractAttr($el: Cheerio<any>, attr: string): string {
-  if ($el.length === 0) return '';
-
-  const el = $el.first();
-
+function extractAttr(node: DomNode, attr: string): string {
   switch (attr) {
     case 'text':
-      return el.text().trim();
+    case 'textContent':
+      return node.textContent;
     case 'html':
-      return el.html()?.trim() || '';
-    case 'ownText': {
-      const clone = el.clone();
-      clone.children().remove();
-      return clone.text().trim();
-    }
+    case 'innerHTML':
+      return node.innerHTML;
+    case 'ownText':
+      return node.childText;
     default:
-      return el.attr(attr) || '';
+      return node.attrs[attr] || '';
   }
 }
 
 // ---- 单个选择器部分提取 ----
 
-/**
- * 提取单个选择器部分的值（不含 || / && / ## 处理）
- * 支持链式选择器: class.foo@tag.a@href
- */
 function extractSinglePart(
-  $: CheerioAPI,
+  doc: DomDocument,
   part: string,
-  root: Cheerio<any>,
+  root: DomNode,
 ): string {
   if (!part || part === '&') {
-    return root.text().trim();
+    return root.textContent;
   }
 
   const steps = splitChainSelector(part);
+  let current: DomNode | null = root;
 
-  // 从 root 开始，逐步缩小范围
-  let $current: Cheerio<any> = root;
   for (const step of steps.selectors) {
     if (!step.css || step.css === '&') continue;
     try {
-      $current = $current.find(step.css);
+      const matches = doc.querySelectorAll(step.css, current || undefined);
+      if (matches.length === 0) return '';
+
+      // 应用索引
+      if (step.index !== undefined) {
+        if (step.index < 0) {
+          current = matches[matches.length + step.index] || null;
+        } else {
+          current = matches[step.index] || null;
+        }
+      } else {
+        current = matches[0] || null;
+      }
+      if (!current) return '';
     } catch {
       return '';
     }
-    if ($current.length === 0) return '';
-
-    // 应用索引
-    if (step.index !== undefined) {
-      if (step.index < 0) {
-        $current = $current.eq($current.length + step.index);
-      } else {
-        $current = $current.eq(step.index);
-      }
-      if ($current.length === 0) return '';
-    }
   }
+
+  if (!current) return '';
 
   // 提取最终值
   if (steps.attribute) {
-    return extractAttr($current, steps.attribute);
+    return extractAttr(current, steps.attribute);
   }
 
-  return extractText($current);
+  return extractText(current);
 }
 
 // ---- 主入口 ----
 
 /**
- * 从 HTML 中提取单个值
- *
- * @param $ cheerio 实例
- * @param rawSelector Legado 选择器，如 "class.title@text" 或 "a@href" 或 "&"
- * @param $scope 搜索范围（默认整个 document）
- * @returns 提取的字符串值
+ * 从 HTML Document 中提取单个值
  */
 export function extractOne(
-  $: CheerioAPI,
+  doc: DomDocument,
   rawSelector: string,
-  $scope?: Cheerio<any>,
+  scope?: DomNode,
 ): string {
   if (!rawSelector || rawSelector === '&') {
-    if ($scope && rawSelector === '&') {
-      return $scope.text().trim();
+    if (scope && rawSelector === '&') {
+      return scope.textContent;
     }
     return '';
   }
 
-  const root = $scope || $.root();
+  const root = scope || doc.root;
 
-  // 1. 分离出 ## 正则过滤部分
+  // 1. 分离 ## 正则过滤
   const hashParts = rawSelector.split('##');
-  const selectorPart = hashParts[0];
+  const selectorPart = hashParts[0] || '';
 
   // 2. 处理 || 回退
   const fallbackParts = selectorPart.split('||');
@@ -128,18 +109,17 @@ export function extractOne(
     if (andParts.length > 1) {
       const results: string[] = [];
       for (const part of andParts) {
-        const val = extractSinglePart($, part.trim(), root);
+        const val = extractSinglePart(doc, part.trim(), root);
         if (val) results.push(val);
       }
       if (results.length > 0) {
-        const joined = results.join('');
-        return applyRegexFilter(joined, rawSelector);
+        return applyRegexFilter(results.join(''), rawSelector);
       }
-      continue; // 尝试下一个 fallback
+      continue;
     }
 
     // 4. 单个选择器
-    const val = extractSinglePart($, fallback.trim(), root);
+    const val = extractSinglePart(doc, fallback.trim(), root);
     if (val) {
       return applyRegexFilter(val, rawSelector);
     }

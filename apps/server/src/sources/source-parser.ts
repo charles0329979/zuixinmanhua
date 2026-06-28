@@ -83,21 +83,48 @@ function resolveUrl(base: string, url: string): string {
   return host + (url.startsWith('/') ? url : '/' + url);
 }
 
+/**
+ * Parse a selector that may contain @attr suffix.
+ * e.g. "img@alt" → { css: "img", attr: "alt" }
+ *      "@href"   → { css: "&", attr: "href" }  (self element)
+ *      "h1"      → { css: "h1", attr: "text" }
+ */
+function parseSelectorWithAttr(sel: string): { css: string; attr: string } {
+  if (!sel) return { css: '', attr: 'text' };
+  if (sel === '&') return { css: '&', attr: 'text' };
+  if (sel.startsWith('@')) return { css: '&', attr: sel.slice(1) };
+  const atIdx = sel.lastIndexOf('@');
+  if (atIdx > 0) {
+    return { css: sel.slice(0, atIdx), attr: sel.slice(atIdx + 1) };
+  }
+  return { css: sel, attr: 'text' };
+}
+
 function extractAttr(el: cheerio.Cheerio<any>, sel: string, attr: string): string {
   try {
+    const parsed = parseSelectorWithAttr(sel);
+    const css = parsed.css;
+    const finalAttr = attr || parsed.attr || 'href';
     // '&' means the element itself (not a child)
-    const $el = (sel && sel !== '&') ? el.find(sel).first() : el;
+    const $el = (css && css !== '&') ? el.find(css).first() : el;
     if ($el.length === 0) return '';
-    const val = $el.attr(attr);
+    const val = finalAttr === 'text' ? $el.text().trim() : $el.attr(finalAttr);
     return val || '';
   } catch { return ''; }
 }
 
 function extractText(el: cheerio.Cheerio<any>, sel: string): string {
   try {
+    const parsed = parseSelectorWithAttr(sel);
+    const css = parsed.css;
     // '&' means the element itself (not a child)
-    const $el = (sel && sel !== '&') ? el.find(sel).first() : el;
-    return $el.length > 0 ? $el.text().trim() : '';
+    const $el = (css && css !== '&') ? el.find(css).first() : el;
+    if ($el.length === 0) return '';
+    // If selector specified an attribute, extract that; otherwise get text
+    if (parsed.attr && parsed.attr !== 'text') {
+      return $el.attr(parsed.attr) || '';
+    }
+    return $el.text().trim();
   } catch { return ''; }
 }
 
@@ -189,8 +216,18 @@ export function parseSearchFromHTML(source: MangaSource, $: cheerio.CheerioAPI):
       if (!title) return;
       let cover = '';
       try {
-        const $img = $el.find(source.search.coverSelector).first();
-        cover = $img.attr('src') || $img.attr('data-src') || $img.attr('data-original') || '';
+        // Handle @attr syntax (e.g. "img@data-src" → find img, get data-src)
+        const coverParsed = parseSelectorWithAttr(source.search.coverSelector);
+        const $img = (coverParsed.css && coverParsed.css !== '&')
+          ? $el.find(coverParsed.css).first()
+          : $el;
+        if ($img.length > 0) {
+          if (coverParsed.attr && coverParsed.attr !== 'text') {
+            cover = $img.attr(coverParsed.attr) || '';
+          } else {
+            cover = $img.attr('src') || $img.attr('data-src') || $img.attr('data-original') || '';
+          }
+        }
         if (!cover) {
           const style = $img.attr('style') || '';
           const m = style.match(/url\(['"]?([^'")]+)['"]?\)/);

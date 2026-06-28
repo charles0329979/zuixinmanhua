@@ -1,0 +1,87 @@
+{
+  "id": "250e3afcaebcfe91",
+  "name": "真白萌",
+  "normalizedSource": {
+    "id": "250e3afcaebcfe91",
+    "name": "真白萌",
+    "host": "https://masiro.me",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "/admin/loadMoreNovels?page={{page}}&keyword={{key}}",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": "$.novels",
+      "titleSelector": "$.title",
+      "coverSelector": "$.cover_img",
+      "detailUrlSelector": "https://masiro.me/admin/novelView?novel_id={{$.id}}"
+    },
+    "detail": {
+      "titleSelector": ".novel-title@text",
+      "authorSelector": ".author@tag.a@text",
+      "descriptionSelector": "-\n更新时间：{{@@.n-update@class.s-font@text}}\n标签：{{@@.tags@tag.a@text##\\s## - }}\n{{@@.brief@html##简介：}}"
+    },
+    "chapters": {
+      "listSelector": "@js:\nvolumns=JSON.parse(String(java.getString('id.f-chapters-json@html')).replace(/<.?script[^<>]*>/gi,''))\nvolumns.forEach(volumn=> {\n  volumn.children=[]\n})\nchapters=JSON.parse(String(java.getString('id.chapters-json@html')).replace(/<.?script[^<>]*>/gi,''))\nchapters.forEach(chapter=>{\n  volumns.forEach(volumn=> {\n  \t  if (chapter.parent_id===volumn.id)\n  \t    volumn.children.push(chapter)\n  \t})\n})\nresult=[]\nvolumns.forEach(volumn => {\n  result.push(JSON.stringify(volumn))\n  volumn.children.forEach(chapter => {\n    result.push(JSON.stringify(chapter))\n  \t})\n})\n//java.log(JSON.stringify(result))\nresult",
+      "titleSelector": "@js:\n$=JSON.parse(result);\n$.title + ($.describe ? `- ${$.describe}` : '')",
+      "urlSelector": "@js:\n$=JSON.parse(result)\n!!$.children ? '' : `/admin/novelReading?cid=${$.id}`"
+    },
+    "images": {
+      "listSelector": "@js:\nif (`{{@@.pay@text}}` == '立即打钱')\n  `<img src=\"/images/打钱.png\" alt=\"打钱.png\">\n  立即打钱\n  Cost：{{@@.cost@value}} 金币`\nelse\n  `{{@@.nvl-content@html}}`",
+      "srcAttribute": "src"
+    },
+    "headers": "{\n\"Referer\":\"https://masiro.me/\",\n\"User-Agent\":\"\"\n}",
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": true,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "detail: contains @js: expressions — may require QuickJS runtime",
+      "chapters: contains @js: expressions — may require QuickJS runtime",
+      "images: contains @js: expressions — may require QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime",
+      "Detected login requirement — may need authentication"
+    ],
+    "createdAt": "2026-06-28T15:36:48.809Z",
+    "updatedAt": "2026-06-28T15:36:48.809Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/masiro.json",
+    "importedAt": "2026-06-28T15:36:48.809Z",
+    "rawHash": "3df9b7ca1a2486fb840a6634ee4491d9298e61f5790062c202ce951c9b411ca7"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": true,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "detail: contains @js: expressions — may require QuickJS runtime",
+    "chapters: contains @js: expressions — may require QuickJS runtime",
+    "images: contains @js: expressions — may require QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime",
+    "Detected login requirement — may need authentication"
+  ],
+  "createdAt": "2026-06-28T15:36:48.809Z",
+  "updatedAt": "2026-06-28T15:36:48.809Z"
+}

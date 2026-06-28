@@ -1,0 +1,15 @@
+{
+  "runId": "run-2026-06-28T16-05-57-771Z",
+  "repositoryId": "jiwangyihao-legado-all",
+  "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+  "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+  "startedAt": "2026-06-28T16:05:57.771Z",
+  "finishedAt": "2026-06-28T16:05:58.825Z",
+  "scannedFiles": 10,
+  "detectedSources": 0,
+  "parsedSources": 0,
+  "candidateSources": 0,
+  "manualReviewSources": 0,
+  "failedSources": 0,
+  "errors": []
+}

@@ -20,8 +20,15 @@
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
     "paths": {
-      "shared": ["../../packages/shared/src"]
+      "shared": [
+        "../../packages/shared/src"
+      ]
     }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/modules/source-import/__tests__"
+  ]
 }

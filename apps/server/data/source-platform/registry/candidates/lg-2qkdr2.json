@@ -1,0 +1,19 @@
+{
+  "id": "lg-2qkdr2",
+  "name": "八极漫画",
+  "version": "1.0.0-410a41e6",
+  "hash": "410a41e64edbe88f5aef2d133116e8c29e1539176755167f41bf1d898be708a0",
+  "host": "http://www.8jj.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

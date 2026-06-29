@@ -1,0 +1,19 @@
+{
+  "id": "bwhanman-com-4fcfc11f",
+  "name": "🌵背窝韩漫🌵",
+  "version": "1.0.0-f0143e74",
+  "hash": "f0143e74559b8f79077ad5aa3bad79529bee182cef77486a7dccd599677b03ae",
+  "host": "https://bwhanman.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-ahvqmb",
+  "name": "✐ 漫画DB #Haxc1107",
+  "version": "1.0.0-6dea769c",
+  "hash": "6dea769c07c6534e7beccd076a27bda59b735084cf21ce5f69fe74f5dc9edf2f",
+  "host": "https://www.manhuadb.com#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

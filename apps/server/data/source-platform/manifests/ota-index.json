@@ -1,0 +1,81 @@
+{
+  "version": "2026.06.29.001",
+  "generatedAt": "2026-06-29T16:28:41.544Z",
+  "sources": [
+    {
+      "id": "7463775eeb7ebfd4",
+      "name": "包子漫画(测试)",
+      "type": "rule",
+      "version": "1.0.0-fa9821f4",
+      "hash": "fa9821f42c5b338f0690659328f5b01fe27dfcd9fad8386852df33d8329e2d9c",
+      "healthScore": 97,
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-29T03:31:10.484Z"
+    },
+    {
+      "id": "manwa",
+      "name": "漫蛙",
+      "type": "rule",
+      "version": "1.0.0-mqz3q8io",
+      "hash": "",
+      "healthScore": 97,
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-29T10:55:29.952Z"
+    },
+    {
+      "id": "yydsmh-candidate",
+      "name": "YYDS漫画",
+      "type": "rule",
+      "version": "1.0.0-cafc6d1b",
+      "hash": "cafc6d1bc0a76c64b92f05b0f3b8c5480e5fb8fd9261470856b8aaea95844bdc",
+      "healthScore": 97,
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-29T09:13:37.499Z"
+    },
+    {
+      "id": "baozi",
+      "name": "包子漫画",
+      "type": "rule",
+      "version": "1.0.0-81534dcc",
+      "hash": "81534dcc7bd04f4f6be961130711f377687f7b60199848abcfcf489d04f4e099",
+      "healthScore": 90,
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-07T12:59:22.147Z"
+    },
+    {
+      "id": "yydsmh",
+      "name": "YYDS漫画",
+      "type": "rule",
+      "version": "1.0.0-d076dadd",
+      "hash": "d076dadd1002ca942d597f114b62bac2a25ceb583116c205d1fe30940b53fd6b",
+      "healthScore": 90,
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-26T03:15:55.456Z"
+    }
+  ]
+}

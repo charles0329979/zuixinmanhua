@@ -1,0 +1,19 @@
+{
+  "id": "lg-5fyzhc",
+  "name": "㊣✐ 漫漫漫画 #一程1101",
+  "version": "1.0.0-a97f41b2",
+  "hash": "a97f41b281985d55e42a94fe5de41eedec2189e7bc6883b3c1e62743dc7b1696",
+  "host": "https://www.manmanapp.com#yc1101",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

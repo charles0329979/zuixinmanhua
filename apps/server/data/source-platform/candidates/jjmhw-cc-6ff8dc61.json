@@ -1,0 +1,45 @@
+{
+  "id": "jjmhw-cc-6ff8dc61",
+  "name": "🔞 久久动漫",
+  "host": "https://www.jjmhw.cc",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".book-list-info",
+    "titleSelector": ".book-list-info-title@text",
+    "coverSelector": "tag.img@data-original",
+    "detailUrlSelector": ".book-list-info@a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": ".book-list-info-bottom-right-font@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".detail-main-info-title@text",
+    "coverSelector": ".detail-main@img@data-original",
+    "authorSelector": ".detail-main-info-author@a@text",
+    "descriptionSelector": ".detail-desc@text",
+    "statusSelector": "#detail-list-title@span.0@text&&.detail-main-info-class@a@text&&#detail-list-title@span.1@text##更新",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "#detail-list-select@li@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#cp_img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "manhwatop-9d3bf94b",
+  "name": "manhwatop",
+  "version": "1.0.0-3bc777aa",
+  "hash": "3bc777aacdfd519c149715f2b2357cefa3aa852ac2573e91b8fda2388418f65f",
+  "host": "https://manhwatop.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

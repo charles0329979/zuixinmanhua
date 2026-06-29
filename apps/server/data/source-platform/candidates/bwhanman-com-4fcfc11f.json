@@ -1,0 +1,45 @@
+{
+  "id": "bwhanman-com-4fcfc11f",
+  "name": "🌵背窝韩漫🌵",
+  "host": "https://bwhanman.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 46,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://bwhanman.com/site/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.flexbetween@li",
+    "titleSelector": "tag.h2@text",
+    "coverSelector": "class.newimg@img@data-src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "tag.span.-1@text##更新至",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h3@text",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.novel-intro@p@html",
+    "statusSelector": "class.hottag flexstart@em@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.chapters@li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "class.u-reading-content@img@html##src=\"/.*?v=.*\" class=\"lazyload\"",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

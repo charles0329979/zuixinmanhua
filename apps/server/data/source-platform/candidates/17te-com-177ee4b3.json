@@ -1,0 +1,45 @@
+{
+  "id": "17te-com-177ee4b3",
+  "name": "🎨 特漫网站",
+  "host": "https://www.17te.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 62,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.17te.com/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.mh-item",
+    "titleSelector": "tag.h2@text",
+    "coverSelector": "class.mh-cover@style",
+    "detailUrlSelector": "class.mh-item@tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "class.banner_detail_form@tag.div@tag.img.0@src",
+    "authorSelector": "class.subtitle@text",
+    "descriptionSelector": "class.info@tag.p.3@text",
+    "statusSelector": "class.info@tag.p.2@tag.span@tag.a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.view-win-list detail-list-select@tag.li@tag.a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.comicpage@tag.div@tag.img@html##alt.*\\(\\)",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

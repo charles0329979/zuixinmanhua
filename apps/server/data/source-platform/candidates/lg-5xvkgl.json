@@ -1,0 +1,39 @@
+{
+  "id": "lg-5xvkgl",
+  "name": "2022.11.22 更新",
+  "host": "https://yuedu",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画,搜索链接规则为空"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "body",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "text"
+  },
+  "createdAt": "2026-06-27T15:52:54.694Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lg-k8bckf",
+  "name": "🖼微博博主",
+  "host": "https://m.weibo.cn",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "⑤🖼  图片"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.weibo.cn/api/container/getIndex?containerid=100103type%3D1%26q%3D{{key}}&page_type=searchall&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.cards.*",
+    "titleSelector": "$.mblog.text",
+    "coverSelector": "$.mblog.page_info.page_pic.url||$.mblog.thumbnail_pic||$.mblog.user.profile_image_url",
+    "detailUrlSelector": "$.mblog.id",
+    "latestChapterSelector": "$.mblog.created_at"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "+<js>\nd=String(result).match(/ \"text\": \"(.*)\", /)[1];\nb=d.replace(/<.*?>/g, \"\").replace(/#.*?#/g, \"\");\nc=baseUrl;\nl=[]\nif(/网页链接/.test(d)){\n\tlist = d.match(/<br \\/>[^<]+<a  href=\\\\\"[^\"]+\\\\\" data-hid/g);\n\tl.push({\n\t\ttext:b.substring(0, 10)+\"......\", href:c\n\t\t})\n\tfor(i in list){\n\tl.push({\n\t\ttext : list[i].match(/>([^<]+)<a/)[1], href:list[i].match(/href=\\\\\"([^\"]+)\\\\\"/)[1]\n\t\t})\n\t  }\n\tl\n\t}else{\n\t\tl=[{text:b, href:c}]\n\t\t}\n</js>",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\nif(String(result).match(/ \"text\": \"(.*)\", /)){\nb=String(result).match(/ \"text\": \"(.*)\", /)[1];}\nelse{b=''}\nif(String(result).match(/\"size\":\\s*\"[^\"]+\", \\s*\"url\":\\s*\"[^\"]+\"/g)){\na=String(result).match(/\"size\":\\s*\"[^\"]+\", \\s*\"url\":\\s*\"[^\"]+\"/g);\ncimg=[];\nfor (i=0;i<a.length;i++){\n       cimg.push(a[i].match(/url\":\\s*\"([^\"]+)\"/)[1])\n    }\nhtml='';\nheader = {\n\t\"headers\":{\n\t\t\"referer\":\"https://m.weibo.cn\"\n\t\t}\n\t}\nfor(i in cimg){\nhtml += '<img src=\"'+cimg[i]+', '+JSON.stringify(header)+'\">\\n'\n}}else{html=''}\nif(!baseUrl.match(/ttarticle/)){\norg.jsoup.Jsoup.parse(b).html()+'\\n'+html+java.getString(\"\u0000AT\u0000class.h5-4con",
+    "srcAttribute": "html\")}\n\n</js>\n##<!---->"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 8.1.0; JKM-AL00b Build/HUAWEIJKM-AL00b; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044807 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.371Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

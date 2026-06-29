@@ -1,0 +1,19 @@
+{
+  "id": "lg-i8h68c",
+  "name": "腾讯漫画",
+  "version": "1.0.0-81631006",
+  "hash": "81631006372616eaa21539f653a9212bfa75381cf81a8508f227707fcb8c0898",
+  "host": "https://m.ac.qq.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

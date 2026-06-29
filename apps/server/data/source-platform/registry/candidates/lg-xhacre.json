@@ -1,0 +1,19 @@
+{
+  "id": "lg-xhacre",
+  "name": "新人漫画",
+  "version": "1.0.0-fa97268d",
+  "hash": "fa97268d8e4a97f8eb48e5994618424e68b40d6297fabecf67eb9e5acd609e96",
+  "host": "https://xapi.xinmanhua.net#",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

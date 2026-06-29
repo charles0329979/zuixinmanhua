@@ -1,0 +1,20 @@
+{
+  "id": "92-16d01b91",
+  "name": "92韩漫(修复)",
+  "version": "1.0.0-a21d11e7",
+  "hash": "a21d11e7192516802fbcb306a4139bd011437dd82f76f6e9c61db06d558cd339",
+  "host": "https://www.92hm.top",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.199Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-lrr4dc",
+  "name": "🎨 好吧漫画",
+  "version": "1.0.0-4b619e9b",
+  "hash": "4b619e9be0a7f138c72a8c035880c436b6f9cd748134503d5378499b5aad43cc",
+  "host": "https://hao8.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

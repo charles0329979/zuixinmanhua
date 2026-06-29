@@ -1,0 +1,47 @@
+{
+  "id": "lg-esnjtd",
+  "name": "漫客栈",
+  "host": "http://comic.mkzhan.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://comic.mkzhan.com/search/keyword/?keyword={{key}}&page_num={{page}}&page_size=20",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.list.*",
+    "titleSelector": "$.title",
+    "coverSelector": "$.cover",
+    "detailUrlSelector": "https://comic.mkzhan.com/comic/info/?comic_id={$.comic_id}",
+    "latestChapterSelector": "$.chapter_title"
+  },
+  "detail": {
+    "titleSelector": "$.data.title",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "$.data.content"
+  },
+  "chapters": {
+    "listSelector": "$.data",
+    "titleSelector": "$.title",
+    "urlSelector": "https://comic.mkzhan.com/chapter/content/v1/?chapter_id={{$.chapter_id}}&comic_id="
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\njava.getStringList(\"$.data.page[*]image\").toArray().map\n(a=>'<img src=\"'+a+'\">').join(\"\\n\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"okhttp/3.11.0\"\n}",
+  "timeoutMs": 1856,
+  "createdAt": "2026-06-27T15:52:55.060Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

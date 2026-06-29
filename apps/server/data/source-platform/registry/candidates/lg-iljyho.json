@@ -1,0 +1,19 @@
+{
+  "id": "lg-iljyho",
+  "name": "哔哩漫画（优+++）",
+  "version": "1.0.0-b3728c1f",
+  "hash": "b3728c1f07ab858c76d423db9c2216d08a80a077bbb58063047bb470514aee1d",
+  "host": "https://manga.bilibili.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

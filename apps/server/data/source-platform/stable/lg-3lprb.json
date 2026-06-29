@@ -1,0 +1,20 @@
+{
+  "id": "lg-3lprb",
+  "name": "🎨爱优漫",
+  "version": "1.0.0-01bcf9a3",
+  "hash": "01bcf9a31715b32ebd8c3ca6c59bb0da2c1d197d7f2f62b55ac8ae36f266629d",
+  "host": "https://m.iyouman.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.412Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

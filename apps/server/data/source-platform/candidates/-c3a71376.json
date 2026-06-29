@@ -1,0 +1,45 @@
+{
+  "id": "-c3a71376",
+  "name": "咪咕漫画（原:彩色漫画，重修）",
+  "host": "https://www.migumh.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.migumh.com/search?keyword={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.book-list@tag.li",
+    "titleSelector": "class.book-list-info@tag.a@tag.p.0@text",
+    "coverSelector": "class.book-list-cover@tag.a@img@src",
+    "detailUrlSelector": "class.book-list-cover@tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.chapter_indexes@tag.ul@tag.li@tag.a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.view-main-1 readForm@img@data-original##(http.*\\.[a-z]+)##<img src=\"$1\">",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.079Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

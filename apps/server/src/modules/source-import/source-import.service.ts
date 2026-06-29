@@ -367,14 +367,16 @@ export class SourceImportService {
   // ============================================================
 
   listCandidates(): ImportedSourceCandidate[] {
-    return this.listDir(this.candidatesDir).map(f => {
-      try {
-        return JSON.parse(fs.readFileSync(
-          path.join(this.candidatesDir, `${f.id || f}.json`),
-          'utf-8',
-        ));
-      } catch { return null; }
-    }).filter(Boolean) as ImportedSourceCandidate[];
+    return this.listDir(this.candidatesDir)
+      .filter(f => f.status !== 'MANUAL_REVIEW') // MANUAL_REVIEW goes to /manual-review endpoint
+      .map(f => {
+        try {
+          return JSON.parse(fs.readFileSync(
+            path.join(this.candidatesDir, `${f.id || f}.json`),
+            'utf-8',
+          ));
+        } catch { return null; }
+      }).filter(Boolean) as ImportedSourceCandidate[];
   }
 
   getCandidateReport(id: string): ImportedSourceCandidate | null {

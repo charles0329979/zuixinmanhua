@@ -1,0 +1,45 @@
+{
+  "id": "hanhuaba-com-1d3d5f2b",
+  "name": "汉化吧",
+  "host": "http://www.hanhuaba.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": ">",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.book-list@tag.ul@tag.li",
+    "titleSelector": "class.tit@tag.a@text",
+    "coverSelector": "class.pic@tag.img@src",
+    "detailUrlSelector": "class.tit@tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "class.info@tag.span.1@text&&class.info@tag.span.2@text##分类|:|：",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.info@class.title yahei@class.t@tag.h1@text",
+    "coverSelector": "class.pic@tag.a@tag.img@src",
+    "authorSelector": "class.info@class.att@tag.span.1@text##作者：",
+    "descriptionSelector": "class.dtbarcont.0@text||id.zuop1C@text",
+    "statusSelector": "class.info@class.att@tag.span.0@text&&class.info@class.att@tag.span.2@text##类别|进度|：",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-class.column-list@class.text@tag.a||class.column-list@tag.a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.contentimg@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

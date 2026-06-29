@@ -1,0 +1,46 @@
+{
+  "id": "lg-13nso8",
+  "name": "奇热漫画📱💰",
+  "host": "https://m.qiremanhua.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.qiremanhua.com/book/ajax_search?key={{key}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data",
+    "titleSelector": "$.book_name",
+    "coverSelector": "$.book_unruly||$.book_cover",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "$.last_chapter_name"
+  },
+  "detail": {
+    "titleSelector": ".book-hero__detail .title",
+    "coverSelector": "body",
+    "authorSelector": ".book-container__author",
+    "descriptionSelector": ".book-container__detail"
+  },
+  "chapters": {
+    "listSelector": "$.data",
+    "titleSelector": "{$.cBS}/{$.cName}",
+    "urlSelector": "https://m.qiremanhua.com/book/"
+  },
+  "images": {
+    "listSelector": ".episode-detail",
+    "srcAttribute": "html##data-original##src"
+  },
+  "timeoutMs": 871,
+  "createdAt": "2026-06-27T15:52:54.940Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

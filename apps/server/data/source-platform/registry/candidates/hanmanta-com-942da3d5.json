@@ -1,0 +1,19 @@
+{
+  "id": "hanmanta-com-942da3d5",
+  "name": "韩漫塔",
+  "version": "1.0.0-88bd5042",
+  "hash": "88bd504229dfdfb3bc9ef54c8d69c909de0bbc346d3a2c3b6c439d36c1950f5e",
+  "host": "https://hanmanta.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

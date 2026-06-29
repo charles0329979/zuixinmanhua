@@ -1,0 +1,46 @@
+{
+  "id": "lg-3lprb",
+  "name": "🎨爱优漫",
+  "host": "https://m.iyouman.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.iyouman.com/api/getsortlist/?search_type=&search_key={{key}}&page={{page}}&size=30&productname=aym&platformname=wap",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.update[*].info[*]||$.data.data[*]||$.data[*]",
+    "titleSelector": "$.comic_name",
+    "coverSelector": "http://image.mhxk.com/mh/{$.comic_id}.jpg-600x800.jpg.webp",
+    "detailUrlSelector": "https://m.iyouman.com/api/getcomicinfo_body/?comic_id={$.comic_id}&productname=aym&platformname=wap",
+    "latestChapterSelector": "$.last_chapter_name||$.comic_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "$.data.comic_name",
+    "coverSelector": "$.data.cover_list[0]",
+    "authorSelector": "$.data.comic_author",
+    "descriptionSelector": "$.data.comic_desc"
+  },
+  "chapters": {
+    "listSelector": "-$.data.*",
+    "titleSelector": "$.chapter_name",
+    "urlSelector": "https://m.iyouman.com/api/getchapterinfov2?product_id=4&productname=aym&platformname=wap&comic_id="
+  },
+  "images": {
+    "listSelector": "data.current_chapter.chapter_img_list",
+    "srcAttribute": "js:\nheaders={\"headers\":{\"Referer\":baseUrl}}\n;\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 3265,
+  "createdAt": "2026-06-27T15:52:55.122Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

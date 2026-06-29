@@ -430,7 +430,11 @@ export class PipimiaoImporterService {
   // ============================================================
 
   private saveCandidate(candidate: ImportedSourceCandidate): void {
-    const dir = this.candidatesDir;
+    // MANUAL_REVIEW 写入 manual-review/ 目录，其余写入 candidates/
+    const isManual = candidate.lifecycleStatus === 'MANUAL_REVIEW';
+    const dir = isManual
+      ? path.join(this.registryRoot, 'manual-review')
+      : this.candidatesDir;
     const filePath = path.join(dir, `${candidate.id}.json`);
     try {
       fs.mkdirSync(dir, { recursive: true });

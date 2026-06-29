@@ -1,0 +1,19 @@
+{
+  "id": "686-7f7fe776",
+  "name": "🎨 686漫画✈️",
+  "version": "1.0.0-08047304",
+  "hash": "080473049866f6fd835c150b8b6eed86033e021a2ade6ce6477e6765842ab997",
+  "host": "https://www.686mh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

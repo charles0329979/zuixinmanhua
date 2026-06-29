@@ -1,0 +1,56 @@
+{
+  "id": "2kande-com-86eed218",
+  "name": "顶通漫画",
+  "host": "http://www.2kande.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "json",
+    "keywordParam": "keyword",
+    "listSelector": "class.list-boxes||class.panel",
+    "titleSelector": "tag.h2@text||tag.p@text##\\s-.*",
+    "coverSelector": "tag.img@src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "tag.h2@text##.*(第\\d+話).*##$1",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h2.0@text##\\s\\d+|\\s-.*",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "[name=\"description\"]@content##\\,2kd漫画.*|.*漫画讲述",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.list-boxes||tag.h2",
+    "titleSelector": "tag.h2@text||text##.*- 第##第",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "tag.p@tag.img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z",
+  "_comicfsSelectors": {
+    "searchTitle": "tag.h2@text||tag.p@text##\\s-.*",
+    "searchUrl": "tag.a@href",
+    "searchCover": "tag.img@src",
+    "detailTitle": "tag.h2.0@text##\\s\\d+|\\s-.*",
+    "detailCover": "",
+    "detailAuthor": "",
+    "detailDesc": "[name=\"description\"]@content##\\,2kd漫画.*|.*漫画讲述",
+    "chapterTitle": "tag.h2@text||text##.*- 第##第",
+    "chapterUrl": "tag.a@href"
+  }
+}

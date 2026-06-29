@@ -1,0 +1,45 @@
+{
+  "id": "m-icekr-com-07314e13",
+  "name": "冰氪漫画📱",
+  "host": "https://m.icekr.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.icekr.com/search/?keywords={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox||class.list-comic",
+    "titleSelector": "class.txtA@text||class.title@text",
+    "coverSelector": "tag.img@src",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "class.coll@text",
+    "statusSelector": "class.txtItme.1@text##\\|##,",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "id.comicName@text",
+    "coverSelector": "id.Cover@tag.img@src",
+    "authorSelector": "class.txtItme.0@text",
+    "descriptionSelector": "class.txtDesc@text##^.*简介：|介绍:",
+    "statusSelector": "class.txtItme.1@tag.a@text&&class.txtItme.2@tag.a.-1@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.comic-chapters@ul@tag.li!-1@a",
+    "titleSelector": "span@text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#images@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

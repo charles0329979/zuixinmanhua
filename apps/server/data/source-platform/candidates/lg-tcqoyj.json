@@ -1,0 +1,46 @@
+{
+  "id": "lg-tcqoyj",
+  "name": "🗒 妙华台藏",
+  "host": "https://m.manhuatai.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "2023.7.20效验"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.manhuatai.com/api/serachcomic/?product_id=2&productname=mht&platformname=wap&serachKey={{key}}&topNumber={{page+10}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "$.data||$.data.data[*]||$.data[*]",
+    "titleSelector": "$.comic_name",
+    "coverSelector": "https://image.yqmh.com/mh/{$.comic_id}.jpg-300x400.webp",
+    "detailUrlSelector": "https://m.manhuatai.com/{$.comic_newid}/",
+    "latestChapterSelector": "$.last_qmmh_chapter_name&&$.last_qmmh_chapter_time\n<js>result.replace(/(.*)\\s/, '$1 • ')</js>\n<js>result.replace(/\\s\\d+:\\d+:\\d+/, '')</js>"
+  },
+  "detail": {
+    "titleSelector": "[property=\"og:novel:book_name\"]",
+    "coverSelector": "body",
+    "authorSelector": "[property=\"og:novel:author\"]",
+    "descriptionSelector": "[property=\"og:description\"]"
+  },
+  "chapters": {
+    "listSelector": ".chapter-list",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "$..current_chapter.chapter_img_list.[*]",
+    "srcAttribute": "js:headers={\"headers\":{\"Referer\":baseUrl}};\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 1357,
+  "createdAt": "2026-06-27T15:52:53.919Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

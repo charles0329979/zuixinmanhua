@@ -1,0 +1,19 @@
+{
+  "id": "lg-h90pnb",
+  "name": "🎨新漫画",
+  "version": "1.0.0-b7d9474f",
+  "hash": "b7d9474fbf018a149e86c756a740ce75e48c292bab004cad1d2763d646b41e29",
+  "host": "https://xapi.xinmanhua.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

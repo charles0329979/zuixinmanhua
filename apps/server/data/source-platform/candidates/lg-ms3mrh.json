@@ -1,0 +1,46 @@
+{
+  "id": "lg-ms3mrh",
+  "name": "🎨 拷贝漫画➠移动不可用",
+  "host": "https://copymanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api.copymanga.net/api/v3/search/comic?platform=1&q={{key}}&limit=20&offset={{20*(page-1)}}&q_type&_update=true,{\n  \"headers\": {\n    \"platform\": \"1\",\n    \"Host\": \"api.copymanga.net\"\n  }\n}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "$.results.list.*||$.results.list.*comic",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover||$.comic.cover",
+    "detailUrlSelector": "https://api.copymanga.net/api/v3/comic2/{$.path_word}?platform=1",
+    "latestChapterSelector": "$.datetime_updated||$.comic.last_chapter||$.datetime_created"
+  },
+  "detail": {
+    "titleSelector": "$.results.comic.name",
+    "coverSelector": "$.results.comic.cover",
+    "authorSelector": "$.results.comic.author[*].name##\\n##/",
+    "descriptionSelector": "$.results.comic.brief"
+  },
+  "chapters": {
+    "listSelector": "$.results.list[*]",
+    "titleSelector": "$.name",
+    "urlSelector": "https://api.copymanga.net/api/v3/comic/{{$.comic_path_word}}/chapter2/{{$.uuid}}?platform=1&_update=true"
+  },
+  "images": {
+    "listSelector": "$.results..contents[*].url",
+    "srcAttribute": "js:list=result.split('\\n');\nlist.map(x=>'<img src=\"'+x+'\">').join('')"
+  },
+  "timeoutMs": 941,
+  "createdAt": "2026-06-27T15:52:55.841Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

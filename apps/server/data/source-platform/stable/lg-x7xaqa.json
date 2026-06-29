@@ -1,0 +1,20 @@
+{
+  "id": "lg-x7xaqa",
+  "name": "㊣✐ 酷爱漫画  ",
+  "version": "1.0.0-ef072659",
+  "hash": "ef07265911c1e5e5d92b504af7b1a2d6e3a45015e57b199fc696a2ba70e45338",
+  "host": "https://www.kuimh.com#♤yc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.657Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq-mxgmh-com-b161a5b1",
+  "name": "漫香阁",
+  "host": "https://xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq.mxgmh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search.php?key={{keyword}}&typeid=0&p={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "a",
+    "titleSelector": ".topgrid-desc@h3@text",
+    "coverSelector": "",
+    "detailUrlSelector": "href",
+    "latestChapterSelector": "",
+    "statusSelector": "tag.span.0@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "tag.html",
+    "titleSelector": "tag.title@text## - 漫香阁.com",
+    "urlSelector": ""
+  },
+  "images": {
+    "listSelector": ".contentmh@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

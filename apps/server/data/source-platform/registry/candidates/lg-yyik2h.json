@@ -1,0 +1,19 @@
+{
+  "id": "lg-yyik2h",
+  "name": "🗂🙈一耽漫画🅰",
+  "version": "1.0.0-73df54b0",
+  "hash": "73df54b0254d926d359cb3d764074d71bb360c6422f9bb8c962c7ced5236743d",
+  "host": "https://ydan.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

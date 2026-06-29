@@ -1,0 +1,46 @@
+{
+  "id": "lg-pa89gx",
+  "name": "FORUM GIRL//请大佬帮忙完善",
+  "host": "www.superbeautygirlx.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "搜索链接规则为空,天龙"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "h1",
+    "titleSelector": "body",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": ".separator",
+    "srcAttribute": "js:\nresult.includes(\".jpg\")?result.split(\"\\n\").map(src=>`<img src=\"${src}\">`).join(\"\\n\"):result"
+  },
+  "timeoutMs": 2411,
+  "createdAt": "2026-06-27T15:52:53.431Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

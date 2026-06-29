@@ -1,0 +1,19 @@
+{
+  "id": "lg-mpm04x",
+  "name": "🗂🙈久久漫画",
+  "version": "1.0.0-0d1b0173",
+  "hash": "0d1b0173938714bbca02e33882f0964bed4d7d96dbc20715b39bcde6f3d8c948",
+  "host": "http://99hanman.top/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

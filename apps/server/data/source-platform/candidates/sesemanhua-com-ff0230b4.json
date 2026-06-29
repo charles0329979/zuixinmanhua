@@ -1,0 +1,45 @@
+{
+  "id": "sesemanhua-com-ff0230b4",
+  "name": "色色漫画",
+  "host": "https://www.sesemanhua.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/index.php/search?key={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.cate-comic-list clearfix@class.common-comic-item",
+    "titleSelector": "class.comic__title@tag.a@text",
+    "coverSelector": "class.cover@tag.img@data-original",
+    "detailUrlSelector": "class.comic__title@tag.a@href",
+    "latestChapterSelector": "class.comic-update@tag.a@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.de-info__box@class.comic-title j-comic-title@text",
+    "coverSelector": "class.de-info__cover@tag.img@src",
+    "authorSelector": "class.comic-author@class.name@tag.a@text",
+    "descriptionSelector": "class.comic-intro@class.intro@text",
+    "statusSelector": "class.comic-status@class.text.0@tag.b@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.chapter__list-box clearfix@tag.li@tag.a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.rd-article-wr clearfix@class.rd-article__pic hide@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

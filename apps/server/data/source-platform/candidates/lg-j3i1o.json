@@ -1,0 +1,40 @@
+{
+  "id": "lg-j3i1o",
+  "name": "🌵背窝韩漫🌵",
+  "host": "https://bwhanman.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0-2图片,🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://bwhanman.com/site/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".flexbetween",
+    "titleSelector": "h2",
+    "coverSelector": ".newimg",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "span.-1"
+  },
+  "detail": {
+    "titleSelector": "h3",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": ".novel-intro"
+  },
+  "chapters": {
+    "listSelector": "#chapters",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".u-reading-content",
+    "srcAttribute": "html##src=\"/.*?v=.*\" class=\"lazyload\""
+  },
+  "timeoutMs": 4936,
+  "createdAt": "2026-06-27T15:52:56.386Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

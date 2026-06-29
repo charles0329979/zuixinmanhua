@@ -1,0 +1,19 @@
+{
+  "id": "lg-tkle0u",
+  "name": "🎨亲亲漫画 #Haxc🔞",
+  "version": "1.0.0-01c89c42",
+  "hash": "01c89c423a3a882b947d8fab650c87e490efb5c4c07bcac45722b96b961e50e1",
+  "host": "http://api.acg.gd#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

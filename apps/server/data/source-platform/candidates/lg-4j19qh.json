@@ -1,0 +1,46 @@
+{
+  "id": "lg-4j19qh",
+  "name": "哔哩哔哩漫画 #Haxc",
+  "host": "https://manga.bilibili.com#♤Haxc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\n\nlet a={\"key_word\":key,\"page_num\":1,\"page_size\":9},\nc={\"Referer\":\"https://manga.bilibili.com/search?from=manga_homepage&keyword=\"+encodeURIComponent(key)}\nb={\n\"method\": \"POST\",\n\"body\": JSON.stringify(a),\n\"headers\": JSON.stringify(c)\n}\n\n\"/twirp/comic.v1.Comic/Search?device=pc&platform=web,\"+JSON.stringify(b)\n</js>",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$..list[*]||$.data",
+    "titleSelector": "$.org_title||$.title##<.*?>",
+    "coverSelector": "$.vertical_cover",
+    "detailUrlSelector": "comic_id||$.season_id||$.id\n<js>\nbid=result;\njava.put(\"bid\", bid);\nlet a={\"comic_id\":bid}, b={\n\"method\": \"POST\", \"body\": JSON.stringify(a), \"headers\": {\"Referer\":\"https://manga.bilibili.com/detail/mc\"+bid+\"?from=manga_serach\"}\n}\n\n\"/twirp/comic.v1.Comic/ComicDetail?device=pc&platform=web, \"+JSON.stringify(b)\n</js>",
+    "latestChapterSelector": "$.last_short_title##(.*)##$1话###"
+  },
+  "detail": {
+    "titleSelector": "$.data.title",
+    "coverSelector": "body",
+    "authorSelector": "$..author_name##[\\[\\]\\\"]",
+    "descriptionSelector": "$..evaluate"
+  },
+  "chapters": {
+    "listSelector": "-$..ep_list[*]",
+    "titleSelector": "$.short_title",
+    "urlSelector": "$.id\n<js>\nepid=result;\njava.put(\"epid\", epid);\nlet a={\"ep_id\":epid}, b={\n\"method\": \"POST\", \"body\": JSON.stringify(a), \"headers\": {\"Referer\":\"https://manga.bilibili.com/mc\"+java.get(\"bid\")+\"/\"+epid+\"?from=manga_detail\"}\n}\n\n\"/twirp/comic.v1.Comic/GetImageIndex?device=pc&platform=web, \"+JSON.stringify(b)\n</js>"
+  },
+  "images": {
+    "listSelector": "<js>\n//获取图像token\nfunction getImageToken(path){\nlet a={\n  urls: '[\\\"'+path+\"",
+    "srcAttribute": "748w.jpg\"+'\\\"]'\n},\nb={\n\"method\": \"POST\",\n\"body\": JSON.stringify(a),\n\"headers\": {\"Referer\":\"https://manga.bilibili.com/mc\"+java.get(\"bid\")+\"/\"+java.get(\"epid\")+\"?from=manga_detail\"}\n}\n\nURL=\"https://manga.bilibili.com/twirp/comic.v1.Comic/ImageToken?device=pc&platform=web,\"+JSON.stringify(b);\njava.setContent(java.ajax(URL));\nurl=java.getString(\"$..url\");\ntoken=java.getString(\"$..token\");\nreturn url+\"?token=\"+token\n}\n\nb={\n\"headers\": {\"Referer\":\"https://manga.bilibili.com/mc\"+java.get(\"bid\")+\"/\"+java.get(\"epid\")+\"?from=manga_detail\"}\n}\n//加了不会有水印??\n\njava.getStringList(\"$.data.images[*].path\").toArray().map(path=>{\nreturn '<img src=\"'+getImageToken(path)+\",\"+JSON.stringify(b)+'\">'\n}).join(\"\\n\")\n</js>"
+  },
+  "timeoutMs": 10222,
+  "createdAt": "2026-06-27T15:52:55.239Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "17te-com-177ee4b3",
+  "name": "🎨 特漫网站",
+  "version": "1.0.0-f29614d5",
+  "hash": "f29614d53098987ce35f5d82e7a19e727576588dbbc26ad558a90a00e77874f0",
+  "host": "https://www.17te.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

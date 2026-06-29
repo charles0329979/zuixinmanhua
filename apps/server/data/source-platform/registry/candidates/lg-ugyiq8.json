@@ -1,0 +1,19 @@
+{
+  "id": "lg-ugyiq8",
+  "name": "话本小说②",
+  "version": "1.0.0-688dc4b4",
+  "hash": "688dc4b4ba72c8cd2e472a3f083b8f6d1f59711a774156b8ec1a8fe4cf5b8e7f",
+  "host": "https://so.ihuaben.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "haxc-47c6ef3f",
+  "name": "✐ ㊣爱奇艺漫画 #Haxc",
+  "version": "1.0.0-17e574cc",
+  "hash": "17e574ccfe45bf679db015fde34712d62b035d42420ad5f37d021f5acdf27d35",
+  "host": "https://www.iqiyi.com/manhua#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

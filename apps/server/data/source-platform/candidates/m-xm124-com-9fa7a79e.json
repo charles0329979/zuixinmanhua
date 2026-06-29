@@ -1,0 +1,45 @@
+{
+  "id": "m-xm124-com-9fa7a79e",
+  "name": "土豆漫画网📱",
+  "host": "https://m.xm124.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.xm124.com/search/?keywords={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox||class.list-comic",
+    "titleSelector": "class.title@text||class.txtA@text",
+    "coverSelector": "tag.mip-img@src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "class.coll@text||class.info@text",
+    "statusSelector": "class.txtitme.1@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.view-sub@tag.h1@text",
+    "coverSelector": "id.Cover@tag.mip-img@src",
+    "authorSelector": "class.pic_zi.1@tag.dd@text",
+    "descriptionSelector": "class.txtDesc@text##^.*简介：|介绍:",
+    "statusSelector": "class.pic_zi.2@tag.dd@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-class.list@tag.li!0@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.erPag@tag.mip-img@html##mip\\-",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

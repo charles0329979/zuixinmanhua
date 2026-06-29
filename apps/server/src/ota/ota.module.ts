@@ -4,11 +4,10 @@
 
 import { Module } from '@nestjs/common';
 import { OtaController } from './ota.controller';
-import { SourcesModule } from '../sources/sources.module';
-import { SourceImportModule } from '../modules/source-import/source-import.module';
+import { SourcePlatformModule } from '../source-platform/source-platform.module';
 
 @Module({
-  imports: [SourcesModule, SourceImportModule],
+  imports: [SourcePlatformModule],
   controllers: [OtaController],
 })
 export class OtaModule {}

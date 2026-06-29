@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ComicService } from './comic.service';
 import { ComicController } from './comic.controller';
-import { SourcesModule } from '../sources/sources.module';
+import { SourcePlatformModule } from '../source-platform/source-platform.module';
 
 @Module({
-  imports: [SourcesModule],
+  imports: [SourcePlatformModule],
   providers: [ComicService],
   controllers: [ComicController],
 })

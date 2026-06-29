@@ -1,0 +1,19 @@
+{
+  "id": "lg-73r3no",
+  "name": "韩漫大全",
+  "version": "1.0.0-a289d577",
+  "hash": "a289d5774ffbca9a4cb7b86edc374dd8b35831226d7df178cee8f6a4c09590fd",
+  "host": "https://www.hanmandq.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

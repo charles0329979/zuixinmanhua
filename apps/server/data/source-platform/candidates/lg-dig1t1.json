@@ -1,0 +1,46 @@
+{
+  "id": "lg-dig1t1",
+  "name": "再漫画",
+  "host": "https://manhua.zaimanhua.com/",
+  "enabled": true,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://manhua.zaimanhua.com/dynamic/{{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".update_con li",
+    "titleSelector": ".title",
+    "coverSelector": "img",
+    "detailUrlSelector": "https://manhua.zaimanhua.com/api/v1/comic1/comic/detail?channel=%20pc&app_name=zmh&version=1.0.0&comic_py={{\u0000AT\u0000class.title a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "$..comicInfo.title",
+    "coverSelector": "$..cover",
+    "authorSelector": "$..authorName",
+    "descriptionSelector": "$..description"
+  },
+  "chapters": {
+    "listSelector": "$..chapterList",
+    "titleSelector": "$.chapter_title",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": "$..page_url",
+    "srcAttribute": "js:\nJSON.parse(result).map(url=>`<img src=\"${url}\">`).join('\\n')"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:17:19.501Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

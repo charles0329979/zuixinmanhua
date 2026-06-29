@@ -1,0 +1,19 @@
+{
+  "id": "lg-5ai4m2",
+  "name": "TIBIU漫画",
+  "version": "1.0.0-45ad0e4e",
+  "hash": "45ad0e4ebbb6a2c7dc221ce96e0c7a742cd0956d2b6c99370ad9e2e793b43725",
+  "host": "https://comic.tibiu.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-8ydtyo",
+  "name": "🎨爱奇艺漫画 ",
+  "version": "1.0.0-92e4145a",
+  "hash": "92e4145ab540bf4d7e1d7bb4ada1a59a3b3d4167ff65f384be33ff72097e3ffc",
+  "host": "https://www.iqiyi.com/manhua#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-g0ii0f",
+  "name": "萌图社团（优++）",
+  "version": "1.0.0-5d4a5b75",
+  "hash": "5d4a5b751ed4753c7fa33bac042417c1857f74e49406a8f9a6d7087de7c44bd1",
+  "host": "https://moetu.club",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

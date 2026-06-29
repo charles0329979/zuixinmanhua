@@ -1,0 +1,19 @@
+{
+  "id": "lg-xvwn5y",
+  "name": "🗒 十八禁漫",
+  "version": "1.0.0-af7c364b",
+  "hash": "af7c364b846e62aa67505bc081615919294020a64722eb2ac65f443ce26b80a4",
+  "host": "https://www.18mh.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

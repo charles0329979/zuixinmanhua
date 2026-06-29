@@ -1,0 +1,19 @@
+{
+  "id": "lg-xx6avp",
+  "name": "🗒 性感美女",
+  "version": "1.0.0-1ac4018a",
+  "hash": "1ac4018afca4ca5eba04f4d151c90767883721a2ddacada581f12d2466824c4c",
+  "host": "https://www.jpxgyw.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

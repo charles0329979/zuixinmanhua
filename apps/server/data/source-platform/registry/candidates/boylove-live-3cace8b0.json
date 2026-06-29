@@ -1,0 +1,19 @@
+{
+  "id": "boylove-live-3cace8b0",
+  "name": "🐑 香香腐宅",
+  "version": "1.0.0-28c249f1",
+  "hash": "28c249f1aa5413b085c041b509a2a26c5420acd28141af25eba9a1e0067cf355",
+  "host": "https://boylove.live",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

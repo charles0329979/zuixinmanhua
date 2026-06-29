@@ -1,0 +1,45 @@
+{
+  "id": "wnacg-top-e7134456",
+  "name": "绅士漫画看注释",
+  "host": "https://www.wnacg.top",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.wnacg.top/q/?q={{keyword}}=&f=_all&s=create_time_DESC&p=1",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.col_2@tag.li",
+    "titleSelector": "class.txtA@text",
+    "coverSelector": "class.ImgA autoHeight@tag.img@src",
+    "detailUrlSelector": "",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.subHeader@text",
+    "coverSelector": "class.pic@tag.img@src",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "tag.title",
+    "titleSelector": "tag.title@text",
+    "urlSelector": ""
+  },
+  "images": {
+    "listSelector": "id.img_list@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

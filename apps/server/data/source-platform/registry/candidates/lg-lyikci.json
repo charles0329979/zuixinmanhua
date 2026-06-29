@@ -1,0 +1,19 @@
+{
+  "id": "lg-lyikci",
+  "name": "包子漫画5",
+  "version": "1.0.0-681f1ae0",
+  "hash": "681f1ae08a61232c69faf60356abf1d815ca82572a8849f9ba71cfe7662fabc4",
+  "host": "https://cn.webmota.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

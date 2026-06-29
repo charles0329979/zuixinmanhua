@@ -1,0 +1,19 @@
+{
+  "id": "lg-adcmzg",
+  "name": "包子漫画（优）",
+  "version": "1.0.0-68731cb6",
+  "hash": "68731cb615c57265e15847f58e53d7d121b9605289b54374c09b3f37082c937c",
+  "host": "https://cn.baozimhcn.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "7mm-cfac429d",
+  "name": "求补齐正文规则-7mm漫画",
+  "version": "1.0.0-9d60a97a",
+  "hash": "9d60a97a71f201c2d10b07ebb957e4562e392cd248f94df8d7fb1249e8a647fc",
+  "host": "https://7mmtv.sx/zh/hcomic_list/all.html",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

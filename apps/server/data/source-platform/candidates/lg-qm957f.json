@@ -1,0 +1,40 @@
+{
+  "id": "lg-qm957f",
+  "name": "霓虹漫画（优）",
+  "host": "https://rawkuma.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "page/{{page}}/?s={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".bs",
+    "titleSelector": ".tt",
+    "coverSelector": ".limit",
+    "detailUrlSelector": ".bsx",
+    "latestChapterSelector": ".epxs"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "-.clstyle",
+    "titleSelector": ".chapternum.0",
+    "urlSelector": ".eph-num"
+  },
+  "images": {
+    "listSelector": "#readerarea",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 3805,
+  "createdAt": "2026-06-27T15:52:51.050Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

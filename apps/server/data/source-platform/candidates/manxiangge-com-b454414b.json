@@ -1,0 +1,45 @@
+{
+  "id": "manxiangge-com-b454414b",
+  "name": "漫香阁",
+  "host": "https://manxiangge.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://manxiangge.com",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "data",
+    "titleSelector": "",
+    "coverSelector": "",
+    "detailUrlSelector": "",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h2@text",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.infoR@p@text",
+    "statusSelector": "id.menu@tag.li.-1:-2:1@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.listmh@li@a||tag.title",
+    "titleSelector": "text##- 漫香阁",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".contentmh@img@html##data-original##src",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

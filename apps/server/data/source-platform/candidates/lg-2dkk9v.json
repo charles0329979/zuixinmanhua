@@ -1,0 +1,40 @@
+{
+  "id": "lg-2dkk9v",
+  "name": "笔趣漫画（优+）",
+  "host": "https://www.biqug.org/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "p.j-comic-title",
+    "coverSelector": ".de-info__cover img",
+    "authorSelector": ".name a",
+    "descriptionSelector": "{{\u0000AT\u0000p.intro"
+  },
+  "chapters": {
+    "listSelector": "a.j-chapter-link",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "img.lazy-read",
+    "srcAttribute": "html##!cover-800"
+  },
+  "timeoutMs": 2512,
+  "createdAt": "2026-06-27T15:52:50.584Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

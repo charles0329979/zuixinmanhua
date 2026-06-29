@@ -1,0 +1,19 @@
+{
+  "id": "lg-izwis6",
+  "name": "🎨新新漫画-xyz",
+  "version": "1.0.0-45f8d63e",
+  "hash": "45f8d63eb06d8506f01de33eb741c9b54943a7d42cc50705842c273abe50c691",
+  "host": "https://m.77mh.xyz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

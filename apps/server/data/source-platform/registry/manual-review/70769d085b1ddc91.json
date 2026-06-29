@@ -1,0 +1,90 @@
+{
+  "id": "70769d085b1ddc91",
+  "name": "番茄【FQWeb自建】- 模板",
+  "normalizedSource": {
+    "id": "70769d085b1ddc91",
+    "name": "番茄【FQWeb自建】- 模板",
+    "host": "https://在此填写你的服务器地址",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "/search?query={{key}}",
+      "method": "GET",
+      "responseType": "json",
+      "listSelector": "$.data.ret_data.*||$..book_data[*]||$..book_info[*]",
+      "titleSelector": "$.book_name||$.title\n<js>\njava.put(\"book_id\", java.getString(\"$.book_id\"))\nresult\n</js>\n##<em>|</em>|《|》",
+      "coverSelector": "$.thumb_url",
+      "detailUrlSelector": "https://api5-normal-sinfonlineb.fqnovel.com/reading/bookapi/multi-detail/v/?aid=1967&iid=1&version_code=999&book_id={{java.get(\"book_id\")}}"
+    },
+    "detail": {
+      "titleSelector": "$.book_name",
+      "coverSelector": "$.thumb_url",
+      "authorSelector": "$.author##<em>|</em>",
+      "descriptionSelector": "🏷️ 标签：{{$.tags}}{{'\\n&lrm;\\n'}}\n \n &nbsp;\n \n\n 📉开书时间：{{$.create_time##T.*}}{{'\\n&lrm;\\n'}}\n  📈更新时间：{{java.timeFormat(java.getString('$..last_chapter_update_time')*1000)}}{{'\\n&lrm;\\n'}}\n  👥 主角：{{$.roles##\\[|\\\"|\\]}}\n{{'\\n&lrm;\\n'}}\n💠 原名：{{$.original_book_name}}{{'\\n&lrm;\\n'}}\n🔋 别名：{{$.book_flight_alias_name}}  \n\n{{'\\n&lrm;\\n'}}📮 简介：{{$..abstract}}{{'\\n'+'​'}}\n📍 {{$.copyright_info##，.*##。}}\n@js:result.replace(/.+：(人在读)?\\s/g,'')"
+    },
+    "chapters": {
+      "listSelector": "$.data.chapterListWithVolume.*.*",
+      "titleSelector": "$.title",
+      "urlSelector": "@js:\nsource.bookSourceUrl + `/content?item_id={{$.itemId}}`"
+    },
+    "images": {
+      "listSelector": "$..content",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "com.dragon.read/306 (Linux; U; Android 8.1.0; zh_CN; MI PAD 4; Build/OPM1.171019.019; Cronet/TTNetVersion:4df3ca9d 2019-11-25)",
+      "accept": "application/json; charset=utf-8",
+      "sdk-version": "1"
+    },
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": false,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "search: contains @js: expressions — requires QuickJS runtime",
+      "detail: contains @js: expressions — requires QuickJS runtime",
+      "chapters: contains @js: expressions — requires QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime"
+    ],
+    "createdAt": "2026-06-29T03:37:57.230Z",
+    "updatedAt": "2026-06-29T03:37:57.230Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/fqweb.json",
+    "importedAt": "2026-06-29T03:37:57.230Z",
+    "rawHash": "89b5bcbe775412d4c220f489f2589724a7680440da6d097456c3b4588b2f9fa9"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "search: contains @js: expressions — requires QuickJS runtime",
+    "detail: contains @js: expressions — requires QuickJS runtime",
+    "chapters: contains @js: expressions — requires QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime"
+  ],
+  "createdAt": "2026-06-29T03:37:57.230Z",
+  "updatedAt": "2026-06-29T03:37:57.230Z"
+}

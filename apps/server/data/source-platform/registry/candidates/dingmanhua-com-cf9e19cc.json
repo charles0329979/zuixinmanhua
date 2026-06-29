@@ -1,0 +1,45 @@
+{
+  "id": "dingmanhua-com-cf9e19cc",
+  "name": "🌠 顶漫画网",
+  "host": "https://www.dingmanhua.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.dingmanhua.com/search/?q={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "div.col-lg-2",
+    "titleSelector": "div.card@text",
+    "coverSelector": "",
+    "detailUrlSelector": "a.stretched-link@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "p.fs-4@text",
+    "coverSelector": "img.rounded@data-src",
+    "authorSelector": ".author-content a@text",
+    "descriptionSelector": "{{@@.tags-content span@text}}{{@@.tags-content a@text}}\n{{@@div.summary-content@text}}",
+    "statusSelector": "li:nth-of-type(2) a.hover_red@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "a.text-truncate",
+    "titleSelector": "text",
+    "urlSelector": "href##$##,{'webView':true}"
+  },
+  "images": {
+    "listSelector": "img.entered@data-src##(.*).webp##<img src=\"$1.webp\">",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

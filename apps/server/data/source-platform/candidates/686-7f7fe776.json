@@ -1,0 +1,45 @@
+{
+  "id": "686-7f7fe776",
+  "name": "🎨 686漫画✈️",
+  "host": "https://www.686mh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.686mh.com/search?keyword={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.comic-sort@tag.li||class.manga-list-2@tag.li||class.rank-list@tag.a",
+    "titleSelector": "h3@text",
+    "coverSelector": "tag.img@data-src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "class.manga-list-2-tip@text##已更新||tag.span.-1@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.name@text",
+    "coverSelector": "",
+    "authorSelector": "class.author@text",
+    "descriptionSelector": "class.content@text",
+    "statusSelector": ".tags-txt@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapterlist@tag.li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": ".comiclist@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

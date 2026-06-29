@@ -1,0 +1,19 @@
+{
+  "id": "lg-777j2r",
+  "name": "🎨追追漫画₁🅰",
+  "version": "1.0.0-30354545",
+  "hash": "30354545d81b1bd798ade7f6113ca603054b02ecebdb590cf087e5072a9947ba",
+  "host": "http://api.ilikemanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

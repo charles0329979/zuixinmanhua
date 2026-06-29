@@ -1,0 +1,46 @@
+{
+  "id": "lg-lyikci",
+  "name": "包子漫画5",
+  "host": "https://cn.webmota.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "☣️精选senhora,☣️漫画lateral,🎨漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?q={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comics-card",
+    "titleSelector": ".comics-card__title",
+    "coverSelector": "amp-img.0",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "h1.comics-detail__title",
+    "coverSelector": "body",
+    "authorSelector": "h2.comics-detail__author",
+    "descriptionSelector": "p.comics-detail__desc"
+  },
+  "chapters": {
+    "listSelector": "<js>\nif(result.match(/章节目录/)){\njava.getElements(\"id.chapter-items .comics-chapters .comics-chapters",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "amp-img",
+    "srcAttribute": "js:headers={\"headers\":{\"Referer\":baseUrl}};\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 4856,
+  "createdAt": "2026-06-27T15:52:54.575Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

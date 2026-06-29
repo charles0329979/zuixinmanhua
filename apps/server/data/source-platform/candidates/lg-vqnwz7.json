@@ -1,0 +1,40 @@
+{
+  "id": "lg-vqnwz7",
+  "name": "MOXI动漫(8本)™",
+  "host": "http://www.moxidongman.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0-2图片,🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "#",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".comic-list li",
+    "titleSelector": "span.0",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "span.1"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": ".color-hui"
+  },
+  "chapters": {
+    "listSelector": ".catalog-order a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".view-content",
+    "srcAttribute": "html##src=\".+data-echo##src"
+  },
+  "timeoutMs": 535,
+  "createdAt": "2026-06-27T15:52:55.477Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

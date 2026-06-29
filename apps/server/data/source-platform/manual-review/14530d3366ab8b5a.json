@@ -1,0 +1,89 @@
+{
+  "id": "14530d3366ab8b5a",
+  "name": "轻小说机翻🤖",
+  "normalizedSource": {
+    "id": "14530d3366ab8b5a",
+    "name": "轻小说机翻🤖",
+    "host": "https://n.novelia.cc",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "@js:\nif (/文库\\d-/.test(key)) {\n    let data = key.split('-');\n    let level = data[0].match(/\\d/)[0];\n    result = `/api/wenku?page={{page-1}}&pageSize=24&query=${key.replace(data[0] + \"-\", \"\")}&level=${level}`;\n} else {\n    result = `/api/novel?page={{page-1}}&pageSize=20&query={{key}}&provider=kakuyomu%2Csyosetu%2Cnovelup%2Chameln%2Cpixiv%2Calphapolis&level=0&type=0&translate=0&sort=0`\n}\nresult;",
+      "method": "GET",
+      "responseType": "json",
+      "listSelector": "$.items",
+      "titleSelector": "$.titleZh||$.titleJp",
+      "coverSelector": "$.cover",
+      "detailUrlSelector": "@js:\n/\\/wenku\\?/.test(baseUrl) ? `/api/wenku/{{$.id}}` : `/api/novel/{{$.providerId}}/{{$.novelId}}`;"
+    },
+    "detail": {
+      "titleSelector": "$.titleZh",
+      "coverSelector": "$.cover",
+      "authorSelector": "$.authors.*.name||$.authors",
+      "descriptionSelector": "当前规则：语言展现形式-{{getConfig().language}}，翻译优先级-{{getConfig().translation}}（可在源变量或书籍变量中修改，详情参考变量说明）\n\n{{$.titleJp}}\n总计：{{$.total}} 百度：{{$.baidu}} 有道：{{$.youdao}} GPT：{{$.gpt}} Sakura：{{$.sakura}}\n\n{{$.introductionZh}}\n\n{{$.introductionJp}}\nㅤ\n{{$.introduction}}\n@js:\nconst baseUrlApi = `${source.key}api/comment?pageSize=20&site=${baseUrl.match(/api\\/(.*?)$/)[1].replace('novel', 'web').replaceAll('/', '-')}`;\n\nfunction formatComments(items, parentName) {\n    if (!items.length) return '';\n    return items.map(item => {\n        let time = java.timeFormatUTC(item.createAt * 1000, 'yyyy-MM-dd HH:mm:ss', 0);\n        let replyTag = parentName ? ` | @${parentName}` : '';\n        let content = (parentName ? 'ㅤ' : '') + item.content;\n\n        let block = `${parentName ? '└' + item.user.username : item.user.username} | ${time}${replyTag}\\n${parentName ? content.replaceAll('\\n', '\\nㅤ') : content}`;\n\n        if (item.replies.length) {\n            block += '\\n' + formatComments(item.replies, item.user.username, true);\n        }\n        return block;\n    }).join(parentName ? '\\n' : '\\nㅤ\\n');\n}\n\nconst allComments = [];\nlet page = 0;\nlet hasMore = true;\n\nwhile (hasMore && page < 5) {\n    let res = JSON.parse(java.get(`${baseUrlApi}&page=${page}`, {}).body() || '{}');\n    if (res.items.length) {\n        allComments.push(formatComments(res.items));\n        hasMore = page < (res.pageNumber - 1);\n        page++;\n    } else {\n        hasMore = false;\n    }\n}\n\nconst Comment = allComments.length ? `\\n💬 [评论区 | 时间倒序]：\\n${allComments.join('\\nㅤ\\n')}`.replaceAll('::: star ', '评分：⭐×').replaceAll('::: details 点击展开', '').replace('\\n:::\\n', '') : '';\n\nresult + Comment;"
+    },
+    "chapters": {
+      "listSelector": "$.toc",
+      "titleSelector": "$.titleZh||$.titleJp",
+      "urlSelector": "@js:\nresult.chapterId ? `{{baseUrl}}/chapter/${result.chapterId}` : ''"
+    },
+    "images": {
+      "listSelector": "@js:\nlet content;\ntry {\n    result = JSON.parse(result)\n    const config = getConfig()\n    const resultList = []\n    for (let ip = 0; ip < result.paragraphs.length; ip++) {\n        let p = result.paragraphs[ip]\n        if (/^<图片>http.+$/.test(p)) {\n            p = '<img src=\"' + p.replace(/^<图片>/i, \"\") + '\">'\n            resultList.push(p)\n            continue\n        }\n\n        function generateTran(i) {\n            const chars = {\n                baiduParagraphs: \"ᵇ\",\n                youdaoParagraphs: \"ʸ\",\n                gptParagraphs: \"ᵍ\",\n                sakuraParagraphs: \"ˢ\"\n            }\n            if (config.translation === \"并列\") {\n                const processed = []\n                for (let ii = 0; ii < config.translationArr.length; ii++) {\n                    let t = config.translationArr[ii]\n                    if (result[t]) {\n                        if (/^<图片>http.+$/.test(result[t][i])) {\n                            let tmp = '<img src=\"' + result[t][i].replace(/^<图片>/i, \"\") + '\">'\n                            if (!processed.includes(tmp))\n                                processed.push(tmp)\n                            continue\n                        }\n                        processed.push((result[t][i] != \"\" ? chars[t] : \"\") + result[t][i].trim())\n                        continue\n                    }\n                    processed.push(\"\")\n                }\n                return processed.join(\"\\n\")\n            } else {\n                for (let tt = 0; tt < config.translationArr.length; tt++) {\n                    let t = config.translationArr[tt]\n                    if (result[t]) {\n                        if (/^<图片>http.+$/.test(result[t][i])) {\n                            let tmp = '<img src=\"' + result[t][i].replace(/^<图片>/i, \"\") + '\">'\n                            return tmp\n                        }\n                        return (result[t][i] != \"\" ? chars[t] : \"\") + result[t][i].trim()\n                    }\n                }\n            }\n        }\n        switch (String(config.language)) {\n            case \"日文\":\n                resultList.push(p)\n                break\n            case \"中文\":\n                resultList.push(generateTran(ip))\n                break\n            case \"中日\":\n                resultList.push([generateTran(ip), p.trim()].join(\"\\n\"))\n                break\n            case \"日中\":\n                resultList.push([p, generateTran(ip)].join(\"\\n\"))\n                break\n        }\n    }\n    content = resultList.join(\"\\n\")\n} catch (e) {\n    content = result;\n}\ncontent;",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": true,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "search: contains @js: expressions — requires QuickJS runtime",
+      "detail: contains @js: expressions — requires QuickJS runtime",
+      "chapters: contains @js: expressions — requires QuickJS runtime",
+      "images: contains @js: expressions — requires QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime",
+      "Detected login requirement — may need authentication"
+    ],
+    "createdAt": "2026-06-29T03:37:57.229Z",
+    "updatedAt": "2026-06-29T03:37:57.229Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/fishhawk.json",
+    "importedAt": "2026-06-29T03:37:57.229Z",
+    "rawHash": "da3bc1b04216d9ef0d64f87072ad89c271e3d973bf4b47dc5a04113e71cbfd81"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": true,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "search: contains @js: expressions — requires QuickJS runtime",
+    "detail: contains @js: expressions — requires QuickJS runtime",
+    "chapters: contains @js: expressions — requires QuickJS runtime",
+    "images: contains @js: expressions — requires QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime",
+    "Detected login requirement — may need authentication"
+  ],
+  "createdAt": "2026-06-29T03:37:57.229Z",
+  "updatedAt": "2026-06-29T03:37:57.229Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "rimanzhijia-com-79df29b2",
+  "name": "日漫之家",
+  "version": "1.0.0-61f1d9fd",
+  "hash": "61f1d9fdf6ad0686cdc4312c5ec7aaef6b717792cdf104c49012cb3ad288a562",
+  "host": "https://rimanzhijia.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

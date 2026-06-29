@@ -1,0 +1,45 @@
+{
+  "id": "gll8-com-6be64318",
+  "name": "鬼罗丽漫画",
+  "host": "http://www.gll8.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.news_list_1@a",
+    "titleSelector": "class.hdline@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": "href",
+    "latestChapterSelector": "class.news_list_tw_p@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "class.spanimg1@text##发布者：",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.article-content",
+    "titleSelector": "{{book.name}}",
+    "urlSelector": "{{baseUrl}}"
+  },
+  "images": {
+    "listSelector": "class.article-content@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

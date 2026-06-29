@@ -1,0 +1,20 @@
+{
+  "id": "lg-18ut5t",
+  "name": "🎨漫客栈",
+  "version": "1.0.0-c5199205",
+  "hash": "c5199205940aa378bb63dd33387f114d695348f9d84ea0c58cf608802e39c3dc",
+  "host": "https://comic.mkzhan.com/",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.320Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "lg-r2ve0o",
+  "name": "看漫画吧",
+  "version": "1.0.0-2426418d",
+  "hash": "2426418d1355a9fbe6c8a65934f749d5b3627ee939a5dda07b04b03f325f8da6",
+  "host": "http://m.kanman.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.698Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

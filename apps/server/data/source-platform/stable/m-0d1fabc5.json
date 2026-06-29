@@ -1,0 +1,20 @@
+{
+  "id": "m-0d1fabc5",
+  "name": "漫画哥-M",
+  "version": "1.0.0-9b76d912",
+  "hash": "9b76d912fd775e48644138081b8fd555cf0bff3d442585637d409449828a2190",
+  "host": "https://m.manhuag.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.283Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

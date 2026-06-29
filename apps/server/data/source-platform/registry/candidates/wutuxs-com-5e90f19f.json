@@ -1,0 +1,19 @@
+{
+  "id": "wutuxs-com-5e90f19f",
+  "name": "🅰无图小说网🅰",
+  "version": "1.0.0-79cadba6",
+  "hash": "79cadba6f36349c5503730096a7d5f5bbe4169645d08d86f2321a10e18f18c1d",
+  "host": "https://www.wutuxs.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

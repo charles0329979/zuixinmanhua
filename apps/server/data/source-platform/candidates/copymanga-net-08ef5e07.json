@@ -1,0 +1,45 @@
+{
+  "id": "copymanga-net-08ef5e07",
+  "name": "拷贝漫画",
+  "host": "https://www.copymanga.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.copymanga.net/api/kb/web/search/count?offset=0&platform=2&limit=12&q={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "$.results.comic.list[*]",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "detailUrlSelector": "https://www.copymanga.net/comic/{{$.path_word}},{\"webView\":true}",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.intro@text",
+    "statusSelector": "class.comicParticulars-tag@a@text&&class.comicParticulars-right-txt.-1@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.default全部@a!-1",
+    "titleSelector": "text",
+    "urlSelector": "href##$##,{\"webView\":true}"
+  },
+  "images": {
+    "listSelector": "class.comicContent-image-all@img@html##\\s+src=\".*?\"",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

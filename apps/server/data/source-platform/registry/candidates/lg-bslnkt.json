@@ -1,0 +1,19 @@
+{
+  "id": "lg-bslnkt",
+  "name": "追追漫画M",
+  "version": "1.0.0-4e1b6b78",
+  "hash": "4e1b6b78c4b0cdd7358bbb3f685fe597130587de710f459287cb6adb5dffd255",
+  "host": "http://zz.ilikemanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

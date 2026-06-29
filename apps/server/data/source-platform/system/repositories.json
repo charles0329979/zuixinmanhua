@@ -1,0 +1,12 @@
+{
+  "repositories": [
+    {
+      "id": "pipimiao-main",
+      "provider": "pipimiao",
+      "type": "github",
+      "url": "https://github.com/AcgLibrary/ppcat_store",
+      "branch": "master",
+      "enabled": true
+    }
+  ]
+}

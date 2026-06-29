@@ -1,0 +1,19 @@
+{
+  "id": "lg-3dv48v",
+  "name": "🎨爱看韩漫🔞",
+  "version": "1.0.0-739cce67",
+  "hash": "739cce67f891c80415945f9808e969d53f2ec0b7974a496c9a98c3678ea406f5",
+  "host": "https://www.ikanhm.top",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

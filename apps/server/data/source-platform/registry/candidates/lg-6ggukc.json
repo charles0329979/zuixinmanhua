@@ -1,0 +1,19 @@
+{
+  "id": "lg-6ggukc",
+  "name": "🗂🙈梦游漫画🚩",
+  "version": "1.0.0-25af1d34",
+  "hash": "25af1d340cedde30195d6e270cca81245554083ed165c138b5b39ea1220cc03c",
+  "host": "https://www.mumumh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

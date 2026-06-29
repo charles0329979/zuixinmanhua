@@ -1,0 +1,19 @@
+{
+  "id": "boylove6-xyz-43416307",
+  "name": "🐑 香香腐宅",
+  "version": "1.0.0-3d83cab4",
+  "hash": "3d83cab4530a1e84642554203829e448ea80f2825a69465ea5f6a8e56b3ece4f",
+  "host": "https://boylove6.xyz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

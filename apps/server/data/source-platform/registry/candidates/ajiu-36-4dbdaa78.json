@@ -1,0 +1,19 @@
+{
+  "id": "ajiu-36-4dbdaa78",
+  "name": "[阿玖·AJiu]36漫画",
+  "version": "1.0.0-169df4a0",
+  "hash": "169df4a097138629157063b366e22d4a3f31ffbfb4d2b48f1fcc6144e5e59045",
+  "host": "https://m.36mh.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

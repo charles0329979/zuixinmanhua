@@ -1,0 +1,19 @@
+{
+  "id": "lg-5azujq",
+  "name": "🗒 大魔兔网",
+  "version": "1.0.0-0c618aad",
+  "hash": "0c618aad4c7493f20cd78cd43c6557ff365ee425c7eb85cd303281c0b2c5d2d5",
+  "host": "http://m.damotu.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

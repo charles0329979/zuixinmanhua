@@ -1,0 +1,41 @@
+{
+  "id": "lg-pmh56g",
+  "name": "友漫画",
+  "host": "https://www.seyoumanhua.top",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Legado"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/index.php/search/{{key}}/{{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".comic_cover_container",
+    "titleSelector": "a.1",
+    "coverSelector": ".comic_cover",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".comic_cover_desc"
+  },
+  "detail": {
+    "titleSelector": ".comic_name",
+    "coverSelector": ".comic_cover",
+    "authorSelector": ".author_name",
+    "descriptionSelector": "<br>🏷 标签：\n{{"
+  },
+  "chapters": {
+    "listSelector": ".row_catalog_list",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".comic_chapter_content",
+    "srcAttribute": "html"
+  },
+  "headers": "{\"User-Agent\":\"Mozilla/5.0 (Linux; U; Android 13; zh-Hans-CN; PFJM10 Build/TP1A.220905.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/135.0.4896.58 Quark/6.13.6.581 Mobile Safari/537.36\",\"Accept-Language\":\"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7\"}",
+  "timeoutMs": 1243,
+  "createdAt": "2026-06-27T15:52:52.301Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

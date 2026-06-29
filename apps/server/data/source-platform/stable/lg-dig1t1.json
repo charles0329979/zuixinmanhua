@@ -1,0 +1,20 @@
+{
+  "id": "lg-dig1t1",
+  "name": "再漫画",
+  "version": "1.0.0-d4b4f884",
+  "hash": "d4b4f8845fbd3de3a08055c7d218080a8f8fd2b6d6e24c76a6c252dab989f0cb",
+  "host": "https://manhua.zaimanhua.com/",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.291Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

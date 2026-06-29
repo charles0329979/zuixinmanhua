@@ -1,0 +1,19 @@
+{
+  "id": "qipamh-com-b2c416e7",
+  "name": "🌠 奇葩漫画",
+  "version": "1.0.0-8522a15d",
+  "hash": "8522a15d612de96a87031c3da20b5cc0784c2c4250a3ba48e31d68cd7ce0e810",
+  "host": "http://www.qipamh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

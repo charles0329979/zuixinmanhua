@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-06-29T09:13:37.513Z",
+  "total": 2,
+  "sources": [
+    {
+      "id": "7463775eeb7ebfd4",
+      "name": "包子漫画(测试)",
+      "version": "1.0.0-fa9821f4",
+      "hash": "fa9821f42c5b338f0690659328f5b01fe27dfcd9fad8386852df33d8329e2d9c",
+      "healthScore": 97,
+      "origin": {
+        "provider": "manual",
+        "repositoryUrl": "test",
+        "branch": "main",
+        "commitSha": "test",
+        "filePath": "test",
+        "importedAt": "2026-06-28T14:53:35.546Z",
+        "rawHash": "test"
+      },
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-29T03:31:10.484Z",
+      "host": "https://www.baozimh.com"
+    },
+    {
+      "id": "yydsmh-candidate",
+      "name": "YYDS漫画",
+      "version": "1.0.0-cafc6d1b",
+      "hash": "cafc6d1bc0a76c64b92f05b0f3b8c5480e5fb8fd9261470856b8aaea95844bdc",
+      "healthScore": 97,
+      "origin": {
+        "provider": "manual",
+        "repositoryUrl": "",
+        "branch": "",
+        "commitSha": "",
+        "filePath": "",
+        "importedAt": "2026-06-29T09:13:24.558Z",
+        "rawHash": "manual"
+      },
+      "capabilities": {
+        "search": true,
+        "detail": true,
+        "chapters": true,
+        "images": true
+      },
+      "publishedAt": "2026-06-29T09:13:37.499Z",
+      "host": "https://www.yydsmh.com"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "lg-89srpf",
+  "name": "开心漫画（优+）",
+  "host": "https://www.kaixinman.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "{{cookie.removeCookie(source.getKey())}}/search?q={{key}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "[class=\"col-md-6 col-sm-4 col-xs-3\"]",
+    "titleSelector": "h4",
+    "coverSelector": "[class=\"comic-cover lazy\"]",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": ".lazy.0",
+    "authorSelector": ".comic-detail .data.1",
+    "descriptionSelector": "[class=\"desc hidden-xs\"]"
+  },
+  "chapters": {
+    "listSelector": "[class=\"chapter-list clearfix column6 overflow\"]",
+    "titleSelector": "text",
+    "urlSelector": "href##$##, {\"webView\": true}"
+  },
+  "images": {
+    "listSelector": "<js>\nvar step1 = java.base64Decode('PGpzPgp2YXIgYT1zb3VyY2UuYm9va1NvdXJjZUNvbW1lbnQ7CnZhciBiPWphdmEuYmFzZTY0RGVjb2RlKCdMeTh5TURJMUxqRXdMallnSU9Xa25PYVlqdWVwdWdvdkwrYTZrT2VrdnVXTXV1KzhtbWgwZEhCek9pOHZlV052Ynk1dVpYUT0nKTsKaWYgKGEuaW5jbHVkZXMoYikpIHsKY29uPWphdmEuYmFzZTY0RGVjb2RlKCdQR3B6UGdwaFBXcGhkbUV1WjJWMFUzUnlhVzVuS0NjdVkyaGhjSFJsY2kxcGJXRm5aVUJrWVhSaExXOXlhV2RwYm1Gc0p5azdDbUV1YzNCc2FYUW9JbHh1SWlrdWJXRndLR2s5UG1BOGFXMW5JSE55WXowaUpIdHBmU0krWUNrdWFtOXBiaWdpWEc0aUtRbzhMMnB6UGc9PScpOwpyZXN1bHQ9amF2YS5nZXRTdHJpbmcoY29uKTsKfSBlbHNlIHsKZXJyb3I9amF2YS5iYXNlNjREZWNvZGUoJzRwcWc3N2lQSU9hamdPYTFpK1dJc09TNXB1YTZrT2lpcSthQnR1YUVqK2V2b2VhVXVRcmlyWkFnNksrMzVZbU41YjZBNUwyYzZJQ0Y1TGk3NmFHMTVwdTA1cGF3NUxtbTVycVFLT1dGcyttWHJlV0hnT1dNbHVhWXZ1ZWt1dW1UdnVhT3BTbnZ2Sm9LYUhSMGNITTZMeTk1WTI5dkxtNWxkQXJpclpBZzVwQ2M1N1NpNTVTbzVvaTM1WkNONzd5YTVhU2M1cGlPNTZtNicpOwpyZXN1bHQ9amF2YS50b2FzdCgnXG4nK2Vycm9yKTsKcmVzdWx0PSdcbiZscm07XG4nK2Vycm9yOwp9CnJlc3VsdAo8L2pzPg==');\nvar step2 = java.getString(step1);\nresult = step2\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "{\"User-Agent\":\"Mozilla/5.0 (Linux; U; Android 13; zh-Hans-CN; PFJM10 Build/TP1A.220905.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/135.0.4896.58 Quark/6.13.6.581 Mobile Safari/537.36\",\"Accept-Language\":\"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7\"}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.691Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

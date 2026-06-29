@@ -1,0 +1,19 @@
+{
+  "id": "wap-faloo-com-08afa374",
+  "name": "💰 飞卢小说",
+  "version": "1.0.0-f5ae42b2",
+  "hash": "f5ae42b27cc4d87f818eb975aceac49fac416b19311f5183f779742ae28016b7",
+  "host": "https://wap.faloo.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

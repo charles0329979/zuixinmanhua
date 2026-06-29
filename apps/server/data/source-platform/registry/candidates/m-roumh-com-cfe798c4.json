@@ -1,0 +1,19 @@
+{
+  "id": "m-roumh-com-cfe798c4",
+  "name": "肉色漫画",
+  "version": "1.0.0-b2e63bd4",
+  "hash": "b2e63bd4d13861de56f32f34f35cb409a7e21566db02d8da184d75679d37b065",
+  "host": "https://m.roumh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

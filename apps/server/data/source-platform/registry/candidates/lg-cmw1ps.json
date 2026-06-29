@@ -1,0 +1,19 @@
+{
+  "id": "lg-cmw1ps",
+  "name": "✐ 趣话漫画🅰💰 #Haxc",
+  "version": "1.0.0-aa09b475",
+  "hash": "aa09b475ea1a42b34f4135fcbc138f2ef45cb697513e0bee37ca87a78c16ff30",
+  "host": "https://api.iqhmh.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

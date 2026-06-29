@@ -1,0 +1,41 @@
+{
+  "id": "lg-iljyho",
+  "name": "哔哩漫画（优+++）",
+  "host": "https://manga.bilibili.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "正版漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(String(Reload('https://qyyuapi.com/sy/js/哔哩哔哩漫画/searchUrl.js')));\n</js>",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "<js>\neval(String(Reload('https://qyyuapi.com/sy/js/哔哩哔哩漫画/ruleSearch.js')));\n</js>",
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "detailUrlSelector": "url",
+    "latestChapterSelector": "latest"
+  },
+  "detail": {
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "authorSelector": "author",
+    "descriptionSelector": "intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\neval(String(Reload('https://qyyuapi.com/sy/js/哔哩哔哩漫画/ruleToc.js')));\n</js>",
+    "titleSelector": "title",
+    "urlSelector": "link"
+  },
+  "images": {
+    "listSelector": "<js>\neval(String(Reload('https://qyyuapi.com/sy/js/哔哩哔哩漫画/ruleContent.js')));\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "<js>\nvar Proxy = Map('代理：').split(\",\");\nheaders={\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0\",\n    \"proxy\": Proxy.some(value => parseInt(value, 10) == parseInt(Get('ci0'), 10)) ? '' : Proxy[0],\n}\ncache.put(java.md5Encode16(Get('url') + \"headers\"),JSON.stringify(headers));\nJSON.stringify(headers);\n</js>",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:51.155Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

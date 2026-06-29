@@ -1,0 +1,19 @@
+{
+  "id": "manwa",
+  "name": "漫蛙",
+  "version": "1.0.0-34654351",
+  "hash": "3465435102d32cdbdd6a8e5783a57030e0507dbf41aeb97597f0cc6cb589ac59",
+  "host": "https://manwafz.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T13:41:50.402Z",
+  "capabilities": {
+    "search": false,
+    "detail": false,
+    "chapters": false,
+    "images": false
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

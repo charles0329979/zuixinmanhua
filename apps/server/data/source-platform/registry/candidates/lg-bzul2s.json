@@ -1,0 +1,19 @@
+{
+  "id": "lg-bzul2s",
+  "name": "kuronavi漫画raw",
+  "version": "1.0.0-a9b8956a",
+  "hash": "a9b8956a24db1ccb4111438934a39c5950e6fa363149cf30e289b0deaaa5d9e6",
+  "host": "https://kuronavi.blog",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

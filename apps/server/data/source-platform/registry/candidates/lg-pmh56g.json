@@ -1,0 +1,19 @@
+{
+  "id": "lg-pmh56g",
+  "name": "友漫画",
+  "version": "1.0.0-f9a9580f",
+  "hash": "f9a9580f17a418f21565fb721c0638fdc4f49be35cd47c570f2835d1953f0a74",
+  "host": "https://www.seyoumanhua.top",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

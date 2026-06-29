@@ -1,0 +1,19 @@
+{
+  "id": "lg-gn2x7n",
+  "name": "🎨 韩漫吧",
+  "version": "1.0.0-8b4748d9",
+  "hash": "8b4748d9860a710b7e9a1d0bf3f8ba07a6c685117e2e0d33987d56bdf5fe8480",
+  "host": "https://m.hmba.vip",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

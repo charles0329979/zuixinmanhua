@@ -1,0 +1,19 @@
+{
+  "id": "lg-kpgytr",
+  "name": "漫畫狗",
+  "version": "1.0.0-bd544dc6",
+  "hash": "bd544dc644815b55f95a4f6df2befdac5039211a6a4f1536b5816b3a81f8621e",
+  "host": "https://dogemanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

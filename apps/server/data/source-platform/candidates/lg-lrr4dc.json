@@ -1,0 +1,41 @@
+{
+  "id": "lg-lrr4dc",
+  "name": "🎨 好吧漫画",
+  "host": "https://hao8.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "💠 其他,🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comic-item",
+    "titleSelector": ".comic-title",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".head-title-tags h1",
+    "coverSelector": ".head-banner img",
+    "authorSelector": ".head-info-author",
+    "descriptionSelector": ".head-info-desc"
+  },
+  "chapters": {
+    "listSelector": "#chapters li a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".comic-pic-list",
+    "srcAttribute": "html"
+  },
+  "headers": "{\n    'User-Agent': 'mobile-web-app-capable'\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:56.085Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

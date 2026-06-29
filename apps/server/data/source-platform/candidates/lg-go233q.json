@@ -1,0 +1,47 @@
+{
+  "id": "lg-go233q",
+  "name": "曼哈漫画（优+）",
+  "host": "https://www.mangabz.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://www.mangabz.com/search?title={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".manga-list",
+    "titleSelector": ".manga-item-title",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".detail-main-title",
+    "coverSelector": "body",
+    "authorSelector": ".detail-main-subtitle.0",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "-class.detail-list",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\r\ntry{\nheaders={\"headers\":{\"Referer\":baseUrl}};\r\neval(result.match(/(eval\\([\\s\\S]+?)<\\/script/)[1]);\r\nnewImgs.map(a=>\r\n'<img src=\"'+a+','+JSON.stringify(headers)+'\">').join(\"\\n\")\r\n}catch(e){}"
+  },
+  "headers": "{\n\"User-Agent\":\"Mozilla/5.0 (Linux; Android 11; PCLM10 Build/RKQ1.200928.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/93.0.4577.62 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.908Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "ikanwzd-top-1ba24e5f",
+  "name": "🎨 久久漫画网",
+  "host": "https://www.ikanwzd.top",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.book-list@tag.li",
+    "titleSelector": "class.book-list-info-title@text",
+    "coverSelector": "class.book-list-cover-img lazy@data-original",
+    "detailUrlSelector": "class.book-list-cover@tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "class.book-list-info-bottom-right-font@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.detail-main-info-title@text",
+    "coverSelector": "class.detail-main-cover@tag.img@data-original",
+    "authorSelector": "class.detail-main-info-author.1@tag.a@text",
+    "descriptionSelector": "class.detail-desc@text",
+    "statusSelector": "class.detail-main-info-class@tag.span@tag.a@text&&",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.detail-list-select@tag.li",
+    "titleSelector": "class.chapteritem@title",
+    "urlSelector": "class.chapteritem@href"
+  },
+  "images": {
+    "listSelector": "id.cp_img@tag.img@html##data-original##src",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

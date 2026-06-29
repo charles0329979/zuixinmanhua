@@ -1,0 +1,19 @@
+{
+  "id": "lg-tcqoyj",
+  "name": "🗒 妙华台藏",
+  "version": "1.0.0-45c869bc",
+  "hash": "45c869bc105933cae821eb2264e41619dcebfbb71c40c3d4a373e25e5feaabf4",
+  "host": "https://m.manhuatai.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

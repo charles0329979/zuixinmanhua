@@ -1,0 +1,19 @@
+{
+  "id": "lg-6pgoc2",
+  "name": "🗒 夜色韩漫",
+  "version": "1.0.0-ef2f5a07",
+  "hash": "ef2f5a078c526357e535760456e4b9e1a874c466c9326c4f479173fc8042d579",
+  "host": "https://www.yeseimg.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

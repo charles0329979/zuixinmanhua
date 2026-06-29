@@ -1,0 +1,46 @@
+{
+  "id": "lg-6xsv20",
+  "name": "大树漫画",
+  "host": "https://www.dashuhuwai.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "☣️精选senhora,☣️漫画lateral,🎨漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.dashuhuwai.com/search?types=comic&searhword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".alllist",
+    "titleSelector": ".ti",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".who"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "body",
+    "authorSelector": ".shuxin",
+    "descriptionSelector": ".bookms"
+  },
+  "chapters": {
+    "listSelector": "-id.ul_chapter1",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\r\ntry{\nheaders={\"headers\":{\"Referer\":baseUrl}};\r\ne=eval(result.match(/else\\s*?\\{\\s*?(eval\\([\\s\\S]+?\\{\\}\\)\\))\\s*\\}\\s*var/)[1]);\r\npicTree.map(a=>'<img src=\"'+a+','+JSON.stringify(headers)+'\">').join(\"\\n\")\r\n}catch(e){}"
+  },
+  "timeoutMs": 7171,
+  "createdAt": "2026-06-27T15:52:54.035Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "manmanapp-com-f559632a",
+  "name": "漫漫漫画",
+  "host": "https://www.manmanapp.com#yc1101",
+  "enabled": false,
+  "language": "zh",
+  "weight": 100,
+  "tags": [
+    "low"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/word-{{keyword}}.html",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".classification",
+    "titleSelector": ".title@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": "a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": "❤️{{@@.supplement@ownText}}",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": ".pic img@src",
+    "authorSelector": "",
+    "descriptionSelector": ".supplement@html",
+    "statusSelector": "{{book.kind}},{{@@.type@text}}##类型：",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "$.data",
+    "titleSelector": "$.title",
+    "urlSelector": "https://www.manmanapp.com/comic/detail-{{$.id}}.html"
+  },
+  "images": {
+    "listSelector": ".man_img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

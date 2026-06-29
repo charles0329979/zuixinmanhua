@@ -1,0 +1,19 @@
+{
+  "id": "hanmanju-com-1b29e2c5",
+  "name": "韩漫居",
+  "version": "1.0.0-e15a1f69",
+  "hash": "e15a1f692025409ea31eb530daf796be85a025925b20f24468be88aea482dde8",
+  "host": "https://www.hanmanju.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

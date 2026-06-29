@@ -1,0 +1,19 @@
+{
+  "id": "lg-hte1qw",
+  "name": "久久漫画-ζ",
+  "version": "1.0.0-2339be38",
+  "hash": "2339be38dfa75c0ee97829f0200bae4336ad2b5651d67e438da417d72b46ba32",
+  "host": "https://www.jjmhw.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

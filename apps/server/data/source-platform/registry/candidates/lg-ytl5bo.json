@@ -1,0 +1,19 @@
+{
+  "id": "lg-ytl5bo",
+  "name": "🎨亲亲漫画🔞",
+  "version": "1.0.0-eec2717b",
+  "hash": "eec2717b26876edb80beb543b2e16c0b0de4c67316dae8761e1b1ad5300afde8",
+  "host": "http://api.acg.gd",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

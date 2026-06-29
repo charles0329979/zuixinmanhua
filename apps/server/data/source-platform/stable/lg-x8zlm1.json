@@ -1,0 +1,20 @@
+{
+  "id": "lg-x8zlm1",
+  "name": "🎨 看漫画M #Haxc1107",
+  "version": "1.0.0-74541170",
+  "hash": "745411706d169102378252649f190cbe4bb44e3b5c4a4598a8e9c814f516300e",
+  "host": "https://m.kanman.com#Haxc1107",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.584Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

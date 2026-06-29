@@ -1,0 +1,19 @@
+{
+  "id": "m-wuxiamh-com-4a88ebbb",
+  "name": "🎨 武侠漫画",
+  "version": "1.0.0-b28d8484",
+  "hash": "b28d848451f5ed779e173c0c57c73cb39a3089763e24d6160e800dc051dde77c",
+  "host": "https://m.wuxiamh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

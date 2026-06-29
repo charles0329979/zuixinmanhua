@@ -1,0 +1,46 @@
+{
+  "id": "lg-h0oymx",
+  "name": "漫小肆20251217",
+  "host": "https://www.jjmh.top/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "测试"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.jjmh.top/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".mh-list col7",
+    "titleSelector": ".mh-item",
+    "coverSelector": ".mh-item a p",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".chapter"
+  },
+  "detail": {
+    "titleSelector": ".info h1",
+    "coverSelector": ".cover.0 img",
+    "authorSelector": ".subtitle.1",
+    "descriptionSelector": ".block.4"
+  },
+  "chapters": {
+    "listSelector": ".view-win-list detail-list-select",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".comiclist div .comicpage div img div .comicpage div img",
+    "srcAttribute": "html”字符串变量"
+  },
+  "timeoutMs": 11434,
+  "createdAt": "2026-06-27T15:52:52.533Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

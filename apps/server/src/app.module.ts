@@ -11,6 +11,7 @@ import { LoggingModule } from './logging/logging.module';
 import { SyncModule } from './sync/sync.module';
 import { OtaModule } from './ota/ota.module';
 import { SourceImportModule } from './modules/source-import/source-import.module';
+import { SourcePlatformModule } from './source-platform/source-platform.module';
 import { RuleBasedController } from './sources/rule-based.controller';
 import { RuleSourceAdminController } from './sources/rule-source-admin.controller';
 
@@ -28,6 +29,7 @@ import { RuleSourceAdminController } from './sources/rule-source-admin.controlle
     SyncModule,
     OtaModule,
     SourceImportModule,
+    SourcePlatformModule,
   ],
   controllers: [RuleBasedController, RuleSourceAdminController],
 })

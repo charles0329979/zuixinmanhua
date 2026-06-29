@@ -1,0 +1,19 @@
+{
+  "id": "lg-l7j70g",
+  "name": "🎨 漫漫漫画 💰",
+  "version": "1.0.0-570ff61a",
+  "hash": "570ff61ad5c951d654a1bb7429d51aec516100c364eb7f4918fbbd13dcbad7a3",
+  "host": "https://www.manmanapp.com#一程",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

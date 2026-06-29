@@ -1,0 +1,20 @@
+{
+  "id": "gaozehk-com-9cb07aa9",
+  "name": "🌠 高泽漫画",
+  "version": "1.0.0-a90aa59b",
+  "hash": "a90aa59bb8f8ecf99a3ab298ae567b4f6132a430c9039b9b891a73ec255c7c12",
+  "host": "https://www.gaozehk.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.255Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "lg-duf7mp",
+  "name": "🎨 神漫画",
+  "host": "https://m.taomanhua.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.taomanhua.com/api/getsortlist/?search_type=&search_key={{key}}&page={{page}}&size=30&productname=smh&platformname=wap",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.update[*].info[*]||$.data.data[*]||$.data[*]",
+    "titleSelector": "$.comic_name",
+    "coverSelector": "http://image.mhxk.com/mh/{$.comic_id}.jpg-600x800.webp",
+    "detailUrlSelector": "https://m.taomanhua.com/api/getcomicinfo_body/?comic_id={$.comic_id}&productname=smh&platformname=wap",
+    "latestChapterSelector": "$.last_chapter_name||$.comic_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "$.data.comic_name",
+    "coverSelector": "$.data.cover_list[0]",
+    "authorSelector": "$.data.comic_author",
+    "descriptionSelector": "$.data.comic_desc"
+  },
+  "chapters": {
+    "listSelector": "-$.data.comic_chapter.*",
+    "titleSelector": "$.chapter_name",
+    "urlSelector": "$.chapter_id"
+  },
+  "images": {
+    "listSelector": "<js>\n//获取章节位置\nindex=parseInt(chapter.index);\nindex=index+1;\nnum=parseInt(book.totalChapterNum);\nindex=num-index;\n\n//画质可选low middle high\nvar img_ext = \"-smh.middle.webp\";\nvar pic = \"https://mhpic.manhualang.com\"\nvar html =\"\";\n\njson=JSON.parse(result);\ncomic_chapter= json.data.comic_chapter;\n\nvar end_num  = comic_chapter[index].end_num;\nvar rule=comic_chapter[index].rule;\nchapter_domain=comic_chapter[index].chapter_domain;\n\nheader={\"Referer\":baseUrl};\nheaders={\"headers\":JSON.stringify(header)};\n\nfor( let i = 1;i <= end_num; i++) {\n   let url = pic  +rule.replace(/\\$\\$/g, i) +img_ext;\n   html += '<img src=\"' + url +', '+JSON.stringify(headers)+'\">\\n';\n}\nresult = html\n</js>",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 1349,
+  "createdAt": "2026-06-27T15:52:54.941Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

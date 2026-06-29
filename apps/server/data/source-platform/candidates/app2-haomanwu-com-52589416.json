@@ -1,0 +1,45 @@
+{
+  "id": "app2-haomanwu-com-52589416",
+  "name": "好漫屋",
+  "host": "https://app2.haomanwu.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://app2.haomanwu.com/index.php/search?key={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "ul li",
+    "titleSelector": "a@text",
+    "coverSelector": "img@data-original",
+    "detailUrlSelector": "a@href",
+    "latestChapterSelector": ".comic-update@text##更至：",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".j-comic-title@text##\\(最新在线\\)",
+    "coverSelector": "",
+    "authorSelector": ".name@tag.a@text",
+    "descriptionSelector": ".intro-total@text",
+    "statusSelector": "class.comic-status@a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapter__list@li@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".rd-article__pic@img@html##src=\".*?png\"",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

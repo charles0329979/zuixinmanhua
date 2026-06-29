@@ -1,0 +1,19 @@
+{
+  "id": "lg-d8jjtn",
+  "name": "野蛮漫画（优）",
+  "version": "1.0.0-cef0ce78",
+  "hash": "cef0ce78439ea399883344141385fa83a3097a8fa9ac1eddb752d4cfe13638e9",
+  "host": "https://mhbao.colacomic.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

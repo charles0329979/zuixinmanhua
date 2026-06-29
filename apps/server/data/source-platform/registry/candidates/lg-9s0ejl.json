@@ -1,0 +1,19 @@
+{
+  "id": "lg-9s0ejl",
+  "name": "🎨 新新漫画",
+  "version": "1.0.0-e35619db",
+  "hash": "e35619dbd9e11305bb2e030e5ed2b30d01dc8263976927d40a871c0e81346bef",
+  "host": "https://m.77mh.nl",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

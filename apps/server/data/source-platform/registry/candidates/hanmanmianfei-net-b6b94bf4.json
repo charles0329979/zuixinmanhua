@@ -1,0 +1,19 @@
+{
+  "id": "hanmanmianfei-net-b6b94bf4",
+  "name": "韩漫免费看",
+  "version": "1.0.0-16649ad2",
+  "hash": "16649ad27059897db54b460ca177526f00823b714a5e27368be26248f2ce2f7b",
+  "host": "https://www.hanmanmianfei.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

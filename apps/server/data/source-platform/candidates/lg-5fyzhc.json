@@ -1,0 +1,46 @@
+{
+  "id": "lg-5fyzhc",
+  "name": "㊣✐ 漫漫漫画 #一程1101",
+  "host": "https://www.manmanapp.com#yc1101",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/word-{{key}}.html",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".classification",
+    "titleSelector": ".title",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": ".pic img",
+    "authorSelector": "body",
+    "descriptionSelector": ".supplement"
+  },
+  "chapters": {
+    "listSelector": "$.data",
+    "titleSelector": "$.title",
+    "urlSelector": "https://www.manmanapp.com/comic/detail-{{$.id}}.html"
+  },
+  "images": {
+    "listSelector": ".man_img",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 2534,
+  "createdAt": "2026-06-27T15:52:55.719Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

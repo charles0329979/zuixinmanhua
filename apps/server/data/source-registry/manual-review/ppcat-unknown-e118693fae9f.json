@@ -1,0 +1,87 @@
+{
+  "id": "ppcat-unknown-e118693fae9f",
+  "name": "ppcat_store (26B, v2009113)",
+  "normalizedSource": {
+    "id": "ppcat-unknown-e118693fae9f",
+    "name": "ppcat_store (26B, v2009113)",
+    "host": "",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported",
+      "unknown"
+    ],
+    "search": {
+      "url": "",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": "",
+      "titleSelector": "",
+      "coverSelector": "",
+      "detailUrlSelector": ""
+    },
+    "detail": {
+      "titleSelector": ""
+    },
+    "chapters": {
+      "listSelector": "",
+      "titleSelector": "",
+      "urlSelector": ""
+    },
+    "images": {
+      "listSelector": "",
+      "srcAttribute": "src"
+    },
+    "createdAt": "2026-06-28T15:33:02.397Z",
+    "updatedAt": "2026-06-28T15:33:02.397Z",
+    "origin": {
+      "provider": "github",
+      "repositoryUrl": "https://github.com/AcgLibrary/ppcat_store",
+      "branch": "master",
+      "commitSha": "3b1d56d9cca6246995fe7a8d8e82281707fc72cf",
+      "filePath": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/README.md",
+      "importedAt": "2026-06-28T15:33:02.397Z",
+      "rawHash": "e118693fae9f10f43f5fc7fb974659678001e5ff10da9a9c26d5fb9b53f989f2"
+    },
+    "capabilities": {
+      "search": false,
+      "detail": false,
+      "chapters": false,
+      "images": false,
+      "requiresJs": false,
+      "requiresLogin": false,
+      "requiresManualAdapter": true
+    },
+    "lifecycleStatus": "MANUAL_REVIEW",
+    "conversionWarnings": [
+      "Unable to parse store file — format not recognized",
+      "Decompression tried: none"
+    ]
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/AcgLibrary/ppcat_store",
+    "branch": "master",
+    "commitSha": "3b1d56d9cca6246995fe7a8d8e82281707fc72cf",
+    "filePath": "https://raw.githubusercontent.com/AcgLibrary/ppcat_store/master/README.md",
+    "importedAt": "2026-06-28T15:33:02.397Z",
+    "rawHash": "e118693fae9f10f43f5fc7fb974659678001e5ff10da9a9c26d5fb9b53f989f2"
+  },
+  "capabilities": {
+    "search": false,
+    "detail": false,
+    "chapters": false,
+    "images": false,
+    "requiresJs": false,
+    "requiresLogin": false,
+    "requiresManualAdapter": true
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "Unable to parse store file — format not recognized",
+    "Decompression tried: none"
+  ],
+  "createdAt": "2026-06-28T15:33:02.397Z",
+  "updatedAt": "2026-06-28T15:33:02.397Z"
+}

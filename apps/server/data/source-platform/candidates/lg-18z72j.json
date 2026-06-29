@@ -1,0 +1,47 @@
+{
+  "id": "lg-18z72j",
+  "name": "😍轻写真",
+  "host": "http://www.635k.com/##@Mengteen",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "😍"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/{{page}}_2.html",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "#post_list_box",
+    "titleSelector": "h2",
+    "coverSelector": "img",
+    "detailUrlSelector": "h2",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "ul",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "src'); \nlet p=String(pics).split(\"\\n\").map(i=>`<img src=\"${i}\">`).join(\"\\n\");\np;"
+  },
+  "headers": "{\"User-Agent\": \"Mozilla/5.0 (Linux; Android 13; 2211133C Build/TKQ1.220905.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36\"}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:52.415Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

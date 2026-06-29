@@ -1,0 +1,20 @@
+{
+  "id": "dingmanhua",
+  "name": "顶漫画",
+  "version": "1.0.0-fde9575e",
+  "hash": "fde9575e4049a14e8f053e03531d49c8e35b7d796c1acf7e3baac8ebb5b4493e",
+  "host": "https://www.dingmanhua.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.734Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

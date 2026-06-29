@@ -1,0 +1,19 @@
+{
+  "id": "app2-haomanwu-com-52589416",
+  "name": "好漫屋",
+  "version": "1.0.0-f78fc0ea",
+  "hash": "f78fc0ea71eb769b8be7b4981a877639aa0b08a3885bf4af43e22eb98da4ffee",
+  "host": "https://app2.haomanwu.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

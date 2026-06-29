@@ -1,0 +1,19 @@
+{
+  "id": "lg-xvi4q6",
+  "name": "酸奶漫画",
+  "version": "1.0.0-2a1c6564",
+  "hash": "2a1c656489c74f53712a4bc70a0f7a7d57afde863590bde64458438f12c35632",
+  "host": "https://m.1kkk.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

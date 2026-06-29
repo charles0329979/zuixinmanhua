@@ -1,0 +1,20 @@
+{
+  "id": "manhuadui",
+  "name": "漫画堆",
+  "version": "1.0.0-c82e1c80",
+  "hash": "c82e1c805d45dd16cdfad0f5dd5810862e605741ce76fc5d9cb9bd209f935cd4",
+  "host": "https://www.manhuadui.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:58.963Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

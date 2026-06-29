@@ -1,0 +1,19 @@
+{
+  "id": "lg-ws4alc",
+  "name": "🎨漫漫漫画 #Haxc1107",
+  "version": "1.0.0-4d98b0fe",
+  "hash": "4d98b0fe8030875d2ad8eac4aa6674154dae58cabf8b3ca57145991a972da96e",
+  "host": "https://www.manmanapp.com#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

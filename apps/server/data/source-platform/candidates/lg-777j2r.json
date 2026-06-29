@@ -1,0 +1,47 @@
+{
+  "id": "lg-777j2r",
+  "name": "🎨追追漫画₁🅰",
+  "host": "http://api.ilikemanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://mgadmin.ilikemanga.com/index.php?s=/Api/Category/comiclist&thirdsession=RjncHAleD4YW2LZOUgqdwEfMaIzNVTGy&page={{page}}&num=1000&area=0&category=0&finish=0&pay=0&sort=newest",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "<js>\nvar Magua = new JavaImporter();\nMagua.importPackage(\nPackages.java.lang, Packages.java.security, );\nwith(Magua) {\n  function strToMd5(str) {\n    let md5 = MessageDigest.getInstance(\"MD5\");\n    let bytes = md5.digest(String(str).getBytes());\n    let stringBuffer = new StringBuilder();\n    let bt = null;\n    bytes.forEach(a => {\n      bt = a & 0xff;\n      if (bt < 16) {\n        stringBuffer.append(\"0\");\n      }\n      stringBuffer.append(Integer.toHexString(bt));\n    });\n    return stringBuffer.toString();\n  }\n}\nfunction getSig(timestamp, params) {\n  return strToMd5(\"45667191c50941a1a777dfbd84345fe8\" + timestamp + params);\n}\n\nif (baseUrl.match(\"key=\")) {\n  var input = decodeURI(baseUrl.split(\"key=\")[1]).split(\"&page=\")\n  var timestamp = new Date().getTime();\n  var params = JSON.stringify({\n  keyword: String(input[0]), page: parseInt(input[1]), count: 30\n  });\n  var url = \"http://api.ilikemanga.com/request.php?method=comic/search&timestamp=\"+timestamp+\"&param=\"+params+\"&sig=\"+getSig(timestamp, params);\n  result=JSON.parse(java.ajax(url)).comics\n} else if (baseUrl.match(\"date=\")) {\n  var input = decodeURI(baseUrl.split(\"date=\")[1]).split(\"&page=\")\n  var timestamp = new Date().getTime();\n  var params = JSON.stringify({\n  v: 1, t: 0, id: 39, page: parseInt(input[1]), count: 30, filter: 0, date: parseInt(input[0])\n  });\n  var url = \"http://api.ilikemanga.com/request.php?method=theme/infov1&timestamp=\"+timestamp+\"&param=\"+params+\"&sig=\"+getSig(timestamp, params);\n result= JSON.parse(java.ajax(url)).comics\n} else if (baseUrl.match(\"id=\")) {\n  var input = decodeURI(baseUrl.split(\"id=\")[1]).split(\"&page=\")\n  var timestamp = new Date().getTime();\n  var params = JSON.stringify({\n  v: 1, t: 0, id: parseInt(input[0]), page: parseInt(input[1]), count: 30, filter: 0\n  });\n  var url =  \"http://api.ilikemanga.com/request.php?method=theme/info&timestamp=comic/search&timestamp=\"+timestamp+\"&param=\"+params+\"&sig=\"+getSig(timestamp, params);\n  result=JSON.parse(java.ajax(url)).comics\n} else {\n  result=JSON.parse(result).data\n}\nJSON.stringify(result)\n</js>$.[*]",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover_img",
+    "detailUrlSelector": "$.id",
+    "latestChapterSelector": "$.last_volume"
+  },
+  "detail": {
+    "titleSelector": "$.comic.name",
+    "coverSelector": "$.comic.cover_img",
+    "authorSelector": "$.comic.author",
+    "descriptionSelector": "$.comic.introduction"
+  },
+  "chapters": {
+    "listSelector": "-$.sections.*",
+    "titleSelector": "$.name",
+    "urlSelector": "$.id"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar options = {\n\"headers\": {\"Referer\": baseUrl}\n}\njava.getStringList(\"$..url\").toArray().map(a=>'<img src=\"'+'http://doc.ilikemangaimg.com'+a+'\">').join(\"\\n\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"Dalvik/2.1.0\"\n}",
+  "timeoutMs": 1792,
+  "createdAt": "2026-06-27T15:52:54.336Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

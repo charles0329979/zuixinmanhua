@@ -1,0 +1,40 @@
+{
+  "id": "lg-vnfjnw",
+  "name": "酷爱漫画",
+  "host": "https://www.kuimh.com#♤Haxc",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "正版漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.kuimh.com/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".mh-item",
+    "titleSelector": "a",
+    "coverSelector": "p",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".chapter a"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": ".banner_detail_bg",
+    "authorSelector": ".info.0 p.1",
+    "descriptionSelector": ".content"
+  },
+  "chapters": {
+    "listSelector": "#detail-list-select a.-1",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".comicpage",
+    "srcAttribute": "html##\\\"https:\\/\\/static.aiquanjian.com\\/static\\/images\\/grey.gif\\\" data-echo="
+  },
+  "timeoutMs": 3745,
+  "createdAt": "2026-06-27T15:52:51.692Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

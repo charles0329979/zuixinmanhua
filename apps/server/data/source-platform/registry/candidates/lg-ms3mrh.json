@@ -1,0 +1,19 @@
+{
+  "id": "lg-ms3mrh",
+  "name": "🎨 拷贝漫画➠移动不可用",
+  "version": "1.0.0-4d0f487e",
+  "hash": "4d0f487ebcd721c34e5b0cb4fd9b33a1a721b8f0b48f77fd3de4b7a524bd1940",
+  "host": "https://copymanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

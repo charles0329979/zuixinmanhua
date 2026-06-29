@@ -1,0 +1,46 @@
+{
+  "id": "lg-zhktxr",
+  "name": "🎨韩漫画🔞",
+  "host": "https://www.mhhanman.xyz",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.mhhanman.xyz/?page.currentPage={{page}}&orderType=3&subjectName=&filmName={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".col-xs-6 col-sm-6 col-md-4 col-lg-2 list-col",
+    "titleSelector": ".video-title title-truncate m-t-5",
+    "coverSelector": "img",
+    "detailUrlSelector": "##window.open\\(\\'(.*html)##$1###",
+    "latestChapterSelector": "{{"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": ".writer img",
+    "authorSelector": ".writer.1",
+    "descriptionSelector": ".desc"
+  },
+  "chapters": {
+    "listSelector": ".list-left .list-item",
+    "titleSelector": ".cell-title",
+    "urlSelector": ".cell-type.0"
+  },
+  "images": {
+    "listSelector": "#imgList",
+    "srcAttribute": "html##.+QRCode.*?>"
+  },
+  "timeoutMs": 9898,
+  "createdAt": "2026-06-27T15:52:57.106Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

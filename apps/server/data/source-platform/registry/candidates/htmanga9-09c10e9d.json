@@ -1,0 +1,19 @@
+{
+  "id": "htmanga9-09c10e9d",
+  "name": "⌨绅士漫画(htmanga9)🔞",
+  "version": "1.0.0-3ab9f02e",
+  "hash": "3ab9f02e17236abb4f71b827d37b4d6eec3ad6eacf40fcf455e16fa7509470e1",
+  "host": "https://www.htmanga9.top/##旅途",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

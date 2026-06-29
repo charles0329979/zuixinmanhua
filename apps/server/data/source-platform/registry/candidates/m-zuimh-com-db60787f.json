@@ -1,0 +1,19 @@
+{
+  "id": "m-zuimh-com-db60787f",
+  "name": "最漫画📱",
+  "version": "1.0.0-2b52b3ef",
+  "hash": "2b52b3ef6ebd30b10428531d90d733668c9034aeb42588ea3c7d57142b4c7cc7",
+  "host": "https://m.zuimh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

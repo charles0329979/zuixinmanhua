@@ -1,0 +1,45 @@
+{
+  "id": "m-csxsrc-com-7bd5ed20",
+  "name": "长沙❤️💜",
+  "host": "https://m.csxsrc.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.list@tag.li",
+    "titleSelector": "tag.a.1@text",
+    "coverSelector": "tag.img.0@src",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "tag.a.3@text",
+    "statusSelector": "tag.span.0@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.detail@tag.strong@text",
+    "coverSelector": "class.detail@tag.img.0@src",
+    "authorSelector": "class.detail@tag.a.0@text",
+    "descriptionSelector": "id.intro@text",
+    "statusSelector": "class.detail@tag.a.1@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.read@li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "class.content@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

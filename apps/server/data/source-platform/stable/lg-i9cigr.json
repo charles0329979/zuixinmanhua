@@ -1,0 +1,20 @@
+{
+  "id": "lg-i9cigr",
+  "name": "🎨看漫画M",
+  "version": "1.0.0-051a8774",
+  "hash": "051a8774b5bf4e466049c9d0c1512db6c3b8ae8270f08753d90dbc10761cfe00",
+  "host": "https://m.kanman.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.509Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

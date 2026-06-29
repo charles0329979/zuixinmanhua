@@ -1,0 +1,19 @@
+{
+  "id": "lg-buxi2j",
+  "name": "如漫画网（优+）",
+  "version": "1.0.0-9f4b51d0",
+  "hash": "9f4b51d0c382fa4da3d52843454686e2dc1d49e9b54f71341a2bf7bca2f02593",
+  "host": "http://m.rumanhua1.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

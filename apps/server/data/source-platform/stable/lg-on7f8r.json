@@ -1,0 +1,20 @@
+{
+  "id": "lg-on7f8r",
+  "name": "🎨 漫画台🅰 #Haxc",
+  "version": "1.0.0-74050781",
+  "hash": "74050781a19d07b5fffb52eb9e8760f3763ff4cde71139926299e9a461a12735",
+  "host": "https://m.manhuatai.com/api#♤Haxc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.546Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

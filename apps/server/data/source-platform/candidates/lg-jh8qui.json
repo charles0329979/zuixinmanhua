@@ -1,0 +1,40 @@
+{
+  "id": "lg-jh8qui",
+  "name": "包子漫画",
+  "host": "https://cn.baozimh.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://cn.baozimh.com/search?q={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6",
+    "titleSelector": ".comics-card__title",
+    "coverSelector": "amp-img.0",
+    "detailUrlSelector": ".comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6 a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".comics-detail__title",
+    "coverSelector": ".pure-u-1-1 pure-u-sm-1-3 pure-u-md-1-6 amp-img.0",
+    "authorSelector": ".comics-detail__author",
+    "descriptionSelector": ".comics-detail__desc overflow-hidden"
+  },
+  "chapters": {
+    "listSelector": ".comics-chapters",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".comic-contain",
+    "srcAttribute": "html##<amp-img.*src=\"##<amp-img src=\""
+  },
+  "timeoutMs": 5409,
+  "createdAt": "2026-06-27T15:52:55.239Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

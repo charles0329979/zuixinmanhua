@@ -1,0 +1,19 @@
+{
+  "id": "ikanwzd-top-1ba24e5f",
+  "name": "🎨 久久漫画网",
+  "version": "1.0.0-2fb1c566",
+  "hash": "2fb1c5661c797ec8a9e752409023d8a2574478dad58b0350aaddd701b9950ac4",
+  "host": "https://www.ikanwzd.top",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

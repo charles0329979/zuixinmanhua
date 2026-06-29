@@ -1,0 +1,19 @@
+{
+  "id": "kxkmh-com-8e0383c3",
+  "name": "开心看漫画",
+  "version": "1.0.0-421f7769",
+  "hash": "421f776972ce98b24ec741b08ac6eaed26d694cd0a689ea78edeb952c01b62f6",
+  "host": "http://www.kxkmh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

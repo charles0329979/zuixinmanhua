@@ -1,0 +1,19 @@
+{
+  "id": "m-xm124-com-9fa7a79e",
+  "name": "土豆漫画网📱",
+  "version": "1.0.0-e229ec31",
+  "hash": "e229ec31aebb6a17702046921a36d3514ab5e510850dd3d8fbd2a518b8f844b8",
+  "host": "https://m.xm124.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "lg-6r4zk",
+  "name": "🎨 漫画看",
+  "host": "https://m.mhkan.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.mhkan.com/search/?keywords={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "#update_list",
+    "titleSelector": ".title",
+    "coverSelector": "mip-img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".coll"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "body",
+    "authorSelector": ".pic_zi.1",
+    "descriptionSelector": ".txtDesc"
+  },
+  "chapters": {
+    "listSelector": ".list",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\nresult.match(/chapterImages = (\\[.*?\\]);/)[1];\n</js>\n$.[*]",
+    "srcAttribute": "js:result.split(\"\\n\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 9273,
+  "createdAt": "2026-06-27T15:52:53.919Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "27-m-1f1be540",
+  "name": "27漫画-M",
+  "version": "1.0.0-881f38cf",
+  "hash": "881f38cf98e06ec4d8dd540880db8da3e9e78de591dfea9399862d2167006da7",
+  "host": "https://m.2mzx.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

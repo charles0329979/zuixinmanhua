@@ -1,0 +1,19 @@
+{
+  "id": "lg-1m2tqf",
+  "name": "🗒 非常爱漫",
+  "version": "1.0.0-1f4223a5",
+  "hash": "1f4223a561a77d1a5236874e53d9f0d6f98251287a8544dabcea7fe1dabf3e22",
+  "host": "http://wap.veryim.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

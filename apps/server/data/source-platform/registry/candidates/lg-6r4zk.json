@@ -1,0 +1,19 @@
+{
+  "id": "lg-6r4zk",
+  "name": "🎨 漫画看",
+  "version": "1.0.0-7ed77e3c",
+  "hash": "7ed77e3c0beb67da432e3b218c722c9910f381d53477cef21fb29f8d57ad04d9",
+  "host": "https://m.mhkan.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

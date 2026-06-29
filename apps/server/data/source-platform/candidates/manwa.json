@@ -1,0 +1,41 @@
+{
+  "id": "manwa",
+  "name": "漫蛙",
+  "host": "https://manwafz.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "中文",
+    "国漫",
+    "日漫"
+  ],
+  "search": {
+    "url": "",
+    "method": "GET",
+    "listSelector": "",
+    "titleSelector": "",
+    "coverSelector": "",
+    "detailUrlSelector": ""
+  },
+  "detail": {
+    "titleSelector": ""
+  },
+  "chapters": {
+    "listSelector": "",
+    "titleSelector": "",
+    "urlSelector": ""
+  },
+  "images": {
+    "listSelector": "",
+    "srcAttribute": ""
+  },
+  "jsRules": {
+    "engine": "quickjs",
+    "scriptFile": "manwa-decrypt.js",
+    "timeoutMs": 5000,
+    "memoryLimitMb": 16
+  },
+  "createdAt": "2026-06-27T13:41:50.402Z",
+  "updatedAt": "2026-06-27T13:41:50.402Z"
+}

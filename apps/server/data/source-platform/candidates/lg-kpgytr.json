@@ -1,0 +1,47 @@
+{
+  "id": "lg-kpgytr",
+  "name": "漫畫狗",
+  "host": "https://dogemanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0-2图片"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://dogemanga.com/?q={{key}}&o={{(page-1)*12}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".site-scroll__list",
+    "titleSelector": "h5",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".list-group-item.0"
+  },
+  "detail": {
+    "titleSelector": ".site-navbar__title",
+    "coverSelector": "body",
+    "authorSelector": "h4",
+    "descriptionSelector": ".site-card__brief"
+  },
+  "chapters": {
+    "listSelector": "-class.site-selector",
+    "titleSelector": "text",
+    "urlSelector": "value"
+  },
+  "images": {
+    "listSelector": ".site-reader__image",
+    "srcAttribute": "js:\nlist=result.split(\"\\n\");\nhtml='';\nfor(i in list){\nhtml+='<img src=\"'+list[i]+'\">\\n'\n}\nhtml"
+  },
+  "headers": "{\n    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 Edg/104.0.1293.70'\n}",
+  "timeoutMs": 4615,
+  "createdAt": "2026-06-27T15:52:54.454Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

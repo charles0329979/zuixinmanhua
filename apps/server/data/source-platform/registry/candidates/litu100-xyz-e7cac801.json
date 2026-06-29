@@ -1,0 +1,19 @@
+{
+  "id": "litu100-xyz-e7cac801",
+  "name": "丽图漫画",
+  "version": "1.0.0-b06396c5",
+  "hash": "b06396c557c2e4fa74e0ccf70f68b4bcdfaa7b1f59e91c4bbd573935bbfab9fc",
+  "host": "https://litu100.xyz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

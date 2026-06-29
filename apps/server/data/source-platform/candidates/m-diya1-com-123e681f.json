@@ -1,0 +1,45 @@
+{
+  "id": "m-diya1-com-123e681f",
+  "name": "蒂亚漫画📱",
+  "host": "https://m.diya1.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.diya1.com/search/?keywords={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox||class.list-comic",
+    "titleSelector": "class.title@text||class.txtA@text",
+    "coverSelector": "tag.img@src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "class.coll@text",
+    "statusSelector": "class.pd@text##\\|##,",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "id.comicName@text",
+    "coverSelector": "id.Cover@tag.img@src",
+    "authorSelector": "class.txtItme.0@text",
+    "descriptionSelector": "id.full-des@text||id.simple-des@text##.*介绍:|.*简介：",
+    "statusSelector": "class.txtItme.1@tag.a@text&&class.txtItme.2@tag.a.-1@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapter-body.-1@li!-1@a||.chapter-body.0@li!-1@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.image-content@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

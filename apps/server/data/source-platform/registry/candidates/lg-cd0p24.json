@@ -1,0 +1,19 @@
+{
+  "id": "lg-cd0p24",
+  "name": "🎨 快看漫画$",
+  "version": "1.0.0-d3d257ab",
+  "hash": "d3d257ab8e62b0fefd69bc11362f8b970a9ad4d11e1c9a6d5a1fbb01f671af69",
+  "host": "http://m.kuaikanmanhua.com已整理",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

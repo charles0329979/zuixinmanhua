@@ -1,0 +1,45 @@
+{
+  "id": "kxkmh-com-8e0383c3",
+  "name": "开心看漫画",
+  "host": "http://www.kxkmh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://www.kxkmh.com/manga/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.col-lg-2 col-md-3 col-sm-4 col-6",
+    "titleSelector": "h6@a@text",
+    "coverSelector": "class.product__item__pic set-bg@data-setbg",
+    "detailUrlSelector": "h6@a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "class.ep@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.anime__details__text@p.1@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.anime__details__episodes@a[-1:0]",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "class.blog__details__content@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

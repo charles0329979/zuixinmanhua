@@ -5,6 +5,7 @@
 
 import { Module } from '@nestjs/common';
 import { ProxyModule } from '../../proxy/proxy.module';
+import { SourcePlatformModule } from '../../source-platform/source-platform.module';
 import { SourceImportController } from './source-import.controller';
 import { SourceImportService } from './source-import.service';
 
@@ -35,7 +36,7 @@ import { SourceQuarantineService } from './registry/source-quarantine-store.serv
 import { DeepSeekRuleAssistantService } from './llm/deepseek-rule-assistant.service';
 
 @Module({
-  imports: [ProxyModule],
+  imports: [ProxyModule, SourcePlatformModule],
   controllers: [SourceImportController],
   providers: [
     // Orchestration

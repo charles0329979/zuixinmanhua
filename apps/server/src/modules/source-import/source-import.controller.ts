@@ -79,7 +79,7 @@ export class SourceImportController {
   }
 
   /** GET /api/admin/source-import/manual-review */
-  @Get('review')
+  @Get('manual-review')
   getManualReview() {
     if (!fs.existsSync(this.manualReviewDir)) return [];
     return fs.readdirSync(this.manualReviewDir).filter(f => f.endsWith('.json'))

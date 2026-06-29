@@ -1,0 +1,45 @@
+{
+  "id": "yz4-chaoxing-com-1ff2b33e",
+  "name": "📚 超星图书馆",
+  "host": "http://yz4.chaoxing.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "$.[*]",
+    "titleSelector": "name",
+    "coverSelector": "coverUrl",
+    "detailUrlSelector": "mobileulr",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h2.0@text",
+    "coverSelector": "",
+    "authorSelector": "class.artCon@tag.p@text##\\s*编?著",
+    "descriptionSelector": "##[\\s\\S]*##<br>★★★     超星·出版     ★★★<br>★★★   本书暂无简介  ★★★###",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "+class.con@tag.a",
+    "titleSelector": "text##^目录$",
+    "urlSelector": "attr##&name=.+"
+  },
+  "images": {
+    "listSelector": "class.ztArtCon@tag.p@html##([\\w，、。！？]{26}[。！？；]+[”’]?)(?=[^\\n]{27})##$1<br>",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

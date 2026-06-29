@@ -1,72 +1,48 @@
 // ============================================================
 // apps/server/src/sync/sync.controller.ts
-// ★ Sync API — 供 React Native App 调用
-// 返回可用书源列表、规则定义、健康状态
+// ★ Sync API — 供 React Native App 调用 (V6: 通过 source-platform)
 // ============================================================
 
 import { Controller, Get, Query, Logger } from '@nestjs/common';
-import { SourceStoreService } from '../sources/source-store.service';
-import { SourcesService } from '../sources/sources.service';
+import { SourcePlatformService } from '../source-platform/source-platform.service';
+import { DriverRegistryService } from '../source-platform/runtime/driver-registry.service';
 
 @Controller('sync')
 export class SyncController {
   private readonly logger = new Logger(SyncController.name);
 
   constructor(
-    private readonly sourceStore: SourceStoreService,
-    private readonly sourcesService: SourcesService,
+    private readonly platform: SourcePlatformService,
+    private readonly driverRegistry: DriverRegistryService,
   ) {}
 
-  /**
-   * GET /api/sync/sources
-   * 返回所有已启用源的规则定义，供 RN 端本地缓存
-   */
   @Get('sources')
   getSources() {
-    const ruleSources = this.sourceStore.getEnabled();
-    const hardcodedSources = this.sourcesService.getAllSources();
-
+    const drivers = this.driverRegistry.listAll();
     return {
       version: '2.0.0',
       updatedAt: new Date().toISOString(),
-      sources: {
-        hardcoded: hardcodedSources.map((s) => ({
-          id: s.id,
-          name: s.name,
-          enabled: true,
-          mode: s.mode,
-        })),
-        ruleBased: ruleSources.map((s) => ({
-          id: s.id,
-          name: s.name,
-          host: s.host,
-          language: s.language,
-          weight: s.weight,
-          enabled: s.enabled,
-          search: s.search,
-          detail: s.detail,
-          chapters: s.chapters,
-          images: s.images,
-          headers: s.headers,
-          timeoutMs: s.timeoutMs,
-        })),
-      },
-      count: hardcodedSources.length + ruleSources.length,
+      sources: drivers.map(d => ({
+        id: d.sourceId,
+        name: d.sourceName,
+        host: (d as any).host || '',
+        capabilities: { search: true, detail: true, chapters: true, images: true },
+      })),
+      count: drivers.length,
     };
   }
 
-  /**
-   * GET /api/sync/sources/:id
-   * 返回单个源的完整规则
-   */
   @Get('source')
   getSource(@Query('id') id: string) {
-    const ruleSource = this.sourceStore.getById(id);
-    if (ruleSource) return ruleSource;
-
-    const hcInfo = this.sourcesService.getAllSources().find((s) => s.id === id);
-    if (hcInfo) return hcInfo;
-
+    const driver = this.driverRegistry.getOptional(id);
+    if (driver) {
+      return {
+        id: driver.sourceId,
+        name: driver.sourceName,
+        host: (driver as any).host || '',
+        capabilities: { search: true, detail: true, chapters: true, images: true },
+      };
+    }
     return { error: 'Source not found', id };
   }
 }

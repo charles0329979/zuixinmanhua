@@ -1,0 +1,47 @@
+{
+  "id": "lg-6rnsdk",
+  "name": "🔞乐成漫画",
+  "host": "https://www.lcmhx.asia",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🔞漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/mcsearch/-------/?wd={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".search-result a",
+    "titleSelector": "a",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "[style=\"    font-size: 24px;font-weight: 300;color: #f3c669;\"] span",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "[style=\"    font-size: 14px;font-weight: 300;\"] span"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "title",
+    "urlSelector": "url"
+  },
+  "images": {
+    "listSelector": "main.content img",
+    "srcAttribute": "html"
+  },
+  "headers": "{\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\"}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:52.415Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

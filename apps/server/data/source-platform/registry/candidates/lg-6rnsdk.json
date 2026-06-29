@@ -1,0 +1,19 @@
+{
+  "id": "lg-6rnsdk",
+  "name": "🔞乐成漫画",
+  "version": "1.0.0-7d72f409",
+  "hash": "7d72f4095fbc647b175029ccc5fcc724792658703244d65b6460344c97295fa1",
+  "host": "https://www.lcmhx.asia",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

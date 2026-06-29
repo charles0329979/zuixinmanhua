@@ -1,0 +1,19 @@
+{
+  "id": "lg-vqnwz7",
+  "name": "MOXI动漫(8本)™",
+  "version": "1.0.0-10e44707",
+  "hash": "10e447078a83df175d6f8260dceeba97276a2519ed4769f9822375e984084fd6",
+  "host": "http://www.moxidongman.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

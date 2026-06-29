@@ -1,0 +1,40 @@
+{
+  "id": "lg-djf464",
+  "name": "🎨 奇漫屋",
+  "host": "http://qiman56.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/spotlight/?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comic-list-item",
+    "titleSelector": ".comic-name",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".comic-update-at"
+  },
+  "detail": {
+    "titleSelector": "[property=\"og:title\"]",
+    "coverSelector": "[itemprop=\"image\"]",
+    "authorSelector": "##作者.([^<]+)<##$1###",
+    "descriptionSelector": ".comic-intro"
+  },
+  "chapters": {
+    "listSelector": "-$.[*]",
+    "titleSelector": "$.name",
+    "urlSelector": "http://qiman56.com/"
+  },
+  "images": {
+    "listSelector": ".lazy",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:56.157Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

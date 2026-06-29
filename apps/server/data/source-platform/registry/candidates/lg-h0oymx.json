@@ -1,0 +1,19 @@
+{
+  "id": "lg-h0oymx",
+  "name": "漫小肆20251217",
+  "version": "1.0.0-09b1f823",
+  "hash": "09b1f82323ccc66cb7691bcadc0009d4742e2d43442b75a20ce0a1d1a4b77655",
+  "host": "https://www.jjmh.top/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

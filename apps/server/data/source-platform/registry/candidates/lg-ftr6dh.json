@@ -1,0 +1,19 @@
+{
+  "id": "lg-ftr6dh",
+  "name": "✐ 新漫画 #Haxc1107",
+  "version": "1.0.0-cddc0f2f",
+  "hash": "cddc0f2f02449ab28147ec4088921e5fc6db91362d5d7cff727db4af9654cef0",
+  "host": "https://xapi.xinmanhua.net#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

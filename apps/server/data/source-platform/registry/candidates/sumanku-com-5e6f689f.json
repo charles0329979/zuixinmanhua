@@ -1,0 +1,19 @@
+{
+  "id": "sumanku-com-5e6f689f",
+  "name": "速漫库",
+  "version": "1.0.0-6c075a99",
+  "hash": "6c075a995fc7fa551e39213c2f8ecaeed862eace3b34cd511ea1a8275c980bfd",
+  "host": "http://www.sumanku.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

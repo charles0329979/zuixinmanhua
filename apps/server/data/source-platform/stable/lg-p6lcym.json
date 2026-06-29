@@ -1,0 +1,20 @@
+{
+  "id": "lg-p6lcym",
+  "name": "🎨 漫画台🅰 #Haxc1107",
+  "version": "1.0.0-91fee7ba",
+  "hash": "91fee7bae3b18714b65c13267b0be3c02919538828e1634614cbdf06afc261b3",
+  "host": "https://m.manhuatai.com/api#Haxc1107",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.566Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

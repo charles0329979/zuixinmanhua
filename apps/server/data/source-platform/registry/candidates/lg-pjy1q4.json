@@ -1,0 +1,19 @@
+{
+  "id": "lg-pjy1q4",
+  "name": "一个漫画",
+  "version": "1.0.0-3134f6b8",
+  "hash": "3134f6b825390725ae0ec2c0bbddfea3690a1cd50a2dd67c3c4ffd3565598436",
+  "host": "https://www.amcomic.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

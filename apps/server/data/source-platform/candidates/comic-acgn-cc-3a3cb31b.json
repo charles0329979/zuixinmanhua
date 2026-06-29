@@ -1,0 +1,45 @@
+{
+  "id": "comic-acgn-cc-3a3cb31b",
+  "name": "🎨 动漫戏说[修|仅发现]",
+  "host": "https://comic.acgn.cc#仅发现",
+  "enabled": false,
+  "language": "zh",
+  "weight": 59,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://comic.acgn.cc/searchcse?cx=008124722090293425135:i6inzsizmqg&cof=FORID:11&ie=UTF-8&q={{keyword}}&sa=搜尋",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.display@tag.li",
+    "titleSelector": "tag.a.1@text",
+    "coverSelector": "tag.img@src",
+    "detailUrlSelector": "tag.a.1@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h3@text",
+    "coverSelector": "",
+    "authorSelector": "class.mss.0@tag.a@text",
+    "descriptionSelector": "class.gameshows@tag.dd.1@text##\\s",
+    "statusSelector": "class.mss.3@tag.a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-id.comic_chapter@tag.li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "id.pic_list@class.pic@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

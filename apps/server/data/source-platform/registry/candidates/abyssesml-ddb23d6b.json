@@ -1,0 +1,19 @@
+{
+  "id": "abyssesml-ddb23d6b",
+  "name": "🎀图文韩漫[abyssesml]",
+  "version": "1.0.0-a7aef63d",
+  "hash": "a7aef63d63e5ad6d3f1f6b9228039db79468b3f44d26a9a15de2a68ef6b94418",
+  "host": "https://tuwenhanman.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

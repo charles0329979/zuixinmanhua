@@ -1,0 +1,19 @@
+{
+  "id": "lg-rp6iex",
+  "name": "🎨 爱优漫📱 ",
+  "version": "1.0.0-963d8643",
+  "hash": "963d8643deb8733d9d7ad5be1e5e7d105fb61eaf729ad824b6a0cf2c831f9e4b",
+  "host": "https://m.iyouman.com#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

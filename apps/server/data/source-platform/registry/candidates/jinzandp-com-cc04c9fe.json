@@ -1,0 +1,19 @@
+{
+  "id": "jinzandp-com-cc04c9fe",
+  "name": "新新漫画",
+  "version": "1.0.0-c7a1d3f2",
+  "hash": "c7a1d3f2b7bea0738f0847e78b0e3ebd4713a39a1d298acd22dc65e3666ef87b",
+  "host": "https://jinzandp.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

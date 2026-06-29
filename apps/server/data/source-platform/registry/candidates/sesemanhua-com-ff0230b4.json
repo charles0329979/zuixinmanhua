@@ -1,0 +1,19 @@
+{
+  "id": "sesemanhua-com-ff0230b4",
+  "name": "色色漫画",
+  "version": "1.0.0-72189976",
+  "hash": "721899767a90f835a3d974414ba0abfcf96d05d59ff6c464f843148fdd69f017",
+  "host": "https://www.sesemanhua.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

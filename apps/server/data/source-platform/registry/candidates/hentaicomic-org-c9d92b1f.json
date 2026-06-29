@@ -1,0 +1,19 @@
+{
+  "id": "hentaicomic-org-c9d92b1f",
+  "name": "绅士漫画",
+  "version": "1.0.0-c48b4a9f",
+  "hash": "c48b4a9f17dbd31201b064aefa7a8c77380b88ce01e5312a6e3fe994f33374b9",
+  "host": "https://www.hentaicomic.org",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

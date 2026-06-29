@@ -1,0 +1,19 @@
+{
+  "id": "lg-4001ml",
+  "name": "㊣✐ 趣话漫画🅰 #Haxc",
+  "version": "1.0.0-f081c6a8",
+  "hash": "f081c6a87134369047fd34dd13dc81094f700670c00adb5d17f8db7ae03785b6",
+  "host": "https://api.iqhmh.com#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

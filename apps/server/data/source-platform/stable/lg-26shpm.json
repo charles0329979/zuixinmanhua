@@ -1,0 +1,20 @@
+{
+  "id": "lg-26shpm",
+  "name": "🎨 看漫画M",
+  "version": "1.0.0-c762c722",
+  "hash": "c762c722e1928a5c35fbe5f88c9d1f8fc55eaeaf6c9d77bcb438522e4216ed0f",
+  "host": "https://m.kanman.com#♤Haxc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.603Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

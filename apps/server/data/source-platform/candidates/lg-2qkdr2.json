@@ -1,0 +1,40 @@
+{
+  "id": "lg-2qkdr2",
+  "name": "八极漫画",
+  "host": "http://www.8jj.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "☣️精选senhora,☣️漫画lateral,🎨漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://www.8jj.com/search?page={{page}}&title={{key}}&language=1",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".ssnrk||class.cover",
+    "titleSelector": "a.0",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".sr_dlj a.0"
+  },
+  "detail": {
+    "titleSelector": ".csly1z h1",
+    "coverSelector": ".cs1z img",
+    "authorSelector": ".csly1z z a.3 a.4",
+    "descriptionSelector": ".cs1y3"
+  },
+  "chapters": {
+    "listSelector": "-id.cbc_1",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "<js>\neval(eval(result.match(/(eval.*?\\))\\s*<\\//)[1].replace(/^eval/, '')).replace(/;.+/, ''))\njava.log('key:'+guidkey)\n\ncid=result.match(/cid\\s*=\\s*(\\d+)/)[1]\njava.log('cid:'+cid)\n\nimagecount=result.match(/imagecount\\s*=\\s*(\\d+)/)[1]\n\n\nurl=baseUrl+'chapterimagefun.ashx?d='+new Date()+\", \"\n\nbody='cid='+cid+'&page=1&key='+guidkey+'&showcount=5'\n\noptions={\n\"method\":\"post\", \"X-Requested-With\":\"XMLHttpRequest\", \"headers\": {\"Referer\": baseUrl, \"Cookie\":\"showcount=5; norefresh=true; autosize=false\"}, \"body\": String(body)\n}\n\nresponse=String(java.ajax(url+JSON.stringify(options)))\n\nif(response){\neval(response)\npicarr=dm5imagefun()\njava.log('图片总数:'+imagecount)\njava.log('请求图片总数'+picarr.length)\npicarr.map(a=>'<img src=\"'+a+', {\"headers\": {\"Referer\":\"{{baseUrl}}\"}}\">').join(\"\\n\")}else{\"图片防盗了\"}\n</js>",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 2395,
+  "createdAt": "2026-06-27T15:52:54.576Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

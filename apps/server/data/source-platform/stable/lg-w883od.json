@@ -1,0 +1,20 @@
+{
+  "id": "lg-w883od",
+  "name": "🌵漫客栈🌵",
+  "version": "1.0.0-b9f86d0c",
+  "hash": "b9f86d0cf8d149cdeb6e672ee9f3e3ebdc17d76e68e14faa060e7df87d1f365f",
+  "host": "https://www.mkzhan.com/",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.470Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

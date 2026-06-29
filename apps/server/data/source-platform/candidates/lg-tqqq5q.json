@@ -1,0 +1,47 @@
+{
+  "id": "lg-tqqq5q",
+  "name": "友漫",
+  "host": "UAA·漫画",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🌸 特殊"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api.uaa.com/comic/app/comic/search?keyword={{key}}&page={{page}}&size=10",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".[?(",
+    "titleSelector": "title",
+    "coverSelector": "coverUrl",
+    "detailUrlSelector": "/comic/app/comic/intro?id={{$.id}}",
+    "latestChapterSelector": "latestUpdate"
+  },
+  "detail": {
+    "titleSelector": "title",
+    "coverSelector": "coverUrl",
+    "authorSelector": "authors",
+    "descriptionSelector": "tags##^|, ##&nbsp;"
+  },
+  "chapters": {
+    "listSelector": ".[?(",
+    "titleSelector": "title",
+    "urlSelector": "/comic/app/comic/chapter?id={{$.id}}&viewId=16755023882598961"
+  },
+  "images": {
+    "listSelector": "model.images",
+    "srcAttribute": "js:\nresult='<img\\ssrc=\"'+String(result).replace(/\\n/g,'\">\\n<img\\ssrc=\"')+'\">'"
+  },
+  "headers": "{\"cookie\":\"_ga=GA1.1.316026359.1685377249; _ga_4BC3P9JVX3=GS1.1.1685401323.2.1.1685401938.60.0.0\",\n\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ODYwNzIxNzA0MDMxMzU4OTc2LCJ0eXBlIjoiY3VzdG9tZXIiLCJ0aW1lc3RhbXAiOjE2ODUzNzg1MTE1NzQsImV4cCI6MTY4NTk4MzMxMX0.-FX7rOJP7I10ApjeM5NVaGj57aeYnkVyopniC7U_Dv8\"}",
+  "timeoutMs": 5238,
+  "createdAt": "2026-06-27T15:52:55.962Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

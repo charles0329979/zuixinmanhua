@@ -1,0 +1,19 @@
+{
+  "id": "san449-com-f80b04ef",
+  "name": "🔰 快乐图书",
+  "version": "1.0.0-263e0e06",
+  "hash": "263e0e06f9a1b34e321d0e1fa73b1d72c766fc9aff0a7d9fc72b7855e5ced6e7",
+  "host": "https://www.san449.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

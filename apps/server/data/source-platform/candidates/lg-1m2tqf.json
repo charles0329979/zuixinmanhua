@@ -1,0 +1,46 @@
+{
+  "id": "lg-1m2tqf",
+  "name": "🗒 非常爱漫",
+  "host": "http://wap.veryim.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "动漫"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://wap.veryim.com/statics/search.aspx?key={{key}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "#listbody li||class.itemBox",
+    "titleSelector": "a.1",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "p.0"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": ".sub_r p.1",
+    "descriptionSelector": ".txtDesc"
+  },
+  "chapters": {
+    "listSelector": "-#list",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\n(function getImgList() {\r\n    eval(result.match(/(var qTcms_Cur=[\\S\\s]+var qTcms_S_show_1=.*?;)/)[1]);\r\n    var list = java.base64Decode(qTcms_S_m_murl_e).split(\"\\\\$qingtiandy\\\\$\");\r\n    var piclist = new Array();\r\n    for (var i = 0; i < list.length; i++) {\n        var s = list[i];\r\n        piclist[i] =s;\r\n    }\r\n    return piclist;\r\n}()).map(url=>\n'<img src=\"'+url+'\">').join(\"\\n\")"
+  },
+  "timeoutMs": 1684,
+  "createdAt": "2026-06-27T15:52:54.336Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

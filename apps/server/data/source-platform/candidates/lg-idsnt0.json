@@ -1,0 +1,46 @@
+{
+  "id": "lg-idsnt0",
+  "name": "🎨漫客栈 #Haxc1107",
+  "host": "https://www.mkzhan.com#Haxc1107",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.mkzhan.com/search/?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".search-comic-list .common-comic-item",
+    "titleSelector": ".comic__title a.0",
+    "coverSelector": "img",
+    "detailUrlSelector": ".cover",
+    "latestChapterSelector": ".comic-update"
+  },
+  "detail": {
+    "titleSelector": ".comic-title.0",
+    "coverSelector": "body",
+    "authorSelector": ".name",
+    "descriptionSelector": ".intro-total"
+  },
+  "chapters": {
+    "listSelector": "-class.chapter__list-box li",
+    "titleSelector": "a",
+    "urlSelector": ".j-chapter-link"
+  },
+  "images": {
+    "listSelector": "$..image",
+    "srcAttribute": "js:result.split(\"\\n\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 2105,
+  "createdAt": "2026-06-27T15:52:53.797Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-5tdanj",
+  "name": "漫画看",
+  "version": "1.0.0-1b6365a2",
+  "hash": "1b6365a25cdfcb5ae656f1606d5c07154058b0eaf581a3114ad103207d4d1559",
+  "host": "https://m.mhkan.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

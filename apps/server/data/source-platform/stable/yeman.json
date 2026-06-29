@@ -1,0 +1,20 @@
+{
+  "id": "yeman",
+  "name": "野蛮漫画",
+  "version": "1.0.0-75e5d312",
+  "hash": "75e5d3127ef3a14184419a8283abd382a7c969ca3ee155fa072ffe6d46dc749f",
+  "host": "https://www.yemancomic.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.006Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

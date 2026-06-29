@@ -1,0 +1,46 @@
+{
+  "id": "lg-agtkjl",
+  "name": "1359漫画",
+  "host": "https://www.bdido.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "☣️精选senhora,☣️漫画lateral,🎨漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.bdido.com/sort/?key={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comic-list li",
+    "titleSelector": "h3",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".chapter"
+  },
+  "detail": {
+    "titleSelector": "[property=\"og:novel:book_name\"]",
+    "coverSelector": "body",
+    "authorSelector": "[property=\"og:novel:author\"]",
+    "descriptionSelector": ".desc-con"
+  },
+  "chapters": {
+    "listSelector": "-#chapterList",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "<js>result.match(/chapter_list_all\\:([\\s\\S]+?)\\}\\)\\<\\/script/)[1];\n</js>\n$.*",
+    "srcAttribute": "js:\nheader={\"Referer\":baseUrl};\nheaders={\"headers\":JSON.stringify(header)}\n;\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 5180,
+  "createdAt": "2026-06-27T15:52:54.095Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

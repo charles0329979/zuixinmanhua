@@ -1,0 +1,45 @@
+{
+  "id": "gaozehk-com-9cb07aa9",
+  "name": "🌠 高泽漫画",
+  "host": "https://www.gaozehk.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.gaozehk.com/search?searchkey={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "div.mt20>div.classification||ul#list>li",
+    "titleSelector": "h2>a@text||a>img@alt",
+    "coverSelector": "##<img.*?src=\"([^\"]+)\"##$1###",
+    "detailUrlSelector": "##<a.*?href=\"([^\"]+)\"##$1###",
+    "latestChapterSelector": "",
+    "statusSelector": "p@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "div.ctdbLeft>a@title||div.ncp1b_div.ncp1b_tit@text",
+    "coverSelector": "div.ctdbLeft>a>img@src||div.nmain_com_p1>img@data-src",
+    "authorSelector": "",
+    "descriptionSelector": "p[id=\"worksDesc\"]@text||div.nmain_com_p.nmain_com_p2>p.0@text##$##\n翻页效果请设置滚动🙄❗❗❗",
+    "statusSelector": "span[class=labelBox]@text&&[class~=status]@text&&span.ncp1b_tips@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "ul#detail-list-select-1>li||ul#ncp3_ul>li",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "div.loadimg>img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

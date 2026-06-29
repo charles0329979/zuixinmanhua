@@ -1,0 +1,19 @@
+{
+  "id": "lg-tc7nf3",
+  "name": "✐ 漫画DB ",
+  "version": "1.0.0-35c06e77",
+  "hash": "35c06e772ca8a5ed2376bd3b790878488a21adca5a81912b11311b7f512eba9f",
+  "host": "https://www.manhuadb.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "m-wuxiamh-com-4a88ebbb",
+  "name": "🎨 武侠漫画",
+  "host": "https://m.wuxiamh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.wuxiamh.com/search/?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.UpdateList@class.itemBox",
+    "titleSelector": "class.title@text",
+    "coverSelector": "tag.mip-img@src",
+    "detailUrlSelector": "class.itemImg@a@href",
+    "latestChapterSelector": "class.coll@tag.a@text||class.info@tag.a@text",
+    "statusSelector": "class.txtItme.1@text&&class.txtItme.2@text##\\||\\s.*",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.title@tag.h1@text##漫画",
+    "coverSelector": "class.img@tag.mip-img@src",
+    "authorSelector": "class.left.3@text",
+    "descriptionSelector": "class.txtDesc@text##简介.|介绍.",
+    "statusSelector": "class.left.7@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-id.chapter-list-1@a!0",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.erPag.1@tag.img.-1@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

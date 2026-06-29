@@ -1,0 +1,20 @@
+{
+  "id": "lg-idsnt0",
+  "name": "🎨漫客栈 #Haxc1107",
+  "version": "1.0.0-868a3853",
+  "hash": "868a3853f526c9c9911eb3dea281a476056de97daf669f5ec7917ff483c2632b",
+  "host": "https://www.mkzhan.com#Haxc1107",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.395Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "qipamh-com-b2c416e7",
+  "name": "🌠 奇葩漫画",
+  "host": "http://www.qipamh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "#list@li",
+    "titleSelector": "class.li_div nmain_cl_tit@text",
+    "coverSelector": "img@data-src",
+    "detailUrlSelector": "a.0@href",
+    "latestChapterSelector": "class.li_div nmain_cl_newc@p@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.nmain_com_p nmain_com_p2@p@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "#ncp3_ul@li@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.comicpage@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

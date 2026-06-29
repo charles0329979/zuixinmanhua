@@ -1,0 +1,19 @@
+{
+  "id": "xxhm-net-f66b2f77",
+  "name": "羞羞韩漫(登录)",
+  "version": "1.0.0-d02bc639",
+  "hash": "d02bc6393d99c0922c4a5222eac29aee2d227f7648dc3d4dd9bd0c59ea7b4d17",
+  "host": "https://www.xxhm.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

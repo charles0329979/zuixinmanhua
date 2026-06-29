@@ -1,0 +1,19 @@
+{
+  "id": "lg-35n7l9",
+  "name": "🎨 漫漫漫画 #Haxc",
+  "version": "1.0.0-2b526f11",
+  "hash": "2b526f11b3f722150deb1269e4343ec0643e99cbfa5bfa1fc0a20e4be4440840",
+  "host": "https://www.manmanapp.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

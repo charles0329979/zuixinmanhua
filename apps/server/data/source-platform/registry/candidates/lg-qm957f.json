@@ -1,0 +1,19 @@
+{
+  "id": "lg-qm957f",
+  "name": "霓虹漫画（优）",
+  "version": "1.0.0-2a51f1c1",
+  "hash": "2a51f1c1622d2c4ed76901bc89303d3ac6e13aba76b7c2d7e6e334f050842220",
+  "host": "https://rawkuma.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

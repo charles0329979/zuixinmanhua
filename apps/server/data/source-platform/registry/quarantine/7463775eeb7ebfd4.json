@@ -1,0 +1,68 @@
+{
+  "id": "7463775eeb7ebfd4",
+  "name": "包子漫画(测试)",
+  "normalizedSource": {
+    "id": "test-baozimh-001",
+    "name": "包子漫画(测试)",
+    "host": "https://www.baozimh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 10,
+    "search": {
+      "url": "/search?q={{keyword}}",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": ".comics-card",
+      "titleSelector": ".comics-card__title h3",
+      "coverSelector": ".comics-card__poster img",
+      "detailUrlSelector": ".comics-card__poster"
+    },
+    "detail": {
+      "titleSelector": ".comics-detail__title",
+      "coverSelector": ".de-info__bg",
+      "authorSelector": ".comics-detail__author",
+      "descriptionSelector": ".comics-detail__desc"
+    },
+    "chapters": {
+      "listSelector": ".comics-chapters__item",
+      "titleSelector": "div",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "img.comic-contain__item, img.comic-image, .chapter-img img, .comic-content img, amp-img",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 10000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": false,
+      "requiresLogin": false,
+      "requiresManualAdapter": false
+    }
+  },
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "test",
+    "branch": "main",
+    "commitSha": "test",
+    "filePath": "test",
+    "importedAt": "2026-06-28T14:53:35.546Z",
+    "rawHash": "test"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "PENDING_VALIDATE",
+  "conversionWarnings": [],
+  "createdAt": "2026-06-28T14:53:35.546Z",
+  "updatedAt": "2026-06-28T14:53:35.546Z"
+}

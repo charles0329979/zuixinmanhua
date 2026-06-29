@@ -1,0 +1,19 @@
+{
+  "id": "lg-pmcamy",
+  "name": "蓝批漫画（优+++）",
+  "version": "1.0.0-f5fb5444",
+  "hash": "f5fb5444123b16616ea4d48ce45d5c93f92d957f2a518d6784ce893ac36b5a0c",
+  "host": "https://www.pixiv.net/manga",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

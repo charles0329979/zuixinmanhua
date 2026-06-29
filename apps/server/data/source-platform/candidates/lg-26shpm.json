@@ -1,0 +1,46 @@
+{
+  "id": "lg-26shpm",
+  "name": "🎨 看漫画M",
+  "host": "https://m.kanman.com#♤Haxc",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.kanman.com/api/serachcomic/?product_id=1&productname=kmh&platformname=wap&serachKey={{key}}&topNumber=10",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "$.data.data||$.data",
+    "titleSelector": "$.comic_name",
+    "coverSelector": "https://image.yqmh.com/mh/{{$.comic_id}}.jpg-300x400.webp",
+    "detailUrlSelector": "https://m.kanman.com/{{$.comic_id}}/",
+    "latestChapterSelector": "$.latest_cartoon_topic_name||$.last_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "[property=\"og:novel:book_name\"]",
+    "coverSelector": "body",
+    "authorSelector": "[property=\"og:novel:author\"]",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "-$.data.[*]",
+    "titleSelector": "$.chapter_name",
+    "urlSelector": "https://m.kanman.com/api/getchapterinfov2?product_id=1&productname=kmh&platformname=wap&comic_id="
+  },
+  "images": {
+    "listSelector": "$.data.current_chapter.chapter_img_list",
+    "srcAttribute": "js:\nheader={\"Referer\":baseUrl};\nheaders={\"headers\":JSON.stringify(header)};\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 1814,
+  "createdAt": "2026-06-27T15:52:57.152Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

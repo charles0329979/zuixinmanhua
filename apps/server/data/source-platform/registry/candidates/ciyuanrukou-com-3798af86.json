@@ -1,0 +1,19 @@
+{
+  "id": "ciyuanrukou-com-3798af86",
+  "name": "👙九妖漫画",
+  "version": "1.0.0-91f8f3f0",
+  "hash": "91f8f3f0148389e0fa5991e4e472ddc8f356350e9a76ee41a46fe82ccc358649",
+  "host": "https://ciyuanrukou.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

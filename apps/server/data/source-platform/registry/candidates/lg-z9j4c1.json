@@ -1,0 +1,19 @@
+{
+  "id": "lg-z9j4c1",
+  "name": "🎨 神漫画",
+  "version": "1.0.0-c9cf4112",
+  "hash": "c9cf41128d1c0dacfedcf79da4b0440060e10a962b5d57505a7531b221829a7f",
+  "host": "https://m.taomanhua.com#Haxc1107",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "3004ss-com-60c052bd",
+  "name": "📖 快乐图书",
+  "host": "https://www.3004ss.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "?s={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".box",
+    "titleSelector": "h2@a@text",
+    "coverSelector": "img@data-original",
+    "detailUrlSelector": ".focus@a@href",
+    "latestChapterSelector": ".subtitle@text",
+    "statusSelector": ".post-tags@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": ".dis@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".article-paging@a",
+    "titleSelector": "span@text",
+    "urlSelector": "a@href##$##,{\"Referer\":\"https://www.3004ss.com\",\"authority\": \"https://www.3004ss.com\"\n}"
+  },
+  "images": {
+    "listSelector": ".article-content@p@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

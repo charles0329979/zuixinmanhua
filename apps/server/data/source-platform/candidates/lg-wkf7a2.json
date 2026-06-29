@@ -1,0 +1,40 @@
+{
+  "id": "lg-wkf7a2",
+  "name": "三四娱乐",
+  "host": "https://www.3004ss.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Legado"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/page/{{page}}?s={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".box",
+    "titleSelector": "h2",
+    "coverSelector": "img",
+    "detailUrlSelector": ".focus a",
+    "latestChapterSelector": ".subtitle"
+  },
+  "detail": {
+    "titleSelector": ".article-title a",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": ".chapter-navigation",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\nvar data = [];\nvar list = java.getElements('.img-placeholder-wrap",
+    "srcAttribute": "img');\nfor (i in list) {\n    var pic = String(list[i].attr('data-src')) + ',{\"headers\":{\"Referer\": \"' + source.getKey() + '\"}}';\n    data.push('<br><img src=\"' + pic + '\">');\n}\nString(data).replace(/>,/g, '>');\n</js>"
+  },
+  "timeoutMs": 892,
+  "createdAt": "2026-06-27T15:52:52.185Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

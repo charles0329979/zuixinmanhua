@@ -1,0 +1,19 @@
+{
+  "id": "kxkmh4-vip-94418901",
+  "name": "❤️开心看漫画",
+  "version": "1.0.0-498dd642",
+  "hash": "498dd642ca2b147a66abba5200e18bd3fe59c37db89a2c4b8254754d5aa36d7c",
+  "host": "http://kxkmh4.vip",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

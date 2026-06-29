@@ -1,0 +1,19 @@
+{
+  "id": "lg-4qvi08",
+  "name": "国漫吧",
+  "version": "1.0.0-421d3d55",
+  "hash": "421d3d5592b82ed522dd5c017c6a9da0d76168aa57dcdede6dbcd727ecc3d9f7",
+  "host": "http://www.guoman8.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

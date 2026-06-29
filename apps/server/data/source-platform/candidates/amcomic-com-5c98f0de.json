@@ -1,0 +1,45 @@
+{
+  "id": "amcomic-com-5c98f0de",
+  "name": "一个漫画",
+  "host": "https://www.amcomic.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "li.stui-vodlist__item",
+    "titleSelector": "h4@text",
+    "coverSelector": "a.0@data-original",
+    "detailUrlSelector": "a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".stui-content__playlist@li",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href##$##,{\"webView\":true}"
+  },
+  "images": {
+    "listSelector": ".imglist@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

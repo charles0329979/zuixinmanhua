@@ -1,0 +1,56 @@
+{
+  "id": "122-228-8-21-fc66ab9c",
+  "name": "猫番国漫(推荐)",
+  "host": "http://122.228.8.21:3333",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?key={{keyword}}",
+    "method": "GET",
+    "responseType": "json",
+    "keywordParam": "keyword",
+    "listSelector": "data",
+    "titleSelector": "key##<[^>]+>##",
+    "coverSelector": "relationId##(.*)##http://39.99.239.44/mw/mw.php?url=https://39e3lsm4h5s27hcnuea71sxhu0nj7da8-cdn.imgresovrces.net:23647/cover/comic/$1.webp###",
+    "detailUrlSelector": "relationId##(.*)##http://122.228.8.21:3333/booksinfo?bookId=$1###",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "bookName##<[^>]+>##",
+    "coverSelector": "",
+    "authorSelector": "authorName",
+    "descriptionSelector": "intro",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "chapters",
+    "titleSelector": "chapterName##<[^>]+>##",
+    "urlSelector": "chapterId&&volumnName##(.*)\\n(.*)##http://122.228.8.21:3333/Img?bookId=$2&chapterId=$1###"
+  },
+  "images": {
+    "listSelector": "items.url",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.079Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z",
+  "_comicfsSelectors": {
+    "searchTitle": "key##<[^>]+>##",
+    "searchUrl": "relationId##(.*)##http://122.228.8.21:3333/booksinfo?bookId=$1###",
+    "searchCover": "relationId##(.*)##http://39.99.239.44/mw/mw.php?url=https://39e3lsm4h5s27hcnuea71sxhu0nj7da8-cdn.imgresovrces.net:23647/cover/comic/$1.webp###",
+    "detailTitle": "bookName##<[^>]+>##",
+    "detailCover": "",
+    "detailAuthor": "authorName",
+    "detailDesc": "intro",
+    "chapterTitle": "chapterName##<[^>]+>##",
+    "chapterUrl": "chapterId&&volumnName##(.*)\\n(.*)##http://122.228.8.21:3333/Img?bookId=$2&chapterId=$1###"
+  }
+}

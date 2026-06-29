@@ -1,0 +1,45 @@
+{
+  "id": "18-9b82e597",
+  "name": "🎨 18禁漫",
+  "host": "https://www.18mh.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search-index?searchType=1&q={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.liemh htmls indliemh@tag.li",
+    "titleSelector": "class.tit@text",
+    "coverSelector": "tag.img@data-url",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "class.mh-detail@tag.img@data-url",
+    "authorSelector": "class.mh-detail@tag.p.0@text##漫畫作者：",
+    "descriptionSelector": "",
+    "statusSelector": "class.mh-detail@tag.a.2@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "+class.b1.0@tag.li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "class.e.0@tag.img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

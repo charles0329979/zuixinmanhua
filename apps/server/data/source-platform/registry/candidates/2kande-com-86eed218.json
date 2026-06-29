@@ -1,0 +1,19 @@
+{
+  "id": "2kande-com-86eed218",
+  "name": "顶通漫画",
+  "version": "1.0.0-89cdd179",
+  "hash": "89cdd179e9710796f3ee858903b51a41cbaa251c54930f2b9f1e82c8707580d1",
+  "host": "http://www.2kande.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

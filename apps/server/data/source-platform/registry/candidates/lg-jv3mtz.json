@@ -1,0 +1,19 @@
+{
+  "id": "lg-jv3mtz",
+  "name": "名著阅读（优++）",
+  "version": "1.0.0-731267d9",
+  "hash": "731267d9e02e9565b98c02e590d48dd09ed950b1b9754998522b9aba0f9c8812",
+  "host": "https://api.520diandu.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

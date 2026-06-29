@@ -1,0 +1,19 @@
+{
+  "id": "cn-baozimh-com-593b6921",
+  "name": "包子漫画",
+  "version": "1.0.0-2a9ec580",
+  "hash": "2a9ec5809d74e1c68f19ca822aab201181f121a16027114c991c3a0230c401b6",
+  "host": "https://cn.baozimh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

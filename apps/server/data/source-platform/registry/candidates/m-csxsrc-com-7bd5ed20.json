@@ -1,0 +1,19 @@
+{
+  "id": "m-csxsrc-com-7bd5ed20",
+  "name": "长沙❤️💜",
+  "version": "1.0.0-11523f77",
+  "hash": "11523f77e459b350c48600d0f63445135f912cf77e12409cc3138cae2eb6128d",
+  "host": "https://m.csxsrc.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-tt6s54",
+  "name": "画涯爱子",
+  "version": "1.0.0-e4bc0070",
+  "hash": "e4bc0070790e8e3967e9712aa821d3ba4463957d6f1806e61d952929a352d712",
+  "host": "http://api.huaya.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

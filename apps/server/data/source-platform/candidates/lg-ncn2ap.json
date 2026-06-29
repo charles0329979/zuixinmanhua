@@ -1,0 +1,47 @@
+{
+  "id": "lg-ncn2ap",
+  "name": "🗒 天花板网",
+  "host": "https://newsmiss.lofter.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗒 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "@js:\nif(key.match(/@/)){\nresult='https://api.lofter.com/newsearch/blog.json?key='+encodeURI(key.match(/^@(.*)/)[1])+'&offset={\\{(page-1) *20}\\}'}else if(key.indexOf('#')==0){\nresult='https://api.lofter.com/newsearch/collection.json?key='+encodeURI(key.match(/^#(.*)/)[1])+'&offset={\\{(page-1) *20}\\}'\n}else{\nresult='https://api.lofter.com/newsearch/post.json?key='+key+'&offset={\\{(page-1) *20}\\}&limit=20'\n}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.posts[*]||$.data.blogs[*]||$.data.collections[*]",
+    "titleSelector": "$.title||$.digest||$.blogInfo.blogNiceName||$.blogNickName||$.name##</*\\w.*?>",
+    "coverSelector": "$.firstImageUrl[0]||$.blogInfo.bigAvaImg||$.bigAvaImg||$.coverUrl",
+    "detailUrlSelector": "$.postPageUrl",
+    "latestChapterSelector": "$.publishTime\n<js>\nif(result){\nresult?result=java.timeFormat(parseInt(result)):'';\njava.put('time', result)}else{\nresult=java.getString('$.posts[0].title||$.posts[0].digest', false)\n}</js>\n##</*\\w+.*?>"
+  },
+  "detail": {
+    "titleSelector": "$.response.collection.name",
+    "coverSelector": "$.response.collection.coverUrl",
+    "authorSelector": "$.response.blogInfo.blogNickName||$.response.posts[0].post.blogInfo.blogNickName",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "$..posts[*]||$.response.items[*]",
+    "titleSelector": "$.post.title||$.post.digest||$.post.blogInfo.blogNickName\n<js>if(result){\nresult=result\n}else{result=book.name}\nString(result).replace(/<\\/*\\w.*?>/g, '')\n</js>\n##(^.{1, 25})##$1###",
+    "urlSelector": "$.post.blogPageUrl"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "html##(.*?class=\"nctitle\">|<!-- Pager -->)[\\s\\S]+|(?<=\\<p\\>)(\\s|&nbsp;)*"
+  },
+  "headers": "{\n\"Content-Type\": \"application/x-www-form-urlencoded;charset=utf-8\"}",
+  "timeoutMs": 826,
+  "createdAt": "2026-06-27T15:52:54.216Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

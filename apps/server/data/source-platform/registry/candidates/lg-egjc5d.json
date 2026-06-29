@@ -1,0 +1,19 @@
+{
+  "id": "lg-egjc5d",
+  "name": "🎟️啵乐漫画",
+  "version": "1.0.0-baaa6d67",
+  "hash": "baaa6d674865f00e0c2f56688b97f40d63931762c4a2a7c9f0a674e332bf7417",
+  "host": "https://mybl.xyz/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

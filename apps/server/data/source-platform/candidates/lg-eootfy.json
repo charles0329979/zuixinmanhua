@@ -1,0 +1,41 @@
+{
+  "id": "lg-eootfy",
+  "name": "🗂🙈顶通漫画🚩",
+  "host": "https://toptoon.buzz/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗂 聚合"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(String(source.bookSourceComment));\n1 == flag\n  ? \"/txsearch.html?&search=\" + key\n  : java.toast(\"\\n❗未启用书源❗\");\n</js>\n",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "<js>\neval(String(source. bookSourceComment));\nvar list = java.getElements(\".tx-box ul li\"), data = [];\nfor (i = 0; i < list.length; i++) {\n  data.push({\n    name: list[i].select(\"h2 a\").text(), author: String(list[i].select(\".mb5.txt-ov.f-12\")[0].text())\n      .replace(/[, xX&]|[图文][:：]/g, \"/\")\n      .replace(/\\s/g, \"\")\n      .replace(/\\/\\/\\/|\\/\\//g, \"/\"), kind: String(list[i].select(\".status\").text()).replace(/[中已]/g, \"\"), word: \"\", latest: \"\", intro: list[i].select(\".f-gray.mb10.f-12.i50\").text(), cover: list[i].select(\".img-box img\").attr(\"src\"), url: list[i].select(\"a\").attr(\"href\")\n  });\n}\nJSON.stringify(data);\n</js>\n$[:10]",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "detailUrlSelector": "$.url",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "authorSelector": "$.author",
+    "descriptionSelector": "$.intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\nDate.prototype.Format = function (fmt) {\n  var o= {\n    \"M+\": this.getMonth() + 1, //月份 \n    \"d+\": this.getDate(), //日 \n    \"H+\": this.getHours(), //小时 \n    \"m+\": this.getMinutes(), //分 \n    \"s+\": this.getSeconds(), //秒 \n    \"q+\": Math.floor((this.getMonth() + 3) / 3), //季度 \n    \"S\": this.getMilliseconds() //毫秒 \n  };\n  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + \"\").substr(4 - RegExp.$1.length));\n  for (var k in o)\n  if (new RegExp(\"(\" + k + \")\").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((\"00\" + o[k]).substr((\"\" + o[k]).length)));\n  return fmt;\n};\ndate = new Date(new Date().getTime()).Format(\"yyyy-MM-dd HH:mm:ss\");\neval(String(source.bookSourceComment));\nvar list = java.getElements(\"#yuedu ul li a\"), data = [];\nfor (i = 0; i < list.length; i++) {\n  data.push({\n    title:\n      i == list.length - 1 ? `${list[i].text()}〔${date}〕` : list[i].text(), link: list[i].attr(\"href\")\n  });\n};\n1 == flag\n  ? (java.put(\"Enable\", 1), JSON.stringify(data))\n  : java.toast(\"\\n❗未启用书源❗\");\n</js>\n$[*]",
+    "titleSelector": "$.title",
+    "urlSelector": "$.link"
+  },
+  "images": {
+    "listSelector": "<js>\nif(java.get(\"Enable\")){\n\topt={\"headers\":{\"Referer\":source.getKey()}}\n\tcookie.removeCookie(baseUrl)\n  result=java.getString\n        (\"#txtbox img",
+    "srcAttribute": "data-original\")\n  result.split(\"\\n\").map(x=>\n  \t '<img src=\"'+x+\n  \t \t   '\">').\n  \t \t    join(\"\\n\")\n }else java.toast(\"\\n❗未启用书源❗\");\n</js>"
+  },
+  "headers": "{\n\"User-agent\":\"Mozilla/5.0 (Linux; Android 7.1.1; OPPO A83 Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.138 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 6889,
+  "createdAt": "2026-06-27T15:52:56.386Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

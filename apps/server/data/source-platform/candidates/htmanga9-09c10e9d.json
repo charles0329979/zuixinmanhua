@@ -1,0 +1,45 @@
+{
+  "id": "htmanga9-09c10e9d",
+  "name": "⌨绅士漫画(htmanga9)🔞",
+  "host": "https://www.htmanga9.top/##旅途",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/q/?q={{keyword}}&m=&f=_all&s=create_time_DESC&p={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "ul@.col_2@li||.gallary_item",
+    "titleSelector": ".txtA@text||a@text",
+    "coverSelector": ".ImgA@img@src||img@src",
+    "detailUrlSelector": "a@.ImgA@href||a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h2@text",
+    "coverSelector": ".pic@img@src",
+    "authorSelector": ".uwuinfo@p.0@text",
+    "descriptionSelector": "",
+    "statusSelector": "label@text##分類：|頁數：<js>result</js>##／##,",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".gallary_item",
+    "titleSelector": ".title@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "img.1@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

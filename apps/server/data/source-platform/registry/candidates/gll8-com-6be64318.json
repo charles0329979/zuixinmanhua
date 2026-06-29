@@ -1,0 +1,19 @@
+{
+  "id": "gll8-com-6be64318",
+  "name": "鬼罗丽漫画",
+  "version": "1.0.0-494850c1",
+  "hash": "494850c15e882dc043c240d7011a74153fcea4901c2dea7c32248fc8a87fa12c",
+  "host": "http://www.gll8.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

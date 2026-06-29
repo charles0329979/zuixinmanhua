@@ -1,0 +1,19 @@
+{
+  "id": "manmanapp-com-f559632a",
+  "name": "漫漫漫画",
+  "version": "1.0.0-a12dee2a",
+  "hash": "a12dee2a62b4e66230b9ac28a9e7d75156479c68031c95259466b7b50fc43c52",
+  "host": "https://www.manmanapp.com#yc1101",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

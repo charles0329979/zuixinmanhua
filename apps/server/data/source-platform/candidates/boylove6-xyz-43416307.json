@@ -1,0 +1,45 @@
+{
+  "id": "boylove6-xyz-43416307",
+  "name": "🐑 香香腐宅",
+  "host": "https://boylove6.xyz",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/home/api/searchk?keyword={{keyword}}&type=1&pageNo={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "result.list",
+    "titleSelector": "title@put:{id:$.id}",
+    "coverSelector": "image",
+    "detailUrlSelector": "/home/book/index/id/{{$.id}}",
+    "latestChapterSelector": "last_chapter_title",
+    "statusSelector": "keyword",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "&nbsp;&nbsp;🎋更新时间：{{@@class.stui-content__detail@tag.p.3@textNodes}}{{'\\n&lrm;\\n'}}{{@@.detail-text@html}}",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "result.list",
+    "titleSelector": "title",
+    "urlSelector": "/home/book/capter/id/{{$.id}}"
+  },
+  "images": {
+    "listSelector": "class.reader-cartoon-image!-1@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

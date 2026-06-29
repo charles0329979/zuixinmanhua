@@ -1,0 +1,19 @@
+{
+  "id": "lg-s6nkqh",
+  "name": "拷贝漫画（优++）",
+  "version": "1.0.0-fa77b531",
+  "hash": "fa77b53167e71e1d16679588a839a81d169a2469a39f287c82880d1d887cc1bd",
+  "host": "https://www.mangacopy.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

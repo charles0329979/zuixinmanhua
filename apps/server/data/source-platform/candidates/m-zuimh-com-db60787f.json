@@ -1,0 +1,45 @@
+{
+  "id": "m-zuimh-com-db60787f",
+  "name": "最漫画📱",
+  "host": "https://m.zuimh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.zuimh.com/search/?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox",
+    "titleSelector": "class.title@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "tag.a.-1@text",
+    "statusSelector": "tag.p.1@text##\\|##,",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "id.comicName@text",
+    "coverSelector": "",
+    "authorSelector": "class.txtItme.0@text",
+    "descriptionSelector": "id.full-des@text##介绍:",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.chapter-list-1@li!-1@a||id.chapter-list-2@li!-1@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.image-content@img@html##alt.*\\(\\)",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

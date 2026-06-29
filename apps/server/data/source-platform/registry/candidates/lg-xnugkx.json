@@ -1,0 +1,19 @@
+{
+  "id": "lg-xnugkx",
+  "name": "腾讯漫画📱",
+  "version": "1.0.0-909b4779",
+  "hash": "909b4779f20d21c4d1f63cc3df6242e28522637db04ebcd76fd1ae8058b67763",
+  "host": "https://m.ac.qq.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

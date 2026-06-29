@@ -1,0 +1,19 @@
+{
+  "id": "m-hmba-vip-b43c5f95",
+  "name": "🎨 韩漫吧",
+  "version": "1.0.0-708ad686",
+  "hash": "708ad6868b75754245b50a755aaa2a12dcbd4ff956b75d18a04c20723cba4528",
+  "host": "https://m.hmba.vip",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

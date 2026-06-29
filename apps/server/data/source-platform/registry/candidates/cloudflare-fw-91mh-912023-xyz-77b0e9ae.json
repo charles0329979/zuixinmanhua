@@ -1,0 +1,19 @@
+{
+  "id": "cloudflare-fw-91mh-912023-xyz-77b0e9ae",
+  "name": "九妖漫画👙",
+  "version": "1.0.0-cf805dd1",
+  "hash": "cf805dd13ba07b496ca5b46913e63fa4eb6aa0d7440e2a2743eb9da7cee3a983",
+  "host": "https://cloudflare.fw-91mh-912023.xyz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

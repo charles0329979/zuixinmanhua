@@ -1,0 +1,40 @@
+{
+  "id": "lg-3dv48v",
+  "name": "🎨爱看韩漫🔞",
+  "host": "https://www.ikanhm.top",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b','g'),k[c]);return p}('1==3(4.5).6(/7[\\\\0+]?=[\\\\0+]?(\\\\d+)/)[1]?\"/8?9={{a}}\":b.c(\"\\\\e\\\\2\\\\f\\\\g\\\\h\\\\i\\\\j\\\\2\");',20,20,'s||u2757|String|source|bookSourceComment|match|flag|search|keyword|key|java|toast||n|u672a|u542f|u7528|u4e66|u6e90'.split('|'),0,{}))\n</js>",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".mh-item",
+    "titleSelector": ".title",
+    "coverSelector": ".mh-cover",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "authorSelector": "author",
+    "descriptionSelector": "intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('1==4(5.6).7(/8[\\\\2+]?=[\\\\2+]?(\\\\d+)/)[1]?(0.9(\"b\", 1), 0.c(\".e-f-g h a\")):0.i(\"\\\\n\\\\3\\\\j\\\\k\\\\l\\\\m\\\\o\\\\3\");', 25, 25, 'java||s|u2757|String|source|bookSourceComment|match|flag|put||Enable|getElements||view|win|list|li|toast|u672a|u542f|u7528|u4e66||u6e90'.split('|'), 0, {}))\n</js>",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('1==0.3(\"4\")?\"<5>\"+0.6(\".7 8\"):0.9(\"\\\\a\\\\2\\\\b\\\\c\\\\d\\\\e\\\\f\\\\2\");', 16, 16, 'java||u2757|get|Enable|br|getElements|comicpage|img|toast|n|u672a|u542f|u7528|u4e66|u6e90'.split('|'), 0, {}))\n</js>",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 6139,
+  "createdAt": "2026-06-27T15:52:56.987Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

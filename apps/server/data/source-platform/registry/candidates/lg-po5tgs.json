@@ -1,0 +1,19 @@
+{
+  "id": "lg-po5tgs",
+  "name": "全免漫画（优）",
+  "version": "1.0.0-7be60260",
+  "hash": "7be6026010c3ee29784b586f31701af617cd15a8d073bd7b316f3179e7e216c9",
+  "host": "https://api-cdn.kaimanhua.com/##@遇知",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

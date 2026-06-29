@@ -1,0 +1,19 @@
+{
+  "id": "lg-k8bckf",
+  "name": "🖼微博博主",
+  "version": "1.0.0-3595d457",
+  "hash": "3595d4578771e87924da8761c79038432655f7c2b3a26bb09dfe9bc62c280aaa",
+  "host": "https://m.weibo.cn",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

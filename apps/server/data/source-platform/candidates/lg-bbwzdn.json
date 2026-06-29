@@ -1,0 +1,46 @@
+{
+  "id": "lg-bbwzdn",
+  "name": "🗂🙈嘿咻漫画🚩",
+  "host": "https://www.nvyoumh01.top/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗂 聚合"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/index?keywords={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".weui-panel__bd",
+    "titleSelector": "[class$=title]",
+    "coverSelector": "[class$=thumb]",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": ".data.0",
+    "descriptionSelector": ".detail-content"
+  },
+  "chapters": {
+    "listSelector": ".stui-content__playlist",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".center",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 3808,
+  "createdAt": "2026-06-27T15:52:56.499Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "lg-egjc5d",
+  "name": "🎟️啵乐漫画",
+  "host": "https://mybl.xyz/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/tag_result?type=all&query={{key}}&p={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".list_item",
+    "titleSelector": ".title",
+    "coverSelector": "a.0",
+    "detailUrlSelector": "text.进入漫画",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".bookTitle",
+    "coverSelector": "##https://assets\\.abo99\\.xyz/covers/(.*?)\\.jpg##https://assets.abo99.xyz/covers/$1.jpg###",
+    "authorSelector": ".author a",
+    "descriptionSelector": ".status div.-1"
+  },
+  "chapters": {
+    "listSelector": "-div[data-bar-content=4]>a&&div[data-bar-content=3]>a&&div[data-bar-content=2]>a&&div[data-bar-content=1]>a&&div[data-bar-content=0]>a",
+    "titleSelector": "text<js>result.replace(/第(.*)章/, '第$1话')</js>",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "script",
+    "srcAttribute": "html\n<js>result.replace(/_pics.push\\(\"([^\"]+)\"\\);/g,'<img src=\"$1\">')</js>\n##((?:\\s*<img src=\"([^\"]+)\"\\s*>\\s*){1,})##$1###"
+  },
+  "timeoutMs": 9464,
+  "createdAt": "2026-06-27T15:52:56.272Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

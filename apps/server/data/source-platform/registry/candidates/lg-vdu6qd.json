@@ -1,0 +1,19 @@
+{
+  "id": "lg-vdu6qd",
+  "name": "🎨 爱奇艺漫画",
+  "version": "1.0.0-b15b10d6",
+  "hash": "b15b10d6dec0cb449e4fa7f224d35995e4d0d9300d78a6a8d5daa9da01d1c069",
+  "host": "https://www.iqiyi.com/manhua",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

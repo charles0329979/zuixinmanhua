@@ -1,0 +1,45 @@
+{
+  "id": "wap-5c5ee668",
+  "name": "WAP漫画",
+  "host": "https://www.wapmh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".item",
+    "titleSelector": ".title@a@text",
+    "coverSelector": ".thumbnail@tag.img@data-src",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".title-warper .title@text",
+    "coverSelector": "",
+    "authorSelector": ".title-warper .update-time@text",
+    "descriptionSelector": "",
+    "statusSelector": "#randomColor@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapter-list .item@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".comiclist@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

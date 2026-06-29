@@ -1,0 +1,19 @@
+{
+  "id": "6-59777418",
+  "name": "好漫6",
+  "version": "1.0.0-3c91ff4c",
+  "hash": "3c91ff4cc568f51f39ad3d1f9ad8e95471310f4878c02ed3f5b17b5108237318",
+  "host": "https://www.haoman6.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

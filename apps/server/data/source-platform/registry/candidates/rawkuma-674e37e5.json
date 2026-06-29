@@ -1,0 +1,19 @@
+{
+  "id": "rawkuma-674e37e5",
+  "name": "📖 Rawkuma",
+  "version": "1.0.0-7e9c003d",
+  "hash": "7e9c003d6b0ed5fe50c01de1037aebc8e5b5c7c74eb91a5b7c8cd48c7b5f85f8",
+  "host": "https://rawkuma.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

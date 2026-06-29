@@ -1,0 +1,46 @@
+{
+  "id": "lg-clx67",
+  "name": "🗒 笔下文学",
+  "host": "http://open.bxzwapp.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "校验可用"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://open.bxzwapp.com/comic/search,{\n'charset': '',\n'method': 'POST',\n'body': '{\n  \"product\": \"1\",\n  \"ver\": \"1.1.1\",\n  \"marketChannel\": \"none\",\n  \"sign\": \"8FD841B05145FD8C1AA08F7AD0EF667D\",\n  \"page_num\": \"1\",\n  \"sysVer\": \"11\",\n  \"token\": \"\",\n  \"appId\": \"\",\n  \"osType\": \"2\",\n  \"time\": \"1631679823\",\n  \"packageName\": \"com.bixreader.com\",\n  \"udid\": \"359d715c-d811-30a9-90d3-a42a59eb34b5\",\n  \"keyword\": \"{{key}}\"\n}'\n}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "data.list",
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "detailUrlSelector": "http://open.bxzwapp.com/comic/info, {\n'charset': '', 'method': 'POST', 'body': '{\n  \"comic_id\": \"{{$.comic_id}}\", \"product\": \"1\", \"ver\": \"1.1.1\", \"appId\": \"\", \"osType\": \"2\", \"marketChannel\": \"none\", \"sign\": \"65D58D776CB8AE33E471F2F5DA84CC27\", \"sysVer\": \"11\", \"time\": \"1631680007\", \"packageName\": \"com.bixreader.com\", \"udid\": \"359d715c-d811-30a9-90d3-a42a59eb34b5\", \"token\": \"\"\n}'\n}",
+    "latestChapterSelector": "last_chapter_time"
+  },
+  "detail": {
+    "titleSelector": "data.comic.name",
+    "coverSelector": "body",
+    "authorSelector": "data.comic.author",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "data.chapter_list",
+    "titleSelector": "chapter_title",
+    "urlSelector": "http://open.bxzwapp.com/comic/chapter, {\n'charset': '', 'method': 'POST', 'body': '{\"comic_id\":\"{{$.comic_id}}\", \"product\":\"1\", \"ver\":\"1.1.1\", \"marketChannel\":\"none\", \"sign\":\"20BB3C27ECFD341AF78F40A52C7F5FF9\", \"sysVer\":\"11\", \"token\":\"\", \"appId\":\"\", \"osType\":\"2\", \"time\":\"1631680353\", \"packageName\":\"com.bixreader.com\", \"chapter_id\":\"{{$.chapter_id}}\", \"udid\":\"359d715c-d811-30a9-90d3-a42a59eb34b5\"}'\n}"
+  },
+  "images": {
+    "listSelector": "data.image_list[*]image",
+    "srcAttribute": "js:\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 2191,
+  "createdAt": "2026-06-27T15:52:54.035Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

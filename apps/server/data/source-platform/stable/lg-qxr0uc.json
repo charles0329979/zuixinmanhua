@@ -1,0 +1,20 @@
+{
+  "id": "lg-qxr0uc",
+  "name": "㊣✐ 漫客栈  #一程",
+  "version": "1.0.0-510136cb",
+  "hash": "510136cb0470f52b33c8062e4519f239262f6dd105c909ed7da90021cde1d4ae",
+  "host": "https://www.mkzhan.com#yc1101",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.431Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

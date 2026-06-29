@@ -1,0 +1,19 @@
+{
+  "id": "lg-oofkmx",
+  "name": "✐ 八极漫画 #Haxc",
+  "version": "1.0.0-fa2f938e",
+  "hash": "fa2f938e0f844b7f03616e502f90f4019216ead98b6f1ac4f823c2dbfe05e2c4",
+  "host": "http://www.8jj.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

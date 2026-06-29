@@ -1,0 +1,19 @@
+{
+  "id": "lg-snqpoa",
+  "name": "㊣✐ 腾讯漫画  #一程",
+  "version": "1.0.0-a7e0a58f",
+  "hash": "a7e0a58fc632299679b380a9d080bfe9b0b24ac20a0b8362a9ae8e90ea6fbad0",
+  "host": "https://m.ac.qq.com#♤yc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

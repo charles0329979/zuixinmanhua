@@ -1,0 +1,19 @@
+{
+  "id": "m-icekr-com-07314e13",
+  "name": "冰氪漫画📱",
+  "version": "1.0.0-c4b0aac7",
+  "hash": "c4b0aac764b1e3a504e3744604b9bd5470618a4e1ea5d024c8ca41c4551a08df",
+  "host": "https://m.icekr.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

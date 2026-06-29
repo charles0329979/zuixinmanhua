@@ -1,0 +1,19 @@
+{
+  "id": "lg-13nso8",
+  "name": "奇热漫画📱💰",
+  "version": "1.0.0-685f7c95",
+  "hash": "685f7c95af07c73383bd120d74aa626ab511deb11ee1f59fed26669fbf1a4751",
+  "host": "https://m.qiremanhua.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lg-cd0p24",
+  "name": "🎨 快看漫画$",
+  "host": "http://m.kuaikanmanhua.com已整理",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://m.kuaikanmanhua.com/search/mini/topic/title_and_author?page={{page}}&size=24&q={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.topics||$.data.cards||$.hits.topicMessageList||$.hits",
+    "titleSelector": "$.title.text||$.title",
+    "coverSelector": "$.vertical_image_url||$.image_url||$.cover_image_info.images[*].url",
+    "detailUrlSelector": "$.id||$.topic_id",
+    "latestChapterSelector": "$.latest_comic_title"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "<js>\na=eval(result.match(/__NUXT__[^<]*/)[0]);\nresult=JSON.stringify(__NUXT__);\n</js>\n$.data[*].topicInfo.user.nickname",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "<js>\na=eval(result.match(/__NUXT__[^<]*/)[0]);\nresult=JSON.stringify(__NUXT__);\n</js>\n$.data[*].comicList[*]",
+    "titleSelector": "$.title",
+    "urlSelector": "$.id"
+  },
+  "images": {
+    "listSelector": ".ComicPics",
+    "srcAttribute": "html##data-src##src"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 Mobile Safari/537.36 SearchCraft/3.6.5 (Baidu; P1 9.0)\"\n}",
+  "timeoutMs": 1680,
+  "createdAt": "2026-06-27T15:52:56.157Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

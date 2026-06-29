@@ -1,0 +1,45 @@
+{
+  "id": "cn-baozimh-com-593b6921",
+  "name": "包子漫画",
+  "host": "https://cn.baozimh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 96,
+  "tags": [
+    "low"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://cn.baozimh.com/search?q={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6",
+    "titleSelector": "class.comics-card__title@text",
+    "coverSelector": "tag.amp-img.0@src",
+    "detailUrlSelector": "class.comics-card pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-4 pure-u-lg-1-6@tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "class.tabs cls@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.comics-detail__title@text",
+    "coverSelector": "class.pure-u-1-1 pure-u-sm-1-3 pure-u-md-1-6@tag.amp-img.0@src",
+    "authorSelector": "class.comics-detail__author@text",
+    "descriptionSelector": "class.comics-detail__desc overflow-hidden@text",
+    "statusSelector": "class.tag-list@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.comics-chapters",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "class.comic-contain@html##<amp-img.*src=\"##<amp-img src=\"",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.081Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

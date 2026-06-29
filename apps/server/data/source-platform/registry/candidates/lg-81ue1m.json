@@ -1,0 +1,19 @@
+{
+  "id": "lg-81ue1m",
+  "name": "SF漫画💰",
+  "version": "1.0.0-0c020abf",
+  "hash": "0c020abf7da851c23a4cbb2c67f4e4d74dd4f7f9ebb5fdc08de7d3c86e0f2e19",
+  "host": "https://mm.sfacg.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

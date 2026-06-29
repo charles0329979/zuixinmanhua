@@ -1,0 +1,19 @@
+{
+  "id": "m-mhkami-com-2738fb69",
+  "name": "我的漫神（优）",
+  "version": "1.0.0-eb536557",
+  "hash": "eb536557693c08ed4d52bc9fc70eba0b3ff80a0e52ae9e005fe58055af071651",
+  "host": "https://m.mhkami.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

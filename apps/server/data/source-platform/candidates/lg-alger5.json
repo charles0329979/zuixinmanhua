@@ -1,0 +1,47 @@
+{
+  "id": "lg-alger5",
+  "name": "✐ 🔥亲亲漫画 #Haxc",
+  "host": "http://api.acg.gd#♤Haxc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://api.acg.gd/app/comic/search?keywords={{key}}&page={{page}}&sort=post",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.items.*",
+    "titleSelector": "$.name",
+    "coverSelector": "$.coverUrl",
+    "detailUrlSelector": "http://api.acg.gd/app/comic/view?id={$.id}",
+    "latestChapterSelector": "$.last_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "$.data.name",
+    "coverSelector": "body",
+    "authorSelector": "$.data.author",
+    "descriptionSelector": "$..description"
+  },
+  "chapters": {
+    "listSelector": "$..chapterGroup.1.*",
+    "titleSelector": "$.name",
+    "urlSelector": "http://api.acg.gd/app/chapter/view?id={$.id}"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nheader={\"Referer\":\"https://www.acgqd.com\"};\nheaders={\"headers\":JSON.stringify(header)};\n$=JSON.parse(result);\nimglist=$.data.imageArray;\npath=$.data.path;\nurl='http://mangaimg.62611311.com:44240/';\nurl=url+path;\nhtml='';\nfor(i in imglist){\nhtml +='<img src=\"'+url+imglist[i]+','+JSON.stringify(headers)+'\">\\n'\n}\nhtml"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.4094.1 Safari/537.36\"\n}",
+  "timeoutMs": 1039,
+  "createdAt": "2026-06-27T15:52:56.621Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "1234ymh1234-com-fdcb5900",
+  "name": "漫画1234ymh1234.com",
+  "version": "1.0.0-6db685d0",
+  "hash": "6db685d099814fbfe35ab27ada477c727fc06d4e172be509e8123b4057629e94",
+  "host": "https://www.ymh1234.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

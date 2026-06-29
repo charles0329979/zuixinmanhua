@@ -1,0 +1,46 @@
+{
+  "id": "lg-jv3mtz",
+  "name": "名著阅读（优++）",
+  "host": "https://api.520diandu.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api.520diandu.com/api/read/allReadBooks?uid=&key=&name={{key}}&page={{page}}&cv=134&from=app",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$..books[*]",
+    "titleSelector": "$.book_name",
+    "coverSelector": "$.famous",
+    "detailUrlSelector": "https://api.520diandu.com/api/read/readAllPages?uid=&key=&cv=134&from=web&bid={{$.id}}",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "$.data",
+    "titleSelector": "$.page",
+    "urlSelector": "$.pic"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:headers={\"headers\":{\"Referer\":baseUrl}};\nresult.split(\"\\n\").map(x=>'<img src=\\\"'+x+','+JSON.stringify(headers)+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 2348,
+  "createdAt": "2026-06-27T15:52:50.477Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

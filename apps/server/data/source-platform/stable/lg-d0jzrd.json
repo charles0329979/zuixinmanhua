@@ -1,0 +1,20 @@
+{
+  "id": "lg-d0jzrd",
+  "name": "🎨 漫客栈 #Haxc",
+  "version": "1.0.0-86eec681",
+  "hash": "86eec6816498589762ecb36760d77a285c5120988fa8e110fb80bb36787637bf",
+  "host": "https://www.mkzhan.com#♤Haxc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.376Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

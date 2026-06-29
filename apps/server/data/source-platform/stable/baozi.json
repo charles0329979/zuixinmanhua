@@ -1,0 +1,20 @@
+{
+  "id": "baozi",
+  "name": "包子漫画",
+  "version": "1.0.0-b87a68ec",
+  "hash": "b87a68ec47831275b1b25e20d0e4deac02d7d85c6024e9c896d6e6d1772c90c2",
+  "host": "https://www.baozimh.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:58.782Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

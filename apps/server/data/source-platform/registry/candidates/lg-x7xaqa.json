@@ -1,0 +1,41 @@
+{
+  "id": "lg-x7xaqa",
+  "name": "㊣✐ 酷爱漫画  ",
+  "host": "https://www.kuimh.com#♤yc",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Legado"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".mh-item",
+    "titleSelector": "a.1",
+    "coverSelector": "p",
+    "detailUrlSelector": "a.1",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".info h1",
+    "coverSelector": ".cover.0",
+    "authorSelector": ".subtitle.1",
+    "descriptionSelector": ".content"
+  },
+  "chapters": {
+    "listSelector": ".mCustomScrollBox li",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".comicpage",
+    "srcAttribute": "html##\\\"https:\\/\\/static.aiquanjian.com\\/static\\/images\\/grey.gif\\\" data-echo="
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.203 Safari/537.36\"\n}",
+  "timeoutMs": 1207,
+  "createdAt": "2026-06-27T15:52:51.801Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

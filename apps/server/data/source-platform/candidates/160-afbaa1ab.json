@@ -1,0 +1,45 @@
+{
+  "id": "160-afbaa1ab",
+  "name": "漫画160📱",
+  "host": "https://m.mh160.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.mh160.net/search?key={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".search-result@li||id.listbody@tag.li||class.itemTxt||.catagory-list@li",
+    "titleSelector": ".title@text||class.txtA@text||class.title@text",
+    "coverSelector": "##url\\('(.*?)'\\)##$1###",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "class.chapter@text||tag.p.0@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".comic-detail@.name@text",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": ".comic-describe@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".catalog-list@tag.li",
+    "titleSelector": ".name@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": ".comic-list@li@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.079Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

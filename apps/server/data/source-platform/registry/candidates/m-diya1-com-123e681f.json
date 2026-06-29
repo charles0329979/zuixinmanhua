@@ -1,0 +1,19 @@
+{
+  "id": "m-diya1-com-123e681f",
+  "name": "蒂亚漫画📱",
+  "version": "1.0.0-3b03c15e",
+  "hash": "3b03c15e689eea36d1ccf66c9e4793462ffb7e68a6b0d5fe10508621e0096fa4",
+  "host": "https://m.diya1.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

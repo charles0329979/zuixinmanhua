@@ -1,0 +1,45 @@
+{
+  "id": "sumanku-com-5e6f689f",
+  "name": "速漫库",
+  "host": "http://www.sumanku.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "{Referer:http://www.sumanku.com/}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "li",
+    "titleSelector": "div.card-text@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": ".card a@href@put:{u:\".card a@href\"}",
+    "latestChapterSelector": "div.abs-bottom@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h1@text",
+    "coverSelector": "[property$=og:image]@content",
+    "authorSelector": "p:nth-of-type(3) span.l@text",
+    "descriptionSelector": "p.content@text",
+    "statusSelector": ".gray span:nth-of-type(1)@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "data.list",
+    "titleSelector": "name",
+    "urlSelector": "http://www.sumanku.com@get:{u}{{$.id}}.html,{'webView':true}"
+  },
+  "images": {
+    "listSelector": "img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

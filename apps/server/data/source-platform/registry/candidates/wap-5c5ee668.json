@@ -1,0 +1,19 @@
+{
+  "id": "wap-5c5ee668",
+  "name": "WAP漫画",
+  "version": "1.0.0-0e8233d0",
+  "hash": "0e8233d027ba06abb0cd5c9c4fa1f31325f323f74611e793f7900ed90d25eda6",
+  "host": "https://www.wapmh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

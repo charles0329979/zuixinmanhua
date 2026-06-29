@@ -1,0 +1,19 @@
+{
+  "id": "comic-acgn-cc-3a3cb31b",
+  "name": "🎨 动漫戏说[修|仅发现]",
+  "version": "1.0.0-0eaa4ae2",
+  "hash": "0eaa4ae21222ee03484ccbc8cb7821c13db197f6b0f9aec055adb531fbdd06aa",
+  "host": "https://comic.acgn.cc#仅发现",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

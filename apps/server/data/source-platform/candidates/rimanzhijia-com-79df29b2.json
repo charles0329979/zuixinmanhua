@@ -1,0 +1,45 @@
+{
+  "id": "rimanzhijia-com-79df29b2",
+  "name": "日漫之家",
+  "host": "https://rimanzhijia.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://rimanzhijia.com/index.php/search/{{keyword}}/{{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.tbox_m@tag.li",
+    "titleSelector": "tag.h4@text",
+    "coverSelector": "mip-img@src",
+    "detailUrlSelector": "a@href",
+    "latestChapterSelector": "tag.span@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.data@tag.h1@text",
+    "coverSelector": "img@src",
+    "authorSelector": "class.dir@text",
+    "descriptionSelector": "class.tbox_js@text",
+    "statusSelector": "class.yac@text##类别：",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.list_block show@tag.li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "id.comic_pic@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

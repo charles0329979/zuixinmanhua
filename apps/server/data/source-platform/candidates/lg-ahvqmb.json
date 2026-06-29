@@ -1,0 +1,46 @@
+{
+  "id": "lg-ahvqmb",
+  "name": "✐ 漫画DB #Haxc1107",
+  "host": "https://www.manhuadb.com#Haxc1107",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.manhuadb.com/search?q={{key}}&p={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".comicbook-index||class.comic-book-unit",
+    "titleSelector": "h2 a.0",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".comic-title",
+    "coverSelector": ".comic-cover img",
+    "authorSelector": ".creators a",
+    "descriptionSelector": ".comic_story"
+  },
+  "chapters": {
+    "listSelector": ".num_div",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "<js>\ndata=(String(java.base64Decode(result.match(/img_data = \\'(.*?)\\'/)[1])));\nbid=result.match(/data-img_pre=\\\"(.*?)\\\"/)[1];\nhost=result.match(/data-host=\\\"(.*?)\\\"/)[1];\njava.put(\"bid\", bid);\njava.put(\"host\", host);\ndata\n</js>$.[*]img",
+    "srcAttribute": "js:result.split(\"\\n\").map(a=>'<img src=\"'+java.get(\"host\")+java.get(\"bid\")+a+'\">').join(\"\\n\")"
+  },
+  "timeoutMs": 3079,
+  "createdAt": "2026-06-27T15:52:55.599Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

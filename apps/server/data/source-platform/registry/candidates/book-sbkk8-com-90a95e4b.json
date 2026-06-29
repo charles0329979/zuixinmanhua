@@ -1,0 +1,19 @@
+{
+  "id": "book-sbkk8-com-90a95e4b",
+  "name": "📚天涯知识库",
+  "version": "1.0.0-3df20fdd",
+  "hash": "3df20fdd45a77a4be8badd28e1f694866be8d13a94e641957a062ae0165d8d58",
+  "host": "http://book.sbkk8.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

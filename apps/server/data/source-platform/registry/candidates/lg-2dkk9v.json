@@ -1,0 +1,19 @@
+{
+  "id": "lg-2dkk9v",
+  "name": "笔趣漫画（优+）",
+  "version": "1.0.0-bb97078a",
+  "hash": "bb97078a545f9a235f7a54794c6a01c884f09eb0a4ddef4b46c7c3d0ec231795",
+  "host": "https://www.biqug.org/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

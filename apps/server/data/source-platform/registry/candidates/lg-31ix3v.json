@@ -1,0 +1,19 @@
+{
+  "id": "lg-31ix3v",
+  "name": "漫蛙",
+  "version": "1.0.0-64bc9e0e",
+  "hash": "64bc9e0e37a249aa94e744c4d3de672184b5b71a3dd7e640a9d956cf839938ff",
+  "host": "https://www.manwaku.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

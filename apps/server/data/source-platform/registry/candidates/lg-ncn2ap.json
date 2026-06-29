@@ -1,0 +1,19 @@
+{
+  "id": "lg-ncn2ap",
+  "name": "🗒 天花板网",
+  "version": "1.0.0-7be291c8",
+  "hash": "7be291c8eca94d386ff49291f6b712cb377faabb7627c1d5b2be0038bff60ca6",
+  "host": "https://newsmiss.lofter.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

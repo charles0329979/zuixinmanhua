@@ -1,0 +1,45 @@
+{
+  "id": "wap-faloo-com-08afa374",
+  "name": "💰 飞卢小说",
+  "host": "https://wap.faloo.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".novelList li",
+    "titleSelector": "a.1@text",
+    "coverSelector": "img.0@src",
+    "detailUrlSelector": "a.1@href",
+    "latestChapterSelector": "",
+    "statusSelector": ".nl_r1_author a.1@text&&em@text&&.date@text&&.tag@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".info h1@text",
+    "coverSelector": ".cover_box img@src",
+    "authorSelector": ".info a.0@text",
+    "descriptionSelector": "🏷️   {{@class.tagList.0@text}}{{'\\n'+'​'}}\n{{@#novel_intro@html}}##展开收起|飞卢小说(.|\\n)*",
+    "statusSelector": ".info a.1@text&&.info .tag@text&&.info li.4@text##.*：|\\s.*|小说",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".v_nodeList li",
+    "titleSelector": "a@text##[\\(（【].*?[求更谢乐发订合补加].*?[】）\\)]",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": ".nodeContent@p@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-slng3y",
+  "name": "✐ 新漫画 #Haxc",
+  "version": "1.0.0-73b2b87f",
+  "hash": "73b2b87fc9c759de55c60fcb8bdef38388e275275651dd49e28cb0b411dedc47",
+  "host": "https://xapi.xinmanhua.net#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

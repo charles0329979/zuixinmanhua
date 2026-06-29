@@ -1,0 +1,19 @@
+{
+  "id": "lg-detgxd",
+  "name": "奇米动漫",
+  "version": "1.0.0-b866e6e7",
+  "hash": "b866e6e7aa954a010f8515694ad441ff9fdd6e627cb4b4f57f4610ec22c3e2ea",
+  "host": "http://www.qimiqimi.net/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

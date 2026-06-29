@@ -1,0 +1,41 @@
+{
+  "id": "lg-hte1qw",
+  "name": "久久漫画-ζ",
+  "host": "https://www.jjmhw.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "\n<js>\neval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b','g'),k[c]);return p}('2(3(4.5));1==6?\"/7?8={{9}}\":a.b(\"\\\\c\\\\0\\\\d\\\\e\\\\f\\\\g\\\\h\\\\0\");',18,18,'u2757||eval|String|source|bookSourceComment|flag|search|keyword|key|java|toast|n|u672a|u542f|u7528|u4e66|u6e90'.split('|'),0,{}))\n</js>",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".book-list li",
+    "titleSelector": ".book-list-info-title",
+    "coverSelector": ".book-list-cover img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "authorSelector": "author",
+    "descriptionSelector": "intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('4(5(6.7));1==8?0=2.9(\".b-0-1 c a\"):2.d(\"\\\\e\\\\3\\\\f\\\\g\\\\h\\\\i\\\\j\\\\3\");2.k(\"l\", 1);0;', 22, 22, 'list||java|u2757|eval|String|source|bookSourceComment|flag|getElements||detail|li|toast|n|u672a|u542f|u7528|u4e66|u6e90|put|Enable'.split('|'), 0, {}))\n</js>",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('1==0.3(\"4\")?\"<5>\"+6(0.7(\".8-9-1.a b\")).c(/d:/g, \"e:\"):0.f(\"\\\\h\\\\2\\\\i\\\\j\\\\k\\\\l\\\\m\\\\2\");', 23, 23, 'java||u2757|get|Enable|br|String|getElements|view|main|readForm|img|replace|http|https|toast||n|u672a|u542f|u7528|u4e66|u6e90'.split('|'), 0, {}))\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "{\n  \"User-agent\":\"Dalvik/2.1.0 (Linux; U; Android 9; PCRT00 Build/PQ3B.190801.002)\"\n}",
+  "timeoutMs": 5432,
+  "createdAt": "2026-06-27T15:52:56.987Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

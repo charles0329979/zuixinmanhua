@@ -1,0 +1,20 @@
+{
+  "id": "ajiu-4e513565",
+  "name": "[阿玖·AJiu]下拉式漫画",
+  "version": "1.0.0-be1d7f35",
+  "hash": "be1d7f359371b6c57f51c63478c2abff02a37b2842bb778be38a075ec733e24a",
+  "host": "https://m.xialashimanhua.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.217Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

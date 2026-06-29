@@ -1,0 +1,46 @@
+{
+  "id": "lg-17tua4",
+  "name": "🎨UAA漫画",
+  "host": "https://www.uaa.com/app",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api.uaa.com/comic/app/comic/search?page={{page}}&size=30&keyword={{key}}&orderType=3",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.model.data",
+    "titleSelector": "$.title",
+    "coverSelector": "$.coverUrl",
+    "detailUrlSelector": "$.id",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "$.model.menus..children.*||$.model.menus",
+    "titleSelector": "$.title",
+    "urlSelector": "https://api.uaa.com/comic/app/comic/chapter?id={{$.id}}&offset=0&viewId=16758385134915627"
+  },
+  "images": {
+    "listSelector": "$.model.images[*]",
+    "srcAttribute": "js:\nlist=result.split(\"\\n\");\nhtml='';\nfor(i in list){\nhtml+='<img src=\"'+list[i]+'\">';\n}\nhtml"
+  },
+  "timeoutMs": 3798,
+  "createdAt": "2026-06-27T15:52:55.359Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

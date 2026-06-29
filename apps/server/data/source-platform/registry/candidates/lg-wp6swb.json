@@ -1,0 +1,19 @@
+{
+  "id": "lg-wp6swb",
+  "name": "🎨 爱看漫画",
+  "version": "1.0.0-0d54a293",
+  "hash": "0d54a293333b012c8274ccfda9b5b33b45d87a53c8b70f458a86dcc7c08d46c3",
+  "host": "http://wap.65dm.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "lg-j4tbri",
+  "name": "全免漫画（优）",
+  "host": "https://api-cdn.kaimanhua.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api-cdn.kaimanhua.com/comic-api/v1/comic/getsortlist?search_key={{key}}&orderby=shoucang&page={{page}}&pagesize=20&young_mode=0&client-type=android&productname=qmmh&client-channel=xiaomi&platformname=android&client-version=1.4.8",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.data",
+    "titleSelector": "$.comic_name",
+    "coverSelector": "$.cover_img",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "$.last_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "$.comic_name",
+    "coverSelector": "$.cover_img_34",
+    "authorSelector": "$.author_name",
+    "descriptionSelector": "<br>\n🏅 评分：{{Math.round(java.getString('$.avgscore'))/10}}分\n🕰 更新：{{String(java.timeFormat(java.getString('$.update_time'))).replace(/\\//g, \"-\").replace(/\\s/g, \"🔸\")}}\n🎗 标签：{{result=String(java.getString('$.comic_taglist')).replace(/\\n/g, \", \")}}\n📂 简介：{{$.comic_desc}}"
+  },
+  "chapters": {
+    "listSelector": "<js>\nresult=String(java.getString(\"$.data\")).replace(/arsadata/, \"\");\njava.aesBase64DecodeToString(result, \"4548ded8c9e02690\", \"AES/CBC/PKCS5Padding\", \"1992360ee9bc4f8f\");\n</js>\n$.chapters[*]",
+    "titleSelector": "$.chapter_name",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": "<js>\nresult=String(java.getString(\"$.data\")).replace(/arsadata/, \"\");\nu=java.aesBase64DecodeToString(result, \"4548ded8c9e02690\", \"AES/CBC/PKCS5Padding\", \"1992360ee9bc4f8f\");\nimg=u.match(/\\[(.*)\\]/)[1].split(\", \").map(x=>'\\n<img src='+x+'>').join(\"\\n\")\n</js>",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 1318,
+  "createdAt": "2026-06-27T15:52:51.012Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

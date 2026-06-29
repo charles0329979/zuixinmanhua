@@ -1,0 +1,40 @@
+{
+  "id": "lg-oc32bf",
+  "name": "包子漫画（优+）",
+  "host": "https://cn.bzmanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?q={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comics-card",
+    "titleSelector": ".comics-card__title",
+    "coverSelector": "amp-img.0",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".comics-detail__title",
+    "coverSelector": "amp-img.0",
+    "authorSelector": ".comics-detail__author",
+    "descriptionSelector": ".comics-detail__desc"
+  },
+  "chapters": {
+    "listSelector": ".pure-g[3, 4] .comics-chapters__item||class.pure-g.2 .comics-chapters__item[-1:0]",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".comic-contain",
+    "srcAttribute": "html##cdn##mh"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.908Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

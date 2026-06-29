@@ -10,7 +10,7 @@ export interface RankedResult {
   comicId: string;
   sourceId: string;
   sourceName: string;
-  sourceType: 'hardcoded' | 'rule' | 'comicfs';
+  sourceType: 'hardcoded' | 'rule' | 'comicfs' | 'source';
   author?: string;
   latestChapter?: string;
   status?: string;

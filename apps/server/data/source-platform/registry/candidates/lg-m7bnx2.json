@@ -1,0 +1,19 @@
+{
+  "id": "lg-m7bnx2",
+  "name": "漫画大全",
+  "version": "1.0.0-07b98705",
+  "hash": "07b987050cb2f4c4d06214e77e98770456cc9c7fc98da30cad095d6588906e51",
+  "host": "https://www.manhuadb.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "san449-com-f80b04ef",
+  "name": "🔰 快乐图书",
+  "host": "https://www.san449.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.san449.com/?s={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".box",
+    "titleSelector": "h2@a@text",
+    "coverSelector": "img@data-original",
+    "detailUrlSelector": ".focus@a@href",
+    "latestChapterSelector": ".subtitle@text",
+    "statusSelector": ".post-tags@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": ".dis@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".article-paging@a",
+    "titleSelector": "span@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": ".article-content@p@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

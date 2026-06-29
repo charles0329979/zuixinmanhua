@@ -1,0 +1,19 @@
+{
+  "id": "lg-gb985y",
+  "name": "🎨快看漫画",
+  "version": "1.0.0-929cb572",
+  "hash": "929cb572d2830b24f1502cb557b7bea690d174a14d62ff481d5934263ae064dd",
+  "host": "http://m.kuaikanmanhua.com#未月十八发现",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

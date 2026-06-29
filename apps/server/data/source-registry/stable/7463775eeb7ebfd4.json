@@ -1,0 +1,179 @@
+{
+  "id": "7463775eeb7ebfd4",
+  "name": "包子漫画(测试)",
+  "version": "1.0.0-fa9821f4",
+  "channel": "stable",
+  "status": "PROMOTED",
+  "healthScore": 97,
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "test",
+    "branch": "main",
+    "commitSha": "test",
+    "filePath": "test",
+    "importedAt": "2026-06-28T14:53:35.546Z",
+    "rawHash": "test"
+  },
+  "publishedAt": "2026-06-29T03:31:10.484Z",
+  "hash": "fa9821f42c5b338f0690659328f5b01fe27dfcd9fad8386852df33d8329e2d9c",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "source": {
+    "id": "test-baozimh-001",
+    "name": "包子漫画(测试)",
+    "host": "https://www.baozimh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 10,
+    "search": {
+      "url": "/search?q={{keyword}}",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": ".comics-card",
+      "titleSelector": ".comics-card__title h3",
+      "coverSelector": ".comics-card__poster img",
+      "detailUrlSelector": ".comics-card__poster"
+    },
+    "detail": {
+      "titleSelector": ".comics-detail__title",
+      "coverSelector": ".de-info__bg",
+      "authorSelector": ".comics-detail__author",
+      "descriptionSelector": ".comics-detail__desc"
+    },
+    "chapters": {
+      "listSelector": ".comics-chapters__item",
+      "titleSelector": "div",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "img.comic-contain__item, img.comic-image, .chapter-img img, .comic-content img, amp-img",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 10000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": false,
+      "requiresLogin": false,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PROMOTED",
+    "healthScore": {
+      "total": 97,
+      "staticScore": 15,
+      "networkScore": 15,
+      "searchScore": 20,
+      "detailScore": 15,
+      "chapterScore": 15,
+      "imageScore": 15,
+      "latencyScore": 2,
+      "recommendation": "PROMOTE"
+    },
+    "origin": {
+      "provider": "manual",
+      "repositoryUrl": "test",
+      "branch": "main",
+      "commitSha": "test",
+      "filePath": "test",
+      "importedAt": "2026-06-28T14:53:35.546Z",
+      "rawHash": "test"
+    },
+    "validation": {
+      "staticPassed": true,
+      "networkPassed": true,
+      "searchPassed": true,
+      "detailPassed": true,
+      "chaptersPassed": true,
+      "imagesPassed": true,
+      "proxyPassed": true,
+      "testedAt": "2026-06-29T03:31:04.096Z",
+      "testKeyword": "海贼王",
+      "resultCount": 82,
+      "firstComicTitle": "海贼王",
+      "firstChapterTitle": "第1186话 再一次",
+      "firstImageUrl": "https://s1.bzcdn.net/scomic/meishaonianbangjiashijian-aojianyixi2/0/2-df6a/1.jpg",
+      "latencyMs": 6387,
+      "layerDetails": {
+        "static": {
+          "checks": [
+            {
+              "name": "ID present",
+              "passed": true,
+              "message": "Source ID is missing"
+            },
+            {
+              "name": "ID format (alphanumeric + hyphens + underscores)",
+              "passed": true,
+              "message": "Invalid ID: \"test-baozimh-001\""
+            },
+            {
+              "name": "Name present",
+              "passed": true,
+              "message": "Source name is missing"
+            },
+            {
+              "name": "Host URL present",
+              "passed": true,
+              "message": "Base URL is missing — source cannot function"
+            },
+            {
+              "name": "Protocol is http or https",
+              "passed": true,
+              "message": "Invalid protocol: https:"
+            },
+            {
+              "name": "Hostname not blocked (localhost/private/metadata)",
+              "passed": true
+            },
+            {
+              "name": "Hostname has valid domain structure",
+              "passed": true,
+              "message": "Hostname does not appear to be a valid domain"
+            }
+          ],
+          "warnings": []
+        },
+        "search": {
+          "keywords": [
+            "海贼王",
+            "火影忍者",
+            "一拳超人",
+            "斗罗大陆"
+          ],
+          "resultsPerKeyword": {
+            "海贼王": 82
+          },
+          "totalMs": 981,
+          "firstResultTitle": "海贼王",
+          "firstResultUrl": "https://www.baozimh.com/comic/haizeiwang-weitianrongyilang",
+          "passed": true,
+          "keyword": "海贼王",
+          "firstTitle": "海贼王",
+          "firstUrl": "https://www.baozimh.com/comic/haizeiwang-weitianrongyilang"
+        },
+        "chain": {
+          "detailUrl": "https://www.baozimh.com/comic/haizeiwang-weitianrongyilang",
+          "detailTitleMatch": true,
+          "chapterCount": 1211,
+          "imageCount": 12,
+          "totalMs": 5405,
+          "firstChapterTitle": "第1186话 再一次",
+          "firstImageUrl": "https://s1.bzcdn.net/scomic/meishaonianbangjiashijian-aojianyixi2/0/2-df6a/1.jpg",
+          "proxyImageStatus": 200,
+          "proxyImageContentType": "image/jpeg",
+          "allPassed": true,
+          "detailOk": true,
+          "chaptersOk": true,
+          "imagesOk": true,
+          "proxyOk": true
+        }
+      }
+    }
+  }
+}

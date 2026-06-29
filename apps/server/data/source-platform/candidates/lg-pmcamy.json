@@ -1,0 +1,47 @@
+{
+  "id": "lg-pmcamy",
+  "name": "蓝批漫画（优+++）",
+  "host": "https://www.pixiv.net/manga",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "@js:\njava.put(\"key\", key)\njava.put(\"page\", page)\nif (key.startsWith(\"@\") || key.startsWith(\"＠\")) {\n    key = key.slice(1)\n    java.log(`👤 搜索作者：${key}`)\n} else if (key.startsWith(\"#\") || key.startsWith(\"＃\")) {\n    key = key.slice(1)\n    java.log(`#️⃣ 搜索标签：${key}`)\n} else {\n    java.log(`🔍 搜索内容：${key}`)\n}\n\njava.put(\"key\", key)\nurlIP(urlSearchArtwork(key, page))",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "title",
+    "coverSelector": "coverUrl",
+    "detailUrlSelector": "detailedUrl",
+    "latestChapterSelector": "latestChapter"
+  },
+  "detail": {
+    "titleSelector": "title",
+    "coverSelector": "coverUrl",
+    "authorSelector": "userName",
+    "descriptionSelector": "description"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "title",
+    "urlSelector": "chapterUrl"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar util = objParse(String(java.get(\"util\")))\n\nfunction objParse(obj) {\n    return JSON.parse(obj, (n, v) => {\n        if (typeof v == \"string\" && v.match(\"()\")) {\n            return eval(`(${v})`)\n        }\n        return v;\n    })\n}\n\nfunction getContent(res) {\n    let content = [\"\"]\n    // li = \"mini thumb small regular original\".split(\" \")\n    let quality = util.settings.QUALITY_REGULAR ? \"regular\" : \"original\"\n    let illustLink = getAjaxJson(urlIP(urlIllustDetailed(res.id))).body.urls[quality]\n    for (let order = 0; order < res.pageCount; order++) {\n        content.push(`<img src=\"${urlCoverUrl(illustLink)}\">`)\n        illustLink = illustLink.replace(`_p${order}`, `_p${order + 1}`)\n    }\n    content = content.join(\"\\n\")\n    return content\n}\n\n(function () {\n    return getContent(util.getIllustRes(result))\n})()"
+  },
+  "headers": "{\"Referer\":\"https://www.pixiv.net\"}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.477Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

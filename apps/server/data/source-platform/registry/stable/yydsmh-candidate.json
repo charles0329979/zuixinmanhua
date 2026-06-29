@@ -1,0 +1,211 @@
+{
+  "id": "yydsmh-candidate",
+  "name": "YYDS漫画",
+  "version": "1.0.0-cafc6d1b",
+  "channel": "stable",
+  "status": "PROMOTED",
+  "healthScore": 97,
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "",
+    "branch": "",
+    "commitSha": "",
+    "filePath": "",
+    "importedAt": "2026-06-29T09:13:24.558Z",
+    "rawHash": "manual"
+  },
+  "publishedAt": "2026-06-29T09:13:37.499Z",
+  "hash": "cafc6d1bc0a76c64b92f05b0f3b8c5480e5fb8fd9261470856b8aaea95844bdc",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "source": {
+    "id": "yydsmh",
+    "name": "YYDS漫画",
+    "host": "https://www.yydsmh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 10,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?searchkey={{keyword}}",
+      "method": "GET",
+      "listSelector": "#js_comicSortList > li",
+      "titleSelector": "a > p",
+      "coverSelector": "a > div > img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": "a > div > span",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": "#detail > div > div.book-name > h1 > span",
+      "coverSelector": "div.book-cover.comic-item > div > img",
+      "authorSelector": "#detail > div > div.book-name > h1 > span",
+      "descriptionSelector": "#js_desc_content",
+      "statusSelector": "div.book-name > div > ul.types > li:nth-child(3) > a",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": "#js_chapters > li",
+      "titleSelector": "a",
+      "urlSelector": "a"
+    },
+    "images": {
+      "listSelector": "#imgsec img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-26T03:15:55.456Z",
+    "imagesApi": {
+      "url": "/api/comic/read/pics",
+      "method": "POST",
+      "listPath": "data.pic",
+      "urlField": "pic",
+      "bodyParams": {},
+      "extractParams": [
+        {
+          "selector": ".reader-pic-slot",
+          "attribute": "data-aid",
+          "paramName": "aid",
+          "defaultValue": ""
+        }
+      ],
+      "totalLimit": 999,
+      "batchSize": 50
+    },
+    "allowInsecureSSL": true,
+    "lifecycleStatus": "PROMOTED",
+    "healthScore": {
+      "total": 97,
+      "staticScore": 15,
+      "networkScore": 15,
+      "searchScore": 20,
+      "detailScore": 15,
+      "chapterScore": 15,
+      "imageScore": 15,
+      "latencyScore": 2,
+      "recommendation": "PROMOTE"
+    },
+    "origin": {
+      "provider": "manual",
+      "repositoryUrl": "",
+      "branch": "",
+      "commitSha": "",
+      "filePath": "",
+      "importedAt": "2026-06-29T09:13:24.558Z",
+      "rawHash": "manual"
+    },
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": false,
+      "requiresLogin": false,
+      "requiresManualAdapter": false
+    },
+    "validation": {
+      "staticPassed": true,
+      "networkPassed": true,
+      "searchPassed": true,
+      "detailPassed": true,
+      "chaptersPassed": true,
+      "imagesPassed": true,
+      "proxyPassed": true,
+      "testedAt": "2026-06-29T09:13:31.221Z",
+      "testKeyword": "海贼王",
+      "resultCount": 14,
+      "firstComicTitle": "海贼王~",
+      "firstChapterTitle": "第1185话",
+      "firstImageUrl": "https://tuer.justpic01pt.com:666/picbed/CPMH/haizeiwang/390/1781669605050013.jpg.c1.jpg",
+      "latencyMs": 6277,
+      "layerDetails": {
+        "static": {
+          "checks": [
+            {
+              "name": "ID present",
+              "passed": true,
+              "message": "Source ID is missing"
+            },
+            {
+              "name": "ID format (alphanumeric + hyphens + underscores)",
+              "passed": true,
+              "message": "Invalid ID: \"yydsmh\""
+            },
+            {
+              "name": "Name present",
+              "passed": true,
+              "message": "Source name is missing"
+            },
+            {
+              "name": "Host URL present",
+              "passed": true,
+              "message": "Base URL is missing — source cannot function"
+            },
+            {
+              "name": "Protocol is http or https",
+              "passed": true,
+              "message": "Invalid protocol: https:"
+            },
+            {
+              "name": "Hostname not blocked (localhost/private/metadata)",
+              "passed": true
+            },
+            {
+              "name": "Hostname has valid domain structure",
+              "passed": true,
+              "message": "Hostname does not appear to be a valid domain"
+            }
+          ],
+          "warnings": []
+        },
+        "search": {
+          "keywords": [
+            "海贼王",
+            "火影忍者",
+            "一拳超人",
+            "斗罗大陆"
+          ],
+          "resultsPerKeyword": {
+            "海贼王": 14
+          },
+          "totalMs": 636,
+          "firstResultTitle": "海贼王~",
+          "firstResultUrl": "https://www.yydsmh.com/manga/7533/",
+          "passed": true,
+          "keyword": "海贼王",
+          "firstTitle": "海贼王~",
+          "firstUrl": "https://www.yydsmh.com/manga/7533/"
+        },
+        "chain": {
+          "detailUrl": "https://www.yydsmh.com/manga/7533/",
+          "detailTitleMatch": true,
+          "chapterCount": 390,
+          "imageCount": 10,
+          "totalMs": 5638,
+          "firstChapterTitle": "第1185话",
+          "firstImageUrl": "https://tuer.justpic01pt.com:666/picbed/CPMH/haizeiwang/390/1781669605050013.jpg.c1.jpg",
+          "proxyImageStatus": 200,
+          "proxyImageContentType": "image/jpeg",
+          "allPassed": true,
+          "detailOk": true,
+          "chaptersOk": true,
+          "imagesOk": true,
+          "proxyOk": true
+        }
+      }
+    }
+  }
+}

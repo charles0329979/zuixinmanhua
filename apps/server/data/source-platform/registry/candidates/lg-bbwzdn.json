@@ -1,0 +1,19 @@
+{
+  "id": "lg-bbwzdn",
+  "name": "🗂🙈嘿咻漫画🚩",
+  "version": "1.0.0-761d2111",
+  "hash": "761d2111c218edcc7130390b27d40126a419c4b5e574b4f8f38ab35ccbaf5949",
+  "host": "https://www.nvyoumh01.top/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-dw9gau",
+  "name": "性感美女网",
+  "version": "1.0.0-c07e7cc7",
+  "hash": "c07e7cc70e955ee437f64602ccf41100468cf0a1f2496fbd0adc3063d38f5c6a",
+  "host": "https://www.jpxgyw.cc/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

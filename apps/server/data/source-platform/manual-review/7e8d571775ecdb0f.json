@@ -1,0 +1,85 @@
+{
+  "id": "7e8d571775ecdb0f",
+  "name": "再漫画",
+  "normalizedSource": {
+    "id": "7e8d571775ecdb0f",
+    "name": "再漫画",
+    "host": "https://manhua.zaimanhua.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "https://manhua.zaimanhua.com/dynamic/{{key}}",
+      "method": "GET",
+      "responseType": "json",
+      "listSelector": ".update_con@tag.li",
+      "titleSelector": ".title@text",
+      "coverSelector": "img@src",
+      "detailUrlSelector": "https://manhua.zaimanhua.com/api/v1/comic1/comic/detail?channel=%20pc&app_name=zmh&version=1.0.0&comic_py={{@@class.title@tag.a@href##.+info.(\\w+).html##$1}}"
+    },
+    "detail": {
+      "titleSelector": "$..comicInfo.title",
+      "coverSelector": "$..cover",
+      "authorSelector": "$..authorName",
+      "descriptionSelector": "$..description"
+    },
+    "chapters": {
+      "listSelector": "$..chapterList\n@js:\nresult = JSON.parse(result)[0]\nres = []\nresult.reverse().forEach(v=>{\n  res.push(JSON.stringify({\n    chapter_title: v.title,\n    isV: true\n  }))\n  v.data.reverse().forEach(c=>{\n    res.push(JSON.stringify(c))\n  })\n})\nres",
+      "titleSelector": "$.chapter_title",
+      "urlSelector": "@js:\nresult = JSON.parse(result)\nresult.isV? '' : `https://manhua.zaimanhua.com/api/v1/comic1/chapter/detail?channel=pc&app_name=zmh&version=1.0.0&comic_id=${java.get('bid')}&chapter_id=${result.chapter_id}`"
+    },
+    "images": {
+      "listSelector": "$..page_url\n@js:\nJSON.parse(result).map(url=>`<img src=\"${url}\">`).join('\\n')",
+      "srcAttribute": "src"
+    },
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": false,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "detail: contains @js: expressions — requires QuickJS runtime",
+      "chapters: contains @js: expressions — requires QuickJS runtime",
+      "images: contains @js: expressions — requires QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime"
+    ],
+    "createdAt": "2026-06-29T03:37:57.235Z",
+    "updatedAt": "2026-06-29T03:37:57.235Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/zaimanhua.json",
+    "importedAt": "2026-06-29T03:37:57.235Z",
+    "rawHash": "7a2265dd2f249d7c73316f825786c18d7010cd123d60221c49679ef89d0f4c9d"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "detail: contains @js: expressions — requires QuickJS runtime",
+    "chapters: contains @js: expressions — requires QuickJS runtime",
+    "images: contains @js: expressions — requires QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime"
+  ],
+  "createdAt": "2026-06-29T03:37:57.235Z",
+  "updatedAt": "2026-06-29T03:37:57.235Z"
+}

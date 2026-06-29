@@ -1,0 +1,19 @@
+{
+  "id": "lg-5xvkgl",
+  "name": "2022.11.22 更新",
+  "version": "1.0.0-faf36491",
+  "hash": "faf36491592b970446d61a29841d4cdbbcd79307da6a16be2db11bde63c89045",
+  "host": "https://yuedu",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

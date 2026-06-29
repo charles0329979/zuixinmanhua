@@ -1,0 +1,19 @@
+{
+  "id": "lg-wkf7a2",
+  "name": "三四娱乐",
+  "version": "1.0.0-ebffaac8",
+  "hash": "ebffaac8d0b628cf6892db228e2d2fc68309145f1abbfdc33e44d594319d4ec7",
+  "host": "https://www.3004ss.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

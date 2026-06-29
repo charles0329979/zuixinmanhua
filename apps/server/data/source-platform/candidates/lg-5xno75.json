@@ -1,0 +1,47 @@
+{
+  "id": "lg-5xno75",
+  "name": "酷看漫画",
+  "host": "https://www.kukk.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.kukk.net/search,{\n\"charset\": \"\",\n\"method\": \"POST\",\n\"body\": \"keyword={{key}}\"\n}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".book-list",
+    "titleSelector": "p.0",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".normal-top-title",
+    "coverSelector": "img",
+    "authorSelector": ".detail-main-info-author.1",
+    "descriptionSelector": ".detail-desc"
+  },
+  "chapters": {
+    "listSelector": "#detail-list-select a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".lazy",
+    "srcAttribute": "js:result.replace(/data-original/g,\"src\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 8.1.0; JKM-AL00b Build/HUAWEIJKM-AL00b; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044807 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 9225,
+  "createdAt": "2026-06-27T15:52:55.477Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

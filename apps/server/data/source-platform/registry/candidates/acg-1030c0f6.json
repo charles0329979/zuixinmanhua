@@ -1,0 +1,19 @@
+{
+  "id": "acg-1030c0f6",
+  "name": "ACG和谐漫画",
+  "version": "1.0.0-2ed2351c",
+  "hash": "2ed2351cd6cd5535e5c0ded3cabf90da77df02ad6a798641e6bbaf022f8ae7d2",
+  "host": "https://m.acgz1.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

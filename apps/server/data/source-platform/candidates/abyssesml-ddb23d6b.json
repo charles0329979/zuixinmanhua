@@ -1,0 +1,45 @@
+{
+  "id": "abyssesml-ddb23d6b",
+  "name": "🎀图文韩漫[abyssesml]",
+  "host": "https://tuwenhanman.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "{{org.jsoup.Jsoup.parse(java.ajax(source.getKey())).select('form[name=formsearch]').attr('action')}}?keyword={{keyword}}&searchtype=titlekeyword&channeltype=0&orderby=&kwtype=0&pagesize=30&typeid=0&TotalResult=500&PageNo={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "div:has(h2:contains(搜索结果))~dl",
+    "titleSelector": "dt:contains(18+)>a>span:not(:contains(18+))@text",
+    "coverSelector": "dt:contains(18+)>a@data-original",
+    "detailUrlSelector": "dt:contains(18+)>a@href",
+    "latestChapterSelector": "dd>h1>a[href]@text",
+    "statusSelector": "li:has(span:contains(分类))@textNodes&&\nli:has(span:contains(时间))@textNodes",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "[property$=book_name]@content",
+    "coverSelector": "[property$=image]@content",
+    "authorSelector": "[property$=author]@content",
+    "descriptionSelector": "[property$=description]@content##(^|[。！？]+[”」）】]?)##$1<br>",
+    "statusSelector": "[property~=type|status|update_time]@content##\\s.*",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "div:has(ul:has(li:contains(目录)))>ul:not(:has(li:contains(目录)))>li>a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "div:has(div:has(ul:has(li>a:contains(目录))))>div[0]@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

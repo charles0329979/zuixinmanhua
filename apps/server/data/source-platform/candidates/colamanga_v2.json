@@ -1,0 +1,47 @@
+{
+  "id": "colamanga_v2",
+  "name": "可乐漫画v2",
+  "host": "https://www.colamanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "中文",
+    "国漫",
+    "日漫"
+  ],
+  "search": {
+    "url": "/search?type=1&searchString={{keyword}}",
+    "method": "GET",
+    "listSelector": ".fed-deta-info",
+    "titleSelector": "h1 a",
+    "coverSelector": ".fed-list-pics img",
+    "detailUrlSelector": "h1 a",
+    "latestChapterSelector": ".fed-part-rows a",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h1.fed-part-eone",
+    "coverSelector": ".fed-list-pics img",
+    "authorSelector": ".fed-part-rows li:nth-child(1) a",
+    "descriptionSelector": ".fed-part-esan",
+    "statusSelector": ".fed-part-rows li:nth-child(3)",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".all_data_list a",
+    "titleSelector": "&",
+    "urlSelector": "&"
+  },
+  "images": {
+    "listSelector": ".fed-part-layout img",
+    "srcAttribute": "data-original"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  "timeoutMs": 10000,
+  "createdAt": "2026-06-07T08:47:46.588Z",
+  "updatedAt": "2026-06-07T08:47:46.588Z"
+}

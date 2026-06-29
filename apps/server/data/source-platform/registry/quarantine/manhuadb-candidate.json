@@ -1,0 +1,73 @@
+{
+  "id": "manhuadb-candidate",
+  "name": "漫画DB",
+  "normalizedSource": {
+    "id": "manhuadb",
+    "name": "漫画DB",
+    "host": "https://www.manhuadb.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 10,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?q={{keyword}}",
+      "method": "GET",
+      "listSelector": ".comic-list .comic-item",
+      "titleSelector": ".comic-title",
+      "coverSelector": ".comic-cover img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": ".comic-chapter",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".comic-title",
+      "coverSelector": ".comic-cover img",
+      "authorSelector": ".comic-author",
+      "descriptionSelector": ".comic-description",
+      "statusSelector": ".comic-status",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".chapter-list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": ".comic-content img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-07T08:47:46.588Z"
+  },
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "",
+    "branch": "",
+    "commitSha": "",
+    "filePath": "",
+    "importedAt": "2026-06-29T09:13:53.801Z",
+    "rawHash": "manual"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "PENDING_VALIDATE",
+  "conversionWarnings": [],
+  "createdAt": "2026-06-29T09:13:53.801Z",
+  "updatedAt": "2026-06-29T09:13:53.801Z"
+}

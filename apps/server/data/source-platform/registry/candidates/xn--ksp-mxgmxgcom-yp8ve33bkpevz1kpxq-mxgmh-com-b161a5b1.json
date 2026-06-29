@@ -1,0 +1,19 @@
+{
+  "id": "xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq-mxgmh-com-b161a5b1",
+  "name": "漫香阁",
+  "version": "1.0.0-1d788e04",
+  "hash": "1d788e04438b48d62a93b9494a521e2dc54dcfcfc71d720550d80ca9a5eefbca",
+  "host": "https://xn--ksp-mxgmxgcom-yp8ve33bkpevz1kpxq.mxgmh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lg-d1rp9n",
+  "name": "🎨 趣话漫画",
+  "host": "https://api.iqhmh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://api.iqhmh.com/search,{\n  \"method\": \"POST\",\n  \"body\": \"value={{key}}&page={{page}}&limit=30\"\n}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.list[*]",
+    "titleSelector": "$.title",
+    "coverSelector": "$.vThumb",
+    "detailUrlSelector": "https://api.iqhmh.com/comic/detail, {\n'charset': '', 'method': 'POST', 'body': 'work_id={$.id}'\n}",
+    "latestChapterSelector": "$.nowChapter"
+  },
+  "detail": {
+    "titleSelector": "$.data.title",
+    "coverSelector": "$.data.vThumb",
+    "authorSelector": "$.data.author",
+    "descriptionSelector": "$.data.describe"
+  },
+  "chapters": {
+    "listSelector": "data",
+    "titleSelector": "{$.price}/{$.title}",
+    "urlSelector": "https://api.iqhmh.com/comic/chapter_detail, {\n'charset': '', 'method': 'POST', 'body': 'work_id={$.work_id}&chapter_id={$.chapter_id}'\n}"
+  },
+  "images": {
+    "listSelector": "$..content.[*]url",
+    "srcAttribute": "js:result.split(\"\\n\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"okhttp/3.12.3\"\n}",
+  "timeoutMs": 1185,
+  "createdAt": "2026-06-27T15:52:55.122Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

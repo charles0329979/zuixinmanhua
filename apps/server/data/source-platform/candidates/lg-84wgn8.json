@@ -1,0 +1,41 @@
+{
+  "id": "lg-84wgn8",
+  "name": "滴答漫画（优）",
+  "host": "https://ddmanhua.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/index.php/search?key={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".lists-content",
+    "titleSelector": "h2",
+    "coverSelector": "a",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".note"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "img.1",
+    "authorSelector": ".product-excerpt.0",
+    "descriptionSelector": ".product-excerpt.4"
+  },
+  "chapters": {
+    "listSelector": "#myList",
+    "titleSelector": "text",
+    "urlSelector": "href##$##, {'webView': true}"
+  },
+  "images": {
+    "listSelector": "#cp_img",
+    "srcAttribute": "html"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 8.0.0; MI 5s Plus Build/OPR1.170623.032; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.0.0 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:51.155Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

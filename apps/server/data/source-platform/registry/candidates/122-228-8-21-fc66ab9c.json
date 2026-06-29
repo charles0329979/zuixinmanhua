@@ -1,0 +1,19 @@
+{
+  "id": "122-228-8-21-fc66ab9c",
+  "name": "猫番国漫(推荐)",
+  "version": "1.0.0-5f153335",
+  "hash": "5f153335aea5fb5d858a24e8c8f9a94350445c30d699532b07443099c443a661",
+  "host": "http://122.228.8.21:3333",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

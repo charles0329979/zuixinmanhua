@@ -1,0 +1,40 @@
+{
+  "id": "lg-pjy1q4",
+  "name": "一个漫画",
+  "host": "https://www.amcomic.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0,漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.amcomic.com/vod/search/page/{{page}}.html,{\n  \"body\": \"wd={{key}}\",\n  \"charset\": \"UTF-8\",\n  \"method\": \"POST\"\n}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "li.stui-vodlist__item",
+    "titleSelector": "h4",
+    "coverSelector": "a.0",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": ".stui-content__playlist",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".imglist",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:55.239Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

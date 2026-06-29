@@ -1,0 +1,47 @@
+{
+  "id": "lg-tt6s54",
+  "name": "画涯爱子",
+  "host": "http://api.huaya.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "正版漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "@js:\nc=0\nif (key.match(/@小说/)) {\n  c = 1\n  key = key.split(\"@\")[0]\n}\n\njava.put(\"c\",c)\n\nresult=\"http://api.huaya.cc/Handler/Novels_Head.ashx,\"+`{\"body\":\"code=${c}&size=99999&index=1&type=list&key=${key}\",\"method\":\"POST\"}`",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "list",
+    "titleSelector": "novelname",
+    "coverSelector": "imgurl",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "novel_publishdate"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "list",
+    "titleSelector": "titlename",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": "detail.titlecontent",
+    "srcAttribute": "js:\njava.log(book.type)\nc=java.get(\"c\")\nif(c==1){\n\tresult=result\n\t}else{\na=result.split(';').map(x => '<img src=\"'+x+'\">').join('\\n');\nresult=a\n}\nresult"
+  },
+  "headers": "{\"Content-Type\": \"application/x-www-form-urlencoded\",\n  \"app_v\": \"1.8.6\",\n  \"User-Agent\": \"okhttp/4.9.3\",\n   \"token\": \"37cb0e19d1c146d78bfff2994ad366eb\"}",
+  "timeoutMs": 1465,
+  "createdAt": "2026-06-27T15:52:51.377Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

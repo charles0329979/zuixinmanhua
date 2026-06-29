@@ -1,0 +1,45 @@
+{
+  "id": "m-0d1fabc5",
+  "name": "漫画哥-M",
+  "host": "https://m.manhuag.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "p.search_list",
+    "titleSelector": "tag.a.0@text",
+    "coverSelector": "class.p2@tag.a@href||tag.a.0@href##/(\\d+)/(\\d+)/##https://www.manhuag.com/files/article/image/$1/$2/$2s.jpg",
+    "detailUrlSelector": "class.p2@tag.a@href||tag.a.0@href##^/##https://www.manhuag.com/",
+    "latestChapterSelector": "",
+    "statusSelector": "tag.a.1@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h1.text-center@text",
+    "coverSelector": ".info1 img@src",
+    "authorSelector": "h3.text-center a@text",
+    "descriptionSelector": "h3.text-center+div@text",
+    "statusSelector": "class.info3@tag.p.0@text##\\S+：(\\S+)[\\s\\S]+：(\\S+)##$1,$2",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.list-charts.0@li@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "class.img@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

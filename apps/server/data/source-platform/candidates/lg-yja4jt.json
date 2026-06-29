@@ -1,0 +1,46 @@
+{
+  "id": "lg-yja4jt",
+  "name": "收费漫画",
+  "host": "https://mm.sfacg.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "正版漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://mm.sfacg.com/ajax/Common.ashx?op=search,{\n  \"method\": \"POST\",\n  \"body\": \"keyword={{key}}\"\n}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "$.comics.*||$.data.*",
+    "titleSelector": "$.ComicName",
+    "coverSelector": "$.ComicCover",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "$.LastChapterTitle"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": ".book_Author li.0",
+    "descriptionSelector": ".book_bk_qs1.0"
+  },
+  "chapters": {
+    "listSelector": "-",
+    "titleSelector": "text##VIP",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\ncomicId=result.match(/var comicId = (\\d+)/)[1];\nchapterId=result.match(/var chapterId=(\\d+)/)[1];\nnv=result.match(/var nv = \"(.*?)\"/)[1];\nurl='https://mm.sfacg.com/ajax/Common.ashx?op=getPics&cid='+comicId+'&chapId='+chapterId+'&serial=ZP&path='+nv\n//java.ajax(url)\nresult=JSON.parse(java.ajax(url)).data\nresult.map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 6154,
+  "createdAt": "2026-06-27T15:52:51.655Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

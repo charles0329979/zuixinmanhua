@@ -1,0 +1,19 @@
+{
+  "id": "160-afbaa1ab",
+  "name": "漫画160📱",
+  "version": "1.0.0-be14f0ba",
+  "hash": "be14f0ba33b0a48322f705aa179be2e69cfd318b57e1ecb0f9229248fe112cbd",
+  "host": "https://m.mh160.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

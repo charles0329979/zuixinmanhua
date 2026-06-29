@@ -1,0 +1,19 @@
+{
+  "id": "manhuaus-5b2369d0",
+  "name": "manhuaus",
+  "version": "1.0.0-0577222f",
+  "hash": "0577222fb5b783dde36e78707f2ec08ea262ca5e44377c01e27ecce6502806e2",
+  "host": "https://manhuaus.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

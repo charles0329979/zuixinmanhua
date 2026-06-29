@@ -1,0 +1,19 @@
+{
+  "id": "lg-17tua4",
+  "name": "🎨UAA漫画",
+  "version": "1.0.0-cffd4082",
+  "hash": "cffd4082037184d700472b6bb41c1c70ae9b8ae1c3d301e37fcee2baf477887c",
+  "host": "https://www.uaa.com/app",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

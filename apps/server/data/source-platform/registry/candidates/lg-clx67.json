@@ -1,0 +1,19 @@
+{
+  "id": "lg-clx67",
+  "name": "🗒 笔下文学",
+  "version": "1.0.0-9c15209e",
+  "hash": "9c15209ecfd983af688b57655d5b58e663432e416c5a4008c09dcf3520c086c9",
+  "host": "http://open.bxzwapp.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

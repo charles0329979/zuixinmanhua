@@ -1,0 +1,46 @@
+{
+  "id": "lg-xvi4q6",
+  "name": "酸奶漫画",
+  "host": "https://m.1kkk.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "正版漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.1kkk.com/search?title={{key}}&language=1",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "ul.book-list li",
+    "titleSelector": "p.book-list-info-title",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "p.detail-main-info-title",
+    "coverSelector": "img.detail-main-bg",
+    "authorSelector": "p.detail-main-info-author a",
+    "descriptionSelector": "p.detail-desc"
+  },
+  "chapters": {
+    "listSelector": "ul.detail-list-select",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:header={\"Referer\":baseUrl};\nheaders={\"headers\":JSON.stringify(header)};\neval(result.match(/eval(.*?)\\{\\}\\)\\)/)[0])\nvar image_list = []\nnewImgs.map(item=>{\n    image_list.push('<img src=\"'+item+','+JSON.stringify(headers)+'\">')\n})\nimage_list.join(\"\\n\")"
+  },
+  "timeoutMs": 3500,
+  "createdAt": "2026-06-27T15:52:51.544Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

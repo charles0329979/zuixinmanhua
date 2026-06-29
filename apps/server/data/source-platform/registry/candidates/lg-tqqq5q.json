@@ -1,0 +1,19 @@
+{
+  "id": "lg-tqqq5q",
+  "name": "友漫",
+  "version": "1.0.0-b5b8a1d4",
+  "hash": "b5b8a1d4750e12af72723490ec2ada7e99251cb30326ab24c517ab5632ffddf7",
+  "host": "UAA·漫画",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

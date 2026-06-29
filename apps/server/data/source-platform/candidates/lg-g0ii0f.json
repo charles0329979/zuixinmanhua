@@ -1,0 +1,41 @@
+{
+  "id": "lg-g0ii0f",
+  "name": "萌图社团（优++）",
+  "host": "https://moetu.club",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画 书源"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/<,page/{{page}}>?s=pp&type=post",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".hidden-line",
+    "titleSelector": "h2",
+    "coverSelector": ".post-thumb",
+    "detailUrlSelector": "h2",
+    "latestChapterSelector": "span.-1"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "h1",
+    "urlSelector": "{{baseUrl}}"
+  },
+  "images": {
+    "listSelector": ".entry-content",
+    "srcAttribute": "data-src\n<js>\n//java.log(result);\nlet newResult = result.split(\"\\n\").map(x => x);\nlet headers = JSON.stringify({\"headers\":{\"Referer\":\"https://moetu.club/\"}});\nnewResult.map(x => `<img src=\"${x},${headers}\">`).join(\"\\n\");\n</js>"
+  },
+  "headers": "{\n  'User-Agent': \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36\"\n}",
+  "timeoutMs": 3900,
+  "createdAt": "2026-06-27T15:52:50.584Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "toptoon-f13728b6",
+  "name": "🌵TOPTOON顶通漫画-国际中文精选版🌵",
+  "host": "https://18toptoon.org",
+  "enabled": false,
+  "language": "zh",
+  "weight": 49,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://18toptoon.org/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".list_area.-1@li",
+    "titleSelector": ".title@text",
+    "coverSelector": ".thumb_img@data-src",
+    "detailUrlSelector": "a@href",
+    "latestChapterSelector": "",
+    "statusSelector": ".epicon_starpoint_txt@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".infoContent@class.title@text",
+    "coverSelector": ".swiper-slide@img@src",
+    "authorSelector": "",
+    "descriptionSelector": ".desc@html",
+    "statusSelector": ".hashTag@a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.list_area filtr-container detail-list-select@li",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href##$##,{'webView': true}"
+  },
+  "images": {
+    "listSelector": "id.enc_img@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

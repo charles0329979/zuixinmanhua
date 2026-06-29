@@ -1,0 +1,20 @@
+{
+  "id": "mkzhan",
+  "name": "漫客栈",
+  "version": "1.0.0-c2fb74ae",
+  "hash": "c2fb74aecbeef648c45c19a01411a46822617ccbd5d1f2f902021b1c3073f41d",
+  "host": "https://www.mkzhan.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.152Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

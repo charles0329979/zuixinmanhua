@@ -1,0 +1,47 @@
+{
+  "id": "lg-detgxd",
+  "name": "奇米动漫",
+  "host": "http://www.qimiqimi.net/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/vod/search.html?wd={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".show-list",
+    "titleSelector": "h2",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": "dl.1"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "<js>\nall=\"\"\n\n//线路个数\nlen=java.getElements('class.down-title",
+    "titleSelector": "ownText",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#bofang_box",
+    "srcAttribute": "js:\nresult=unescape(java.base64Decode(result))\nresult=\"http://www.qimiqimi.net/jiexi/?url=\"+result\nif(book.durChapterIndex==chapter.index){\n\t\tjava.startBrowser(result,title)\n\t\tjava.toast('正在加载视频\\n视频加载较慢，请耐心等待')\n\t}\n'【刷新正文】播放\\n✅直链:\\n'+result"
+  },
+  "headers": "{\n\t\"Referer\":\"http://www.qimiqimi.net/\"\n}",
+  "timeoutMs": 3920,
+  "createdAt": "2026-06-27T15:52:55.841Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

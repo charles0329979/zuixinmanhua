@@ -1,0 +1,47 @@
+{
+  "id": "dingmanhua",
+  "name": "顶漫画",
+  "host": "https://www.dingmanhua.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 20,
+  "tags": [
+    "manga",
+    "SSR",
+    "images-need-fix"
+  ],
+  "search": {
+    "url": "https://www.dingmanhua.com/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "a[href^=\"/comic/\"]",
+    "titleSelector": "img@alt",
+    "coverSelector": "img@data-src",
+    "detailUrlSelector": "@href"
+  },
+  "detail": {
+    "titleSelector": "h1@text",
+    "coverSelector": "meta[property=\"og:image\"]@content",
+    "descriptionSelector": "p.description@text",
+    "authorSelector": "meta[property=\"og:novel:author\"]@content"
+  },
+  "chapters": {
+    "listSelector": "a.pseudo.chaper-btn",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "img.lazy",
+    "srcAttribute": "data-src"
+  },
+  "timeoutMs": 15000,
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": false,
+    "requiresJs": true,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  }
+}

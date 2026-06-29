@@ -1,0 +1,19 @@
+{
+  "id": "m-247217dd",
+  "name": "🍒 爱看书吧m",
+  "version": "1.0.0-201f5a46",
+  "hash": "201f5a464e81a00c2b2da435560e8f7b71e6ccc386744b04799eecd152fedb4a",
+  "host": "https://m.ikshu8.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

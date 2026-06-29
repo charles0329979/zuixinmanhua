@@ -1,0 +1,91 @@
+{
+  "id": "yydsmh-candidate",
+  "name": "YYDS漫画",
+  "normalizedSource": {
+    "id": "yydsmh",
+    "name": "YYDS漫画",
+    "host": "https://www.yydsmh.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 10,
+    "tags": [
+      "中文",
+      "国漫",
+      "日漫"
+    ],
+    "search": {
+      "url": "/search?searchkey={{keyword}}",
+      "method": "GET",
+      "listSelector": "#js_comicSortList > li",
+      "titleSelector": "a > p",
+      "coverSelector": "a > div > img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": "a > div > span",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": "#detail > div > div.book-name > h1 > span",
+      "coverSelector": "div.book-cover.comic-item > div > img",
+      "authorSelector": "#detail > div > div.book-name > h1 > span",
+      "descriptionSelector": "#js_desc_content",
+      "statusSelector": "div.book-name > div > ul.types > li:nth-child(3) > a",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": "#js_chapters > li",
+      "titleSelector": "a",
+      "urlSelector": "a"
+    },
+    "images": {
+      "listSelector": "#imgsec img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-07T08:47:46.588Z",
+    "updatedAt": "2026-06-26T03:15:55.456Z",
+    "imagesApi": {
+      "url": "/api/comic/read/pics",
+      "method": "POST",
+      "listPath": "data.pic",
+      "urlField": "pic",
+      "bodyParams": {},
+      "extractParams": [
+        {
+          "selector": ".reader-pic-slot",
+          "attribute": "data-aid",
+          "paramName": "aid",
+          "defaultValue": ""
+        }
+      ],
+      "totalLimit": 999,
+      "batchSize": 50
+    },
+    "allowInsecureSSL": true
+  },
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "",
+    "branch": "",
+    "commitSha": "",
+    "filePath": "",
+    "importedAt": "2026-06-29T09:13:24.558Z",
+    "rawHash": "manual"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "PENDING_VALIDATE",
+  "conversionWarnings": [],
+  "createdAt": "2026-06-29T09:13:24.559Z",
+  "updatedAt": "2026-06-29T09:13:24.559Z"
+}

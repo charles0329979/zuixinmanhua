@@ -1,0 +1,19 @@
+{
+  "id": "lg-d1rp9n",
+  "name": "🎨 趣话漫画",
+  "version": "1.0.0-dbc52499",
+  "hash": "dbc5249926717642df3f1f344686c4a44996fe911694cc1e1bbf4c013edb0d57",
+  "host": "https://api.iqhmh.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

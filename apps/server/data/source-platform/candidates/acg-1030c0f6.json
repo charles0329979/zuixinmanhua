@@ -1,0 +1,45 @@
+{
+  "id": "acg-1030c0f6",
+  "name": "ACG和谐漫画",
+  "host": "https://m.acgz1.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.acgz1.com/search/?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".UpdateList@.itemBox||id.comic-items@tag.li",
+    "titleSelector": ".title@text||.txtA@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": "a@href",
+    "latestChapterSelector": "class.coll@text||class.red@text",
+    "statusSelector": ".pd@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "#simple-des@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "#chapter-list-1@li!-1@a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".image-content@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

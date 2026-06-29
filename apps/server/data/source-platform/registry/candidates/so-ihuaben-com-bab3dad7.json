@@ -1,0 +1,19 @@
+{
+  "id": "so-ihuaben-com-bab3dad7",
+  "name": "话本小说②",
+  "version": "1.0.0-20f41e4d",
+  "hash": "20f41e4db2fb3b2972f58136e28de05119f5489356344142250dc1d95e5e3c4b",
+  "host": "https://so.ihuaben.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

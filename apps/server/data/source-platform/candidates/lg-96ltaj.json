@@ -1,0 +1,40 @@
+{
+  "id": "lg-96ltaj",
+  "name": "动漫之家",
+  "host": "https://nnv3api.dmzj1.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "☣️漫画lateral,🎨漫画,搜索链接规则为空"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "body",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 1,
+  "createdAt": "2026-06-27T15:52:55.962Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

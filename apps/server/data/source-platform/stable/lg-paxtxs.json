@@ -1,0 +1,20 @@
+{
+  "id": "lg-paxtxs",
+  "name": "🎨漫画台🅰",
+  "version": "1.0.0-2f0bc93b",
+  "hash": "2f0bc93bb2b7761de8cd752024cd0c258d0d8f929c48085b32ac09adbd3062c4",
+  "host": "https://m.manhuatai.com/api",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.488Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

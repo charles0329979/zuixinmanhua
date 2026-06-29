@@ -1,0 +1,20 @@
+{
+  "id": "jjmhw-cc-6ff8dc61",
+  "name": "🔞 久久动漫",
+  "version": "1.0.0-cd2b8aaa",
+  "hash": "cd2b8aaa9786f815fe9ff71b73d2f682311f016a4b59c5982fff7285400cd314",
+  "host": "https://www.jjmhw.cc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.271Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "shenmh-top-b28b3f52",
+  "name": "绅士漫画",
+  "version": "1.0.0-ed030eb0",
+  "hash": "ed030eb0029c55add2bdf66cebf8a108e002f4488128ba0cbb7cb4f79e81ee91",
+  "host": "https://www.shenmh.top",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "lg-mpm04x",
+  "name": "🗂🙈久久漫画",
+  "host": "http://99hanman.top/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗂 聚合"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(String(source.bookSourceComment));\n1 == flag ? \"/search?keyword={{key}}\" : java.toast(\"\\n❗未启用书源❗\");\n</js>",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "<js>\neval(String(source.bookSourceComment));\nvar list = java.getElements(\".book-list li\"), $ = key => String(list[i].select(key).text()), data = [];\nfor (i = 0; i < list.length; i++) {\n  data.push({\n    name: $(\".book-list-info-title\"), author: $(\".book-list-info-bottom-item\")\n      .replace(/[, xX&]|[图文][:：]/g, \"/\").replace(/\\/\\/\\/|\\/\\//g, \"/\")\n      .replace(/^[\\/]/g, \"\"), kind: $(\".book-list-info-bottom-right-font\").replace(/[中已]/, \"\"), word: \"\", latest: \"\", intro:$(\".book-list-info-desc\"), cover: String(list[i].select(\".book-list-cover-img\").attr(\"data-original\"))\n      .replace(/http:/, \"https:\"), url: list[i].select(\"a\").attr(\"href\")\n  });\n}\nJSON.stringify(data);\n</js>\n$[*]",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "detailUrlSelector": "$.url",
+    "latestChapterSelector": "$.latest"
+  },
+  "detail": {
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "authorSelector": "$.author",
+    "descriptionSelector": "$.intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\nDate.prototype.Format = function (fmt) {\n  var o= {\n    \"M+\": this.getMonth() + 1, //月份 \n    \"d+\": this.getDate(), //日 \n    \"H+\": this.getHours(), //小时 \n    \"m+\": this.getMinutes(), //分 \n    \"s+\": this.getSeconds(), //秒 \n    \"q+\": Math.floor((this.getMonth() + 3) / 3), //季度 \n    \"S\": this.getMilliseconds() //毫秒 \n  };\n  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + \"\").substr(4 - RegExp.$1.length));\n  for (var k in o)\n  if (new RegExp(\"(\" + k + \")\").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((\"00\" + o[k]).substr((\"\" + o[k]).length)));\n  return fmt;\n};\ndate = new Date(new Date().getTime()).Format(\"yyyy-MM-dd HH:mm:ss\");\neval(String(source.bookSourceComment));\nvar list = java.getElements(\".detail-list-1 li a\"), data = [];\nfor (i in list) {\n  data.push({\n    title:\n      i == list.length - 1 ? `${list[i].text()}〔${date}〕` : list[i].text(), link: list[i].attr(\"href\")\n  });\n};\n1 == flag\n  ? (java.put(\"Enable\", 1), JSON.stringify(data))\n  : java.toast(\"\\n❗未启用书源❗\");\n</js>\n$[*]",
+    "titleSelector": "$.title",
+    "urlSelector": "$.link"
+  },
+  "images": {
+    "listSelector": "<js>\n1 == java.get(\"Enable\")\n  ? \"<br>\" + String(java.getElements(\".view-main-1.readForm img\"))\n    .replace(/http:/g, \"https:\")\n  : java.toast(\"\\n❗未启用书源❗\")\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "{\n  \"User-agent\":\"Dalvik/2.1.0 (Linux; U; Android 9; PCRT00 Build/PQ3B.190801.002)\"\n}",
+  "timeoutMs": 4755,
+  "createdAt": "2026-06-27T15:52:56.386Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

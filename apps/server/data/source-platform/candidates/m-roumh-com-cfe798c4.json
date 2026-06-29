@@ -1,0 +1,45 @@
+{
+  "id": "m-roumh-com-cfe798c4",
+  "name": "肉色漫画",
+  "host": "https://m.roumh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.roumh.com/wapsearch/{{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.sr_ul@li",
+    "titleSelector": "class.sr_tit@tag.h2@text",
+    "coverSelector": "tag.a@img@src",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.d_he_r@tag.a@text",
+    "coverSelector": "class.fl d_he_img@img@src",
+    "authorSelector": "class.d_he_r@tag.p.2@text",
+    "descriptionSelector": "class.d_he_tit@text##/简介：",
+    "statusSelector": "class.d_he_r@tag.p.3@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.d_cen_ul@li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "class.lazy@data-original",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

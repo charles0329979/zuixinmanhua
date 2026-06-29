@@ -1,0 +1,19 @@
+{
+  "id": "lg-l20wbk",
+  "name": "快看漫画M",
+  "version": "1.0.0-16754f9d",
+  "hash": "16754f9dcd67315408e73a1144304b0d8ad29088315b2f43ad63d77d215611a6",
+  "host": "http://m.kuaikanmanhua.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

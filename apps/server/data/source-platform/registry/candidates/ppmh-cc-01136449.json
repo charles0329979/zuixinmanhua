@@ -1,0 +1,19 @@
+{
+  "id": "ppmh-cc-01136449",
+  "name": "皮皮漫画",
+  "version": "1.0.0-0eba36e5",
+  "hash": "0eba36e51428816b1349d6994ceb6232e53fff9a2ec97f398218d7f6d30b5ab7",
+  "host": "https://www.ppmh.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

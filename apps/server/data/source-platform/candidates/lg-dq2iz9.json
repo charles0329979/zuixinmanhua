@@ -1,0 +1,41 @@
+{
+  "id": "lg-dq2iz9",
+  "name": "（favcomic）喜漫漫画",
+  "host": "https://www.favcomic.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Legado"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.favcomic.net/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comic_list",
+    "titleSelector": "a",
+    "coverSelector": ".cover_box",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".info_box",
+    "coverSelector": "[property$=image]",
+    "authorSelector": ".author.0",
+    "descriptionSelector": "<br>\n{{\u0000AT\u0000.translation_agency_box"
+  },
+  "chapters": {
+    "listSelector": ".right_box:nth-child(2)",
+    "titleSelector": ".title",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\nvar match = src.match(/\"images\":\\s*(\\[[^\\]]*?\\])/);\nvar data = [];\nif (match) {\n    var arrStr = match[1];\n    try {\n        \n        data = JSON.parse(arrStr.replace(/'/g, '\"'));\n    } catch (e) {\n        \n        data = eval(arrStr);\n    }\n}\nvar imgTags = data.map(item => `<img src=\"https://ccdeoo.ykxbo.cn/file/e-media/app${item}\">`).join('\\n');\nimgTags;\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36 EdgA/137.0.0.0\",\n  \"accept-language\": \"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6,zh-HK;q=0.5\"\n}",
+  "timeoutMs": 6924,
+  "createdAt": "2026-06-27T15:52:52.415Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

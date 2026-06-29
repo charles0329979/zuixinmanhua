@@ -1,0 +1,88 @@
+{
+  "id": "4f6102135846cf54",
+  "name": "三七轻小说",
+  "normalizedSource": {
+    "id": "4f6102135846cf54",
+    "name": "三七轻小说",
+    "host": "https://m.37yq.com",
+    "enabled": false,
+    "language": "zh",
+    "weight": 0,
+    "tags": [
+      "imported"
+    ],
+    "search": {
+      "url": "<js>\npage == 1 ?\n  \"/so.html?searchkey={{key}}&searchtype=all\"\n  :\n  '/so/{{key}}/{{page}}.html'\n</js>",
+      "method": "GET",
+      "responseType": "html",
+      "listSelector": "@js:\nif (String(result).match(errorReg())&&!result.includes(\"somework\")) {\n  result=ajax(baseUrl);\n}\nif (result.includes(\"no-js\")) {\n  java.log(result)\n  jsContent = java.cacheFile(java.getString(\"tag.script@src\").match(/http.+somework.+\\?v.+/gi)[0])\n  window = {\n    a: result.match(/window.a=\\'.+\\'/gi)[0].replace(/window.a=|\\'/gi, ''),\n    b: result.match(/window.b=\\'.+\\'/gi)[0].replace(/window.b=|\\'/gi, ''),\n    c: result.match(/window.c=\\'.+\\'/gi)[0].replace(/window.c=|\\'/gi, ''),\n    crypto: {\n      subtle: {\n        importKey(format, keyData, algorithm, extractable, keyUsages) {\n          return {\n            then(func) { func(keyData) }\n          }\n        },\n        decrypt(algorithm, key, data) {\n          cipher = java.createSymmetricCrypto(\"AES/CTR/NoPadding\", key, algorithm.counter)\n          return {\n            then: (func) => { func(cipher.decryptStr(data)) }\n          }\n        }\n      }\n    }\n  }\n  setTimeout = () => { }\n  function TextDecoder() { }\n  TextDecoder.prototype.decode = bytes => bytes\n  document = { cookie: \"\" }\n  java.log(jsContent)\n  funcName=String(jsContent).match(/^function.+\\(/gi)[0].replace(/function| |\\(/gi,'')\n  \tjava.log(funcName)\n  eval(funcName + ' = str => java.base64DecodeToByteArray(str)')\n  eval(String(jsContent)\n    .replace(/^function.+\\(/gi, 'function ('))\n  java.log(document.cookie)\n  cookie.replaceCookie(baseUrl, document.cookie)\n  do {\n    t = new Date().getTime()\n    while (new Date().getTime() - t < 5000) { }\n    java.setContent(result = ajax(baseUrl + \",\"\n      + JSON.stringify({\n        headers: {\n          Cookie: cookie.getCookie(baseUrl)\n        }\n      })))\n    java.log(result)\n  } while (result.includes(\"no-js\"))\n}\njava.getElement(\"class.book-ol book-ol-normal@tag.li\")",
+      "titleSelector": ".book-title-x@class.book-title@text",
+      "coverSelector": "a@href@js:\nvar id = result.match(/\\/(\\d+)\\.html/)[1];\n'https://m.37yq.com/files/article/image/'+parseInt(id/1000)+'/'+id+'/'+id+'s.jpg';",
+      "detailUrlSelector": "a.0@href"
+    },
+    "detail": {
+      "titleSelector": "[property=\"og:novel:book_name\"]@content",
+      "coverSelector": "[property=\"og:image\"]@content",
+      "authorSelector": "[property=\"og:novel:author\"]@content",
+      "descriptionSelector": "标签：{{@@class.tag-small red@text##\\s## - }}\n{{@@id.bookSummary@tag.content@textNodes}}"
+    },
+    "chapters": {
+      "listSelector": "#catelogX@class.chapter-li\n@js:\n    //现实debug(尝试修复正文链接问题，和目录不全)\n    //《好友角色的我怎么可能大受欢迎》第三卷12\n    //《我的青春恋爱喜剧》\n    //2022-8-19\n    //原来的代码在源注释（已移除）\n    //2022-8-20修复https://w.linovelib.com/novel/2765.html目录加载失败\n    //2023-9-30使用易于理解的变量命名\n    //2023-10-7处理cid(1)以及连续多个cid(0)\n    //2023-11-11解决了一个原来手滑写出的bug\n    //2023-11-16处理连续多个卷名\n    //2023-12-12适配新版卷名\n    //2024-2-6处理《谁说从妥协开始的恋爱一定没结果》\n\nres = result\n//java.log(res)\n\nfor (i = 0; i < res.length; i++) {\n    java.setContent(res[i])\n    if (java.getString(\"tag.a@href\").match(/javascript:cid\\(.+\\)/gi)) {\n        if (String(res[(i == res.length - 1?i:i+1)]).match(/javascript:cid\\(.+\\)/gi)) {\n            java.setContent(res[i - 1])\n            prevLink = java.getString(\"tag.a@href\")\n            if (prevLink == \"\") {\n                java.setContent(res[i - 2])\n                prevLink = java.getString(\"tag.a@href\")\n            }\n            content = ajax(source.bookSourceUrl + prevLink)\n            java.setContent(content)\n            foot = java.getElements(\"id.footlink\")\n            path = prevLink\n\n            //java.log(foot)\n            while (String(foot).match(/下一页|下一頁/gi)) {\n            \t    //java.log(foot)\n                str = content.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n                path = String(str).match(/url_next\\:'.*?html/)[0].replace(\"url_next:'\", \"\")\n                content = java.ajax(\"https://w.linovelib.com\" + path)\n                java.setContent(content)\n                foot = java.getElements(\"id.footlink\")\n            }\n\n            next = ajax(source.bookSourceUrl + path)\n            str = next.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n            path = String(str).match(/url_next\\:'.*?html/)[0].replace(\"url_next:'\", \"\")\n            java.log('l:'+path)\n            res[i] = String(res[i]).replace(/javascript:cid\\(.+\\)/gi, path)\n        } else {\n            nextLink = \"\"\n            for (var j=1;nextLink==\"\";j++) {\n                java.setContent(res[i + j])\n                nextLink = java.getString(\"tag.a@href\")\n            }\n            next = ajax(source.bookSourceUrl + nextLink)\n            str = next.match(/<script type\\=\\\"text\\/javascript\\\">var ReadParams.*/)\n            try {\n              path = String(str).match(/url_previous\\:'.*?html/)[0].replace(\"url_previous:'\", \"\")\n            } catch(e) {\n            \t  java.toast(String(next)+\"\\n\")\n            \t  java.log(next)\n            \t  throw(\"目录解析报错开始：\\n\"+String(next)+\"\\n结束\")\n            \t}\n            //java.log(path)\n\n            res[i] = String(res[i]).replace(/javascript:cid\\(.+\\)/gi, path)\n        }\n    }\n\n    //java.log(res[i])\n}\nres",
+      "titleSelector": "text",
+      "urlSelector": "@js:\n//只有不为卷名时返回URL，避免阅读自动合并\njava.getString(\"class.chapter-bar@text\")!=java.getString(\"text\") ? java.getString(\"tag.a@href\") : \"\""
+    },
+    "images": {
+      "listSelector": "#acontent@html",
+      "srcAttribute": "src"
+    },
+    "headers": "{\n\"Referer\": \"https://m.37yq.com\",\n\"User-Agent\":\"\",\n}",
+    "timeoutMs": 15000,
+    "capabilities": {
+      "search": true,
+      "detail": true,
+      "chapters": true,
+      "images": true,
+      "requiresJs": true,
+      "requiresLogin": true,
+      "requiresManualAdapter": false
+    },
+    "lifecycleStatus": "PARSED",
+    "conversionWarnings": [
+      "search: contains @js: expressions — may require QuickJS runtime",
+      "chapters: contains @js: expressions — may require QuickJS runtime",
+      "images: contains @js: expressions — may require QuickJS runtime",
+      "Contains @js: expressions — requires QuickJS runtime",
+      "Detected login requirement — may need authentication"
+    ],
+    "createdAt": "2026-06-28T15:36:48.802Z",
+    "updatedAt": "2026-06-28T15:36:48.802Z"
+  },
+  "origin": {
+    "provider": "github",
+    "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
+    "branch": "main",
+    "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
+    "filePath": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/bilinovel-like.json",
+    "importedAt": "2026-06-28T15:36:48.802Z",
+    "rawHash": "904c8b9386753ea42ea4e5aef438c963db669c4ca9895cba68c74eac80f5a274"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": true,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "MANUAL_REVIEW",
+  "conversionWarnings": [
+    "search: contains @js: expressions — may require QuickJS runtime",
+    "chapters: contains @js: expressions — may require QuickJS runtime",
+    "images: contains @js: expressions — may require QuickJS runtime",
+    "Contains @js: expressions — requires QuickJS runtime",
+    "Detected login requirement — may need authentication"
+  ],
+  "createdAt": "2026-06-28T15:36:48.802Z",
+  "updatedAt": "2026-06-28T15:36:48.802Z"
+}

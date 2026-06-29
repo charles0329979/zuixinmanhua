@@ -1,0 +1,45 @@
+{
+  "id": "27-m-1f1be540",
+  "name": "27漫画-M",
+  "host": "https://m.2mzx.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.2mzx.com/search/?keywords={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox||class.list-comic",
+    "titleSelector": "class.title@text||class.txtA@text",
+    "coverSelector": "tag.mip-img@src",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "class.coll@text||class.info@tag.a@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "tag.h1@alt",
+    "coverSelector": "id.Cover@tag.mip-img@src",
+    "authorSelector": "class.pic_zi.1@tag.dd@text",
+    "descriptionSelector": "class.txtDesc@text##简介：",
+    "statusSelector": "class.pic_zi.2@tag.dd@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-#chapter-list-1@tag.li@a",
+    "titleSelector": "text",
+    "urlSelector": "href@put:{cid:\"href##.*\\\\/(\\\\d+)\\\\.html##$1\"}"
+  },
+  "images": {
+    "listSelector": "class.erPag@mip-img@html##mip-",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-mrxmhq",
+  "name": "爱奇艺漫画$",
+  "version": "1.0.0-ca44b8d7",
+  "hash": "ca44b8d78f85768e733a13403457bf7aef5c5ddddbee7a7b653b5d05a764e8b0",
+  "host": "https://www.iqiyi.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

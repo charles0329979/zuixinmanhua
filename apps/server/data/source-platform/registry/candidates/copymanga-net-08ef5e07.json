@@ -1,0 +1,19 @@
+{
+  "id": "copymanga-net-08ef5e07",
+  "name": "拷贝漫画",
+  "version": "1.0.0-cdc797a2",
+  "hash": "cdc797a2e47aa531aafb745594cd2c1005ce44abb01ee3e8956add36a381903b",
+  "host": "https://www.copymanga.net",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

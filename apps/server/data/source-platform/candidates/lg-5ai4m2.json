@@ -1,0 +1,40 @@
+{
+  "id": "lg-5ai4m2",
+  "name": "TIBIU漫画",
+  "host": "https://comic.tibiu.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://comic.tibiu.net/search/{{key}}/{{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".common-comic-item",
+    "titleSelector": "p.1",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "a.1"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": ".mx-1.1"
+  },
+  "chapters": {
+    "listSelector": "data[*]",
+    "titleSelector": "name",
+    "urlSelector": "link"
+  },
+  "images": {
+    "listSelector": ".rd-article-wr",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 1479,
+  "createdAt": "2026-06-27T15:52:51.801Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "3004ss-com-60c052bd",
+  "name": "📖 快乐图书",
+  "version": "1.0.0-042b9dc9",
+  "hash": "042b9dc9eb9d5925517a641e4b110707e68a20d8235f43d7658a952fe8f9f6fb",
+  "host": "https://www.3004ss.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "lg-84wgn8",
+  "name": "滴答漫画（优）",
+  "version": "1.0.0-de94d295",
+  "hash": "de94d295411d960d066a09b485bebbf89e9f49b56414e1b88823abe1e24f4994",
+  "host": "https://ddmanhua.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

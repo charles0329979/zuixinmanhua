@@ -1,0 +1,45 @@
+{
+  "id": "7mm-cfac429d",
+  "name": "求补齐正文规则-7mm漫画",
+  "host": "https://7mmtv.sx/zh/hcomic_list/all.html",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.comics",
+    "titleSelector": "h3@text",
+    "coverSelector": "a.0@img@src",
+    "detailUrlSelector": "a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": "class.small text-mute@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.breadcrumb-item active@a@text",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.breadcrumb-item active@a",
+    "titleSelector": "text",
+    "urlSelector": ""
+  },
+  "images": {
+    "listSelector": "class.fullcomics-item@img@src",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

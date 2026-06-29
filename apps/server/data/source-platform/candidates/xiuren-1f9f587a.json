@@ -1,0 +1,45 @@
+{
+  "id": "xiuren-1f9f587a",
+  "name": "🔰 XIUREN",
+  "host": "https://xiuren.biz",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/page/{{page}}?s={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".box_wrap",
+    "titleSelector": "a.-3@text",
+    "coverSelector": "img@data-src",
+    "detailUrlSelector": "a.0@href",
+    "latestChapterSelector": "",
+    "statusSelector": "span.0@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": ".jeg_meta_author@a.-1@text",
+    "descriptionSelector": "",
+    "statusSelector": ".entry-content@div.-1@a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "h1.jeg_post_title",
+    "titleSelector": "text",
+    "urlSelector": ""
+  },
+  "images": {
+    "listSelector": ".content-inner@p@a!0@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.084Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

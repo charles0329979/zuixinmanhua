@@ -1,0 +1,20 @@
+{
+  "id": "-c3a71376",
+  "name": "咪咕漫画（原:彩色漫画，重修）",
+  "version": "1.0.0-1fd675f4",
+  "hash": "1fd675f4e59aa8070a43c0d16157dfe10fb96830229f9a966e82a6ee147fa61a",
+  "host": "https://www.migumh.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.177Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

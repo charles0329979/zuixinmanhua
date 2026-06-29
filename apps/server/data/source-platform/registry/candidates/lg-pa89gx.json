@@ -1,0 +1,19 @@
+{
+  "id": "lg-pa89gx",
+  "name": "FORUM GIRL//请大佬帮忙完善",
+  "version": "1.0.0-82e1a2eb",
+  "hash": "82e1a2ebe803169d598f62858df74d5b996bc9aae06e319aee8f1e599cdaa75a",
+  "host": "www.superbeautygirlx.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

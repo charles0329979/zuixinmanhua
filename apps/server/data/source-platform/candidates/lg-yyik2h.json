@@ -1,0 +1,47 @@
+{
+  "id": "lg-yyik2h",
+  "name": "🗂🙈一耽漫画🅰",
+  "host": "https://ydan.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/prod-api/app-api/vv/mh-list/page?pageNo={{page}}&pageSize=100&word={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.data.list",
+    "titleSelector": "$.title",
+    "coverSelector": "$.coverPic",
+    "detailUrlSelector": "/prod-api/app-api/vv/mh-episodes/list?mhid={{$.id}}",
+    "latestChapterSelector": "{{$.episodes}} • {{java.timeFormat(java.getString('$.updateTime')*1000)}}\n<js>result.replace(/\\//g, '-')</js>"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "$.data\n<js>\nvar ascResult=[];\n for(j=result.length-1;j>=0;j--){\n\t ascResult.push(result[j]);\n };\n ascResult\n</js>",
+    "titleSelector": "$.title##第(.*)章##第$1话",
+    "urlSelector": "/prod-api/app-api/vv/mh-episodes/get?jiNo={{$.jiNo}}&mhid={{$.mhid}}"
+  },
+  "images": {
+    "listSelector": "$.data.pics",
+    "srcAttribute": "js:result.split(\",\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "headers": "{\n\t\"User-Agent\":\"Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/100.0.4896.127 Mobile Safari/537.36\"\n\t}",
+  "timeoutMs": 6136,
+  "createdAt": "2026-06-27T15:52:56.499Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

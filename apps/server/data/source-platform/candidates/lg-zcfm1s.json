@@ -1,0 +1,46 @@
+{
+  "id": "lg-zcfm1s",
+  "name": "🗂🙈丽图",
+  "host": "https://litu100.xyz/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗂 聚合"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://litu100.xyz/comics/kk-{{key}}.html",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".item",
+    "titleSelector": "a[1]",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "span"
+  },
+  "detail": {
+    "titleSelector": ".title",
+    "coverSelector": ".cover",
+    "authorSelector": ".author",
+    "descriptionSelector": ".status[1]"
+  },
+  "chapters": {
+    "listSelector": ".chapters",
+    "titleSelector": ".chapter",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".article.comic",
+    "srcAttribute": "js:opt={\"headers\":{\"Referer\":baseUrl}}\nproxy=\"https://pic1.xuehuaimg.com/proxy/\"\n//result.split(\"\\n\").map(x=>'<img src=\"'+proxy+x+'\">').join(\"\\n\")\nresult"
+  },
+  "timeoutMs": 3543,
+  "createdAt": "2026-06-27T15:52:56.499Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

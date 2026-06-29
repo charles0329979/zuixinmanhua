@@ -1,0 +1,47 @@
+{
+  "id": "lg-wp6swb",
+  "name": "🎨 爱看漫画",
+  "host": "http://wap.65dm.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://wap.65dm.com/statics/search.aspx?key={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "#listbody li",
+    "titleSelector": ".txtA",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".info"
+  },
+  "detail": {
+    "titleSelector": "[name=\"keywords\"]",
+    "coverSelector": "body",
+    "authorSelector": ".Introduct p.1",
+    "descriptionSelector": ".txtDesc autoHeight"
+  },
+  "chapters": {
+    "listSelector": "-id.list li",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar html=result,\noptions={headers:{Referer:baseUrl}};\n\n(function getImgList() {\r\n    eval(html.match(/(var qTcms_Cur=[\\S\\s]+var qTcms_S_show_1=.*?;)/)[1]);\r\n    var list = java.base64Decode(qTcms_S_m_murl_e).split(\"\\\\$qingtiandy\\\\$\");\r\n    var piclist = new Array();\r\n    for (var i = 0; i < list.length; i++) {\n        var v = list[i];\r\n        var s = v;\r\n        if (v.substring(0, 1) == \"/\") {\r\n            s = qTcms_m_weburl + s;\r\n        } else {\r\n            if (qTcms_Pic_m_if != \"2\") {\r\n                v = v.replaceAll(\"\\\\?\", \"a1a1\");\r\n                v = v.replaceAll(\"&\", \"b1b1\");\r\n                v = v.replaceAll(\"%\", \"c1c1\");\r\n                var m_httpurl = \"\";\r\n                if (typeof(qTcms_S_m_mhttpurl) != \"undefined\") m_httpurl = java.base64Decode(qTcms_S_m_mhttpurl);\r\n                }\r\n        }\r\n        piclist[i] =s;\r\n    }\r\n    return piclist;\r\n}()).map(uri=>\n'<img src=\"'+uri+'\">').join(\"\\n\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 8.1.0; JKM-AL00b Build/HUAWEIJKM-AL00b; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044807 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 2556,
+  "createdAt": "2026-06-27T15:52:55.359Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

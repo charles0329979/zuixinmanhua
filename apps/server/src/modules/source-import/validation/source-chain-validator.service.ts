@@ -2,18 +2,17 @@
 // apps/server/src/modules/source-import/validation/source-chain-validator.service.ts
 // SourceChainValidator — 全链路验证: static → search → detail → chapters → images → proxy
 //
-// 一个源只有完成完整链路，才能视为真正可用。
-// 输出 SourceValidationResult。
+// ★ V7: 全部执行通过 SourceRuntimeService (唯一执行入口)。
+// 不再直接调用 source-parser 函数。
 // ============================================================
 
 import { Injectable, Logger } from '@nestjs/common';
 import type { SourceValidationResult, SearchCheckDetail, ChainCheckDetail } from '../types';
 import type { MangaSource } from '../../../sources/source-store';
-import type { AggregatedComicResult } from '../../../sources/source-parser';
-import {
-  searchBySource, getDetailBySource, getChaptersBySource, getImagesBySource,
-} from '../../../sources/source-parser';
 import { SourceStaticLintService } from './source-static-validator.service';
+import { SourceRuntimeService } from '../../../source-platform/runtime/source-runtime.service';
+import { DriverRegistryService } from '../../../source-platform/runtime/driver-registry.service';
+import { RuleSourceDriver } from '../../../source-platform/runtime/rule-source-driver';
 import * as https from 'https';
 import * as http from 'http';
 import { URL } from 'url';
@@ -28,19 +27,17 @@ const STEP_TIMEOUT_MS = 15000;
 export class SourceChainValidatorService {
   private readonly logger = new Logger(SourceChainValidatorService.name);
 
-  constructor(private readonly staticLint: SourceStaticLintService) {}
+  constructor(
+    private readonly staticLint: SourceStaticLintService,
+    private readonly runtime: SourceRuntimeService,
+    private readonly driverRegistry: DriverRegistryService,
+  ) {}
 
   /**
    * 全链路验证 — 单入口
    *
-   * 流程:
-   *   1. 静态检查 (规则完整性)
-   *   2. 尝试关键词池中的每个词进行搜索
-   *   3. 取第一个有效结果 → 详情解析
-   *   4. 取第一个/最后一个章节 → 图片解析
-   *   5. 取第一张图片 → proxy 加载验证
-   *
-   * 每步记录耗时和失败原因，绝不崩溃。
+   * ★ 所有执行通过 SourceRuntimeService (唯一执行入口)。
+   * 创建临时 RuleSourceDriver 注册到 runtime，验证完成后清理。
    */
   async validate(source: MangaSource): Promise<SourceValidationResult> {
     const testedAt = new Date().toISOString();
@@ -63,59 +60,72 @@ export class SourceChainValidatorService {
       return result;
     }
 
-    // ====== Step 1: Search ======
-    const searchDetail = await this.trySearch(source);
-    result.searchPassed = searchDetail.passed;
-    result.testKeyword = searchDetail.keyword;
-    result.resultCount = searchDetail.resultsPerKeyword?.[searchDetail.keyword!] || 0;
-    result.firstComicTitle = searchDetail.firstTitle;
+    // ★ 注册临时 driver 到 runtime (验证用)
+    const driver = new RuleSourceDriver(source);
+    const tempId = `__validate_${source.id}_${Date.now()}`;
+    // 覆写 sourceId 避免与已有 driver 冲突
+    (driver as any)._source = source;
+    this.driverRegistry.register(driver);
 
-    if (!searchDetail.passed) {
-      result.errorCode = 'SEARCH_FAILED';
-      result.errorMessage = searchDetail.error || 'No results for any keyword';
+    try {
+      // ====== Step 1: Search (通过 SourceRuntime) ======
+      const searchDetail = await this.trySearch(driver.sourceId);
+      result.searchPassed = searchDetail.passed;
+      result.testKeyword = searchDetail.keyword;
+      result.resultCount = searchDetail.resultsPerKeyword?.[searchDetail.keyword!] || 0;
+      result.firstComicTitle = searchDetail.firstTitle;
+      if (searchDetail.passed) result.networkPassed = true;
+
+      if (!searchDetail.passed) {
+        result.errorCode = 'SEARCH_FAILED';
+        result.errorMessage = searchDetail.error || 'No results for any keyword';
+        result.latencyMs = Date.now() - startTime;
+        result.layerDetails = { static: staticResult.detail, search: searchDetail };
+        return result;
+      }
+
+      // ====== Step 2: Detail → Chapters → Images → Proxy ======
+      const chainDetail = await this.tryFullChain(driver.sourceId, searchDetail.firstUrl!, source);
+      result.detailPassed = chainDetail.detailOk;
+      result.chaptersPassed = chainDetail.chaptersOk;
+      result.imagesPassed = chainDetail.imagesOk;
+      result.proxyPassed = chainDetail.proxyOk;
+      result.firstChapterTitle = chainDetail.firstChapterTitle;
+      result.firstImageUrl = chainDetail.firstImageUrl;
+
+      if (!chainDetail.allPassed) {
+        result.errorCode = chainDetail.errorCode || 'CHAIN_FAILED';
+        result.errorMessage = chainDetail.error || 'Full chain validation failed';
+      }
+
       result.latencyMs = Date.now() - startTime;
-      result.layerDetails = { static: staticResult.detail, search: searchDetail };
+      result.layerDetails = {
+        static: staticResult.detail,
+        search: searchDetail,
+        chain: chainDetail,
+      };
+
       return result;
+    } finally {
+      // 清理临时 driver
+      try { this.driverRegistry.unregister(driver.sourceId); } catch {}
     }
-
-    // ====== Step 2: Detail → Chapters → Images → Proxy ======
-    const chainDetail = await this.tryFullChain(source, searchDetail.firstUrl!, searchDetail.keyword!);
-    result.detailPassed = chainDetail.detailOk;
-    result.chaptersPassed = chainDetail.chaptersOk;
-    result.imagesPassed = chainDetail.imagesOk;
-    result.proxyPassed = chainDetail.proxyOk;
-    result.firstChapterTitle = chainDetail.firstChapterTitle;
-    result.firstImageUrl = chainDetail.firstImageUrl;
-
-    if (!chainDetail.allPassed) {
-      result.errorCode = chainDetail.errorCode || 'CHAIN_FAILED';
-      result.errorMessage = chainDetail.error || 'Full chain validation failed';
-    }
-
-    result.latencyMs = Date.now() - startTime;
-    result.layerDetails = {
-      static: staticResult.detail,
-      search: searchDetail,
-      chain: chainDetail,
-    };
-
-    return result;
   }
 
   // ============================================================
-  // Search: try keywords sequentially
+  // Search: try keywords sequentially (通过 SourceRuntime)
   // ============================================================
 
-  private async trySearch(source: MangaSource): Promise<SearchCheckDetail & { passed: boolean; keyword?: string; firstTitle?: string; firstUrl?: string; error?: string }> {
+  private async trySearch(driverId: string): Promise<SearchCheckDetail & { passed: boolean; keyword?: string; firstTitle?: string; firstUrl?: string; error?: string }> {
     const detail: SearchCheckDetail = { keywords: TEST_KEYWORDS, resultsPerKeyword: {}, totalMs: 0 };
     const t0 = Date.now();
 
     for (const kw of TEST_KEYWORDS) {
       try {
         const results = await Promise.race([
-          searchBySource(source, kw),
+          this.runtime.search(driverId, { keyword: kw }),
           new Promise<never>((_, r) => setTimeout(() => r(new Error('TIMEOUT')), STEP_TIMEOUT_MS)),
-        ]) as AggregatedComicResult[];
+        ]);
 
         detail.resultsPerKeyword[kw] = results?.length || 0;
 
@@ -125,13 +135,13 @@ export class SourceChainValidatorService {
             detail.firstResultTitle = first.title;
             detail.firstResultUrl = first.detailUrl;
             detail.totalMs = Date.now() - t0;
-            this.logger.log(`Chain[${source.id}] Search OK: "${kw}" → ${results.length} results, "${first.title?.slice(0, 30)}"`);
+            this.logger.log(`Chain[${driverId}] Search OK: "${kw}" → ${results.length} results, "${first.title?.slice(0, 30)}"`);
             return { ...detail, passed: true, keyword: kw, firstTitle: first.title, firstUrl: first.detailUrl };
           }
         }
       } catch (e: any) {
         detail.resultsPerKeyword[kw] = -1;
-        this.logger.debug(`Chain[${source.id}] Search "${kw}" failed: ${e.message?.slice(0, 80)}`);
+        this.logger.debug(`Chain[${driverId}] Search "${kw}" failed: ${e.message?.slice(0, 80)}`);
       }
     }
 
@@ -140,32 +150,32 @@ export class SourceChainValidatorService {
   }
 
   // ============================================================
-  // Full chain: detail → chapters → images → proxy
+  // Full chain: detail → chapters → images → proxy (通过 SourceRuntime)
   // ============================================================
 
-  private async tryFullChain(source: MangaSource, comicUrl: string, keyword: string): Promise<ChainCheckDetail & { allPassed: boolean; detailOk: boolean; chaptersOk: boolean; imagesOk: boolean; proxyOk: boolean; errorCode?: string; error?: string }> {
+  private async tryFullChain(driverId: string, comicUrl: string, source: MangaSource): Promise<ChainCheckDetail & { allPassed: boolean; detailOk: boolean; chaptersOk: boolean; imagesOk: boolean; proxyOk: boolean; errorCode?: string; error?: string }> {
     const detail: ChainCheckDetail = { detailUrl: comicUrl, detailTitleMatch: false, chapterCount: 0, imageCount: 0, totalMs: 0 };
     const t0 = Date.now();
 
-    // Step 2a: Detail
+    // Step 2a: Detail (通过 SourceRuntime)
     try {
       const d = await Promise.race([
-        getDetailBySource(source, comicUrl),
+        this.runtime.detail(driverId, { comicId: comicUrl }),
         new Promise<never>((_, r) => setTimeout(() => r(new Error('TIMEOUT')), STEP_TIMEOUT_MS)),
-      ]) as Record<string, string>;
+      ]);
       detail.detailTitleMatch = !!(d && d.title);
     } catch (e: any) {
       detail.totalMs = Date.now() - t0;
       return { ...detail, allPassed: false, detailOk: false, chaptersOk: false, imagesOk: false, proxyOk: false, errorCode: 'DETAIL_FAILED', error: `Detail failed: ${e.message}` };
     }
 
-    // Step 2b: Chapters
-    let chapters: { title: string; url: string }[] = [];
+    // Step 2b: Chapters (通过 SourceRuntime)
+    let chapters: { chapterId: string; title: string; url: string; index: number }[] = [];
     try {
       chapters = await Promise.race([
-        getChaptersBySource(source, comicUrl),
+        this.runtime.chapters(driverId, { comicId: comicUrl }),
         new Promise<never>((_, r) => setTimeout(() => r(new Error('TIMEOUT')), STEP_TIMEOUT_MS)),
-      ]) as { title: string; url: string }[];
+      ]);
     } catch (e: any) {
       detail.totalMs = Date.now() - t0;
       return { ...detail, allPassed: false, detailOk: true, chaptersOk: false, imagesOk: false, proxyOk: false, errorCode: 'CHAPTERS_FAILED', error: `Chapters failed: ${e.message}` };
@@ -177,17 +187,17 @@ export class SourceChainValidatorService {
       return { ...detail, allPassed: false, detailOk: true, chaptersOk: false, imagesOk: false, proxyOk: false, errorCode: 'CHAPTERS_EMPTY', error: 'Chapter list is empty' };
     }
 
-    // Use last chapter (通常是最新)
+    // Use last chapter
     const testChapter = chapters[chapters.length - 1];
     detail.firstChapterTitle = testChapter.title;
 
-    // Step 2c: Images
-    let images: string[] = [];
+    // Step 2c: Images (通过 SourceRuntime)
+    let images: { url: string }[] = [];
     try {
       images = await Promise.race([
-        getImagesBySource(source, testChapter.url),
+        this.runtime.images(driverId, { comicId: comicUrl, chapterId: testChapter.chapterId || testChapter.url }),
         new Promise<never>((_, r) => setTimeout(() => r(new Error('TIMEOUT')), STEP_TIMEOUT_MS)),
-      ]) as string[];
+      ]);
     } catch (e: any) {
       detail.totalMs = Date.now() - t0;
       return { ...detail, allPassed: false, detailOk: true, chaptersOk: true, imagesOk: false, proxyOk: false, errorCode: 'IMAGES_FAILED', error: `Images failed: ${e.message}` };
@@ -200,7 +210,7 @@ export class SourceChainValidatorService {
     }
 
     // Step 2d: Proxy image check
-    const firstImage = images[0];
+    const firstImage = images[0].url;
     detail.firstImageUrl = firstImage;
     const ct = await this.checkImageLoadable(firstImage, source);
     detail.proxyImageStatus = ct.statusCode;

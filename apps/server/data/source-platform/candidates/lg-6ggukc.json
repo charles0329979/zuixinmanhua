@@ -1,0 +1,41 @@
+{
+  "id": "lg-6ggukc",
+  "name": "🗂🙈梦游漫画🚩",
+  "host": "https://www.mumumh.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🗂 聚合"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(String(source.bookSourceComment));\nbody = \"{{key}}\";\n1 == flag ? \"/search?keyword=\" + body : java.toast(\"\\n❗未启用书源❗\");\n</js>",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "<js>\neval(String(source.bookSourceComment));\nvar list = java.getElements(\".book-list li\"), data = [];\nfor (i = 0; i < list.length; i++) data.push({\n    name: list[i].select(\".book-list-info-title\").text(), author: String(list[i].select(\".book-list-info-bottom-item\").text()).replace(/[\\s&\\|]|[圖文][:：]/g, \"/\").replace(/\\/\\/\\/|\\/\\/|;|amp/g, \"\"), kind: String(list[i].select(\".book-list-info-bottom-right-font\").text()).replace(/[中已]/, \"\"), word: \"\", latest: \"\", intro: list[i].select(\".book-list-info-desc\").text(), cover: list[i].select(\"img\").attr(\"data-original\"), url: list[i].select(\"a\").attr(\"href\")\n});\ndata = JSON.stringify(data);\n</js>\n$[:10]",
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "detailUrlSelector": "$.url",
+    "latestChapterSelector": "$.latest"
+  },
+  "detail": {
+    "titleSelector": "$.name",
+    "coverSelector": "$.cover",
+    "authorSelector": "$.author",
+    "descriptionSelector": "$.intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\neval(String(source.bookSourceComment));\nvar list = java.getElements(\"#chapter_indexes ul li a\");\ndata = [];\nfor (i = 0; i < list.length; i++) data.push({\n    name: list[i].text(), link: list[i].attr(\"href\")\n});\n1 == flag ? (java.put(\"Enable\", 1), JSON.stringify(data)) : java.toast(\"\\n❗未启用书源❗\");\n</js>\n$[*]",
+    "titleSelector": "$.name",
+    "urlSelector": "$.link"
+  },
+  "images": {
+    "listSelector": "<js>\n1 == java.get(\"Enable\") ? \"<br>\" + java.getElements(\"#cp_img img\") : java.toast(\"\\n❗未启用书源❗\");\n</js>",
+    "srcAttribute": "text"
+  },
+  "headers": "{\n  \"User-agent\":\"Dalvik/2.1.0 (Linux; U; Android 9; PCRT00 Build/PQ3B.190801.002)\"\n}",
+  "timeoutMs": 3467,
+  "createdAt": "2026-06-27T15:52:56.157Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

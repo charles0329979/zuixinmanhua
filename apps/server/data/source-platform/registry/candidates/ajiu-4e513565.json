@@ -1,0 +1,45 @@
+{
+  "id": "ajiu-4e513565",
+  "name": "[阿玖·AJiu]下拉式漫画",
+  "host": "https://m.xialashimanhua.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox",
+    "titleSelector": "class.itemTxt@tag.a@text",
+    "coverSelector": "tag.mip-img@src",
+    "detailUrlSelector": "class.itemTxt@tag.a@href",
+    "latestChapterSelector": "class.coll@text",
+    "statusSelector": "class.itemTxt@tag.p.1@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.txtDesc@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-class.list@tag.a.!0",
+    "titleSelector": "@text",
+    "urlSelector": "@href"
+  },
+  "images": {
+    "listSelector": "tag.mip-img.0@src##(http.*w...)##<img src=\"$1\"/>",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

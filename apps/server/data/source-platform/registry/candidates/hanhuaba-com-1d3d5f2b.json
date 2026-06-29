@@ -1,0 +1,19 @@
+{
+  "id": "hanhuaba-com-1d3d5f2b",
+  "name": "汉化吧",
+  "version": "1.0.0-1a8cb93b",
+  "hash": "1a8cb93b42ade1f2986e9cbdf669806c17ff781a009135ba91b7fb5e723001d4",
+  "host": "http://www.hanhuaba.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

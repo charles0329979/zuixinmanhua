@@ -1,0 +1,40 @@
+{
+  "id": "lg-xvwn5y",
+  "name": "🗒 十八禁漫",
+  "host": "https://www.18mh.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "动漫"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "<js>\neval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b','g'),k[c]);return p}('2(3(4.5));1==6?\"/7-8?9=1&a={{b}}\":c.d(\"\\\\e\\\\0\\\\f\\\\g\\\\h\\\\i\\\\j\\\\0\");',20,20,'u2757||eval|String|source|bookSourceComment|flag|search|index|searchType|q|key|java|toast|n|u672a|u542f|u7528|u4e66|u6e90'.split('|'),0,{}))\n</js>",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".liemh li",
+    "titleSelector": ".tit",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "em"
+  },
+  "detail": {
+    "titleSelector": "name",
+    "coverSelector": "cover",
+    "authorSelector": "author",
+    "descriptionSelector": "intro"
+  },
+  "chapters": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('3(4(5.6));1==7?(0.8(\"9\", 1), 0.b(\"#c d a\")):0.e(\"\\\\f\\\\2\\\\g\\\\h\\\\i\\\\j\\\\k\\\\2\");', 21, 21, 'java||u2757|eval|String|source|bookSourceComment|flag|put|Enable||getElements|oneCon1|li|toast|n|u672a|u542f|u7528|u4e66|u6e90'.split('|'), 0, {}))\n</js>",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "<js>\neval(function(p, a, c, k, e, r){e=function(c){return c.toString(a)};if(!''.replace(/^/, String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b', 'g'), k[c]);return p}('1==2.4(\"5\")?\"<6>\"+2.7(\".e 8:9(0)\"):2.a(\"\\\\b\\\\3\\\\c\\\\d\\\\f\\\\g\\\\h\\\\3\");', 18, 18, '||java|u2757|get|Enable|br|getElements|img|eq|toast|n|u672a|u542f||u7528|u4e66|u6e90'.split('|'), 0, {}))\n</js>",
+    "srcAttribute": "text"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:55.060Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

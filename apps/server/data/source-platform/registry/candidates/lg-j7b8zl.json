@@ -1,0 +1,19 @@
+{
+  "id": "lg-j7b8zl",
+  "name": "粉丝漫画",
+  "version": "1.0.0-36b0e70a",
+  "hash": "36b0e70ade15456f8b7b49cd546fdb25204f3afadf7cab8fa59000b6f8358dc4",
+  "host": "https://apifans.dushimh.com/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

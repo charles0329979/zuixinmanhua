@@ -1,0 +1,46 @@
+{
+  "id": "lg-4qvi08",
+  "name": "国漫吧",
+  "host": "http://www.guoman8.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "动漫"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://www.guoman8.cc/search/q_{{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".book-result li||id.contList li",
+    "titleSelector": "a.0",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".blue"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "body",
+    "authorSelector": "[property=\"og:novel:author\"]",
+    "descriptionSelector": "#bookIntro"
+  },
+  "chapters": {
+    "listSelector": "-id.chpater-list-1",
+    "titleSelector": "span",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nheader={\"Referer\":baseUrl};\nheaders={\"headers\":JSON.stringify(header)};\nimgl=eval(result.match(/(eval\\(.+?\\}\\)\\))/)[1]);\n\nhost = \"http://images.720rs.com\";\nimage=cInfo.fs;\n//piclist.map(u=>\"<img src=\\\"\"+server+u+','+JSON.stringify(headers)+\"\\\">\").join(\"\\n\")\n\nhtml='';\nfunction get7ImageUrl(image) {\n    if (image.match(/^(\\/Man?)/i)) {\n        return host + image\n    } else if (image.match(/^(http?)/i)) {\n        return image\n    }\n}\nfor(i in image){\nurl=get7ImageUrl(image[i]);\nhtml+='<img src=\"'+url+','+JSON.stringify(headers)+'\">\\n'\n}\nhtml"
+  },
+  "timeoutMs": 7249,
+  "createdAt": "2026-06-27T15:52:53.073Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

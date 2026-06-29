@@ -1,0 +1,19 @@
+{
+  "id": "xiuren-1f9f587a",
+  "name": "🔰 XIUREN",
+  "version": "1.0.0-c64ad085",
+  "hash": "c64ad0854a5204f1b53666783e94acfd9fec45be5943fdcc17191cc037d858f1",
+  "host": "https://xiuren.biz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

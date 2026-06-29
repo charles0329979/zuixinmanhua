@@ -1,0 +1,19 @@
+{
+  "id": "lg-8l4dkm",
+  "name": "🎨 六漫画",
+  "version": "1.0.0-1493f939",
+  "hash": "1493f939d0db6b76bfda095a9a3801d462724485028658fc3c2ed5b919604ace",
+  "host": "http://www.sixmh7.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

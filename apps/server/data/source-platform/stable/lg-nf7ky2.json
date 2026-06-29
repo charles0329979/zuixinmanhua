@@ -1,0 +1,20 @@
+{
+  "id": "lg-nf7ky2",
+  "name": "🎨 漫客栈🅰 ",
+  "version": "1.0.0-2e27ac55",
+  "hash": "2e27ac553402e7cb22b80f5d51a25f1cec9083dbb63b812f9888d7fe96309c7d",
+  "host": "http://comic.mkzhan.com#♤Haxc",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.452Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

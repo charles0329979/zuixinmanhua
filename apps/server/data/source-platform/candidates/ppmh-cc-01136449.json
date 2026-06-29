@@ -1,0 +1,45 @@
+{
+  "id": "ppmh-cc-01136449",
+  "name": "皮皮漫画",
+  "host": "https://www.ppmh.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.ppmh.cc/search?keyword={{keyword}}&page={{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.book-list@tag.li||class.manga-list-2@tag.li||class.rank-list@tag.a",
+    "titleSelector": "tag.p.0@text",
+    "coverSelector": "tag.img@data-original",
+    "detailUrlSelector": "href&&tag.a@href",
+    "latestChapterSelector": "class.manga-list-2-tip@text##已更新||tag.span.-1@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.detail-main-info-title@text",
+    "coverSelector": "class.detail-main-bg@data-original",
+    "authorSelector": "class.detail-main-info-author.1@a@text",
+    "descriptionSelector": "class.detail-desc@text",
+    "statusSelector": "class.detail-main-info-class@tag.a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "tag.ul@tag.li",
+    "titleSelector": "text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "id.cp_img@img!-1@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

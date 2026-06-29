@@ -1,0 +1,40 @@
+{
+  "id": "lg-gn2x7n",
+  "name": "🎨 韩漫吧",
+  "host": "https://m.hmba.vip",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/home/search?action=search&q={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".pt-card-1.1",
+    "titleSelector": "a.1",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.1",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".pt-name.0",
+    "coverSelector": ".baseinfo img",
+    "authorSelector": ".pt-info.1",
+    "descriptionSelector": ".intro"
+  },
+  "chapters": {
+    "listSelector": "#chapterlist li a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#BookText",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:56.085Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

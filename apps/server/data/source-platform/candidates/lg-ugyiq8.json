@@ -1,0 +1,41 @@
+{
+  "id": "lg-ugyiq8",
+  "name": "话本小说②",
+  "host": "https://so.ihuaben.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0905校验"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://so.ihuaben.com/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".searchresult",
+    "titleSelector": "h2",
+    "coverSelector": "img.img-rounded",
+    "detailUrlSelector": "h2 a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": ".biginfo",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": ".chapterlist",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "#contentsource",
+    "srcAttribute": "html"
+  },
+  "headers": "{\n\"User-Agent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:53.431Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

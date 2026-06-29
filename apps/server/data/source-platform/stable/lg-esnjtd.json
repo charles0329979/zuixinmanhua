@@ -1,0 +1,20 @@
+{
+  "id": "lg-esnjtd",
+  "name": "漫客栈",
+  "version": "1.0.0-f62e3962",
+  "hash": "f62e3962668c9cc7e1d64396ef1291a8deeaa23c5ae52f71543ed50735806d40",
+  "host": "http://comic.mkzhan.com",
+  "healthScore": 90,
+  "publishedAt": "2026-06-29T08:39:59.338Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": true,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

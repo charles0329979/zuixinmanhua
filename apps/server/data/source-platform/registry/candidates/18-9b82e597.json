@@ -1,0 +1,19 @@
+{
+  "id": "18-9b82e597",
+  "name": "🎨 18禁漫",
+  "version": "1.0.0-d0a2e1ed",
+  "hash": "d0a2e1edf0bbafa6907f95e9b23ba64e06891d551013b330c9744fc7bede62eb",
+  "host": "https://www.18mh.cc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": false,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

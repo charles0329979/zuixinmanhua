@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
 import * as https from 'https';
 import { SourceConfigService } from '../sources/config/source-config.service';
-import { sourceStore } from '../sources/source-store';
+import { DriverRegistryService } from '../source-platform/runtime/driver-registry.service';
 import { JsEngineService } from '../sources/js-engine.service';
 
 // Dynamic import for ESM sharp
@@ -50,6 +50,7 @@ export class ProxyService {
   constructor(
     private readonly configService: SourceConfigService,
     private readonly jsEngine: JsEngineService,
+    private readonly driverRegistry: DriverRegistryService,
   ) {}
 
   // ============================================================
@@ -68,11 +69,12 @@ export class ProxyService {
       return this.refererMap[sourceId];
     }
 
-    // 2. OTA 规则源 — 查 sources.json 获取 host
+    // 2. 查 source-platform 驱动获取 host
     try {
-      const ruleSource = sourceStore.getSourceById(sourceId);
-      if (ruleSource?.host) {
-        return ruleSource.host.endsWith('/') ? ruleSource.host : ruleSource.host + '/';
+      const driver = this.driverRegistry.getOptional(sourceId);
+      if ((driver as any)?.host) {
+        const h = (driver as any).host || '';
+        return h.endsWith('/') ? h : h + '/';
       }
     } catch {
       // ignore
@@ -368,12 +370,14 @@ export class ProxyService {
     );
 
     // Manwa decryption: CDN serves AES-encrypted images
+    // ★ 通过 DriverRegistry 获取 jsRules (不再直接 import sourceStore)
     if (sourceId === 'manwa') {
-      const manwaSource = sourceStore.getSourceById('manwa');
-      if (manwaSource?.jsRules) {
+      const manwaDriver = this.driverRegistry.getOptional('manwa');
+      const jsRules = (manwaDriver as any)?.jsRules;
+      if (jsRules) {
         try {
-          const ctx = { sourceId: 'manwa', sourceName: '漫蛙', sourceHost: manwaSource.host };
-          buffer = await this.jsEngine.decryptImage(ctx, manwaSource.jsRules, buffer, {
+          const ctx = { sourceId: 'manwa', sourceName: '漫蛙', sourceHost: (manwaDriver as any)?.host || '' };
+          buffer = await this.jsEngine.decryptImage(ctx, jsRules, buffer, {
             imageUrl: url,
             size: buffer.length,
           });

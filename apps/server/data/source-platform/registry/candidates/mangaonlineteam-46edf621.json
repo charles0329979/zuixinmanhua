@@ -1,0 +1,19 @@
+{
+  "id": "mangaonlineteam-46edf621",
+  "name": "mangaonlineteam",
+  "version": "1.0.0-e2635d67",
+  "hash": "e2635d67fc856b9c0ebcf6ddb0e0455c527248da254f7136625459ea6d750790",
+  "host": "https://mangaonlineteam.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "manxiangge-com-b454414b",
+  "name": "漫香阁",
+  "version": "1.0.0-8afd0d9f",
+  "hash": "8afd0d9f5b41f41200dab41b480d82b90771506b6ffedee22bae171f1c6378e9",
+  "host": "https://manxiangge.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

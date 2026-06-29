@@ -1,0 +1,18 @@
+{
+  "id": "manwa",
+  "name": "漫蛙",
+  "version": "1.0.0-mqz3q8io",
+  "hash": "",
+  "host": "https://manwafz.cc",
+  "healthScore": 97,
+  "publishedAt": "2026-06-29T10:55:29.952Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

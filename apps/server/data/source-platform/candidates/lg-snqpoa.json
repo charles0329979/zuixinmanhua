@@ -1,0 +1,46 @@
+{
+  "id": "lg-snqpoa",
+  "name": "㊣✐ 腾讯漫画  #一程",
+  "host": "https://m.ac.qq.com#♤yc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/result?word={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "#lst_searchResult li||#list_update li||.comic-link",
+    "titleSelector": ".comic-title",
+    "coverSelector": "img",
+    "detailUrlSelector": ".comic-link",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".head-title-tags h1",
+    "coverSelector": "body",
+    "authorSelector": ".head-info-author",
+    "descriptionSelector": ".head-info-desc"
+  },
+  "chapters": {
+    "listSelector": "body",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\ndata=result.match(/data:\\s*'(.*?)'/)[1];\nnonce=result.match(/<script>window.*?=(.*?)<\\/script>/)[1];\nnonce=eval(nonce);\nvar N = String(nonce).match(/\\d+\\w+/);\njlen=N.length;\nwhile(jlen){\njlen -= 1;\njlocate = parseInt(N[jlen].match(/(\\d+)/)[0]) &255;\njstr = N[jlen].replace(/\\d+/g,'');\ndata=data.substring(0,parseInt(jlocate))+data.substring(parseInt(jlocate)+jstr.length,data.length)}\npiclist=eval(java.base64Decode(data).match(/\"picture\":(\\[{\".*\\])/)[1]);\nhtml='';\nfor(i in piclist){\nhtml += '<img src=\"'+piclist[i].url+'\">\\n'\n}\nhtml"
+  },
+  "timeoutMs": 3095,
+  "createdAt": "2026-06-27T15:52:55.719Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

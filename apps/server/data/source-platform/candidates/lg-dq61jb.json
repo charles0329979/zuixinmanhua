@@ -1,0 +1,40 @@
+{
+  "id": "lg-dq61jb",
+  "name": "✐ 酷爱漫画 #Haxc1107",
+  "host": "https://www.kuimh.com#Haxc1107",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨 C漫画,0-🏜️ 图片"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.kuimh.com/search?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".mh-item",
+    "titleSelector": "a",
+    "coverSelector": "p",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".chapter a"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": ".banner_detail_bg",
+    "authorSelector": ".info.0 p.1",
+    "descriptionSelector": ".content"
+  },
+  "chapters": {
+    "listSelector": "#detail-list-select a.-1",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": ".comicpage",
+    "srcAttribute": "html##\\\"https:\\/\\/static.aiquanjian.com\\/static\\/images\\/grey.gif\\\" data-echo="
+  },
+  "timeoutMs": 1252,
+  "createdAt": "2026-06-27T15:52:52.301Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

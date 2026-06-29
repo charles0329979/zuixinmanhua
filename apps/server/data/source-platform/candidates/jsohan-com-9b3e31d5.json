@@ -1,0 +1,45 @@
+{
+  "id": "jsohan-com-9b3e31d5",
+  "name": "极速漫画",
+  "host": "https://jsohan.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://jsohan.com/search?searchkey={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".classification",
+    "titleSelector": "h2@text",
+    "coverSelector": "img@data-src",
+    "detailUrlSelector": "a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h1@textNodes",
+    "coverSelector": ".ctdbLeft@a@img@src",
+    "authorSelector": "p[0]@textNodes",
+    "descriptionSelector": "p[1]@textNodes",
+    "statusSelector": ".labelBox@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".view-win-list.detail-list-select@li",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": ".loadimg@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lg-xhacre",
+  "name": "新人漫画",
+  "host": "https://xapi.xinmanhua.net#",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Legado"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://xapi.xinmanhua.net/search/selfdefine,{\n  \"method\": \"POST\",\n  \"body\": \"keyword={{key}}&page={{page}}\"\n}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "https://xapi.xinmanhua.net/worksinfos/{$.attributes.wid}?include=chapters.digests",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "$.included.*",
+    "titleSelector": "$.attributes.title&&$.attributes.intro",
+    "urlSelector": "https://xapi.xinmanhua.net/chapters/{$.id}/qualitywebs"
+  },
+  "images": {
+    "listSelector": "$.data[*].attributes.url",
+    "srcAttribute": "js:list=result.split('\\n');\nlist.map(x=>'<img src=\"'+x+'\">').join('\\n')"
+  },
+  "headers": "{\n  \"User-Agent\": \"okhttp/3.10.0\"\n}",
+  "timeoutMs": 163,
+  "createdAt": "2026-06-27T15:52:52.074Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

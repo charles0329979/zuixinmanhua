@@ -1,0 +1,45 @@
+{
+  "id": "so-ihuaben-com-bab3dad7",
+  "name": "话本小说②",
+  "host": "https://so.ihuaben.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://so.ihuaben.com/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".searchresult",
+    "titleSelector": "h2@text",
+    "coverSelector": "img.img-rounded@src",
+    "detailUrlSelector": "h2 a@href",
+    "latestChapterSelector": "",
+    "statusSelector": ".list-inline.text-muted@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": ".biginfo@.cover@img@src",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "label.bg-dwarning@text&&.HuabenListUL[3]@li@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapterlist@p",
+    "titleSelector": "a@text",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "#contentsource@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

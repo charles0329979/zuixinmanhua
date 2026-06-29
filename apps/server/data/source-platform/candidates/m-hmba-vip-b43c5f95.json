@@ -1,0 +1,45 @@
+{
+  "id": "m-hmba-vip-b43c5f95",
+  "name": "🎨 韩漫吧",
+  "host": "https://m.hmba.vip",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/home/search?action=search&q={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.pt-card-1.1@li",
+    "titleSelector": "a.1@text",
+    "coverSelector": "img@data-original",
+    "detailUrlSelector": "a.1@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.pt-name.0@text",
+    "coverSelector": ".baseinfo img@src",
+    "authorSelector": "class.pt-info.1@text##作者.",
+    "descriptionSelector": ".intro@html##简介.",
+    "statusSelector": "class.pt-info.0:2:3@text##.*：|\\s.*",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "#chapterlist li a",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#BookText@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

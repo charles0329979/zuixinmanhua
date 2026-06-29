@@ -1,0 +1,45 @@
+{
+  "id": "book-sbkk8-com-90a95e4b",
+  "name": "📚天涯知识库",
+  "host": "http://book.sbkk8.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".mululist||.bookList",
+    "titleSelector": "a.-1@text",
+    "coverSelector": "img@src",
+    "detailUrlSelector": "a.-1@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": ".fm img@src",
+    "authorSelector": "",
+    "descriptionSelector": ".des p@html",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".mulu li a||h1",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "#content p@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

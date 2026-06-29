@@ -1,0 +1,46 @@
+{
+  "id": "lg-bslnkt",
+  "name": "追追漫画M",
+  "host": "http://zz.ilikemanga.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "0-2图片,🎨 漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://zz.ilikemanga.com/m/manman/searchcartoon?keyword={{key}}&promoterid=d10fa62c349840f1bc25387e81066bcc&platform_code=honghua#forward",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".list",
+    "titleSelector": "h1",
+    "coverSelector": "img.0",
+    "detailUrlSelector": "section",
+    "latestChapterSelector": ".case_modalp"
+  },
+  "detail": {
+    "titleSelector": "h3",
+    "coverSelector": "body",
+    "authorSelector": ".top_box",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": ".list",
+    "titleSelector": "text",
+    "urlSelector": "div"
+  },
+  "images": {
+    "listSelector": ".con",
+    "srcAttribute": "js:result.split(\"\\n\").map(x=>'<img src=\\\"'+x+'\\\">').join(\"\\n\")"
+  },
+  "timeoutMs": 1234,
+  "createdAt": "2026-06-27T15:52:56.621Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

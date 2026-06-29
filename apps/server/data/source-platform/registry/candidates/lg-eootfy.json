@@ -1,0 +1,19 @@
+{
+  "id": "lg-eootfy",
+  "name": "🗂🙈顶通漫画🚩",
+  "version": "1.0.0-bcfb615c",
+  "hash": "bcfb615cd2135af65e2434552f899fe05928581fdc953d6fac0d1ffb38584cb9",
+  "host": "https://toptoon.buzz/",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

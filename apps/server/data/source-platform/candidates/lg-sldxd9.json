@@ -1,0 +1,46 @@
+{
+  "id": "lg-sldxd9",
+  "name": "🌸肉漫屋( 韩漫+ )",
+  "host": "https://roum26.xyz",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画,🌸漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://roum26.xyz/search?term={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "//div[",
+    "titleSelector": "//div[",
+    "coverSelector": "//div[contains(",
+    "detailUrlSelector": "//a/",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "//div[",
+    "coverSelector": "//div[",
+    "authorSelector": "//div[",
+    "descriptionSelector": "//div["
+  },
+  "chapters": {
+    "listSelector": "//div[",
+    "titleSelector": "//a/div/text()",
+    "urlSelector": "//a/"
+  },
+  "images": {
+    "listSelector": "//script/text()",
+    "srcAttribute": "js:\nvar urlReg = /\\\\\"imageUrl\\\\\":\\\\\"(.+?)\\\\\"/g;\nvar pureUrlList = [];\nvar match;\nwhile ((match = urlReg.exec(result)) !== null) {\n    var imgUrl = match[1];\n    imgUrl = imgUrl.replace(/\\\\/g, '');\n    if (pureUrlList.indexOf(imgUrl) === -1) {\n        pureUrlList.push(imgUrl);\n    }\n}\npureUrlList.map(x => '<img src=\"' + x + '\">').join(\"\\n\");"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:52.533Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

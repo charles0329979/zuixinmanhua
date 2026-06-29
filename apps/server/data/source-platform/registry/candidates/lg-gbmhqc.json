@@ -1,0 +1,19 @@
+{
+  "id": "lg-gbmhqc",
+  "name": "🎨 神漫画📱 #Haxc",
+  "version": "1.0.0-b1a5690d",
+  "hash": "b1a5690d719567c090ce7f63d0a9e0b9aeddb3c757e9284e427235ae12d5f299",
+  "host": "https://m.taomanhua.com#♤Haxc",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

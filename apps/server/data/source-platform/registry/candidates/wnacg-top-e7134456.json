@@ -1,0 +1,19 @@
+{
+  "id": "wnacg-top-e7134456",
+  "name": "绅士漫画看注释",
+  "version": "1.0.0-3f15a9df",
+  "hash": "3f15a9df27e513963415eaa1b951b21f5ce1341ff20a44856c641a101eea2659",
+  "host": "https://www.wnacg.top",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

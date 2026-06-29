@@ -1,0 +1,19 @@
+{
+  "id": "jsohan-com-9b3e31d5",
+  "name": "极速漫画",
+  "version": "1.0.0-79b73558",
+  "hash": "79b7355850b451e2270ae44a5e3c3ffd16cf22dcb6ab481c200fac6b97cfea83",
+  "host": "https://jsohan.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

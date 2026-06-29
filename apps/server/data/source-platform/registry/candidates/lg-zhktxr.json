@@ -1,0 +1,19 @@
+{
+  "id": "lg-zhktxr",
+  "name": "🎨韩漫画🔞",
+  "version": "1.0.0-73d4465e",
+  "hash": "73d4465ec1063f544211e1443b6d9b75294516c69741c5137d13d865f8dd6a20",
+  "host": "https://www.mhhanman.xyz",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

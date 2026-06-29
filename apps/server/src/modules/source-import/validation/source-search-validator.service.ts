@@ -1,36 +1,41 @@
 // ============================================================
 // apps/server/src/modules/source-import/validation/source-search-validator.service.ts
 // Layer 2: 搜索验证 — 用可配置关键词池测试搜索功能
+//
+// ★ V7: 通过 SourceRuntimeService 执行搜索 (唯一执行入口)。
+// 不再直接调用 source-parser。
 // ============================================================
 
 import { Injectable, Logger } from '@nestjs/common';
 import type { SearchCheckDetail } from '../types';
 import type { MangaSource } from '../../../sources/source-store';
-import { searchBySource } from '../../../sources/source-parser';
+import { SourceRuntimeService } from '../../../source-platform/runtime/source-runtime.service';
+import { DriverRegistryService } from '../../../source-platform/runtime/driver-registry.service';
+import { RuleSourceDriver } from '../../../source-platform/runtime/rule-source-driver';
 
 /**
  * 默认测试关键词池 — 覆盖中/英/日常见漫画名称
- * 按成功率排序: 先试中文(国产/汉化站)，再试日文罗马字，最后用短字符串兜底
  */
 const DEFAULT_KEYWORDS = [
-  '海贼王',        // 中文: One Piece — 覆盖国漫站/汉化站
-  '火影忍者',      // 中文: Naruto
-  'one piece',    // 日文罗马字: 覆盖日漫站/英文站
-  'naruto',       // 日文罗马字
-  '1',            // 短字符串兜底 — 覆盖按更新时间排序的站
-  'a',            // 单字母兜底
+  '海贼王',
+  '火影忍者',
+  'one piece',
+  'naruto',
+  '1',
+  'a',
 ];
 
 @Injectable()
 export class SourceSearchValidatorService {
   private readonly logger = new Logger(SourceSearchValidatorService.name);
 
+  constructor(
+    private readonly runtime: SourceRuntimeService,
+    private readonly driverRegistry: DriverRegistryService,
+  ) {}
+
   /**
-   * Layer 2 搜索验证
-   *
-   * @param source    书源定义
-   * @param keywords  测试关键词 (默认使用池中全部)
-   * @param timeoutMs 单次搜索超时 (ms)
+   * Layer 2 搜索验证 (通过 SourceRuntimeService)
    */
   async validate(
     source: MangaSource,
@@ -44,55 +49,61 @@ export class SourceSearchValidatorService {
       totalMs: 0,
     };
 
-    let anySuccess = false;
+    // ★ 创建临时 driver 并通过 SourceRuntime 执行
+    const driver = new RuleSourceDriver(source);
+    this.driverRegistry.register(driver);
 
-    // 逐个关键词测试，取第一个成功的结果
-    for (const keyword of keywords) {
-      try {
-        const results = await Promise.race([
-          searchBySource(source, keyword),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error('SEARCH_TIMEOUT')), timeoutMs),
-          ),
-        ]);
+    try {
+      let anySuccess = false;
 
-        if (results && results.length > 0) {
-          detail.resultsPerKeyword[keyword] = results.length;
+      for (const keyword of keywords) {
+        try {
+          const results = await Promise.race([
+            this.runtime.search(driver.sourceId, { keyword }),
+            new Promise<never>((_, reject) =>
+              setTimeout(() => reject(new Error('SEARCH_TIMEOUT')), timeoutMs),
+            ),
+          ]);
 
-          // 验证结果结构完整性 (AggregatedComicResult 使用 detailUrl 字段)
-          const firstValid = results.find(
-            r => r.title && r.title.length > 0 && r.detailUrl && r.detailUrl.length > 0,
-          );
-
-          if (firstValid) {
-            detail.firstResultTitle = firstValid.title;
-            detail.firstResultUrl = firstValid.detailUrl;
-            anySuccess = true;
-            this.logger.log(
-              `Search OK for ${source.id}: "${keyword}" → ${results.length} results, ` +
-              `first: "${firstValid.title?.slice(0, 30)}"`,
-            );
-          } else {
+          if (results && results.length > 0) {
             detail.resultsPerKeyword[keyword] = results.length;
-            this.logger.warn(
-              `Search results for ${source.id} "${keyword}": ${results.length} results but none with valid title+url`,
+
+            const firstValid = results.find(
+              r => r.title && r.title.length > 0 && r.detailUrl && r.detailUrl.length > 0,
             );
+
+            if (firstValid) {
+              detail.firstResultTitle = firstValid.title;
+              detail.firstResultUrl = firstValid.detailUrl;
+              anySuccess = true;
+              this.logger.log(
+                `Search OK for ${source.id}: "${keyword}" → ${results.length} results, ` +
+                `first: "${firstValid.title?.slice(0, 30)}"`,
+              );
+            } else {
+              detail.resultsPerKeyword[keyword] = results.length;
+              this.logger.warn(
+                `Search results for ${source.id} "${keyword}": ${results.length} results but none with valid title+url`,
+              );
+            }
+          } else {
+            detail.resultsPerKeyword[keyword] = 0;
           }
-        } else {
-          detail.resultsPerKeyword[keyword] = 0;
+        } catch (e: any) {
+          detail.resultsPerKeyword[keyword] = -1;
+          this.logger.debug(
+            `Search failed for ${source.id} "${keyword}": ${e.message?.slice(0, 80)}`,
+          );
         }
-      } catch (e: any) {
-        detail.resultsPerKeyword[keyword] = -1; // -1 = error
-        this.logger.debug(
-          `Search failed for ${source.id} "${keyword}": ${e.message?.slice(0, 80)}`,
-        );
+
+        if (anySuccess) break;
       }
 
-      // 如果已有一个关键词成功，跳出
-      if (anySuccess) break;
+      detail.totalMs = Date.now() - startTime;
+      return { passed: anySuccess, detail };
+    } finally {
+      // 清理临时 driver
+      try { this.driverRegistry.unregister(driver.sourceId); } catch {}
     }
-
-    detail.totalMs = Date.now() - startTime;
-    return { passed: anySuccess, detail };
   }
 }

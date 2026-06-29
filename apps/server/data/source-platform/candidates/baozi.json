@@ -1,0 +1,47 @@
+{
+  "id": "baozi",
+  "name": "包子漫画",
+  "host": "https://www.baozimh.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "中文",
+    "国漫",
+    "日漫"
+  ],
+  "search": {
+    "url": "/search?q={{keyword}}",
+    "method": "GET",
+    "listSelector": ".comics-card",
+    "titleSelector": ".comics-card__title h3",
+    "coverSelector": ".comics-card__poster img",
+    "detailUrlSelector": ".comics-card__poster",
+    "latestChapterSelector": ".chapter",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".comics-detail__title",
+    "coverSelector": ".de-info__bg",
+    "authorSelector": ".comics-detail__author",
+    "descriptionSelector": ".comics-detail__desc",
+    "statusSelector": ".comics-detail__status, .tag-list",
+    "latestChapterSelector": ".comics-chapters__item:first-child div"
+  },
+  "chapters": {
+    "listSelector": ".comics-chapters__item",
+    "titleSelector": "div",
+    "urlSelector": "&"
+  },
+  "images": {
+    "listSelector": "amp-img.comic-contain__item, img.comic-image, .chapter-img img, .comic-content img, amp-img",
+    "srcAttribute": "src"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  "timeoutMs": 10000,
+  "createdAt": "2026-06-04T15:22:07.064Z",
+  "updatedAt": "2026-06-07T12:59:22.147Z"
+}

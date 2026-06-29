@@ -1,0 +1,45 @@
+{
+  "id": "rawkuma-674e37e5",
+  "name": "📖 Rawkuma",
+  "host": "https://rawkuma.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "page/{{page}}/?s={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".bs",
+    "titleSelector": ".tt@text",
+    "coverSelector": ".limit@img@src",
+    "detailUrlSelector": ".bsx@a.0@href",
+    "latestChapterSelector": ".epxs@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-.clstyle@li",
+    "titleSelector": ".chapternum.0@text",
+    "urlSelector": ".eph-num@a@href"
+  },
+  "images": {
+    "listSelector": "#readerarea@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

@@ -3,13 +3,13 @@
   "repositoryUrl": "https://github.com/jiwangyihao/source-j-legado",
   "branch": "main",
   "commitSha": "a36d68d59f6d157316952262301e9d553de4eec7",
-  "importedAt": "2026-06-28T15:36:48.799Z",
+  "importedAt": "2026-06-29T03:37:57.223Z",
   "files": [
     {
-      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/bilinovel-like.json",
-      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\904c8b938675-bilinovel-like.json",
-      "rawHash": "904c8b9386753ea42ea4e5aef438c963db669c4ca9895cba68c74eac80f5a274",
-      "size": 35314
+      "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/bilinovel.json",
+      "localPath": "C:\\Users\\郭帅齐\\zuixinmanhua\\apps\\server\\data\\source-registry\\raw\\github\\jiwangyihao-legado-all\\a36d68d59f6d157316952262301e9d553de4eec7\\c06a766066da-bilinovel.json",
+      "rawHash": "c06a766066da82b5a039f2feb4a3b43fb84b2de5c568938b32007de414556e3b",
+      "size": 53568
     },
     {
       "sourceUrl": "https://raw.githubusercontent.com/jiwangyihao/source-j-legado/main/esjzone.json",

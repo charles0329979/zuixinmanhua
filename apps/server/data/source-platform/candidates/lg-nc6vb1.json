@@ -1,0 +1,47 @@
+{
+  "id": "lg-nc6vb1",
+  "name": "✐ ㊣爱奇艺漫画 #Haxc1107",
+  "host": "https://www.iqiyi.com/manhua#Haxc1107",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "漫画,已检验"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.iqiyi.com/manhua/search-keyword={{key}}_{{page}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": ".stacksList li||class.cartoon-hot-ul li",
+    "titleSelector": ".stacksBook-tit",
+    "coverSelector": "img",
+    "detailUrlSelector": "a.0",
+    "latestChapterSelector": ".stacksBook-newchapter a"
+  },
+  "detail": {
+    "titleSelector": ".detail-tit h1",
+    "coverSelector": "body",
+    "authorSelector": ".author.0 span",
+    "descriptionSelector": ".detail-docu"
+  },
+  "chapters": {
+    "listSelector": "$.data.episodes.*",
+    "titleSelector": "$.episodeTitle",
+    "urlSelector": "https://www.iqiyi.com/manhua/reader/{$.comicId}_{$.episodeId}.html"
+  },
+  "images": {
+    "listSelector": ".main-container",
+    "srcAttribute": "html##data-original##src"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n}",
+  "timeoutMs": 3112,
+  "createdAt": "2026-06-27T15:52:53.674Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

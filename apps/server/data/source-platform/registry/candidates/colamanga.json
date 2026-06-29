@@ -1,0 +1,19 @@
+{
+  "id": "colamanga",
+  "name": "可乐漫画",
+  "version": "1.0.0-187f954d",
+  "hash": "187f954dd7a9dab38ff6bd736481555a8dd8220b6aa7b9c060b0551118ac2eb5",
+  "host": "https://www.colamanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-04T15:27:00.010Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

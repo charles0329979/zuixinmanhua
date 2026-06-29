@@ -1,0 +1,46 @@
+{
+  "id": "lg-fdhaa",
+  "name": "好看漫画",
+  "host": "https://www.9comic.cn/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.9comic.cn/comic22/so/comic?keyword={{key}}&p=&ver=2.0",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": "$..list[*]||$.data[*]",
+    "titleSelector": "$.title",
+    "coverSelector": "$.pic",
+    "detailUrlSelector": "https://www.9comic.cn/comic22/book/show?id={{$.id}}&imei=aanid10d10df686793008",
+    "latestChapterSelector": "$.lastchapter"
+  },
+  "detail": {
+    "titleSelector": "$.title",
+    "coverSelector": "$.pic",
+    "authorSelector": "$.author",
+    "descriptionSelector": "$.info"
+  },
+  "chapters": {
+    "listSelector": "$.data[*]",
+    "titleSelector": "$.name",
+    "urlSelector": "https://www.9comic.cn/comic22/book/showChapter?id={{$.id}}&imei=aanid10d10df686793008"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar options = {\n\"headers\": {\"Referer\": baseUrl}\n}\njava.getStringList(\"$.data..url\").toArray().map\n(id=>'<img src=\"'+id+'\" >').join(\"\\n\")"
+  },
+  "timeoutMs": 971,
+  "createdAt": "2026-06-27T15:52:55.841Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

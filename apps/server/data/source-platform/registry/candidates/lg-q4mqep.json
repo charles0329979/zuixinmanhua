@@ -1,0 +1,19 @@
+{
+  "id": "lg-q4mqep",
+  "name": "🗒 仙漫网站",
+  "version": "1.0.0-f7c45791",
+  "hash": "f7c45791f4dac4246d3b6b3117d17ad35c020e6973eb5644f1a9d64e55553799",
+  "host": "https://www.xianman123.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "biqug-org-47530161",
+  "name": "笔趣阁漫画",
+  "host": "https://www.biqug.org",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.biqug.org/index.php/search?key={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "div.common-comic-item",
+    "titleSelector": ".comic__title a@text",
+    "coverSelector": "img@src##!cover-400",
+    "detailUrlSelector": ".comic__title a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "p.j-comic-title",
+    "coverSelector": ".de-info__cover img@src##!cover-400",
+    "authorSelector": ".name a@text",
+    "descriptionSelector": "{{@@p.intro@text}}\n{{@@span.text:nth-of-type(n+2)@text}}",
+    "statusSelector": "b a@text",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "a.j-chapter-link",
+    "titleSelector": "text",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "img.lazy-read@html##!cover-800",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

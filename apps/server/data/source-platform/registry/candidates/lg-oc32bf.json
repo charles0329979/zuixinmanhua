@@ -1,0 +1,19 @@
+{
+  "id": "lg-oc32bf",
+  "name": "包子漫画（优+）",
+  "version": "1.0.0-a8345621",
+  "hash": "a83456215c7582bc4cd7034e1470f50c74ec9f39e574b8203a2397d9898cbe4a",
+  "host": "https://cn.bzmanga.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

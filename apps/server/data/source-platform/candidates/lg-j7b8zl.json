@@ -1,0 +1,46 @@
+{
+  "id": "lg-j7b8zl",
+  "name": "粉丝漫画",
+  "host": "https://apifans.dushimh.com/",
+  "enabled": false,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://apifans.dushimh.com/app2/comic/search?sort=click&page={{page}}&keywords={{key}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "$.items[*]",
+    "titleSelector": "$.title",
+    "coverSelector": "$.coverUrl##https://img.fansmh.com##https://reso.qianwee.com",
+    "detailUrlSelector": "https://apifans.dushimh.com/app2/comic/view?id={{$.id}}",
+    "latestChapterSelector": "$.last_chapter_name"
+  },
+  "detail": {
+    "titleSelector": "$..title",
+    "coverSelector": "body",
+    "authorSelector": "$..author",
+    "descriptionSelector": "$..description"
+  },
+  "chapters": {
+    "listSelector": "$.data..chapters[*]",
+    "titleSelector": "$.name",
+    "urlSelector": "https://apifans.dushimh.com/app2/chapter/view?id={{$.id}}"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar options = {\n\"headers\": {\"Referer\": baseUrl}\n}\njava.getStringList(\"$.data.imageArray\").toArray().map\n(id=>'<img src=\"'+id+'\" >').join(\"\\n\")"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:50.371Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

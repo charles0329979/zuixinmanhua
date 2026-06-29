@@ -1,0 +1,47 @@
+{
+  "id": "lg-r2ve0o",
+  "name": "看漫画吧",
+  "host": "http://m.kanman.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 50,
+  "tags": [
+    "漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "http://m.kanman.com/sort/all.html?cache=false&search_key={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".comic-item",
+    "titleSelector": ".title",
+    "coverSelector": "body",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": ".chapter"
+  },
+  "detail": {
+    "titleSelector": "#js_comic_id",
+    "coverSelector": "#Cover img",
+    "authorSelector": ".sub_r p.0",
+    "descriptionSelector": ".txtDesc"
+  },
+  "chapters": {
+    "listSelector": ".chapter-list li",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:var json = result.match(/window.comicInfo=(.*?),window.hideguide/)[1];\nvar json = eval('json='+json)\nvar image_list = [];\njson.current_chapter.chapter_img_list.map(item=>{\n    image_list.push('<img src=\"'+item+'\">')\n})\nimage_list.join(\"\\n\");"
+  },
+  "headers": "{\ruser-agent: \"Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36\"\r}",
+  "timeoutMs": 175,
+  "createdAt": "2026-06-27T15:52:52.185Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

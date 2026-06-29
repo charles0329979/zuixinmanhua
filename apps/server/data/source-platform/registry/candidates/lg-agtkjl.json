@@ -1,0 +1,19 @@
+{
+  "id": "lg-agtkjl",
+  "name": "1359漫画",
+  "version": "1.0.0-3ae66d8b",
+  "hash": "3ae66d8be7a52f018576703516b56b287a289c3343e1a9b6cf20800389a13c2d",
+  "host": "https://www.bdido.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

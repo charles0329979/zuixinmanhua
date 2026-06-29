@@ -1,0 +1,45 @@
+{
+  "id": "hanmanmianfei-net-b6b94bf4",
+  "name": "韩漫免费看",
+  "host": "https://www.hanmanmianfei.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.hanmanmianfei.net/search?key={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": ".manga-i-list .manga-i-list-item",
+    "titleSelector": ".manga-i-list-title@text",
+    "coverSelector": ".manga-i-cover@src",
+    "detailUrlSelector": ".manga-i-list-item a@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".detail-main-title@text",
+    "coverSelector": ".detail-bar-img@src",
+    "authorSelector": "{{@@ .detail-main-subtitle .block:nth-of-type(1) a@text}}",
+    "descriptionSelector": "{{@@ .detail-main-content:nth-of-type(1) @text}}",
+    "statusSelector": "{{@@ .detail-main-subtitle .block:nth-of-type(2) a@text}}",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".detail-list .detail-list-item",
+    "titleSelector": ".detail-list-item a@text",
+    "urlSelector": ".detail-list-item a@href"
+  },
+  "images": {
+    "listSelector": ".view-main-1@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

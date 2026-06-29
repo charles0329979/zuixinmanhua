@@ -1,0 +1,19 @@
+{
+  "id": "lg-ywo3dl",
+  "name": "曼哈漫画（优+）",
+  "version": "1.0.0-b0023a9b",
+  "hash": "b0023a9bbb5d130decfb732e84b31497b93ce2971c5fafbee3e345cb034ee2e1",
+  "host": "https://www.mangabz.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T15:54:35.679Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

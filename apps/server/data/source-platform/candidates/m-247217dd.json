@@ -1,0 +1,45 @@
+{
+  "id": "m-247217dd",
+  "name": "🍒 爱看书吧m",
+  "host": "https://m.ikshu8.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "tag.tbody@tag.tr!0",
+    "titleSelector": "tag.a.0@text",
+    "coverSelector": "tag.a.1@href##.*/(\\d+)_(\\d+)/.*##/files/article/image/$1/$2/$2s.jpg",
+    "detailUrlSelector": "tag.a@href",
+    "latestChapterSelector": "tag.a.1@text",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "[property=\"og:novel:book_name\"]@content",
+    "coverSelector": "[property=\"og:image\"]@content",
+    "authorSelector": "[property=\"og:novel:author\"]@content",
+    "descriptionSelector": "class.desc@text",
+    "statusSelector": "[property=\"og:novel:category\"]@content",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "class.section-list.1@li@a",
+    "titleSelector": "text##[\\(（【].*[求更订谢乐发推].*",
+    "urlSelector": "href"
+  },
+  "images": {
+    "listSelector": "id.content@html##\\s*{{chapter.title}}\\s*",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.082Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

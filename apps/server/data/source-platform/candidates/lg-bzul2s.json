@@ -1,0 +1,41 @@
+{
+  "id": "lg-bzul2s",
+  "name": "kuronavi漫画raw",
+  "host": "https://kuronavi.blog",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "Raw,日漫,漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://kuronavi.blog/search/manga?keyword={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".item",
+    "titleSelector": "figcaption h3 a",
+    "coverSelector": ".image img",
+    "detailUrlSelector": "figcaption h3 a",
+    "latestChapterSelector": ".chapter a:first"
+  },
+  "detail": {
+    "titleSelector": ".title-detail",
+    "coverSelector": ".col-image img",
+    "authorSelector": ".author .col-xs-8",
+    "descriptionSelector": ".detail-content p"
+  },
+  "chapters": {
+    "listSelector": "-#nt_listchapter nav ul li",
+    "titleSelector": ".chapter a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": ".page-chapter img",
+    "srcAttribute": "html"
+  },
+  "headers": "{\n\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:52.651Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

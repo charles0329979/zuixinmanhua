@@ -1,0 +1,20 @@
+{
+  "id": "yydsmh",
+  "name": "YYDS漫画",
+  "version": "1.0.0-mqz2lszj",
+  "hash": "",
+  "host": "https://www.yydsmh.com",
+  "healthScore": 97,
+  "publishedAt": "2026-06-29T10:24:03.583Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false
+  },
+  "origin": {
+    "provider": "manual"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "lg-tbrk8y",
+  "name": "古风漫画",
+  "host": "http://www.gufengmh9.com",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🎨漫画,☣️漫画lateral"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://m.gufengmh9.com/search/?keywords={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".itemBox",
+    "titleSelector": ".title",
+    "coverSelector": "mip-img",
+    "detailUrlSelector": ".title a",
+    "latestChapterSelector": ".coll"
+  },
+  "detail": {
+    "titleSelector": "h1 .title",
+    "coverSelector": "mip-img",
+    "authorSelector": "dd.1",
+    "descriptionSelector": ".txtDesc autoHeight"
+  },
+  "chapters": {
+    "listSelector": ".Drama autoHeight a",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nvar options={\"headers\":{\"Referer\":baseUrl}};\n(function getImgList() {\neval(result.match(/chapterImages\\s*=\\s*[^;]*/)[0])\neval(result.match(/chapterPath\\s*=\\s*[^;]*/)[0])\nreturn chapterImages;\r\n}()).map(uri=>\n'<img src=\"'+'https://res.xiaoqinre.com/'+chapterPath+uri+\",\"+JSON.stringify(options)+'\"/>').join(\"\\n\")"
+  },
+  "timeoutMs": 1761,
+  "createdAt": "2026-06-27T15:52:55.359Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

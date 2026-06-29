@@ -1,0 +1,45 @@
+{
+  "id": "ajiu-36-4dbdaa78",
+  "name": "[阿玖·AJiu]36漫画",
+  "host": "https://m.36mh.net",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search/?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.itemBox",
+    "titleSelector": "class.title@text",
+    "coverSelector": "",
+    "detailUrlSelector": "tag.a.0@href",
+    "latestChapterSelector": "class.coll@text",
+    "statusSelector": "class.pd@text",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "",
+    "coverSelector": "",
+    "authorSelector": "",
+    "descriptionSelector": "class.txtDesc@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "-id.chapter-list-4@tag.li",
+    "titleSelector": "tag.a@text",
+    "urlSelector": "tag.a@href"
+  },
+  "images": {
+    "listSelector": "tag.mip-link@tag.mip-img@src",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.080Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

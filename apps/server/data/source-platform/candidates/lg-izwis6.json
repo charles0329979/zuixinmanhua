@@ -1,0 +1,47 @@
+{
+  "id": "lg-izwis6",
+  "name": "🎨新新漫画-xyz",
+  "host": "https://m.77mh.xyz",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "🍉漫画"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://so.77mh.xyz/m.php?k={{key}}",
+    "method": "GET",
+    "responseType": "json",
+    "listSelector": ".list",
+    "titleSelector": ".title",
+    "coverSelector": "img",
+    "detailUrlSelector": "a",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "coverSelector": "body",
+    "authorSelector": ".author a",
+    "descriptionSelector": ".intro"
+  },
+  "chapters": {
+    "listSelector": "-",
+    "titleSelector": "a",
+    "urlSelector": "a"
+  },
+  "images": {
+    "listSelector": "body",
+    "srcAttribute": "js:\nheaders={\"headers\":{\"Referer\":baseUrl}};\n//执行eval函数，获取图片列表信息\neval(result.match(/(eval\\([\\s\\S]+?)\\s*<\\/script>/)[1]);\n//图片服务器列表，抓包可得\nserver=[\"https://picsh.77dm.top\",\"https://hws.gdbyhtl.net\",\"https://a16d.gdbyhtl.net:64443\",\"https://imgmum.dm365.top:2096\",\"https://picsh.77dm.top\",\"https://imgsh.dm365.top\"];\nserver2=[\"https://picsh.77dm.top\"];\n//自动选可用服务器\nvar select=\"\";for(let i=0;i<server.length;i++){if(select==\"\"){if(String(java.ajax(server[i]+\"/h\"+img_s+\"/\"+msg.split(\"|\")[0]+'.webp')).match(/webp/i)){select=i;}}}\n//拼接img标签\nmsg.split(\"|\").map(url=>\n'<img src=\"'+server2+\"/h\"+img_s+\"/\"+url+'.webp'+','+JSON.stringify(headers)+'\">').join(\"\\n\")"
+  },
+  "headers": "{\n  \"User-Agent\": \"Mozilla/5.0 (Linux; Android 8.1.0; JKM-AL00b Build/HUAWEIJKM-AL00b; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044807 Mobile Safari/537.36\"\n}",
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:54.575Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z",
+  "jsRules": {
+    "engine": "quickjs",
+    "script": "function search(args){return[];}function getComicDetail(args){return{comicId:args.comicId,title:'',cover:''};}function getChapters(args){return[];}function getChapterImages(args){return{chapterId:args.chapterId,images:[]};}",
+    "timeoutMs": 8000,
+    "memoryLimitMb": 16
+  }
+}

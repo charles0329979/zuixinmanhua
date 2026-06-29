@@ -1,0 +1,45 @@
+{
+  "id": "shenmh-top-b28b3f52",
+  "name": "绅士漫画",
+  "host": "https://www.shenmh.top",
+  "enabled": false,
+  "language": "zh",
+  "weight": 0,
+  "tags": [
+    "medium"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "https://www.shenmh.top/search/index?keywords={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "keywordParam": "keyword",
+    "listSelector": "class.weui-panel__bd@a",
+    "titleSelector": "@title",
+    "coverSelector": "class.weui-media-box__thumb@src",
+    "detailUrlSelector": "@href",
+    "latestChapterSelector": "",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": "class.ca00-0cf2-ab62-1422@img@title",
+    "coverSelector": "class.ca00-0cf2-ab62-1422@img@src",
+    "authorSelector": "class.a529-068d-be88-6744.0@text##作者：",
+    "descriptionSelector": "class.aa5d-c24c-a529-068d.1@text",
+    "statusSelector": "",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": "id.html_box@class.item",
+    "titleSelector": "a@title",
+    "urlSelector": "a@href"
+  },
+  "images": {
+    "listSelector": "class.center@img@html",
+    "srcAttribute": "src"
+  },
+  "timeoutMs": 8000,
+  "createdAt": "2026-06-27T17:52:40.083Z",
+  "updatedAt": "2026-06-27T17:52:40.086Z"
+}

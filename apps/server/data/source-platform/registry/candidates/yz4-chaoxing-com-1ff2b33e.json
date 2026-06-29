@@ -1,0 +1,19 @@
+{
+  "id": "yz4-chaoxing-com-1ff2b33e",
+  "name": "📚 超星图书馆",
+  "version": "1.0.0-00d6c486",
+  "hash": "00d6c4864f173569a8db44d230a2ddf4f7467b06953d558a8db987997aedd766",
+  "host": "http://yz4.chaoxing.com",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "manhuadui-candidate",
+  "name": "漫画堆",
+  "normalizedSource": {
+    "id": "manhuadui",
+    "name": "漫画堆",
+    "host": "https://www.manhuadui.com",
+    "enabled": true,
+    "language": "zh",
+    "weight": 10,
+    "tags": [
+      "中文",
+      "国漫"
+    ],
+    "search": {
+      "url": "/search?keywords={{keyword}}",
+      "method": "GET",
+      "listSelector": ".book-result li",
+      "titleSelector": ".book-name",
+      "coverSelector": "img",
+      "detailUrlSelector": "a",
+      "latestChapterSelector": ".updateon",
+      "statusSelector": "",
+      "updateTimeSelector": ""
+    },
+    "detail": {
+      "titleSelector": ".book-title",
+      "coverSelector": ".book-cover img",
+      "authorSelector": ".book-author",
+      "descriptionSelector": ".book-desc",
+      "statusSelector": ".book-status",
+      "latestChapterSelector": ""
+    },
+    "chapters": {
+      "listSelector": ".chapter-list a",
+      "titleSelector": "&",
+      "urlSelector": "&"
+    },
+    "images": {
+      "listSelector": "#images img, .comicpage img",
+      "srcAttribute": "src"
+    },
+    "headers": {
+      "User-Agent": "Mozilla/5.0"
+    },
+    "timeoutMs": 10000,
+    "createdAt": "2026-06-04T15:22:07.064Z",
+    "updatedAt": "2026-06-04T15:26:59.967Z"
+  },
+  "origin": {
+    "provider": "manual",
+    "repositoryUrl": "",
+    "branch": "",
+    "commitSha": "",
+    "filePath": "",
+    "importedAt": "2026-06-29T09:13:53.799Z",
+    "rawHash": "manual"
+  },
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true,
+    "requiresJs": false,
+    "requiresLogin": false,
+    "requiresManualAdapter": false
+  },
+  "lifecycleStatus": "PENDING_VALIDATE",
+  "conversionWarnings": [],
+  "createdAt": "2026-06-29T09:13:53.799Z",
+  "updatedAt": "2026-06-29T09:13:53.799Z"
+}

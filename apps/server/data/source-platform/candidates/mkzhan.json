@@ -1,0 +1,46 @@
+{
+  "id": "mkzhan",
+  "name": "漫客栈",
+  "host": "https://www.mkzhan.com",
+  "enabled": true,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "中文",
+    "国漫"
+  ],
+  "search": {
+    "url": "/search/?keyword={{keyword}}",
+    "method": "GET",
+    "listSelector": ".search-comic-list .common-comic-item",
+    "titleSelector": ".comic__title a",
+    "coverSelector": "img",
+    "detailUrlSelector": ".cover",
+    "latestChapterSelector": ".comic__title",
+    "statusSelector": "",
+    "updateTimeSelector": ""
+  },
+  "detail": {
+    "titleSelector": ".comic-title",
+    "coverSelector": ".de-info__cover img",
+    "authorSelector": ".name",
+    "descriptionSelector": ".intro-total",
+    "statusSelector": ".comic-title",
+    "latestChapterSelector": ""
+  },
+  "chapters": {
+    "listSelector": ".chapter__list-box li",
+    "titleSelector": "a",
+    "urlSelector": ".j-chapter-link@data-hreflink"
+  },
+  "images": {
+    "listSelector": ".comicpage img, .comic-contain img, amp-img",
+    "srcAttribute": "src"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  "timeoutMs": 10000,
+  "createdAt": "2026-06-07T08:47:46.588Z",
+  "updatedAt": "2026-06-07T12:44:05.096Z"
+}

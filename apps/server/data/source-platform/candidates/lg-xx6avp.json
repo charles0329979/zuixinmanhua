@@ -1,0 +1,40 @@
+{
+  "id": "lg-xx6avp",
+  "name": "🗒 性感美女",
+  "host": "https://www.jpxgyw.cc",
+  "enabled": false,
+  "language": "zh",
+  "weight": 10,
+  "tags": [
+    "校验可用"
+  ],
+  "mode": "server",
+  "search": {
+    "url": "/search?keyword={{keyword}}",
+    "method": "GET",
+    "responseType": "html",
+    "listSelector": "body",
+    "titleSelector": "body",
+    "coverSelector": "body",
+    "detailUrlSelector": "body",
+    "latestChapterSelector": "body"
+  },
+  "detail": {
+    "titleSelector": ".article-title",
+    "coverSelector": "body",
+    "authorSelector": "body",
+    "descriptionSelector": "body"
+  },
+  "chapters": {
+    "listSelector": "h1",
+    "titleSelector": "text",
+    "urlSelector": "body"
+  },
+  "images": {
+    "listSelector": ".article-content p img",
+    "srcAttribute": "html"
+  },
+  "timeoutMs": 15000,
+  "createdAt": "2026-06-27T15:52:52.890Z",
+  "updatedAt": "2026-06-27T15:54:35.679Z"
+}

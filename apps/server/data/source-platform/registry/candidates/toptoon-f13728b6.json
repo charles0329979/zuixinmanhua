@@ -1,0 +1,19 @@
+{
+  "id": "toptoon-f13728b6",
+  "name": "🌵TOPTOON顶通漫画-国际中文精选版🌵",
+  "version": "1.0.0-a7cd1d1a",
+  "hash": "a7cd1d1a8870d66cc9ee3f3228d79d9147c1611b48ef3a5b16552f0ad01d7b7f",
+  "host": "https://18toptoon.org",
+  "healthScore": 0,
+  "publishedAt": "2026-06-27T17:52:40.086Z",
+  "capabilities": {
+    "search": true,
+    "detail": true,
+    "chapters": true,
+    "images": true
+  },
+  "origin": {
+    "provider": "legacy-migration",
+    "filePath": "sources.json"
+  }
+}
